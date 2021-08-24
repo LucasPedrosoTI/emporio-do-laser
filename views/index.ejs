@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/reset.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+      defer
+    ></script>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="/css/reset.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"
-    defer></script>
+    <link href="/css/style.css" rel="stylesheet" />
+    <title><%= title %></title>
+  </head>
 
-  <link href="/css/style.css" rel="stylesheet" />
-  <title>
-    <%= title %>
-  </title>
-</head>
-
-<body>
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img class="img-fluid rounded-circle logo"
-            src="https://mcusercontent.com/d0e529ea82f3a7735f7620fce/images/283e11f1-f181-2e78-395d-3bedb56ff380.jpeg" />
+          <img class="img-fluid rounded-circle logo" src="https://mcusercontent.com/d0e529ea82f3a7735f7620fce/images/283e11f1-f181-2e78-395d-3bedb56ff380.jpeg" />
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -36,8 +46,7 @@
               <a class="nav-link active" aria-current="page" href="#">Início</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false"> Produtos </a>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Produtos </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Cakeboards</a></li>
                 <li><a class="dropdown-item" href="#">Caixas Cenário</a></li>
@@ -61,8 +70,7 @@
 
           <li class="nav-item me-4 ms-5">
             <a href="#" class="r-items rosa">
-              <img class="carrinho"
-                src="https://i.pinimg.com/favicons/044bbc186193a9f069ebb3d1c4b8c2009778494504af6e4c52763fe2.png?b2ec44314e6e1201dd5d8102b251ee50" />
+              <img class="carrinho" src="https://i.pinimg.com/favicons/044bbc186193a9f069ebb3d1c4b8c2009778494504af6e4c52763fe2.png?b2ec44314e6e1201dd5d8102b251ee50" />
             </a>
           </li>
         </div>
@@ -163,13 +171,44 @@
               </div>
             </div>
           </div>
+        </div>
       </div>
-  </div>
-  </section>
+    </section>
 
-  <div class="footer">
-    Footer
-  </div>
-</body>
+    <footer class="footer mt-5">
+      <div class="container d-flex justify-content-around">
+        <section class="contato d-flex flex-column justify-content-center">
+          <h4 class="pt-4 mb-4">Contato</h4>
+          <div class="my-2">
+            <i class="bi bi-whatsapp"></i>
+            <span>Whatsapp <strong>(11) 98647-1542</strong></span>
+          </div>
+          <div class="my-2">
+            <i class="bi bi-instagram"></i>
+            <span>Instragram <strong>@emporiodolaser</strong></span>
+          </div>
+          <div class="mt-2 pb-5">
+            <i class="bi bi-pin-map"></i>
+            <span>Endereço <strong>Rua Barena 7E, Sala 2, Itaim Paulista, São Paulo - SP</strong></span>
+          </div>
+        </section>
 
+        <section class="pague-com">
+          <h4 class="pt-4 mb-4">Pague com</h4>
+          <div class="d-flex">
+            <img src="https://img.icons8.com/color/48/000000/visa.png" />
+            <img src="https://img.icons8.com/color/48/000000/mastercard.png" />
+            <img src="https://img.icons8.com/color/48/000000/amex.png" />
+            <img src="https://img.icons8.com/color/48/000000/boleto-bankario.png" />
+            <img src="https://logodownload.org/wp-content/uploads/2018/05/picpay-logo-2.png" width="48" />
+          </div>
+          <h4 class="mt-2 mb-4">Selos</h4>
+          <div class="d-flex pb-5">
+            <img src="/img/safe.png" alt="safe" />
+            <img src="/img/safe2.png" alt="safe google" />
+          </div>
+        </section>
+      </div>
+    </footer>
+  </body>
 </html>
