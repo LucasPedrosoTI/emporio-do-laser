@@ -1,11 +1,175 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/css/reset.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"
+    defer></script>
+
+  <link href="/css/style.css" rel="stylesheet" />
+  <title>
+    <%= title %>
+  </title>
+</head>
+
+<body>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img class="img-fluid rounded-circle logo"
+            src="https://mcusercontent.com/d0e529ea82f3a7735f7620fce/images/283e11f1-f181-2e78-395d-3bedb56ff380.jpeg" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Início</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false"> Produtos </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Cakeboards</a></li>
+                <li><a class="dropdown-item" href="#">Caixas Cenário</a></li>
+                <li><a class="dropdown-item" href="#">Topos de Bolo</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sobre Nós</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contato/SAC</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Minha Conta</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Procurar" aria-label="Search" />
+            <button class="btn btn-outline-success" type="submit">Procurar</button>
+          </form>
+
+          <li class="nav-item me-4 ms-5">
+            <a href="#" class="r-items rosa">
+              <img class="carrinho"
+                src="https://i.pinimg.com/favicons/044bbc186193a9f069ebb3d1c4b8c2009778494504af6e4c52763fe2.png?b2ec44314e6e1201dd5d8102b251ee50" />
+            </a>
+          </li>
+        </div>
+      </div>
+    </nav>
+
+    <section>
+      <h2 class="text-center my-5 rosa">Cakeboards</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="card" style="width: 18rem">
+                <img src="/img/cake1.png" class="card-img-top" alt="cakeboard" />
+                <div class="card-body">
+                  <h5 class="card-title">Cakeboards redondos</h5>
+                  <p class="card-text">Veja os nossos cakeboards</p>
+                  <a href="#" class="btn btn-primary">Visitar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="card" style="width: 18rem">
+                <img src="/img/cake2.png" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title">Cakeboards quadrados</h5>
+                  <p class="card-text">Veja mais detalhes.</p>
+                  <a href="#" class="btn btn-primary">Visitar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-center my-5 rosa">Caixas Cenário</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="card align-items-center justify-content-center" style="width: 18rem">
+                <img src="/img/caixa1.png" class="card-img-top" alt="cakeboard" />
+                <div class="card-body">
+                  <h5 class="card-title">Caixas Personalizáveis</h5>
+                  <p class="card-text">Veja as nossas caixas</p>
+                  <a href="#" class="btn btn-primary">Visitar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="card align-items-center justify-content-center" style="width: 18rem">
+                <div>
+                  <img src="/img/caixa2.png" class="card-img-top" alt="cakeboard" />
+                  <div class="card-body">
+                    <h5 class="card-title">Caixas Personalizáveis</h5>
+                    <p class="card-text">Veja as nossas caixas</p>
+                    <a href="#" class="btn btn-primary">Visitar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-center my-5 rosa">Topos de Bolo</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="card align-items-center justify-content-center" style="width: 18rem">
+                <img src="/img/topo1.png" class="card-img-top" alt="cakeboard" />
+                <div class="card-body">
+                  <h5 class="card-title">Topos de Bolo</h5>
+                  <p class="card-text">Veja os nossos topos</p>
+                  <a href="#" class="btn btn-primary">Visitar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="card align-items-center justify-content-center" style="width: 18rem">
+                <img src="/img/topo2.png" class="card-img-top" alt="cakeboard" />
+                <div class="card-body">
+                  <h5 class="card-title">Topos de Bolo</h5>
+                  <p class="card-text">Veja os nossos topos</p>
+                  <a href="#" class="btn btn-primary">Visitar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+  </section>
+
+  <div class="footer">
+    Footer
+  </div>
+</body>
+
 </html>
