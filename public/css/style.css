@@ -52,6 +52,12 @@ body {
   margin: 0 2px 0 2px;
 }
 
+/* Margem */
+
+.margin-bottom-20px {
+  margin-bottom: 20px;
+}
+
 /* Font Size */
 
 .font-size-17 {
@@ -65,10 +71,6 @@ body {
 /* --------- */
 
 /* Style do Contato */
-
-.start-margin {
-  margin-top: 100px;
-}
 
 .content-center {
   display: flex;
