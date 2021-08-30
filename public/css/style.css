@@ -32,8 +32,24 @@ body {
 /* Footer: Ajustes */
 
 .picpay {
-  width: 48px;
-  height: 100%;
+  width: 78px;
+  height: 60%;
+}
+
+.boleto {
+  height: 80%;
+}
+
+.safe1 {
+  height: 45px;
+}
+
+.safe2 {
+  height: 67px;
+}
+
+.img-footer-margin {
+  margin: 0 2px 0 2px;
 }
 
 /* Font Size */
@@ -92,7 +108,6 @@ body {
   border:grey 1px solid;
   height: 35px;
   background-color: #194351;
-  transition: 10s;
 }
 
 .btn-sac:hover {
