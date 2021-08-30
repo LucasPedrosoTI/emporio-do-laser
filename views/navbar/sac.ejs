@@ -1,20 +1,20 @@
 <%- include('../components/head', {title: 'Empório do Laser'}) %> <%- include('../components/navbar') %>
-
 <br><br><br><br>
 
 <section>
 
-
-<center>   
-<h1 class="title-sac">Entre em contato conosco para dúvidas e orçamentos!</h1>
-<form class="contato-sac">
-    <input class="contato-nome espacamento" type="text" placeholder="  Nome" aria-label="text" /><br>
-    <input class="contato-email espacamento" type="email" placeholder="  E-mail" aria-label="email" /><br>
-    <input class="contato-assunto espacamento" type="text" placeholder="  Assunto" aria-label="text" /><br>
-    <button class="btn-sac" type="submit">Enviar</button>
-</form>
-</center>
-
+    <div class="content-center">
+        <div class="contato-sac">
+            <h1 class="title-sac">Entre em contato conosco para dúvidas e orçamentos!</h1>
+            <form class="form-sac" method="" action="">
+                <input class="field espacamento" type="text" name="name" placeholder="  Nome" aria-label="text">
+                <input class="field espacamento" type="email" name="email" placeholder="  E-mail" aria-label="email">
+                <textarea class="field espacamento contato-assunto" type="field" name="message" placeholder="  Assunto" aria-label="text" ></textarea>
+                <button class="btn-sac espacamento" type="submit">Enviar</button>
+            </form>          
+        </div>
+    </div> 
+      
 </section>
 
 <%- include('../components/foot') %>
