@@ -29,6 +29,17 @@ body {
   color: var(--primaria);
 }
 
+/* Font Size */
+
+.font-size-20 {
+  font-size: 17px;
+}
+
+.font-size-25{
+  font-size: 25px;
+}
+
+/* --------- */
 
 /* Style do Contato */
 
@@ -52,13 +63,6 @@ body {
 .form-sac {
   display: flex;
   flex-direction: column;
-}
-
-.title-sac{
-  color: #fac2b3;
-  font-size: 25px;
-  margin-top: 30px;
-  /* width: 400px; */
 }
 
 .field {
@@ -90,3 +94,12 @@ body {
   border:grey 1px solid;
 }
 /* fim do style do contato */
+
+/* Sobre nós */
+
+.conteudo {
+  width: 100%; 
+  max-width: 500px;
+}
+
+/* Fim sobre nós */
