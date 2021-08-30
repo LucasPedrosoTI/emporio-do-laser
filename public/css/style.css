@@ -56,7 +56,7 @@ body {
 
 .contato-sac{
   width: 100%;
-  max-width: 500px;
+  max-width: 40%;
 
 }
 
@@ -103,3 +103,12 @@ body {
 }
 
 /* Fim sobre nós */
+
+@media (max-width: 1200px){
+  
+  .contato-sac{
+    width: 100%;
+    max-width: 50%;
+  }
+  
+}
