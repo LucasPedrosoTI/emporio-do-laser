@@ -29,6 +29,13 @@ body {
   color: var(--primaria);
 }
 
+/* Footer: Ajustes */
+
+.picpay {
+  width: 48px;
+  height: 100%;
+}
+
 /* Font Size */
 
 .font-size-17 {
@@ -106,9 +113,22 @@ body {
 
 @media (max-width: 830px){
   
-  .contato-sac{
+  .contato-sac {
     width: 100%;
     max-width: 50%;
+  }
+
+}
+
+@media (max-width: 768px){
+
+  .mobile-screen {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .section-mobile-screen {
+    width: 50%;
   }
 
 }
