@@ -1,0 +1,29 @@
+<%- include('../components/head', {title: 'Empório do Laser'}) %> <%- include('../components/navbar') %>
+<br><br><br><br><br>
+
+<section>
+
+    <div>
+        <h2 class="text-white">Login</h2>
+        <form class="" method="POST" action="http://localhost:3000/authlogin">
+            <input type="email" name="loginEmail" placeholder="  E-mail">
+            <input type="password" name="loginSenha" placeholder="  Senha">
+            <button class="">Login</button>
+        </form>
+    </div>
+    
+    <div>
+        <form class="" method="POST" action="http://localhost:3000/cadastrar">
+            <input type="text" name="cadastroNome" placeholder="  Nome">
+            <input type="text" name="cadastroSobreNome" placeholder="  Sobrenome">
+            <input type="email" name="cadastroEmail" placeholder="  E-mail">
+            <input type="password" name="cadastroSenha" placeholder="  Senha">
+            <input type="password" name="confirmarSenha" placeholder="  Confirmar Senha">
+            <input type="number" name="cpfCNPJ" placeholder="  CPF/CNPJ">
+            <button class="">Cadastrar</button>
+        </form>
+    </div>
+
+</section>
+
+<%- include('../components/foot') %>
