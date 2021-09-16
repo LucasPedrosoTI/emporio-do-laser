@@ -2,7 +2,7 @@ module.exports = {
   development: {
     username: 'root',
     password: 'root',
-    database: 'emporio_do_laser',
+    database: 'emporio-do-laser',
     host: '127.0.0.1',
     dialect: 'mysql',
   },

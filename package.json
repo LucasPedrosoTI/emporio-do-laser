@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "cm": "npx sequelize migration:create --name="
+    "cm": "npx sequelize migration:create",
+    "mg": "npx sequelize-cli model:generate",
+    "dbm": "npx sequelize-cli db:migrate"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

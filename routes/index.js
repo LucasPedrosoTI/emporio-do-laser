@@ -31,7 +31,7 @@ router.get('/minha-conta', auth, function (req, res, next) {
 /* POST nav bar */
 router.post('/cadastrar', function (req, res, next) {
   /* teste */
-  console.log("CHAMADO VIA POST - cadastro cadastrar");
+  console.log('CHAMADO VIA POST - cadastro cadastrar');
   console.log(req.body);
 });
 
@@ -39,20 +39,10 @@ router.post('/authlogin', function (req, res, next) {
   // if (req.body.usuario == email && req.body.senha == senha) {
   if (req.session) {
     // req.session.usuario = req.body.usuario;
-    res.redirect('/minha-conta')
+    res.redirect('/minha-conta');
   } else {
-      res.redirect('/identifique-se')
+    res.redirect('/identifique-se');
   }
 });
 
-/* GET nav bar Produtos */
-router.get('/produtos/cakeboards', function (req, res, next) {
-  res.render('navbar/produtos/cakeboards', { title: 'Produtos: Cakeboards' });
-});
-router.get('/produtos/caixas-cenario', function (req, res, next) {
-  res.render('navbar/produtos/caixas-cenario', { title: 'Produtos: Cenário' });
-});
-router.get('/produtos/topo-bolos', function (req, res, next) {
-  res.render('navbar/produtos/topo-bolos', { title: 'Produtos: Topo de bolos' });
-});
 module.exports = router;
