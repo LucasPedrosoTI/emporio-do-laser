@@ -1,29 +1,83 @@
 <%- include('../components/head', {title: 'Empório do Laser'}) %> <%- include('../components/navbar') %>
-<br><br><br><br><br>
 
-<section>
+<div class="corpo">
+  <div class="container mt-5 login-cadastro">
+    <ul class="nav nav-tabs" id="loginTab" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" id="login-tab" data-bs-toggle="tab" aria-current="page" href="#" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">
+          Login
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="cadastrar-tab" data-bs-toggle="tab" data-bs-target="#cadastrar" type="button" role="tab" aria-controls="cadastrar" aria-selected="false">Cadastrar</button>
+      </li>
+    </ul>
 
-    <div>
-        <h2 class="text-white">Login</h2>
+    <div class="tab-content" role="tabContent">
+      <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+        <h2 class="text-white my-3">Login</h2>
         <form class="" method="POST" action="http://localhost:3000/authlogin">
-            <input type="email" name="loginEmail" placeholder="  E-mail">
-            <input type="password" name="loginSenha" placeholder="  Senha">
-            <button class="">Login</button>
-        </form>
-    </div>
-    
-    <div>
-        <form class="" method="POST" action="http://localhost:3000/cadastrar">
-            <input type="text" name="cadastroNome" placeholder="  Nome">
-            <input type="text" name="cadastroSobreNome" placeholder="  Sobrenome">
-            <input type="email" name="cadastroEmail" placeholder="  E-mail">
-            <input type="password" name="cadastroSenha" placeholder="  Senha">
-            <input type="password" name="confirmarSenha" placeholder="  Confirmar Senha">
-            <input type="number" name="cpfCNPJ" placeholder="  CPF/CNPJ">
-            <button class="">Cadastrar</button>
-        </form>
-    </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="bi bi-envelope"></i>
+            </span>
+            <input type="email" name="email" class="form-control" placeholder="E-mail" required />
+          </div>
 
-</section>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="bi bi-lock"></i>
+            </span>
+            <input type="password" name="senha" class="form-control" placeholder="Senha" required />
+          </div>
+
+          <button class="btn btn-primary">Login</button>
+        </form>
+      </div>
+
+      <div class="tab-pane fade" id="cadastrar" role="tabpanel" aria-labelledby="cadastrar-tab">
+        <h2 class="text-white my-3">Cadastrar</h2>
+        <form class="" method="POST" action="http://localhost:3000/cadastrar">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="bi bi-person-circle"></i>
+            </span>
+            <input required class="form-control" type="text" name="nome" placeholder="Nome Completo/Razão Social" />
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="bi bi-envelope"></i>
+            </span>
+            <input required class="form-control" type="email" name="email" placeholder="E-mail" />
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="bi bi-lock"></i>
+            </span>
+            <input required class="form-control" type="password" name="senha" placeholder="Senha" />
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="bi bi-lock"></i>
+            </span>
+            <input required class="form-control" type="password" name="confirmarSenha" placeholder="Confirmar Senha" />
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="bi bi-file-person"></i>
+            </span>
+            <input required class="form-control" type="number" name="cpfCNPJ" placeholder="CPF/CNPJ" />
+          </div>
+
+          <button class="btn btn-primary">Cadastrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%- include('../components/foot') %>

@@ -1,10 +1,22 @@
 :root {
   --primaria: #194351;
   --secundaria: #fac2b3;
+  --branco: #fcfcfc;
 }
 
 body {
   background-color: var(--primaria);
+  padding-top: 4rem;
+}
+
+.corpo {
+  height: 100vh;
+  margin-top: 5%;
+  /* margin-bottom: 300px; */
+}
+
+.nav-item button.nav-link:not(.active) {
+  color: var(--branco);
 }
 
 .rosa {
@@ -64,7 +76,7 @@ body {
   font-size: 17px;
 }
 
-.font-size-25{
+.font-size-25 {
   font-size: 25px;
 }
 
@@ -77,12 +89,6 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.contato-sac{
-  width: 100%;
-  max-width: 400px;
-
 }
 
 .form-sac {
@@ -104,10 +110,10 @@ body {
   height: 100px;
 }
 
-.btn-sac{
+.btn-sac {
   color: #fac2b3;
   border-radius: 4px;
-  border:grey 1px solid;
+  border: grey 1px solid;
   height: 35px;
   background-color: #194351;
 }
@@ -115,30 +121,22 @@ body {
 .btn-sac:hover {
   background-color: #fac2b3;
   color: #194351;
-  border:grey 1px solid;
+  border: grey 1px solid;
 }
 /* fim do style do contato */
 
-/* Sobre nós */
-
-.conteudo {
-  width: 100%; 
-  max-width: 50%;
+.login-cadastro {
+  width: 50%;
 }
 
-/* Fim sobre nós */
-
-@media (max-width: 830px){
-  
+@media (max-width: 830px) {
   .contato-sac {
     width: 100%;
     max-width: 50%;
   }
-
 }
 
-@media (max-width: 768px){
-
+@media (max-width: 768px) {
   .mobile-screen {
     width: 100%;
     flex-direction: column;
@@ -148,4 +146,11 @@ body {
     width: 50%;
   }
 
+  .login-cadastro {
+    width: 100%;
+  }
+
+  .corpo {
+    margin-top: 10%;
+  }
 }
