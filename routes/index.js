@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const IndexModel = require('../database/models/usuario');
 const auth = require('../middlewares/auth');
 
 /* GET home page. */
@@ -17,6 +18,7 @@ router.get('/sac', function (req, res, next) {
 });
 
 router.get('/identifique-se', function (req, res, next) {
+  // if (req.session.usuario) { // não funcionando "Cannot ready property 'usuario' of undefined"
   if (req.session) {
     res.render('navbar/my-account', { title: 'Minha Conta' });
   } else {
@@ -35,14 +37,22 @@ router.post('/cadastrar', function (req, res, next) {
   console.log(req.body);
 });
 
-router.post('/authlogin', function (req, res, next) {
-  // if (req.body.usuario == email && req.body.senha == senha) {
-  if (req.session) {
-    // req.session.usuario = req.body.usuario;
+router.post('/authlogin', async (req, res, next) => {
+  const login = await IndexModel.findOne({where: {email: req.body.email}}); // não funcionando
+  console.log(login);
+  // if (req.body.email == login.email && req.body.senha == login.senha) {
+  if (req.session.usuario) {
+    // req.session.usuario = login.email;
     res.redirect('/minha-conta');
   } else {
     res.redirect('/identifique-se');
   }
+});
+
+/* Logoff */
+router.get('/logout', (req, res) =>{
+  // req.session.destroy(); // Não está funcionando "Cannot ready property 'destroy' of undefined"
+  res.redirect('/');
 });
 
 module.exports = router;
