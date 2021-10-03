@@ -1,8 +1,7 @@
 'use strict';
-const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Usuario extends Model {}
-  Usuario.init(
+  const Usuario = sequelize.define(
+    'Usuario',
     {
       email: DataTypes.STRING,
       senha: DataTypes.STRING,
@@ -10,10 +9,12 @@ module.exports = (sequelize, DataTypes) => {
       deletedAt: DataTypes.DATE,
     },
     {
-      sequelize,
       modelName: 'Usuario',
       paranoid: true,
     }
   );
+  Usuario.associate = models => {
+    Usuario.hasOne(models.Cliente);
+  };
   return Usuario;
 };

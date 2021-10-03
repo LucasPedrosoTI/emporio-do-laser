@@ -16,6 +16,26 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// ------------ Sessão ------------ //
+// teste //
+app.use(
+  session({
+    secret: 'emporiodolaser',
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 360000 },
+  })
+);
+app.use(flash());
+// -------------------------------- //
+
+// faz com que a session fique disponivel em todas as paginas
+app.use(function (req, res, next) {
+  res.locals.USUARIO = req.session.usuario;
+  res.locals.error = null;
+  next();
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -25,16 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/produtos', produtosRouter);
-
-// ------------ Sessão ------------ //
-// teste //
-app.use(session({
-  secret: "emporiodolaser",
-  resave: true,
-  saveUninitialized: true,
-}));
-app.use(flash());
-// -------------------------------- //
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

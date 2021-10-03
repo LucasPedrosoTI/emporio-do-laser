@@ -6,9 +6,13 @@
     "start": "nodemon ./bin/www",
     "cm": "npx sequelize migration:create",
     "mg": "npx sequelize-cli model:generate",
-    "dbm": "npx sequelize-cli db:migrate"
+    "dbm": "npx sequelize-cli db:migrate",
+    "dbs": "npx sequelize-cli seed:generate --name ",
+    "dbsa": "npx sequelize-cli db:seed:all",
+    "dbso": "npx sequelize-cli db:seed --seed "
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

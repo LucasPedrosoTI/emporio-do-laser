@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const IndexModel = require('../database/models/usuario');
 const auth = require('../middlewares/auth');
+const usuarioController = require('../controllers/usuarioController');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -10,24 +10,23 @@ router.get('/', function (req, res, next) {
 
 /* GET nav bar */
 router.get('/sobre', function (req, res, next) {
-  res.render('navbar/about-us', { title: 'Sobre Nós' });
+  res.render('about-us', { title: 'Sobre Nós' });
 });
 
 router.get('/sac', function (req, res, next) {
-  res.render('navbar/sac', { title: 'Contato/SAC' });
+  res.render('sac', { title: 'Contato/SAC' });
 });
 
 router.get('/identifique-se', function (req, res, next) {
-  // if (req.session.usuario) { // não funcionando "Cannot ready property 'usuario' of undefined"
-  if (req.session) {
-    res.render('navbar/my-account', { title: 'Minha Conta' });
+  if (req.session.usuario) {
+    res.render('my-account', { title: 'Minha Conta' });
   } else {
-    res.render('navbar/login-cadastro', { title: 'Minha Conta' });
+    res.render('login-cadastro', { title: 'Minha Conta' });
   }
 });
 
 router.get('/minha-conta', auth, function (req, res, next) {
-  res.render('navbar/my-account', { title: 'Minha Conta' });
+  res.render('my-account', { title: 'Minha Conta' });
 });
 
 /* POST nav bar */
@@ -37,22 +36,9 @@ router.post('/cadastrar', function (req, res, next) {
   console.log(req.body);
 });
 
-router.post('/authlogin', async (req, res, next) => {
-  const login = await IndexModel.findOne({where: {email: req.body.email}}); // não funcionando
-  console.log(login);
-  // if (req.body.email == login.email && req.body.senha == login.senha) {
-  if (req.session.usuario) {
-    // req.session.usuario = login.email;
-    res.redirect('/minha-conta');
-  } else {
-    res.redirect('/identifique-se');
-  }
-});
+router.post('/login', usuarioController.logar);
 
 /* Logoff */
-router.get('/logout', (req, res) =>{
-  // req.session.destroy(); // Não está funcionando "Cannot ready property 'destroy' of undefined"
-  res.redirect('/');
-});
+router.post('/logout', usuarioController.logout);
 
 module.exports = router;

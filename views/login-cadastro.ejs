@@ -1,4 +1,4 @@
-<%- include('../components/head', {title: 'Empório do Laser'}) %> <%- include('../components/navbar') %>
+<%- include('components/head', {title: 'Empório do Laser'}) %> <%- include('components/navbar') %>
 
 <div class="corpo">
   <div class="container mt-5 login-cadastro">
@@ -16,7 +16,7 @@
     <div class="tab-content" role="tabContent">
       <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
         <h2 class="text-white my-3">Login</h2>
-        <form class="" method="POST" action="http://localhost:3000/authlogin">
+        <form class="" method="POST" action="http://localhost:3000/login">
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">
               <i class="bi bi-envelope"></i>
@@ -80,4 +80,4 @@
   </div>
 </div>
 
-<%- include('../components/foot') %>
+<%- include('components/foot') %>
