@@ -12,8 +12,6 @@ module.exports = {
         return res.render('login-cadastro', { error: 'Usuário/Senha inválido' });
       }
 
-      // let user = users.find(user => user.email == email && bcrypt.compareSync(senha, user.senha));
-
       if (!bcrypt.compareSync(senha, usuario.senha)) {
         return res.render('login-cadastro', { error: 'Usuário/Senha inválido' });
       }
