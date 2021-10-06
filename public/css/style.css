@@ -2,6 +2,7 @@
   --primaria: #194351;
   --secundaria: #fac2b3;
   --branco: #fcfcfc;
+  --erro: #ae2012;
 }
 
 body {
@@ -127,6 +128,13 @@ body {
 
 .login-cadastro {
   width: 50%;
+}
+
+.with-errors li {
+  color: var(--erro);
+  background-color: #fcfcfc99;
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 
 @media (max-width: 830px) {

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const auth = require('../middlewares/auth');
 const usuarioController = require('../controllers/usuarioController');
-
+const validatorController = require('../controllers/validatorController');
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Empório do Laser' });
@@ -30,15 +30,15 @@ router.get('/minha-conta', auth, function (req, res, next) {
 });
 
 /* POST nav bar */
-router.post('/cadastrar', function (req, res, next) {
-  /* teste */
-  console.log('CHAMADO VIA POST - cadastro cadastrar');
-  console.log(req.body);
-});
+router.post('/cadastrar', usuarioController.cadastrar);
 
 router.post('/login', usuarioController.logar);
 
 /* Logoff */
 router.post('/logout', usuarioController.logout);
+
+router.get('/validar-cpf-cnpj', validatorController.validarCpfCnpj);
+
+router.get('/validar-email', validatorController.validarEmail);
 
 module.exports = router;

@@ -3,10 +3,14 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
+const cls = require('cls-hooked');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../../config/database.js')[env];
 const db = {};
+const namespace = cls.createNamespace('emporio-do-laser-namespace');
+
+Sequelize.useCLS(namespace);
 
 let sequelize;
 if (config.use_env_variable) {

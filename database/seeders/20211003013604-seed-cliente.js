@@ -5,15 +5,8 @@ module.exports = {
     return await queryInterface.bulkInsert('Clientes', [
       {
         id: 1,
-        usuarioId: 1,
-        telefone: '11912345678',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: 2,
         usuarioId: 2,
-        telefone: '11912345679',
+        telefone: '(11) 91234-5678',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

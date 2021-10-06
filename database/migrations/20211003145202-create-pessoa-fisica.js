@@ -1,35 +1,39 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Clientes', {
+    await queryInterface.createTable('Pessoas_Fisicas', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.BIGINT,
       },
-      usuarioId: {
+      nome: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      cpf: {
+        type: Sequelize.STRING(14),
+        allowNull: false,
+      },
+      clienteId: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        references: { model: 'usuarios', key: 'id' },
-        onUpdate: 'NO ACTION',
-        onDelete: 'RESTRICT',
-      },
-      telefone: {
-        type: Sequelize.STRING(15),
-        allowNull: false,
+        references: { model: 'clientes', key: 'id' },
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Clientes');
+    await queryInterface.dropTable('Pessoas_Fisicas');
   },
 };

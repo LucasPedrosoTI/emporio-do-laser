@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Cliente extends Model {
     static associate(models) {
       Cliente.belongsTo(models.Usuario);
+      Cliente.hasOne(models.PessoaFisica);
     }
   }
   Cliente.init(

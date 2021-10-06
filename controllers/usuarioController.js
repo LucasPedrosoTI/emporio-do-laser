@@ -1,4 +1,4 @@
-const { Usuario } = require('../database/models');
+const { Usuario, Cliente, PessoaFisica } = require('../database/models');
 const bcrypt = require('bcrypt');
 
 module.exports = {
@@ -21,6 +21,23 @@ module.exports = {
       req.session.usuario = usuario;
 
       res.redirect('minha-conta');
+    } catch (err) {
+      console.log(err);
+      return res.status(400).send(err);
+    }
+  },
+
+  cadastrar: async (req, res) => {
+    let { nome, email, senha, cpfCNPJ, telefone, pfOuPj } = req.body;
+    console.log(pfOuPj);
+    try {
+      const user = await Usuario.createPF(email, senha, telefone, nome, cpfCNPJ);
+
+      user.senha = undefined;
+
+      req.session.usuario = user;
+
+      return res.redirect('minha-conta');
     } catch (err) {
       console.log(err);
       return res.status(400).send(err);

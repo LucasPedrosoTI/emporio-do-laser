@@ -1,4 +1,5 @@
 <%- include('components/head', {title: 'Empório do Laser'}) %> <%- include('components/navbar') %>
+<script src="/js/cadastro.js" defer></script>
 
 <div class="corpo">
   <div class="container mt-5 login-cadastro">
@@ -16,7 +17,7 @@
     <div class="tab-content" role="tabContent">
       <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
         <h2 class="text-white my-3">Login</h2>
-        <form class="" method="POST" action="http://localhost:3000/login">
+        <form method="POST" action="http://localhost:3000/login">
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">
               <i class="bi bi-envelope"></i>
@@ -31,49 +32,106 @@
             <input type="password" name="senha" class="form-control" placeholder="Senha" required />
           </div>
 
-          <button class="btn btn-primary">Login</button>
+          <button type="submit" class="btn btn-primary">Login</button>
         </form>
       </div>
 
       <div class="tab-pane fade" id="cadastrar" role="tabpanel" aria-labelledby="cadastrar-tab">
         <h2 class="text-white my-3">Cadastrar</h2>
-        <form class="" method="POST" action="http://localhost:3000/cadastrar">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">
-              <i class="bi bi-person-circle"></i>
-            </span>
-            <input required class="form-control" type="text" name="nome" placeholder="Nome Completo/Razão Social" />
+        <form method="POST" action="http://localhost:3000/cadastrar" data-toggle="validator">
+          <div class="form-group mb-3 text-white">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="pfOuPj" id="inlineRadio1" value="pf" required />
+              <label class="form-check-label" for="inlineRadio1">Pessoa Física</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="pfOuPj" id="inlineRadio2" value="pj" required />
+              <label class="form-check-label" for="inlineRadio2">Pessoa Jurídica</label>
+            </div>
+            <div class="help-block with-errors"></div>
           </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">
-              <i class="bi bi-envelope"></i>
-            </span>
-            <input required class="form-control" type="email" name="email" placeholder="E-mail" />
-          </div>
+          <div id="form-cadastro" class="visually-hidden">
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                  <i class="bi bi-person-circle"></i>
+                </span>
+                <input required class="form-control" type="text" name="nome" placeholder="Nome Completo/Razão Social" />
+              </div>
+            </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">
-              <i class="bi bi-lock"></i>
-            </span>
-            <input required class="form-control" type="password" name="senha" placeholder="Senha" />
-          </div>
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                  <i class="bi bi-envelope"></i>
+                </span>
+                <input required class="form-control" type="email" name="email" placeholder="E-mail" data-remote="http://localhost:3000/validar-email" />
+              </div>
+              <div class="help-block with-errors"></div>
+            </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">
-              <i class="bi bi-lock"></i>
-            </span>
-            <input required class="form-control" type="password" name="confirmarSenha" placeholder="Confirmar Senha" />
-          </div>
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                  <i class="bi bi-lock"></i>
+                </span>
+                <input required class="form-control" type="password" name="senha" id="senha" placeholder="Senha" data-minlength="6" />
+              </div>
+              <div class="help-block with-errors"></div>
+            </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">
-              <i class="bi bi-file-person"></i>
-            </span>
-            <input required class="form-control" type="number" name="cpfCNPJ" placeholder="CPF/CNPJ" />
-          </div>
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                  <i class="bi bi-lock"></i>
+                </span>
+                <input
+                  required
+                  class="form-control"
+                  type="password"
+                  name="confirmarSenha"
+                  id="confirmarSenha"
+                  placeholder="Confirmar Senha"
+                  data-match="#senha"
+                  data-match-error="Atenção! As senhas não estão iguais."
+                />
+              </div>
+              <div class="help-block with-errors"></div>
+            </div>
 
-          <button class="btn btn-primary">Cadastrar</button>
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                  <i class="bi bi-file-person"></i>
+                </span>
+                <input
+                  required
+                  class="form-control"
+                  type="text"
+                  name="cpfCNPJ"
+                  placeholder="CPF/CNPJ"
+                  id="cpfCNPJ"
+                  data-minlength="14"
+                  data-maxlength="18"
+                  data-remote="http://localhost:3000/validar-cpf-cnpj"
+                />
+              </div>
+              <div class="help-block with-errors"></div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                  <i class="bi bi-phone"></i>
+                </span>
+                <input required class="form-control phone_with_ddd" type="text" name="telefone" placeholder="Telefone" />
+              </div>
+              <div class="help-block with-errors"></div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+          </div>
         </form>
       </div>
     </div>
