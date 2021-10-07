@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "nodemon --inspect ./bin/www ",
     "cm": "npx sequelize migration:create",
     "mg": "npx sequelize-cli model:generate",
     "dbm": "npx sequelize-cli db:migrate",
     "dbs": "npx sequelize-cli seed:generate --name ",
     "dbsa": "npx sequelize-cli db:seed:all",
     "dbso": "npx sequelize-cli db:seed --seed ",
-    "dbmu": "npx sequelize-cli db:migrate:undo"
+    "dbmu": "npx sequelize-cli db:migrate:undo",
+    "dbmuall": "npx sequelize-cli db:migrate:undo:all",
+    "dbsuall": "npx sequelize-cli db:seed:undo:all"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -18,6 +20,7 @@
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-session": "^1.17.2",
