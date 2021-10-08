@@ -22,6 +22,15 @@ module.exports = {
         updatedAt: new Date(),
         deletedAt: null,
       },
+      {
+        id: 3,
+        email: 'pj@mail.com',
+        senha: bcrypt.hashSync('123456', 10),
+        admin: false,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        deletedAt: null,
+      },
     ]);
   },
 

@@ -1,5 +1,6 @@
 const isValidCPF = require('../utils/validaCpf');
-const { Usuario, PessoaFisica } = require('../database/models');
+const isValidCNPJ = require('../utils/validaCnpj');
+const { Usuario, PessoaFisica, PessoaJuridica } = require('../database/models');
 
 function sendError(res, msg) {
   res.writeHead(400, msg);
@@ -9,15 +10,16 @@ function sendError(res, msg) {
 module.exports = {
   validarCpfCnpj: async (req, res) => {
     const { cpfCNPJ } = req.query;
-    const isValidCpf = isValidCPF(cpfCNPJ);
-    const usuario = isValidCpf && (await PessoaFisica.findOne({ where: { cpf: cpfCNPJ } }));
+    const isCpf = cpfCNPJ.length <= 14;
+    const isValid = isCpf ? isValidCPF(cpfCNPJ) : isValidCNPJ(cpfCNPJ);
+    const usuario = isValid ? (isCpf ? await PessoaFisica.findOne({ where: { cpf: cpfCNPJ } }) : await PessoaJuridica.findOne({ where: { cnpj: cpfCNPJ } })) : null;
 
-    if (isValidCpf && !usuario) {
+    if (isValid && !usuario) {
       res.sendStatus(200);
     } else if (usuario) {
-      sendError(res, 'CPF já em uso');
+      isCpf ? sendError(res, 'CPF já em uso') : sendError(res, 'CNPJ já em uso');
     } else {
-      sendError(res, 'CPF inválido');
+      isCpf ? sendError(res, 'CPF inválido') : sendError(res, 'CNPJ inválido');
     }
   },
 

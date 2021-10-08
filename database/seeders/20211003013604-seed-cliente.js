@@ -10,6 +10,13 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        id: 2,
+        usuarioId: 3,
+        telefone: '(11) 91234-5679',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 

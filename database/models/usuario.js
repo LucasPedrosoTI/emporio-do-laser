@@ -52,6 +52,29 @@ module.exports = (sequelize, DataTypes) => {
         );
       });
     };
+
+    Usuario.createPJ = async (email, senha, telefone, razao_social, cnpj) => {
+      return await sequelize.transaction(async transaction => {
+        return await Usuario.create(
+          {
+            email,
+            senha,
+            admin: false,
+            Cliente: {
+              telefone,
+              PessoaJuridica: {
+                razao_social,
+                cnpj,
+              },
+            },
+          },
+          {
+            include: [{ model: models.Cliente, include: [models.PessoaJuridica] }],
+            transaction,
+          }
+        );
+      });
+    };
   };
 
   return Usuario;

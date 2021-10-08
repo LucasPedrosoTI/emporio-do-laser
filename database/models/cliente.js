@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Cliente.belongsTo(models.Usuario);
       Cliente.hasOne(models.PessoaFisica);
+      Cliente.hasOne(models.PessoaJuridica);
     }
   }
   Cliente.init(

@@ -1,4 +1,6 @@
-const { Usuario, Cliente, PessoaFisica } = require('../database/models');
+const { Usuario } = require('../database/models');
+const isValidCPF = require('../utils/validaCpf');
+const isValidCNPJ = require('../utils/validaCnpj');
 const bcrypt = require('bcrypt');
 
 module.exports = {
@@ -21,31 +23,51 @@ module.exports = {
       req.session.usuario = usuario;
 
       res.redirect('minha-conta');
-    } catch (err) {
-      console.log(err);
-      return res.status(400).send(err);
+    } catch (error) {
+      console.log(error);
+      return renderWithError(res, error);
     }
   },
 
   cadastrar: async (req, res) => {
-    let { nome, email, senha, cpfCNPJ, telefone, pfOuPj } = req.body;
-    console.log(pfOuPj);
+    const { nome, email, senha, cpfCNPJ, telefone, pfOuPj } = req.body;
+
     try {
-      const user = await Usuario.createPF(email, senha, telefone, nome, cpfCNPJ);
+      let user;
+
+      if (pfOuPj === 'pf') {
+        if (!isValidCPF(cpfCNPJ)) {
+          return res.render('login-cadastro', { error: 'CPF inválido' });
+        }
+        user = await Usuario.createPF(email, senha, telefone, nome, cpfCNPJ);
+      } else {
+        if (!isValidCNPJ(cpfCNPJ)) {
+          return res.render('login-cadastro', { error: 'CNPJ inválido' });
+        }
+        user = await Usuario.createPJ(email, senha, telefone, nome, cpfCNPJ);
+      }
 
       user.senha = undefined;
 
       req.session.usuario = user;
 
       return res.redirect('minha-conta');
-    } catch (err) {
-      console.log(err);
-      return res.status(400).send(err);
+    } catch (error) {
+      console.log(error);
+      return renderWithError(res, error);
     }
   },
 
   logout: async (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
+    try {
+      req.session.destroy();
+      res.redirect('/');
+    } catch (error) {
+      return renderWithError(res, error);
+    }
   },
 };
+
+function renderWithError(res, error) {
+  return res.render('login-cadastro', { error: error.message });
+}
