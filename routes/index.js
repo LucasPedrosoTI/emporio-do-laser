@@ -29,6 +29,14 @@ router.get('/minha-conta', auth, function (req, res, next) {
   res.render('my-account', { title: 'Minha Conta' });
 });
 
+router.get('/carrinho', function (req, res, next) {
+  res.render('carrinho', { title: 'Carrinho' });
+});
+
+router.get('/fechar-compra', function (req, res, next) {
+  res.render('fechar-compra', { title: 'Fechar Compra'});
+});
+
 /* POST nav bar */
 router.post('/cadastrar', usuarioController.cadastrar);
 

@@ -1,0 +1,91 @@
+<%- include('components/head', {title: 'Empório do Laser'}) %> <%- include('components/navbar') %>
+<br><br><br>
+<section class="flex-fill">
+  
+  <div class="container">
+    <h1 class="text-white">Carrinho de Compras</h1>
+    
+    <ul class="list-group mp-3">
+
+      <li class="list-group-item py-3">
+        <div class="row g3">
+          <div class="col-4 col-md-3 col-lg-2">
+            <a href="#">
+              <img src="/img/topo1.png" class="img-thumbnail">
+            </a>          
+          </div>
+          <div class="col-8 col-md-9 col-lg-7 col-xl-8 text-left align-self-center">
+            <h4><b><a href="#" class="text-decoration-none text-danger">Topo Aloha</a></b></h4>
+            <h5>
+              <small>Topo bolo - Aloha</small>
+            </h5>
+          </div>
+          <div class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
+            <div class="input-group">
+              <button type="button" class="btn btn-outline-dark btn-sm">
+                <i class="bi-caret-down" style="font-size: 24px; line-height: 24px;"></i>
+              </button>
+              <input type="text" class="form-control text-center border-dark" value="4">
+              <button type="button" class="btn btn-outline-dark btn-sm">
+                <i class="bi-caret-up" style="font-size: 24px; line-height: 24px;"></i>
+              </button>
+              <button type="button" class="btn btn-outline-danger border-dark btn-sm">
+                <i class="bi-trash" style="font-size: 24px; line-height: 24px;"></i>
+              </button>
+            </div>
+            <div class="text-right mt-2">
+              <small class="text-secondary"> Valor Unit: R$ 5,00</small><br>
+              <span class="text-dark">Valor Item: R$ 20,00</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item py-3">
+        <div class="row g3">
+          <div class="col-4 col-md-3 col-lg-2">
+            <a href="#">
+              <img src="/img/cake2.jpg" class="img-thumbnail">
+            </a>          
+          </div>
+          <div class="col-8 col-md-9 col-lg-7 col-xl-8 text-left align-self-center">
+            <h4><b><a href="#" class="text-decoration-none text-danger">Cakeboard Quadrado</a></b></h4>
+            <h5>
+              <small>Cakeboard em MDF - Quadrado</small>
+            </h5>
+          </div>
+          <div class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
+            <div class="input-group">
+              <button type="button" class="btn btn-outline-dark btn-sm">
+                <i class="bi-caret-down" style="font-size: 24px; line-height: 24px;"></i>
+              </button>
+              <input type="text" class="form-control text-center border-dark" value="4">
+              <button type="button" class="btn btn-outline-dark btn-sm">
+                <i class="bi-caret-up" style="font-size: 24px; line-height: 24px;"></i>
+              </button>
+              <button type="button" class="btn btn-outline-danger border-dark btn-sm">
+                <i class="bi-trash" style="font-size: 24px; line-height: 24px;"></i>
+              </button>
+            </div>
+            <div class="text-right mt-2">
+              <small class="text-secondary"> Valor Unit: R$ 5,00</small><br>
+              <span class="text-dark">Valor Item: R$ 20,00</span>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item py-3">
+        <div class="text-end">
+          <h4 class="text-dark mb-3">Valor Total: R$ 40,00</h4>
+          <a href="/" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
+          <a href="/fechar-compra" class="btn btn-danger btn-lg">Fechar Compra</a>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+  
+<%- include('components/foot') %>
+  
