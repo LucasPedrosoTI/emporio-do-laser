@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       Cliente.belongsTo(models.Usuario);
       Cliente.hasOne(models.PessoaFisica);
       Cliente.hasOne(models.PessoaJuridica);
+      Cliente.hasOne(models.Endereco);
     }
   }
   Cliente.init(
