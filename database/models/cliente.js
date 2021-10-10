@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       Cliente.hasOne(models.PessoaFisica);
       Cliente.hasOne(models.PessoaJuridica);
       Cliente.hasOne(models.Endereco);
+      Cliente.hasOne(models.Logo);
     }
   }
   Cliente.init(
