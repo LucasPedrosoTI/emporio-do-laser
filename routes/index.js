@@ -4,7 +4,6 @@ const auth = require('../middlewares/auth');
 const usuarioController = require('../controllers/usuarioController');
 const validatorController = require('../controllers/validatorController');
 const carrinhoController = require('../controllers/carrinhoController');
-const db = require('../utils/devTestesFakeDB'); // TESTE Parametros Pagina Dinamica Carrinho
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -36,7 +35,7 @@ router.get('/minha-conta', auth, function (req, res, next) {
 // -- CARRINHO -- //
 
 router.get('/carrinho', function (req, res, next) {
-  res.render('carrinho', { title: 'Empório do Laser - Carrinho', db});
+  res.render('carrinho', { title: 'Empório do Laser - Carrinho'});
 });
 
 router.get('/carrinho-listar', carrinhoController.listar);

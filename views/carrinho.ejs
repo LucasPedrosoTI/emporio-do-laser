@@ -1,75 +1,137 @@
 <%- include('components/head', {title: 'Empório do Laser - Carrinho'}) %> <%- include('components/navbar') %>
 
+<script>
+  $(function(){
+      $.ajax({
+          method: 'GET',
+          url: '/carrinho-listar',
+          dataType: 'json',
+          beforeSend: function() { $("#formItens").html("Carregando..."); },
+          success: function (data) {
+              listarItens(data);
+          }
+      });
+  });
+
+  function deletarItem(id) {
+      $.ajax({
+          method: 'POST',
+          url: '/carrinho-excluir',
+          data: { id: id },
+          dataType: 'json',
+          beforeSend: function() { $("#formItens").html("Carregando..."); },
+          success: function (data) {
+              listarItens(data);
+          }
+      });
+  }
+
+  function mudaQuantia(id, qtd) {
+      if (qtd > 0) {
+          $.ajax({
+              method: 'POST',
+              url: '/carrinho-qtd',
+              data: { id: id, qtd: qtd},
+              dataType: 'json',
+              beforeSend: function() { $("#formItens").html("Carregando..."); },
+              success: function (data) {
+                  listarItens(data);
+              }
+          });
+      } else {
+          deletarItem(id);
+      }
+  }
+
+  function listarItens(data) {
+
+      $("#formItens").html("");
+
+      if ($(data).length > 0) {
+          let total = 0;
+
+          $.each(data, function (key, value) {
+              let totalItem = value.valorUnit * value.qtd;
+
+              let bloco = `
+                  <div class="bloco">
+                    <li class="list-group-item py-3">
+                      <div class="row g3">
+                        <div class="col-4 col-md-3 col-lg-2">
+                          <a href="#">
+                            <img src=" ${value.imagem} " class="img-thumbnail">
+                          </a>          
+                        </div>
+                        <div class="col-8 col-md-9 col-lg-7 col-xl-8 text-left align-self-center">
+                          <h4><b><a href="#" class="text-decoration-none text-danger"> ${value.nomeProduto} </a></b></h4>
+                          <h5>
+                            <small> ${value.descricao} </small>
+                          </h5>
+                        </div>
+                        <div class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
+                          <div class="input-group">
+                            <button type="button" class="btn btn-outline-dark btn-sm">
+                              <i class="bi-caret-down" style="font-size: 24px; line-height: 24px;"></i>
+                            </button>
+                            <input type="text" class="form-control text-center border-dark quantia" value="${value.qtd}" onchange="mudarQuantia(${value.id}, this.value)">
+                            <button type="button" class="btn btn-outline-dark btn-sm">
+                              <i class="bi-caret-up" style="font-size: 24px; line-height: 24px;"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-danger border-dark btn-sm">
+                              <i class="bi-trash" style="font-size: 24px; line-height: 24px;"></i>
+                            </button>
+                          </div>
+                          <div class="text-right mt-2">
+                            <small class="text-secondary"> Valor Unit: R$ ${value.valorUnit}  </small><br>
+                            <span class="text-dark">Valor Item: R$ ${totalItem}  </span>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </div>       
+              `;
+
+              total += totalItem;
+
+              $("#formItens").append(bloco);
+          });
+
+          $("#formItens").append(`
+              <div class="bloco_2">
+                <li class="list-group-item py-3">
+                  <div class="text-end">
+                    <h4 class="text-dark mb-3">Valor Total: R$ ${total} </h4>
+                      <a href="/" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
+                      <a href="/fechar-compra" class="btn btn-danger btn-lg">Fechar Compra</a>
+                  </div>
+                </li>
+              </div>
+          `);
+      } else {
+          $("#formItens").html(`
+              <div class="bloco_2">
+                <li class="list-group-item py-3">
+                  <div class="text-center">
+                    <h4 class="text-dark mb-3">Seu carrinho está vazio.</h4>
+                    <a href="/" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
+                  </div>
+                </li>
+              </div>
+          `);
+      }
+
+  }
+</script>
+
 <section class="corpo flex-fill">
   
   <div class="container">
     <h1 class="text-white">Carrinho de Compras</h1>
     
     <ul class="list-group mp-3">
-      
-      <% if(db.length > 0) {
-          let total = 0;
-          db.forEach(produto => {
-            let qtdProduto = 1;
-            let valorProduto = qtdProduto * produto.valorUnit;
-            total = total+valorProduto; %>
-
-            <li class="list-group-item py-3">
-              <div class="row g3">
-                <div class="col-4 col-md-3 col-lg-2">
-                  <a href="#">
-                    <img src="<%= produto.imagem %>" class="img-thumbnail">
-                  </a>          
-                </div>
-                <div class="col-8 col-md-9 col-lg-7 col-xl-8 text-left align-self-center">
-                  <h4><b><a href="#" class="text-decoration-none text-danger"> <%= produto.nomeProduto %> </a></b></h4>
-                  <h5>
-                    <small> <%= produto.descricao %> </small>
-                  </h5>
-                </div>
-                <div class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
-                  <div class="input-group">
-                    <button type="button" class="btn btn-outline-dark btn-sm">
-                      <i class="bi-caret-down" style="font-size: 24px; line-height: 24px;"></i>
-                    </button>
-                    <input type="text" class="form-control text-center border-dark" value="<%= qtdProduto %>">
-                    <button type="button" class="btn btn-outline-dark btn-sm">
-                      <i class="bi-caret-up" style="font-size: 24px; line-height: 24px;"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger border-dark btn-sm">
-                      <i class="bi-trash" style="font-size: 24px; line-height: 24px;"></i>
-                    </button>
-                  </div>
-                  <div class="text-right mt-2">
-                    <small class="text-secondary"> Valor Unit: R$ <%= produto.valorUnit; %>  </small><br>
-                    <span class="text-dark">Valor Item: R$ <%= valorProduto %>  </span>
-                  </div>
-                </div>
-              </div>
-            </li>
-
-          <% });%>
-
-          <li class="list-group-item py-3">
-            <div class="text-end">
-              <h4 class="text-dark mb-3">Valor Total: R$ <%= total %></h4>
-              <a href="/" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
-              <a href="/fechar-compra" class="btn btn-danger btn-lg">Fechar Compra</a>
-            </div>
-          </li>
-
-      <%} else {%>
-
-        <li class="list-group-item py-3">
-          <div class="text-center">
-            <h4 class="text-dark mb-3">Seu carrinho está vazio.</h4>
-            <a href="/" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
-          </div>
-        </li>
-
-      <%}%>
-
+      <form id="formItens" action="/" method="post"></form>
     </ul>
+    
   </div>
 </section>
   
