@@ -3,6 +3,7 @@ var router = express.Router();
 const auth = require('../middlewares/auth');
 const usuarioController = require('../controllers/usuarioController');
 const validatorController = require('../controllers/validatorController');
+const carrinhoController = require('../controllers/carrinhoController');
 const db = require('../utils/devTestesFakeDB'); // TESTE Parametros Pagina Dinamica Carrinho
 
 /* GET home page. */
@@ -31,13 +32,23 @@ router.get('/minha-conta', auth, function (req, res, next) {
   res.render('my-account', { title: 'Empório do Laser - Minha Conta' });
 });
 
+
+// -- CARRINHO -- //
+
 router.get('/carrinho', function (req, res, next) {
   res.render('carrinho', { title: 'Empório do Laser - Carrinho', db});
 });
 
+router.get('/carrinho-listar', carrinhoController.listar);
+router.post('/carrinho-excluir', carrinhoController.excluir);
+router.post('/carrinho-qtd', carrinhoController.qtd);
+
 router.get('/fechar-compra', function (req, res, next) {
   res.render('fechar-compra', { title: 'Empório do Laser - Fechar Compra'});
 });
+
+// -------------- //
+
 
 /* POST nav bar */
 router.post('/cadastrar', usuarioController.cadastrar);
