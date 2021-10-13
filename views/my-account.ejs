@@ -1,8 +1,256 @@
 <%- include('components/head', {title: 'Empório do Laser - Minha Conta'}) %> <%- include('components/navbar') %>
+<style>
+
+  .sideBar .box-filho{
+    width: 250px;
+    background-color: white;
+
+  }
+
+  .icon{
+    background-color: transparent;
+    color: white;
+    border: 0;
+    transition: all .3s ease-in-out;
+    position: relative;
+  }
+
+  .icon:hover{
+    top: -2px;
+  }
+
+
+.filtroFilho{
+  left: -300px;
+}
+
+
+  .filtroTitle{
+    font: bold;
+    font-size: 25px;
+    margin-left: 62px;
+  }
+
+  .minhaconta .sideBar .filtroPai {
+    margin: 0;
+    padding: 10px 0 0;
+    border: none;
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+    line-height: 3;
+}
+
+.box{
+    background: #f8f8f8;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 11px;
+    border-right: solid 1px #e5e5e5;
+  
+}
+
+.minhaconta .sideBar .filtroFilho li a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    padding: 15px 10px 15px 60px;
+    border: 1px solid #e5e5e5;
+    line-height: 20px;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: none;
+    color: #999;
+}
+
+.minhaconta .sideBar .filtros ul {
+    display:block;
+    list-style: none;
+}
+
+.sideBar{
+  width: 400px;
+}
+
+.box-filho:hover {
+  background-color: rgb(245,245,245);
+}
+
+.center{
+  width: 100%;
+}
+.meuspedidos{
+  margin-left: 350px;
+  margin-right: 10px;
+  margin-top: -600px;
+  height: 584px;
+
+}
+
+.pedidos-title{
+  color: var(--secundaria);
+  margin-left: -32px;
+  font-size: 35px;
+  font: bold;
+ 
+}
+.caixa{
+  margin-top: 39px;
+  display: inline-flex;
+  width: 100%;
+  text-align: center;
+  color: #999;
+}
+.num-pedido {
+  background-color: white;
+  width: 100%;
+  height: 105px;
+  padding: 3px;
+  border: solid 1px var(--primaria);
+
+}
+
+.pgmt-pedido {
+  background-color: white;
+  width: 100%;
+  height: 105px;
+  padding: 3px;
+  border: solid 1px var(--primaria);
+}
+.status-pedido {
+  background-color: white;
+  width: 100%;
+  height: 105px;
+  padding: 3px;
+  border: solid 1px var(--primaria);
+}
+.valor-pedido {
+  background-color: white;
+  width: 100%;
+  height: 105px;
+  padding: 3px;
+  border: solid 1px var(--primaria);
+}
+.cod-pedido {
+  background-color: white;
+  width: 100%;
+  height: 105px;
+  padding: 3px;
+  border: solid 1px var(--primaria);
+}
+
+.conteudo{
+  font-size: 15px;
+  padding: 0;
+  color: grey;
+}
+
+
+
+.titles{
+  color: black;
+  font-size: 18px;
+  font: bolder;
+  border-bottom: solid 1px var(--primaria);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+</style>
 
 <div class="corpo">
   <section>
-    <h1>Estou logado</h1>
+    <div class="content minhaconta">
+      <div class="center">
+          <div class="sideBar">
+              <div class="filtros">
+                  <div class="filtroTitle title text-light">
+                      Minha Conta
+                      <a href="#" id="mobile_menu">
+                          <button class="icon" type="checkbox"><span class="bi-list"></button>
+                      </a>
+                  </div>
+                  <ul id="menu-minha-conta">
+                      <li class="filtroPai">
+                        <ul class="filtroFilho">
+                            Minhas Compras
+                              <li>
+                                  <a href="#" class="box-filho" title="Meus Pedidos">Meus Pedidos<i class="box bi-cart" style="font-size: 24px; line-height: 24px;"></i></a>
+                              
+                              </li>
+                              <li>
+                                  <a href="#" class="box-filho" title="Meus Créditos">Meus Créditos<i class="box bi-cash-coin" style="font-size: 24px; line-height: 24px;"></i></a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="filtroPai">
+                        <ul class="filtroFilho">
+                            Cadastro
+                              <li>
+                                  <a img src = "https://cdn-icons-png.flaticon.com/512/126/126510.png" href="#" class="box-filho" title="Alterar E-mail">Alterar E-mail<i class="box bi-at" style="font-size: 24px; line-height: 24px;"></i></a>
+                              </li>
+                              <li>
+                                  <a href="#" class="box-filho" title="Alterar Senha">Alterar Senha<i class="box bi-key" style="font-size: 24px; line-height: 24px;"></i></a>
+                              </li>
+                              <li>
+                                  <a href="#" class="box-filho" title="Meus Dados">Meus Dados<i class="box bi-person" style="font-size: 24px; line-height: 24px;"></i></a>
+                              </li>
+                              <li>
+                                  <a href="#" class="box-filho" title="Meus Endereços">Meus Endereços<i class="box bi-geo-alt" style="font-size: 24px; line-height: 24px;"></i></a>
+                              </li>
+                              <li>
+                                  <a href="#" class="box-filho" title="Meus Cartões">Meus Cartões<i class="box bi-credit-card-2-back" style="font-size: 24px; line-height: 24px;"></i></a>
+                              </li>
+                              <li>
+                                <a href="#" class="box-filho" title="Sair">Sair<i class="box bi-x-circle" style="font-size: 24px; line-height: 24px;"></i></a>
+                            </li>
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+ 
+          
+     </div>       
+</div>
+
+
+   <div class="meuspedidos">
+    <ul class="pedidos-title">Meus Pedidos</ul>
+      <div class="caixa">    
+        <div class="num-pedido">
+          <ul class="titles">Nº do Pedido</ul>
+          <ul class="conteudo">123456789</ul>
+        </div> 
+        <div class="pgmt-pedido">
+          <ul class="titles">Pagamento</ul>
+          <ul class="conteudo">Cartão</ul>
+        </div>
+        <div class="status-pedido">
+          <ul class="titles">Status</ul>
+          <ul class="conteudo">Enviado</ul>
+        </div>
+        <div class="valor-pedido">
+          <ul class="titles">Valor Total</ul>
+          <ul class="conteudo">R$100,00</ul>
+        </div>
+        <div class="cod-pedido">
+          <ul class="titles">Rastreamento</ul>
+          <ul class="conteudo">EMP-283902183</ul>
+        </div>
+      </div> 
+  
+  </div>
+
+
+  </div>
   </section>
 </div>
 
