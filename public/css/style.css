@@ -65,6 +65,15 @@ body {
   margin: 0 2px 0 2px;
 }
 
+.link-redes-sociais {
+  text-decoration: none;
+  color: black;
+}
+
+.link-redes-sociais:hover {
+  color: black;
+}
+
 /* Margem */
 
 .margin-bottom-20px {
