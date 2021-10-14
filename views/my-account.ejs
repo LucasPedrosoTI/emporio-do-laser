@@ -53,6 +53,25 @@
   
 }
 
+.btnLink {
+  border: 0;
+}
+
+.minhaconta .sideBar .filtroFilho li .btnLink {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    padding: 15px 10px 15px 60px;
+    border: 1px solid #e5e5e5;
+    line-height: 20px;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: none;
+    color: #999;
+}
+
 .minhaconta .sideBar .filtroFilho li a {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -209,7 +228,9 @@
                                   <a href="#" class="box-filho" title="Meus Cartões">Meus Cartões<i class="box bi-credit-card-2-back" style="font-size: 24px; line-height: 24px;"></i></a>
                               </li>
                               <li>
-                                <a href="#" class="box-filho" title="Sair">Sair<i class="box bi-x-circle" style="font-size: 24px; line-height: 24px;"></i></a>
+                                <form action="/logout" method="POST">
+                                  <button type="submit" class="box-filho btnLink" title="Sair">Sair<i class="box bi-x-circle" style="font-size: 24px; line-height: 24px;"></i></button>
+                                </form>
                             </li>
                           </ul>
                       </li>
