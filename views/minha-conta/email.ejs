@@ -1,9 +1,276 @@
 <%- include('../components/head', {title: 'Minha Conta: Email'}) %> <%- include('../components/navbar') %>
 
+<style>
+
+    .sideBar .box-filho{
+      width: 250px;
+      background-color: white;
+  
+    }
+  
+    .icon{
+      background-color: transparent;
+      color: white;
+      border: 0;
+      transition: all .3s ease-in-out;
+      position: relative;
+    }
+  
+    .icon:hover{
+      top: -2px;
+    }
+  
+  
+  .filtroFilho{
+    left: -300px;
+  }
+  
+  
+    .filtroTitle{
+      font: bold;
+      font-size: 25px;
+      margin-left: 62px;
+    }
+  
+    .minhaconta .sideBar .filtroPai {
+      margin: 0;
+      padding: 10px 0 0;
+      border: none;
+      font-size: 18px;
+      color: white;
+      font-weight: 600;
+      line-height: 3;
+  }
+  
+  .box{
+      background: #f8f8f8;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 11px;
+      border-right: solid 1px #e5e5e5;
+    
+  }
+  
+  .btnLink {
+    border: 0;
+  }
+  
+  .minhaconta .sideBar .filtroFilho li .btnLink {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      position: relative;
+      padding: 15px 10px 15px 60px;
+      border: 1px solid #e5e5e5;
+      line-height: 20px;
+      font-size: 13px;
+      font-weight: 400;
+      text-decoration: none;
+      text-transform: none;
+      color: #999;
+  }
+  
+  .minhaconta .sideBar .filtroFilho li a {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      position: relative;
+      padding: 15px 10px 15px 60px;
+      border: 1px solid #e5e5e5;
+      line-height: 20px;
+      font-size: 13px;
+      font-weight: 400;
+      text-decoration: none;
+      text-transform: none;
+      color: #999;
+  }
+  
+  .minhaconta .sideBar .filtros ul {
+      display:block;
+      list-style: none;
+  }
+  
+  .sideBar{
+    width: 400px;
+  }
+  
+  .box-filho:hover {
+    background-color: rgb(245,245,245);
+  }
+  
+  .center{
+    width: 100%;
+  }
+  .meuspedidos{
+    margin-left: 350px;
+    margin-right: 10px;
+    margin-top: -600px;
+    height: 584px;
+  
+  }
+  
+  .pedidos-title{
+    color: var(--secundaria);
+    margin-left: -32px;
+    font-size: 35px;
+    font: bold;
+   
+  }
+  .caixa{
+    margin-top: 39px;
+    display: inline-flex;
+    width: 100%;
+    text-align: center;
+    color: #999;
+  }
+
+  .email{
+  margin-left: 350px;
+  margin-right: 10px;
+  margin-top: -600px;
+  height: 584px;
+
+}
+
+.email-title{
+  color: white;
+  font-size: 30px;
+  font: bold;
+  border-bottom: solid 1px white;
+  padding: 0;
+ 
+}
+
+.caixa-email-atual{
+  margin-top: -5px;
+  margin-bottom: 30px;
+  background-color: white;
+  width: 400px;
+  height: 40px;
+  border-color: lightgray;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+
+.subtitulos{
+  margin-top: 22px;
+  font-size: 20px;
+  color: white;
+}
+
+.caixa-email{
+   width: 400px;
+   height: 40px;
+   border-radius: 5px;
+   border: solid 1px lightgray;
+   padding-left: 15px;
+}
+
+.btn-gravar {
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  height: 40px;
+  width: 200px;
+  margin-left: 40px;
+  background-color: rgb(13,110,253);
+}
+
+.btn-gravar:hover {
+  background-color: rgb(11, 94, 215);
+  color: white;
+  border: 0;
+}
+
+</style>
+
+
 <div class="corpo">
     <section>
-        
+      <div class="content minhaconta">
+        <div class="center">
+            <div class="sideBar">
+                <div class="filtros">
+                    <div class="filtroTitle title text-light">
+                        Minha Conta
+                        <a href="#" id="mobile_menu">
+                            <button class="icon" type="checkbox"><span class="bi-list"></button>
+                        </a>
+                    </div>
+                    <ul id="menu-minha-conta">
+                        <li class="filtroPai">
+                          <ul class="filtroFilho">
+                              Minhas Compras
+                                <li>
+                                    <a href="/minha-conta/pedidos" class="box-filho" title="Meus Pedidos">Meus Pedidos<i class="box bi-cart" style="font-size: 24px; line-height: 24px;"></i></a>
+                                
+                                </li>
+                                <li>
+                                    <a href="/minha-conta/creditos" class="box-filho" title="Meus Créditos">Meus Créditos<i class="box bi-cash-coin" style="font-size: 24px; line-height: 24px;"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="filtroPai">
+                          <ul class="filtroFilho">
+                              Cadastro
+                                <li>
+                                    <a href="/minha-conta/email" class="box-filho" title="Alterar E-mail">Alterar E-mail<i class="box bi-at" style="font-size: 24px; line-height: 24px;"></i></a>
+                                </li>
+                                <li>
+                                    <a href="/minha-conta/senha" class="box-filho" title="Alterar Senha">Alterar Senha<i class="box bi-key" style="font-size: 24px; line-height: 24px;"></i></a>
+                                </li>
+                                <li>
+                                    <a href="/minha-conta/dados" class="box-filho" title="Meus Dados">Meus Dados<i class="box bi-person" style="font-size: 24px; line-height: 24px;"></i></a>
+                                </li>
+                                <li>
+                                    <a href="/minha-conta/enderecos" class="box-filho" title="Meus Endereços">Meus Endereços<i class="box bi-geo-alt" style="font-size: 24px; line-height: 24px;"></i></a>
+                                </li>
+                                <li>
+                                    <a href="/minha-conta/cartoes" class="box-filho" title="Meus Cartões">Meus Cartões<i class="box bi-credit-card-2-back" style="font-size: 24px; line-height: 24px;"></i></a>
+                                </li>
+                                <li>
+                                  <form action="/logout" method="POST">
+                                    <button type="submit" class="box-filho btnLink" title="Sair">Sair<i class="box bi-x-circle" style="font-size: 24px; line-height: 24px;"></i></button>
+                                  </form>
+                              </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+   
+            
+       </div>       
+  </div>
+  
+  
+
+  <div class="email">
+    <ul class="email-title"><strong>Alteração de E-mail</strong></ul>
+
+    <div class="componentes">
+      <p class="subtitulos">E-mail Atual</p>
+    <div class="caixa-email-atual">
+      <a>exemplo@gmail.com</a>
+    </div>
+    <p class="subtitulos">Digite e confirme o novo e-mail</p>
+    <div class="novo-email">
+      <input type="email" name="email" class="caixa-email" placeholder="Digite o novo e-mail" required />
+      <input type="email" name="email" class="caixa-email" placeholder="Confirme o e-mail" required />
+      <button type="submit" class="btn-gravar">Alterar</button>
+    </div>
+  </div>
+  </div>
+
+  
+  
+    </div>
     </section>
 </div>
-
 <%- include('../components/foot') %>
