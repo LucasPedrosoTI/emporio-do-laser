@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Cupom extends Model {
     static associate(models) {
       Cupom.hasMany(models.Pedido);
+      Cupom.belongsToMany(models.Categoria, { through: 'Cupoms_Categorias' });
     }
   }
   Cupom.init(
