@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Produto.belongsTo(models.Categoria);
       Produto.hasMany(models.TamanhoProduto);
+      Produto.hasMany(models.ImagemProduto);
     }
   }
   Produto.init(

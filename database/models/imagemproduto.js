@@ -1,23 +1,23 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Logo extends Model {
+  class ImagemProduto extends Model {
     static associate(models) {
-      Logo.belongsTo(models.Cliente);
-      Logo.hasMany(models.Pedido);
+      ImagemProduto.belongsTo(models.Produto);
     }
   }
-  Logo.init(
+  ImagemProduto.init(
     {
       nomeImagem: DataTypes.STRING,
       tipo: DataTypes.STRING,
       arquivo: DataTypes.BLOB,
-      clienteId: DataTypes.BIGINT,
+      produtoId: DataTypes.BIGINT,
     },
     {
       sequelize,
-      modelName: 'Logo',
+      modelName: 'ImagemProduto',
+      tableName: 'Imagems_Produtos',
     }
   );
-  return Logo;
+  return ImagemProduto;
 };
