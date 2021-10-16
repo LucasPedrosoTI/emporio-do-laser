@@ -3,6 +3,8 @@ var router = express.Router();
 const auth = require('../middlewares/auth');
 const usuarioController = require('../controllers/usuarioController');
 const validatorController = require('../controllers/validatorController');
+const carrinhoController = require('../controllers/carrinhoController');
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Empório do Laser' });
@@ -10,24 +12,42 @@ router.get('/', function (req, res, next) {
 
 /* GET nav bar */
 router.get('/sobre', function (req, res, next) {
-  res.render('about-us', { title: 'Sobre Nós' });
+  res.render('about-us', { title: 'Empório do Laser - Sobre Nós' });
 });
 
 router.get('/sac', function (req, res, next) {
-  res.render('sac', { title: 'Contato/SAC' });
+  res.render('sac', { title: 'Empório do Laser - Contato/SAC' });
 });
 
 router.get('/identifique-se', function (req, res, next) {
   if (req.session.usuario) {
-    res.render('my-account', { title: 'Minha Conta' });
+    res.render('my-account', { title: 'Empório do Laser - Minha Conta' });
   } else {
-    res.render('login-cadastro', { title: 'Minha Conta' });
+    res.render('login-cadastro', { title: 'Empório do Laser - Entre ou Cadastre-se' });
   }
 });
 
 router.get('/minha-conta', auth, function (req, res, next) {
-  res.render('my-account', { title: 'Minha Conta' });
+  res.render('my-account', { title: 'Empório do Laser - Minha Conta' });
 });
+
+
+// -- CARRINHO -- //
+
+router.get('/carrinho', function (req, res, next) {
+  res.render('carrinho', { title: 'Empório do Laser - Carrinho'});
+});
+
+router.get('/carrinho-listar', carrinhoController.listar);
+router.post('/carrinho-excluir', carrinhoController.excluir);
+router.post('/carrinho-qtd', carrinhoController.qtd);
+
+router.get('/fechar-compra', function (req, res, next) {
+  res.render('fechar-compra', { title: 'Empório do Laser - Fechar Compra'});
+});
+
+// -------------- //
+
 
 /* POST nav bar */
 router.post('/cadastrar', usuarioController.cadastrar);

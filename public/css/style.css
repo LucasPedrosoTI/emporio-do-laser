@@ -6,14 +6,14 @@
 }
 
 body {
+  height: 100%;
   background-color: var(--primaria);
   padding-top: 4rem;
 }
 
 .corpo {
-  height: 100vh;
+  min-height: 45vh;
   margin-top: 5%;
-  /* margin-bottom: 300px; */
 }
 
 .nav-item button.nav-link:not(.active) {
@@ -63,6 +63,15 @@ body {
 
 .img-footer-margin {
   margin: 0 2px 0 2px;
+}
+
+.link-redes-sociais {
+  text-decoration: none;
+  color: black;
+}
+
+.link-redes-sociais:hover {
+  color: black;
 }
 
 /* Margem */
