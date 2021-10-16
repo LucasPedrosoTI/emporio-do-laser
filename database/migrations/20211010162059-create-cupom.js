@@ -1,28 +1,34 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Produtos', {
+    await queryInterface.createTable('Cupoms', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.BIGINT,
       },
-      nomeProduto: {
-        type: Sequelize.STRING,
+      codigo: {
+        type: Sequelize.STRING(25),
         allowNull: false,
       },
       descricao: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      personalizavel: {
+      taxaDeDesconto: {
+        type: Sequelize.DOUBLE,
+        allowNull: false,
+      },
+      dataExpiracao: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      habilitado: {
         type: Sequelize.BOOLEAN,
       },
-      categoriaId: {
-        type: Sequelize.BIGINT,
-        allowNull: false,
-        references: { model: 'categorias', key: 'id' },
+      ehPorcentagem: {
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
@@ -34,10 +40,9 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('now'),
       },
-      deletedAt: Sequelize.DATE,
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Produtos');
+    await queryInterface.dropTable('Cupoms');
   },
 };

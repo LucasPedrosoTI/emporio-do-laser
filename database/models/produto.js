@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       Produto.belongsTo(models.Categoria);
       Produto.hasMany(models.TamanhoProduto);
       Produto.hasMany(models.ImagemProduto);
+      Produto.belongsToMany(models.Pedido, { through: 'Pedidos_Produtos' });
     }
   }
   Produto.init(
@@ -14,10 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       descricao: DataTypes.STRING,
       personalizavel: DataTypes.BOOLEAN,
       categoriaId: DataTypes.BIGINT,
+      deletedAt: DataTypes.DATE,
     },
     {
       sequelize,
       modelName: 'Produto',
+      paranoid: true,
     }
   );
   return Produto;

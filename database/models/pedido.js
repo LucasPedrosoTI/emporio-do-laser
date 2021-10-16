@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       Pedido.belongsTo(models.TipoEnvio);
       Pedido.belongsTo(models.Cupom);
       Pedido.belongsTo(models.TipoPagamento);
+      Pedido.belongsToMany(models.Produto, { through: 'Pedidos_Produtos' });
     }
   }
   Pedido.init(
