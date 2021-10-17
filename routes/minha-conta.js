@@ -31,4 +31,11 @@ router.get('/cartoes', auth, function (req, res, next) {
   res.render('minha-conta/cartoes', { title: 'Minha Conta: Cartões' });
 });
 
+router.get('/cadastrarendereco', auth, function (req, res, next) {
+  res.render('minha-conta/cadastrarendereco', { title: 'Minha Conta: Cadastrar novo Endereço' });
+});
+
+router.get('/editarendereco', auth, function (req, res, next) {
+  res.render('minha-conta/editarendereco', { title: 'Minha Conta: Cadastrar novo Endereço' });
+});
 module.exports = router;

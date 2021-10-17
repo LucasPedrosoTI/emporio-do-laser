@@ -120,13 +120,6 @@
     font: bold;
    
   }
-  .caixa{
-    margin-top: 39px;
-    display: inline-flex;
-    width: 100%;
-    text-align: center;
-    color: #999;
-  }
 
   .endereco{
   margin-left: 350px;
@@ -144,6 +137,79 @@
   padding: 0;
  
 }
+
+.titles{
+    color: var(--primaria);
+    font-size: 15px;
+    font: bolder;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 0;
+    height: 10px;
+  }
+
+  .caixa{
+    margin-top: 62px;
+    width: 40%;
+    height: 200px;
+    text-align: left;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .nome{
+    padding-left: 200px;
+    font-size: 25px;
+    padding-top: 5px;
+    margin-bottom: 4px;
+    color: var(--primaria);
+  }
+
+  .btn{
+    margin-top: -100px;
+  }
+
+
+  .btn-editar {
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  height: 40px;
+  width: 150px;
+  margin-left: 340px;
+  background-color: rgb(13,110,253);
+}
+
+.btn-editar:hover {
+  background-color: rgb(11, 94, 215);
+  color: white;
+  border: 0;
+}
+
+.cadastrar-endereco{
+    margin-top: -215px;
+    margin-left: 570px;
+  }
+
+.btn-cadastrar {
+  color: white;
+  font-size: 20px;
+  border: 0;
+  border-radius: 5px;
+  height: 60px;
+  width: 200px;
+
+  background-color: rgb(13,110,253);
+}
+
+.btn-cadastrar:hover {
+  background-color: rgb(11, 94, 215);
+  color: white;
+  border: 0;
+}
+
+
   </style>
 
 <div class="corpo">
@@ -208,13 +274,27 @@
 
   <div class="endereco">
     <ul class="endereco-title"><strong>Meus Endereços</strong></ul>
+      <div class="caixa">    
+        <ul class="title nome"><strong>José da Silva</strong></ul>
+        <ul class="titles"><strong>Endereço: </strong>Rua Tibúrcio de Souza, 10</ul>
+        <ul class="titles"><strong>Bairro: </strong>Itaim Paulista</ul>
+        <ul class="titles"><strong>Cidade: </strong>São Paulo</ul>
+        <ul class="titles"><strong>CEP: </strong>00000000</ul>
+        <div class="btn">  
+        <a href="/minha-conta/editarendereco">
+            <button type="submit" class="btn-editar" title="editar">Editar</button>
+        </a>
+        </div>
 
-  
-  </div>
-
-  
-  
+      <div class="cadastrar-endereco">
+          <a href="/minha-conta/cadastrarendereco">
+            <button class="btn-cadastrar" title="Cadastrar">Cadastrar novo Endereço</button> 
+          </a>
+      </div>
     </div>
+  
+  
+
     </section>
 </div>
 
