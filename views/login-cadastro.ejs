@@ -76,7 +76,7 @@
                 <span class="input-group-text" id="basic-addon1">
                   <i class="bi bi-lock"></i>
                 </span>
-                <input required class="form-control" type="password" name="senha" id="senha" placeholder="Senha" data-minlength="6" />
+                <input required class="form-control" type="password" name="senha" id="senha" placeholder="Senha" minlength="6" />
               </div>
               <div class="help-block with-errors"></div>
             </div>
@@ -112,8 +112,8 @@
                   name="cpfCNPJ"
                   placeholder="CPF/CNPJ"
                   id="cpfCNPJ"
-                  data-minlength="14"
-                  data-maxlength="18"
+                  minlength="14"
+                  maxlength="18"
                   data-remote="http://localhost:3000/validar-cpf-cnpj"
                 />
               </div>
