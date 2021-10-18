@@ -1,113 +1,18 @@
 <%- include('../components/head', {title: 'Minha Conta: Senha'}) %> <%- include('../components/navbar') %>
 
-<style>
-
-  .bs-senha {
-    border: 1px solid black;
-    color: black;
-  }
-
-  .bs-senha:hover {
-    color: black;
-  }
-
-  .bs-pedidos,
-  .bs-creditos,
-  .bs-email,
-  .bs-dados,
-  .bs-enderecos,
-  .bs-cartoes  
-  {
-    border: 1px solid #e5e5e5;
-    color: #999;
-  } 
-
-  .bs-pedidos:hover {
-    color: #999;
-  }
-  .bs-creditos:hover {
-    color: #999;
-  }
-  .bs-email:hover {
-    color: #999;
-  }
-  .bs-dados:hover {
-    color: #999;
-  }
-  .bs-enderecos:hover {
-    color: #999;
-  }
-  .bs-cartoes:hover {
-    color: #999;
-  }
-
-  .senha {
-    margin-left: 350px;
-    margin-right: 10px;
-    margin-top: -600px;
-    height: 584px;
-
-  }
-
-  .senha-title {
-    color: white;
-    font-size: 30px;
-    font: bold;
-    border-bottom: solid 1px white;
-    padding: 0;
-
-  }
-
-  .subtitulos {
-    margin-top: 22px;
-    font-size: 20px;
-    color: white;
-  }
-
-  .caixa-senha {
-    width: 400px;
-    height: 40px;
-    border-radius: 5px;
-    border: solid 1px lightgray;
-    padding-left: 15px;
-  }
-
-  .btn-gravar {
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    height: 40px;
-    width: 200px;
-    margin-left: 40px;
-    background-color: rgb(13, 110, 253);
-  }
-
-  .btn-gravar:hover {
-    background-color: rgb(11, 94, 215);
-    color: white;
-    border: 0;
-  }
-
-  .magin-senha {
-    margin-top: -5px;
-    margin-bottom: 8px;
-  }
-</style>
-
 <div class="corpo">
   <section>
 
+    <link href="/css/menu-minha-conta/menu-senha.css" rel="stylesheet" />
     <%- include('../components/minha-conta/lateral-menu')  %> 
 
     <div class="senha">
       <ul class="senha-title"><strong>Alteração de Senha</strong></ul>
       <div class="componentes">
-        <p class="subtitulos">Senha Atual</p>
-        <div class="caixa-email-atual">
-          <input type="password" name="password" class="caixa-senha magin-senha" required />
-        </div>
-        <p class="subtitulos">Digite e confirme a nova senha</p>
         <div class="novo-email">
+          <p class="subtitulos">Senha Atual</p>
+          <input type="password" name="password" class="caixa-senha magin-senha" required />
+          <p class="subtitulos">Digite e confirme a nova senha</p>
           <input type="password" name="password" class="caixa-senha" placeholder="Crie sua nova senha" required />
           <input type="password" name="password" class="caixa-senha" placeholder="Confirme a nova senha" required />
           <button type="submit" class="btn-gravar">Alterar</button>

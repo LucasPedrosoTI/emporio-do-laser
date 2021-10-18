@@ -1,136 +1,9 @@
 <%- include('../components/head', {title: 'Minha Conta: Cadastrar novo Endereço'}) %> <%- include('../components/navbar') %>
 
-
-<style>
-
-  .bs-enderecos {
-    border: 1px solid black;
-    color: black;
-  }
-
-  .bs-enderecos:hover {
-    color: black;
-  }
-
-  .bs-pedidos,
-  .bs-creditos,
-  .bs-email,
-  .bs-senha,
-  .bs-dados,
-  .bs-cartoes  
-  {
-    border: 1px solid #e5e5e5;
-    color: #999;
-  } 
-
-
-  .bs-pedidos:hover {
-    color: #999;
-  }
-  .bs-creditos:hover {
-    color: #999;
-  }
-  .bs-email:hover {
-    color: #999;
-  }
-  .bs-senha:hover {
-    color: #999;
-  }
-  .bs-dados:hover {
-    color: #999;
-  }
-  .bs-cartoes:hover {
-    color: #999;
-  }
-
-.cadastro{
-  margin-left: 350px;
-  margin-right: 10px;
-  margin-top: -600px;
-  height: 584px;
-
-}
-
-.cadastro-title{
-  color: white;
-  font-size: 30px;
-  font: bold;
-  border-bottom: solid 1px white;
-  padding: 0;
- 
-}
-
-
-.subtitulos{
-  margin-top: 20px;
-  font-size: 20px;
-  color: white;
-}
-
-.caixas{
-   width: 400px;
-   height: 40px;
-   border-radius: 5px;
-   border: solid 1px lightgray;
-   padding-left: 15px;
-}
-
-.btn-gravar {
-  color: white;
-  border: 0;
-  border-radius: 5px;
-  height: 40px;
-  width: 400px;
-  margin-left: 40px;
-  background-color: rgb(13,110,253);
-}
-
-.btn-gravar:hover {
-  background-color: rgb(11, 94, 215);
-  color: white;
-  border: 0;
-}
-
-.caixa1 {
-display: inline-flex;
-margin-top: 5px;
-/* margin-bottom: 8px; */
-margin-right: 30px;
-}
-
-.espaco{
-  margin-right: 260px;
-}
-
-.btnradio1{
-  margin-left: 40px; 
-}
-
-.btnradio{
-  color: white;
-  margin-right: 5px;
-  margin-left: 10px;
-  font-size: 22px;
-}
-
-.esp-cep{
-  margin-left: -10px;
-  margin-right: 195px;
-}
-
-.esp-comp{
-  margin-left: 113px;
-}
-
-.distancia{
-  margin-left: 40px;
-}
-
-  </style>
-
 <div class="corpo">
   <section>
 
+    <link href="/css/menu-minha-conta/menu-enderecos.css" rel="stylesheet" />
     <%- include('../components/minha-conta/lateral-menu') %>
 
     <div class="cadastro">
@@ -166,7 +39,7 @@ margin-right: 30px;
 
         <div class="caixa2">
           <input type="text" name="salvar-endereco" value="ex: Travessa da Avenida Nordestina" class="caixas" />
-          <button type="submit" class="btn-gravar">Salvar Endereço</button>
+          <button type="submit" class="btn-gravar-dados">Salvar Endereço</button>
         </div>
       </div>
     </div>

@@ -1,178 +1,9 @@
 <%- include('../components/head', {title: 'Minha Conta: Editar Endereço'}) %> <%- include('../components/navbar') %>
 
-<style>
-
-  .bs-enderecos {
-    border: 1px solid black;
-    color: black;
-  }
-
-  .bs-enderecos:hover {
-    color: black;
-  }
-
-  .bs-pedidos,
-  .bs-creditos,
-  .bs-email,
-  .bs-senha,
-  .bs-dados,
-  .bs-cartoes  
-  {
-    border: 1px solid #e5e5e5;
-    color: #999;
-  } 
-
-  .bs-pedidos:hover {
-    color: #999;
-  }
-  .bs-creditos:hover {
-    color: #999;
-  }
-  .bs-email:hover {
-    color: #999;
-  }
-  .bs-senha:hover {
-    color: #999;
-  }
-  .bs-dados:hover {
-    color: #999;
-  }
-  .bs-cartoes:hover {
-    color: #999;
-  }
-
-
-  .cadastro {
-    margin-left: 350px;
-    margin-right: 10px;
-    margin-top: -600px;
-    height: 584px;
-
-  }
-
-  .cadastro-title {
-    color: white;
-    font-size: 30px;
-    font: bold;
-    border-bottom: solid 1px white;
-    padding: 0;
-
-  }
-
-  .caixa {
-    margin-top: 39px;
-    display: inline-flex;
-    width: 100%;
-    text-align: center;
-    color: #999;
-  }
-
-  .subtitulos {
-    margin-top: 20px;
-    font-size: 20px;
-    color: white;
-  }
-
-  .caixas {
-    width: 400px;
-    height: 40px;
-    border-radius: 5px;
-    border: solid 1px lightgray;
-    padding-left: 15px;
-  }
-
-  .btn-gravar {
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    height: 40px;
-    width: 400px;
-    margin-left: 40px;
-    background-color: rgb(13, 110, 253);
-  }
-
-  .btn-gravar:hover {
-    background-color: rgb(11, 94, 215);
-    color: white;
-    border: 0;
-  }
-
-  .caixa1 {
-    display: inline-flex;
-    margin-top: 5px;
-    /* margin-bottom: 8px; */
-    margin-right: 30px;
-  }
-
-
-
-  .espaco {
-    margin-right: 260px;
-  }
-
-  .btnradio1 {
-    margin-left: 40px;
-  }
-
-  .btnradio {
-    color: white;
-    margin-right: 5px;
-    margin-left: 10px;
-    font-size: 22px;
-  }
-
-  .esp-cep {
-    margin-left: -10px;
-    margin-right: 145px;
-  }
-
-  .esp-comp {
-    margin-left: 113px;
-  }
-
-  .distancia {
-    margin-left: 40px;
-  }
-
-  .caixa {
-    margin-left: 150px;
-    margin-top: 10px;
-    background-color: white;
-    width: 40%;
-    height: 200px;
-    text-align: left;
-    background-color: white;
-    border-radius: 10px;
-    display: inline-block;
-  }
-
-  .nome {
-    padding-left: 200px;
-    font-size: 25px;
-    padding-top: 5px;
-    margin-bottom: 4px;
-    color: var(--primaria);
-  }
-
-  .titles {
-    color: var(--primaria);
-    font-size: 15px;
-    font: bolder;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 0;
-    height: 10px;
-  }
-
-  .componentes {
-    margin-top: -19px;
-  }
-</style>
-
 <div class="corpo">
   <section>
 
+    <link href="/css/menu-minha-conta/menu-enderecos.css" rel="stylesheet" />
     <%- include('../components/minha-conta/lateral-menu')  %> 
 
     <div class="cadastro">
@@ -181,8 +12,7 @@
         <div class="caixa1">
           <p class="subtitulos espaco">Nome do Destinatário</p>
           <p class="subtitulos espaco esp-cep">CEP</p>
-          <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="subtitulos">Não sabe seu novo
-            CEP?</a>
+          <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="subtitulos">Não sabe seu CEP?</a>
         </div>
 
         <div class="caixa2">
@@ -208,18 +38,7 @@
 
         <div class="caixa2">
           <input type="text" name="salvar-endereco" class="caixas" />
-          <button type="submit" class="btn-gravar">Salvar Endereço</button>
-        </div>
-      </div>
-
-      <div class="endereco">
-        <div class="caixa">
-          <ul class="nome"><strong>José da Silva</strong></ul>
-          <ul class="titles"><strong>Endereço: </strong>Rua Tibúrcio de Souza, 10</ul>
-          <ul class="titles"><strong>Bairro: </strong>Itaim Paulista</ul>
-          <ul class="titles"><strong>Cidade: </strong>São Paulo</ul>
-          <ul class="titles"><strong>CEP: </strong>00000000</ul>
-
+          <button type="submit" class="btn-gravar-dados">Salvar Endereço</button>
         </div>
       </div>
     </div>

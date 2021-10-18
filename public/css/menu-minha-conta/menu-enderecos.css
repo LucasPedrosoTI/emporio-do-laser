@@ -1,0 +1,43 @@
+.bs-enderecos {
+  border: 1px solid black;
+  color: black;
+}
+
+.bs-enderecos:hover {
+  color: black;
+}
+
+.bs-pedidos,
+.bs-creditos,
+.bs-email,
+.bs-senha,
+.bs-dados,
+.bs-cartoes  
+{
+  border: 1px solid #e5e5e5;
+  color: #999;
+} 
+
+.bs-pedidos:hover {
+  color: #999;
+}
+
+.bs-creditos:hover {
+  color: #999;
+}
+
+.bs-email:hover {
+  color: #999;
+}
+
+.bs-senha:hover {
+  color: #999;
+}
+
+.bs-dados:hover {
+  color: #999;
+}
+
+.bs-cartoes:hover {
+  color: #999;
+}
