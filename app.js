@@ -4,7 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session'); // teste
-const flash = require('connect-flash'); // teste
 require('dotenv').config();
 const env = process.env.NODE_ENV || 'development';
 
@@ -29,7 +28,6 @@ app.use(
     cookie: { maxAge: env === 'development' ? null : 360000 },
   })
 );
-app.use(flash());
 // -------------------------------- //
 
 // faz com que a session fique disponivel em todas as paginas

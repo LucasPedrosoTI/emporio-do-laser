@@ -50,6 +50,10 @@
         <li class="nav-item">
           <a class="nav-link" href="/identifique-se">Entrar</a>
         </li>
+        <% } %> <% if (USUARIO && USUARIO.admin) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/administracao">Administração</a>
+        </li>
         <% } %>
       </ul>
       <form class="d-flex">

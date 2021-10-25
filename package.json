@@ -17,7 +17,6 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cls-hooked": "^4.2.2",
-    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",
