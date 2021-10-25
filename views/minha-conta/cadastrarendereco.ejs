@@ -2,18 +2,17 @@
 
 <div class="corpo">
   <section>
-
-    <link href="/css/menu-minha-conta/menu-enderecos.css" rel="stylesheet" />
     <%- include('../components/minha-conta/lateral-menu') %>
 
     <div class="cadastro">
-      <ul class="cadastro-title"><strong>Cadastrar Novo Endereço</strong></ul>
+      <ul class="cadastro-title">
+        <strong>Cadastrar Novo Endereço</strong>
+      </ul>
       <div class="componentes">
         <div class="caixa1">
           <p class="subtitulos espaco">Nome do Destinatário</p>
           <p class="subtitulos espaco esp-cep">CEP</p>
-          <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="subtitulos">Não sabe seu
-            CEP?</a>
+          <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="subtitulos">Não sabe seu CEP?</a>
         </div>
 
         <div class="caixa2">
@@ -21,12 +20,10 @@
           <input type="text" name="cep" class="caixas distancia" onkeypress="$(this).mask('00.000-00')" />
         </div>
 
-
         <div class="caixa1">
           <p class="subtitulos espaco">Número</p>
           <p class="subtitulos espaco esp-comp">Complemento</p>
         </div>
-
 
         <div class="caixa2">
           <input type="text" name="num" value="ex: 30" class="caixas" />
@@ -43,7 +40,6 @@
         </div>
       </div>
     </div>
-
   </section>
 </div>
 
