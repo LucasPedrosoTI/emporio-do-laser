@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session'); // teste
 const flash = require('connect-flash'); // teste
+require('dotenv').config();
+const env = process.env.NODE_ENV || 'development';
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -24,7 +26,7 @@ app.use(
     secret: 'emporiodolaser',
     resave: true,
     saveUninitialized: true,
-    cookie: { maxAge: 360000 },
+    cookie: { maxAge: env === 'development' ? null : 360000 },
   })
 );
 app.use(flash());
@@ -34,6 +36,7 @@ app.use(flash());
 app.use(function (req, res, next) {
   res.locals.USUARIO = req.session.usuario;
   res.locals.error = null;
+  res.locals.menu = null;
   next();
 });
 

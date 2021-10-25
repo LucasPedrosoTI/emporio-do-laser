@@ -16,10 +16,7 @@
             <ul class="filtroFilho">
               Minhas Compras
               <li>
-                <a href="/minha-conta/pedidos" class="box-filho bs-pedidos" title="Meus Pedidos">Meus Pedidos<i class="box bi-cart" style="font-size: 24px; line-height: 24px;"></i></a>     
-              </li>
-              <li>
-                <a href="/minha-conta/creditos" class="box-filho bs-creditos" title="Meus Créditos">Meus Créditos<i class="box bi-cash-coin" style="font-size: 24px; line-height: 24px;"></i></a>
+                <a href="/minha-conta/pedidos" class="box-filho <%=menu=='pedidos' && 'active'%>" title="Meus Pedidos">Meus Pedidos<i class="box bi-cart" style="font-size: 24px; line-height: 24px;"></i></a>     
               </li>
             </ul>
           </li>
@@ -27,19 +24,16 @@
             <ul class="filtroFilho">
               Cadastro
               <li>
-                <a href="/minha-conta/email" class="box-filho bs-email" title="Alterar E-mail">Alterar E-mail<i class="box bi-at" style="font-size: 24px; line-height: 24px;"></i></a>
+                <a href="/minha-conta/email" class="box-filho <%=menu=='email' && 'active'%>" title="Alterar E-mail">Alterar E-mail<i class="box bi-at" style="font-size: 24px; line-height: 24px;"></i></a>
               </li>
               <li>
-                <a href="/minha-conta/senha" class="box-filho bs-senha" title="Alterar Senha">Alterar Senha<i class="box bi-key" style="font-size: 24px; line-height: 24px;"></i></a>
+                <a href="/minha-conta/senha" class="box-filho <%=menu=='senha' && 'active'%>" title="Alterar Senha">Alterar Senha<i class="box bi-key" style="font-size: 24px; line-height: 24px;"></i></a>
               </li>
               <li>
-                <a href="/minha-conta/dados" class="box-filho bs-dados" title="Meus Dados">Meus Dados<i class="box bi-person" style="font-size: 24px; line-height: 24px;"></i></a>
+                <a href="/minha-conta/dados" class="box-filho <%=menu=='dados' && 'active'%>" title="Meus Dados">Meus Dados<i class="box bi-person" style="font-size: 24px; line-height: 24px;"></i></a>
               </li>
               <li>
-                <a href="/minha-conta/enderecos" class="box-filho bs-enderecos" title="Meus Endereços">Meus Endereços<i class="box bi-geo-alt" style="font-size: 24px; line-height: 24px;"></i></a>
-              </li>
-              <li>
-                <a href="/minha-conta/cartoes" class="box-filho bs-cartoes" title="Meus Cartões">Meus Cartões<i class="box bi-credit-card-2-back" style="font-size: 24px; line-height: 24px;"></i></a>
+                <a href="/minha-conta/enderecos" class="box-filho <%=menu=='enderecos' && 'active'%>" title="Meus Endereços">Meus Endereços<i class="box bi-geo-alt" style="font-size: 24px; line-height: 24px;"></i></a>
               </li>
               <li>
                 <form action="/logout" method="POST">

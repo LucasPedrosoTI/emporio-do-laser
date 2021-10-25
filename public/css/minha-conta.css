@@ -1,55 +1,53 @@
 /* ---------- MENU LATERAL ---------- */
 
-.sideBar .box-filho{
-    width: 250px;
-    background-color: white;
+.sideBar .box-filho {
+  width: 250px;
+  background-color: white;
+  border: 1px solid #e5e5e5;
+  color: #999;
+}
 
-  }
+.icon {
+  background-color: transparent;
+  color: white;
+  border: 0;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
 
-  .icon{
-    background-color: transparent;
-    color: white;
-    border: 0;
-    transition: all .3s ease-in-out;
-    position: relative;
-  }
+.icon:hover {
+  top: -2px;
+}
 
-  .icon:hover{
-    top: -2px;
-  }
-
-
-.filtroFilho{
+.filtroFilho {
   left: -300px;
 }
 
-
-  .filtroTitle{
-    font: bold;
-    font-size: 25px;
-    margin-left: 62px;
-  }
-
-  .minhaconta .sideBar .filtroPai {
-    margin: 0;
-    padding: 10px 0 0;
-    border: none;
-    font-size: 18px;
-    color: white;
-    font-weight: 600;
-    line-height: 3;
+.filtroTitle {
+  font: bold;
+  font-size: 25px;
+  margin-left: 62px;
 }
 
-.box{
-    background: #f8f8f8;
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 11px;
-    border-right: solid 1px #e5e5e5;
-  
+.minhaconta .sideBar .filtroPai {
+  margin: 0;
+  padding: 10px 0 0;
+  border: none;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+  line-height: 3;
+}
+
+.box {
+  background: #f8f8f8;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 11px;
+  border-right: solid 1px #e5e5e5;
 }
 
 .btnLink {
@@ -57,128 +55,122 @@
 }
 
 .minhaconta .sideBar .filtroFilho li .btnLink {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    position: relative;
-    padding: 15px 10px 15px 60px;
-    border: 1px solid #e5e5e5;
-    line-height: 20px;
-    font-size: 13px;
-    font-weight: 400;
-    text-decoration: none;
-    text-transform: none;
-    color: #999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding: 15px 10px 15px 60px;
+  border: 1px solid #e5e5e5;
+  line-height: 20px;
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  color: #999;
 }
 
 .minhaconta .sideBar .filtroFilho li a {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    position: relative;
-    padding: 15px 10px 15px 60px;
-    line-height: 20px;
-    font-size: 13px;
-    font-weight: 400;
-    text-decoration: none;
-    text-transform: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding: 15px 10px 15px 60px;
+  line-height: 20px;
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
 }
 
 .minhaconta .sideBar .filtros ul {
-    display:block;
-    list-style: none;
+  display: block;
+  list-style: none;
 }
 
-.sideBar{
+.sideBar {
   width: 400px;
 }
 
 .box-filho:hover {
-  background-color: rgb(245,245,245);
+  background-color: rgb(245, 245, 245);
 }
 
-.center{
+.center {
   width: 100%;
 }
-.bem-vindo{
+.bem-vindo {
   margin-left: 350px;
   margin-right: 10px;
   margin-top: -600px;
   height: 584px;
-
 }
 
-.bem-vindo-title{
+.bem-vindo-title {
   color: white;
   font-size: 30px;
   font: bold;
   border-bottom: solid 1px white;
   padding: 0;
- 
 }
 
 /* /////////////////////////// */
 
 /* ---------- PEDIDOS ---------- */
 
-  .meuspedidos {
-    margin-left: 350px;
-    margin-right: 10px;
-    margin-top: -600px;
-    height: 584px;
+.meuspedidos {
+  margin-left: 350px;
+  margin-right: 10px;
+  margin-top: -600px;
+  height: 584px;
+}
 
-  }
+.pedidos-title {
+  color: white;
+  font-size: 30px;
+  font: bold;
+  border-bottom: solid 1px white;
+  padding: 0;
+}
 
-  .pedidos-title {
-    color: white;
-    font-size: 30px;
-    font: bold;
-    border-bottom: solid 1px white;
-    padding: 0;
+.caixa {
+  margin-top: 45px;
+  display: inline-flex;
+  width: 100%;
+  text-align: center;
+  color: #999;
+}
 
-  }
+.caixaindividual {
+  background-color: white;
+  display: inline-flex;
+  width: 100%;
+  border-radius: 10px;
+}
 
-  .caixa {
-    margin-top: 45px;
-    display: inline-flex;
-    width: 100%;
-    text-align: center;
-    color: #999;
+.pedidos {
+  background-color: transparent;
+  width: 100%;
+  height: 105px;
+  padding: 3px;
+  border: solid 1px var(--primaria);
+}
 
-  }
+.conteudo {
+  font-size: 15px;
+  padding: 0;
+  color: grey;
+}
 
-  .caixaindividual {
-    background-color: white;
-    display: inline-flex;
-    width: 100%;
-    border-radius: 10px;
-  }
-
-  .pedidos {
-    background-color: transparent;
-    width: 100%;
-    height: 105px;
-    padding: 3px;
-    border: solid 1px var(--primaria);
-
-  }
-
-  .conteudo {
-    font-size: 15px;
-    padding: 0;
-    color: grey;
-  }
-
-  .titles {
-    color: black;
-    font-size: 18px;
-    font: bolder;
-    border-bottom: solid 1px var(--primaria);
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 0;
-    padding-right: 0;
-  }
+.titles {
+  color: black;
+  font-size: 18px;
+  font: bolder;
+  border-bottom: solid 1px var(--primaria);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-right: 0;
+}
 
 /* /////////////////////////// */
 
@@ -189,7 +181,6 @@
   margin-right: 10px;
   margin-top: -600px;
   height: 584px;
-
 }
 
 .creditos-title {
@@ -198,7 +189,6 @@
   font: bold;
   border-bottom: solid 1px white;
   padding: 0;
-
 }
 
 .minicaixas {
@@ -207,9 +197,7 @@
   height: 105px;
   padding: 3px;
   border: solid 1px var(--primaria);
-
 }
-
 
 .minicaixas-SALDO {
   background-color: transparent;
@@ -217,7 +205,6 @@
   height: 60px;
   padding: 3px;
   border: solid 1px var(--primaria);
-
 }
 
 .minicaixas-VALOR {
@@ -226,7 +213,6 @@
   height: 60px;
   padding: 3px;
   border: solid 1px var(--primaria);
-
 }
 
 .titles-saldo {
@@ -245,7 +231,6 @@
   margin-right: 10px;
   margin-top: -600px;
   height: 584px;
-
 }
 
 .email-title {
@@ -254,7 +239,6 @@
   font: bold;
   border-bottom: solid 1px white;
   padding: 0;
-
 }
 
 .caixa-email-atual {
@@ -268,7 +252,6 @@
   padding-left: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
-
 }
 
 .subtitulos {
@@ -310,7 +293,6 @@
   margin-right: 10px;
   margin-top: -600px;
   height: 584px;
-
 }
 
 .senha-title {
@@ -319,7 +301,6 @@
   font: bold;
   border-bottom: solid 1px white;
   padding: 0;
-
 }
 
 .caixa-senha {
@@ -392,7 +373,6 @@
   margin-right: 10px;
   margin-top: -600px;
   height: 584px;
-
 }
 
 .endereco-title {
@@ -401,9 +381,7 @@
   font: bold;
   border-bottom: solid 1px white;
   padding: 0;
-
 }
-
 
 /* ------ CADASTRAR ENDERECOS ------ */
 
@@ -423,11 +401,11 @@
 }
 
 .caixas {
-   width: 400px;
-   height: 40px;
-   border-radius: 5px;
-   border: solid 1px lightgray;
-   padding-left: 15px;
+  width: 400px;
+  height: 40px;
+  border-radius: 5px;
+  border: solid 1px lightgray;
+  padding-left: 15px;
 }
 
 .esp-cep {
@@ -462,7 +440,6 @@
   margin-right: 10px;
   margin-top: -600px;
   height: 584px;
-
 }
 
 .cartao-title {
@@ -471,7 +448,10 @@
   font: bold;
   border-bottom: solid 1px white;
   padding: 0;
- 
 }
 
 /* /////////////////////////// */
+.sideBar .active {
+  border: 1px solid black;
+  color: black;
+}
