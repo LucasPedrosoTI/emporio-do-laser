@@ -9,14 +9,31 @@
         <strong>Alteração de Senha</strong>
       </ul>
       <div class="componentes">
-        <div class="novo-email">
+        <form method="post" action="/usuarios/alterar-senha?_method=PUT" class="novo-email" data-toggle="validator">
           <p class="subtitulos">Senha Atual</p>
-          <input type="password" name="password" class="caixa-senha magin-senha" required />
+          <input type="password" name="senhaAtual" class="form-control w-25" placeholder="Digite a senha atual" required />
           <p class="subtitulos">Digite e confirme a nova senha</p>
-          <input type="password" name="password" class="caixa-senha" placeholder="Crie sua nova senha" required />
-          <input type="password" name="password" class="caixa-senha" placeholder="Confirme a nova senha" required />
-          <button type="submit" class="btn-gravar">Alterar</button>
-        </div>
+          <div class="row g-2">
+            <div class="col-auto w-25 form-group">
+              <input type="password" name="senha" id="senha" class="form-control" placeholder="Crie sua nova senha" minlength="6" required />
+              <div class="help-block with-errors mt-3"></div>
+            </div>
+            <div class="col-auto w-25 form-group">
+              <input
+                type="password"
+                name="confirmSenha"
+                class="form-control"
+                placeholder="Confirme a nova senha"
+                required
+                data-match="#senha"
+                data-match-error="Atenção! As senhas não estão iguais."
+              />
+              <div class="help-block with-errors mt-3"></div>
+            </div>
+          </div>
+          <%- include('../components/error-alert', {error}) %>
+          <button type="submit" class="btn btn-primary">Alterar</button>
+        </form>
       </div>
     </div>
   </section>

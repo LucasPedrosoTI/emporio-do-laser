@@ -225,14 +225,6 @@
   color: white;
 }
 
-.caixa-email {
-  width: 400px;
-  height: 40px;
-  border-radius: 5px;
-  border: solid 1px lightgray;
-  padding-left: 15px;
-}
-
 .btn-gravar {
   color: white;
   border: 0;
@@ -268,18 +260,6 @@
   padding: 0;
 }
 
-.caixa-senha {
-  width: 400px;
-  height: 40px;
-  border-radius: 5px;
-  border: solid 1px lightgray;
-  padding-left: 15px;
-}
-
-.magin-senha {
-  margin-top: -5px;
-  margin-bottom: 8px;
-}
 
 /* /////////////////////////// */
 

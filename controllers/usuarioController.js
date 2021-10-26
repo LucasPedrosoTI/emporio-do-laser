@@ -87,6 +87,32 @@ module.exports = {
 
     return res.redirect('/minha-conta/email');
   },
+
+  alterarSenha: async (req, res) => {
+    try {
+      const { senhaAtual, senha } = req.body;
+      const { id } = req.session.usuario;
+
+      const usuario = await Usuario.findOne({ where: { id } });
+
+      if (!bcrypt.compareSync(senhaAtual, usuario.senha)) {
+        return res.render('minha-conta/senha', { error: 'Usuário/Senha inválido', menu: 'senha' });
+      }
+
+      await Usuario.update(
+        { senha },
+        {
+          where: {
+            id,
+          },
+        }
+      );
+    } catch (error) {
+      return res.render('minha-conta/senha', { error: error.message, menu: 'senha' });
+    }
+
+    return res.redirect('/minha-conta/senha');
+  },
 };
 
 function renderWithError(res, error) {
