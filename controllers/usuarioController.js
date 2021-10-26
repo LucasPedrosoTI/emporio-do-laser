@@ -66,6 +66,27 @@ module.exports = {
       return renderWithError(res, error);
     }
   },
+
+  alterarEmail: async (req, res) => {
+    try {
+      const { email } = req.body;
+      const { id } = req.session.usuario;
+      await Usuario.update(
+        { email },
+        {
+          where: {
+            id,
+          },
+        }
+      );
+
+      req.session.usuario.email = email;
+    } catch (error) {
+      return res.render('minha-conta/email', { error: error.message, menu: 'email' });
+    }
+
+    return res.redirect('/minha-conta/email');
+  },
 };
 
 function renderWithError(res, error) {

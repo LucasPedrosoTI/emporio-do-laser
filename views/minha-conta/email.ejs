@@ -12,14 +12,31 @@
       <div class="componentes">
         <p class="subtitulos">E-mail Atual</p>
         <div class="caixa-email-atual">
-          <a>exemplo@gmail.com</a>
+          <a><%= USUARIO.email %> </a>
         </div>
         <p class="subtitulos">Digite e confirme o novo e-mail</p>
-        <div class="novo-email">
-          <input type="email" name="email" class="caixa-email" placeholder="Digite o novo e-mail" required />
-          <input type="email" name="email" class="caixa-email" placeholder="Confirme o e-mail" required />
-          <button type="submit" class="btn-gravar">Alterar</button>
-        </div>
+        <form action="/usuarios/alterar-email?_method=PUT" method="post" data-toggle="validator">
+          <div class="row g-2">
+            <div class="col-auto w-25 form-group">
+              <input type="email" name="email" class="form-control" id="email" placeholder="Digite o novo e-mail" required data-remote="http://localhost:3000/validar-email" />
+              <div class="help-block with-errors mt-3"></div>
+            </div>
+            <div class="col-auto w-25 form-group">
+              <input
+                type="email"
+                name="confirmEmail"
+                class="form-control col-auto"
+                placeholder="Confirme o e-mail"
+                required
+                data-match="#email"
+                data-match-error="Atenção! Os e-mails não estão iguais."
+              />
+              <div class="help-block with-errors mt-3"></div>
+            </div>
+            <%- include('../components/error-alert', {error}) %>
+          </div>
+          <div class="my-3"><button type="submit" class="btn btn-primary">Alterar</button></div>
+        </form>
       </div>
     </div>
   </section>
