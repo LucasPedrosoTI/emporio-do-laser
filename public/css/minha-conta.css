@@ -99,14 +99,14 @@
 
 /* ---------- PEDIDOS ---------- */
 
-.meuspedidos {
+.container-conteudo {
   margin-left: 350px;
   margin-right: 10px;
-  margin-top: -600px;
+  margin-top: -500px;
   height: 584px;
 }
 
-.pedidos-title {
+.title {
   color: white;
   font-size: 30px;
   font: bold;
@@ -191,21 +191,6 @@
 
 /* ---------- EMAIL ---------- */
 
-.email {
-  margin-left: 350px;
-  margin-right: 10px;
-  margin-top: -600px;
-  height: 584px;
-}
-
-.email-title {
-  color: white;
-  font-size: 30px;
-  font: bold;
-  border-bottom: solid 1px white;
-  padding: 0;
-}
-
 .caixa-email-atual {
   margin-top: -5px;
   margin-bottom: 30px;
@@ -225,55 +210,9 @@
   color: white;
 }
 
-.btn-gravar {
-  color: white;
-  border: 0;
-  border-radius: 5px;
-  height: 40px;
-  width: 200px;
-  margin-left: 40px;
-  background-color: rgb(13, 110, 253);
-}
-
-.btn-gravar:hover {
-  background-color: rgb(11, 94, 215);
-  color: white;
-  border: 0;
-}
-
-/* /////////////////////////// */
-
-/* ---------- SENHA ---------- */
-
-.senha {
-  margin-left: 350px;
-  margin-right: 10px;
-  margin-top: -600px;
-  height: 584px;
-}
-
-.senha-title {
-  color: white;
-  font-size: 30px;
-  font: bold;
-  border-bottom: solid 1px white;
-  padding: 0;
-}
-
-
 /* /////////////////////////// */
 
 /* ---------- DADOS ---------- */
-
-.btn-gravar-dados {
-  color: white;
-  border: 0;
-  border-radius: 5px;
-  height: 40px;
-  width: 400px;
-  margin-left: 40px;
-  background-color: rgb(13, 110, 253);
-}
 
 .caixa1 {
   display: inline-flex;

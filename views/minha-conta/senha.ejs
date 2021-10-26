@@ -1,13 +1,11 @@
-<%- include('../components/head', {title: 'Minha Conta: Senha'}) %> <%- include('../components/navbar') %>
+<%- include('../components/head', {title}) %> <%- include('../components/navbar') %>
 
 <div class="corpo">
   <section>
     <%- include('../components/minha-conta/lateral-menu') %>
 
-    <div class="senha">
-      <ul class="senha-title">
-        <strong>Alteração de Senha</strong>
-      </ul>
+    <div class="container-conteudo">
+      <h2 class="title mb-5">Alteração de Senha</h2>
       <div class="componentes">
         <form method="post" action="/usuarios/alterar-senha?_method=PUT" class="novo-email" data-toggle="validator">
           <p class="subtitulos">Senha Atual</p>

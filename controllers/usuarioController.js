@@ -1,4 +1,4 @@
-const { Usuario } = require('../database/models');
+const { Usuario, Cliente } = require('../database/models');
 const isValidCPF = require('../utils/validaCpf');
 const isValidCNPJ = require('../utils/validaCnpj');
 const bcrypt = require('bcrypt');
@@ -8,7 +8,7 @@ module.exports = {
     const { email, senha } = req.body;
 
     try {
-      const usuario = await Usuario.findOne({ where: { email } });
+      const usuario = await Usuario.findOne({ where: { email }, include: Cliente });
 
       if (!usuario) {
         return res.render('login-cadastro', { error: 'Usuário/Senha inválido' });
@@ -19,7 +19,6 @@ module.exports = {
       }
 
       usuario.senha = undefined;
-
       req.session.usuario = usuario;
 
       res.redirect('minha-conta');
