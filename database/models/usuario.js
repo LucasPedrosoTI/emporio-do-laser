@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
             admin: false,
             Cliente: {
               telefone,
+              ehPessoaFisica: true,
               PessoaFisica: {
                 nome,
                 cpf,
@@ -62,6 +63,7 @@ module.exports = (sequelize, DataTypes) => {
             admin: false,
             Cliente: {
               telefone,
+              ehPessoaFisica: false,
               PessoaJuridica: {
                 razao_social,
                 cnpj,

@@ -2,11 +2,10 @@ const { Usuario, Cliente, PessoaJuridica, PessoaFisica } = require('../database/
 const isValidCPF = require('../utils/validaCpf');
 const isValidCNPJ = require('../utils/validaCnpj');
 const bcrypt = require('bcrypt');
-const usuario = require('../database/models/usuario');
 
 module.exports = {
   logar: async (req, res) => {
-    const { email, senha } = req.body;
+    const { email, senha, manterLogado } = req.body;
 
     try {
       const usuario = await Usuario.findOne({ where: { email }, include: [{ model: Cliente, include: [PessoaFisica, PessoaJuridica] }] });
@@ -22,6 +21,10 @@ module.exports = {
       usuario.senha = undefined;
       req.session.usuario = usuario;
 
+      if (manterLogado) {
+        res.cookie('manterLogado', usuario.email, { maxAge: 3600000 });
+      }
+
       res.redirect('minha-conta');
     } catch (error) {
       console.log(error);
@@ -33,23 +36,23 @@ module.exports = {
     const { nome, email, senha, cpfCNPJ, telefone, pfOuPj } = req.body;
 
     try {
-      let user;
+      let usuario;
 
       if (pfOuPj === 'pf') {
         if (!isValidCPF(cpfCNPJ)) {
           return res.render('login-cadastro', { error: 'CPF inválido' });
         }
-        user = await Usuario.createPF(email, senha, telefone, nome, cpfCNPJ);
+        usuario = await Usuario.createPF(email, senha, telefone, nome, cpfCNPJ);
       } else {
         if (!isValidCNPJ(cpfCNPJ)) {
           return res.render('login-cadastro', { error: 'CNPJ inválido' });
         }
-        user = await Usuario.createPJ(email, senha, telefone, nome, cpfCNPJ);
+        usuario = await Usuario.createPJ(email, senha, telefone, nome, cpfCNPJ);
       }
 
-      user.senha = undefined;
+      usuario.senha = undefined;
 
-      req.session.usuario = user;
+      req.session.usuario = usuario;
 
       return res.redirect('minha-conta');
     } catch (error) {
@@ -61,6 +64,7 @@ module.exports = {
   logout: async (req, res) => {
     try {
       req.session.destroy();
+      res.clearCookie('manterLogado');
       res.redirect('/');
     } catch (error) {
       return renderWithError(res, error);

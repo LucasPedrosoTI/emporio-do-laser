@@ -12,6 +12,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/usuarios');
 const produtosRouter = require('./routes/produtos');
 const minhaContaRouter = require('./routes/minha-conta');
+const cookieLogin = require('./middlewares/cookieLogin');
 
 const app = express();
 
@@ -32,19 +33,21 @@ app.use(
 // -------------------------------- //
 
 // faz com que a session fique disponivel em todas as paginas
+
+app.use(methodOverride('_method'));
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cookieLogin);
 app.use(function (req, res, next) {
   res.locals.USUARIO = req.session.usuario;
   res.locals.error = null;
   res.locals.menu = null;
   next();
 });
-
-app.use(methodOverride('_method'))
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/usuarios', usersRouter);
