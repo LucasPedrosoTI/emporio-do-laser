@@ -12,8 +12,8 @@ body {
 }
 
 .corpo {
-  min-height: 45vh;
-  margin-top: 5%;
+  min-height: calc(100vh - 493px);
+  margin-top: 80px;
 }
 
 .nav-item button.nav-link:not(.active) {
@@ -168,6 +168,6 @@ body {
   }
 
   .corpo {
-    margin-top: 10%;
+    margin-top: 60px;
   }
 }
