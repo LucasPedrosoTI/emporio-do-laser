@@ -58,7 +58,7 @@ function listarItens(data) {
                   <div class="text-end">
                     <h4 class="text-dark mb-3"><b>Total: ${total}</b></h4>
                     <a href="/carrinho" class="btn btn-outline-success btn-lg">Voltar ao Carrinho</a>
-                    <a href="#" class="btn btn-danger btn-lg">Continuar</a>
+                    <a href="/pagamento" class="btn btn-danger btn-lg">Continuar</a>
                   </div>
                 </li>
               </div>

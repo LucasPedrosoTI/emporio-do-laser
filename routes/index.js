@@ -46,6 +46,12 @@ router.get('/fechar-compra', function (req, res, next) {
   res.render('fechar-compra', { title: 'Empório do Laser - Fechar Compra'});
 });
 
+
+// OBS: verificar se vai precisar de autenticação de usuário
+router.get('/pagamento', function (req, res, next) {
+  res.render('ir-para-pagamento', { title: 'Empório do Laser - Pagamento'});
+});
+
 // -------------- //
 
 
