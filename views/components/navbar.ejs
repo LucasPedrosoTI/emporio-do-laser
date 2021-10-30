@@ -33,11 +33,11 @@
         <li class="nav-item">
           <a class="nav-link" href="/sac">Contato/SAC</a>
         </li>
-        <% if (USUARIO) { %>
+        <% if (USUARIO) { %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-circle"></i>
-            <span><%=USUARIO.email%></span>
+            <span><%= ehPF ? USUARIO.Cliente.PessoaFisica.nome : USUARIO.Cliente.PessoaJuridica.razao_social %></span>
           </a>
           <ul class="dropdown-menu" aria-labelledby="usuario">
             <li><a class="dropdown-item" href="/minha-conta">Minha Conta</a></li>

@@ -1,14 +1,15 @@
-const { Usuario, Cliente } = require('../database/models');
+const { Usuario, Cliente, PessoaJuridica, PessoaFisica } = require('../database/models');
 const isValidCPF = require('../utils/validaCpf');
 const isValidCNPJ = require('../utils/validaCnpj');
 const bcrypt = require('bcrypt');
+const usuario = require('../database/models/usuario');
 
 module.exports = {
   logar: async (req, res) => {
     const { email, senha } = req.body;
 
     try {
-      const usuario = await Usuario.findOne({ where: { email }, include: Cliente });
+      const usuario = await Usuario.findOne({ where: { email }, include: [{ model: Cliente, include: [PessoaFisica, PessoaJuridica] }] });
 
       if (!usuario) {
         return res.render('login-cadastro', { error: 'Usuário/Senha inválido' });
@@ -111,6 +112,20 @@ module.exports = {
     }
 
     return res.redirect('/minha-conta/senha');
+  },
+
+  alterarDados: async (req, res) => {
+    try {
+      const { nome, cpfCNPJ, telefone } = req.body;
+      const { id, Cliente: cliente } = req.session.usuario;
+
+      await Cliente.updateDados(cliente.id, telefone, cpfCNPJ, nome);
+      req.session.usuario = await Usuario.findOne({ where: { id }, include: [{ model: Cliente, include: [PessoaFisica, PessoaJuridica] }] });
+    } catch (error) {
+      return res.render('minha-conta/dados', { error: error.message, menu: 'dados' });
+    }
+
+    return res.redirect('/minha-conta/dados');
   },
 };
 

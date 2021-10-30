@@ -9,6 +9,28 @@ module.exports = (sequelize, DataTypes) => {
       Cliente.hasMany(models.Endereco);
       Cliente.hasOne(models.Logo);
       Cliente.hasMany(models.Pedido);
+
+      Cliente.updateDados = async (id, telefone, cpfCnpj, nomeRazaoSocial) => {
+        return await sequelize.transaction(async transaction => {
+          // const dados = ehPessoaFisica ? { telefone, PessoaFisica: { nome: nomeRazaoSocial, cpf: cpfCnpj } } : { telefone, PessoaJuridica: { razao_social: nomeRazaoSocial, cnpj: cpfCnpj } };
+
+          return await Cliente.findByPk(id, { include: [models.PessoaFisica, models.PessoaJuridica] }).then(async Cliente => {
+            Cliente.telefone = telefone;
+            await Cliente.save({ transaction });
+
+            if (Cliente.ehPessoaFisica) {
+              Cliente.PessoaFisica.cpf = cpfCnpj;
+              Cliente.PessoaFisica.nome = nomeRazaoSocial;
+              await Cliente.PessoaFisica.save({ transaction });
+            } else {
+              Cliente.PessoaJuridica.cnpj = cpfCnpj;
+              Cliente.PessoaJuridica.razao_social = nomeRazaoSocial;
+              await Cliente.PessoaJuridica.save({ transaction });
+            }
+            return Cliente;
+          });
+        });
+      };
     }
   }
   Cliente.init(

@@ -337,7 +337,7 @@
 /* /////////////////////////// */
 .sideBar .active{
   border: 1px solid black;
-  color: black;
+  color: var(--primaria);
   background-color: var(--secundaria);
   font-weight: bold;
   

@@ -12,6 +12,18 @@ module.exports = {
     const { cpfCNPJ } = req.query;
     const isCpf = cpfCNPJ.length <= 14;
     const isValid = isCpf ? isValidCPF(cpfCNPJ) : isValidCNPJ(cpfCNPJ);
+
+    if (isValid) {
+      res.sendStatus(200);
+    } else {
+      isCpf ? sendError(res, 'CPF inválido') : sendError(res, 'CNPJ inválido');
+    }
+  },
+
+  validarCpfCnpjUnico: async (req, res) => {
+    const { cpfCNPJ } = req.query;
+    const isCpf = cpfCNPJ.length <= 14;
+    const isValid = isCpf ? isValidCPF(cpfCNPJ) : isValidCNPJ(cpfCNPJ);
     const usuario = isValid ? (isCpf ? await PessoaFisica.findOne({ where: { cpf: cpfCNPJ } }) : await PessoaJuridica.findOne({ where: { cnpj: cpfCNPJ } })) : null;
 
     if (isValid && !usuario) {

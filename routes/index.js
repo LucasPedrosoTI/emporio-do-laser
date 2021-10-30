@@ -31,11 +31,10 @@ router.get('/minha-conta', auth, function (req, res, next) {
   res.render('my-account', { title: 'Empório do Laser - Minha Conta' });
 });
 
-
 // -- CARRINHO -- //
 
 router.get('/carrinho', function (req, res, next) {
-  res.render('carrinho', { title: 'Empório do Laser - Carrinho'});
+  res.render('carrinho', { title: 'Empório do Laser - Carrinho' });
 });
 
 router.get('/carrinho-listar', carrinhoController.listar);
@@ -43,17 +42,15 @@ router.post('/carrinho-excluir', carrinhoController.excluir);
 router.post('/carrinho-qtd', carrinhoController.qtd);
 
 router.get('/fechar-compra', function (req, res, next) {
-  res.render('fechar-compra', { title: 'Empório do Laser - Fechar Compra'});
+  res.render('fechar-compra', { title: 'Empório do Laser - Fechar Compra' });
 });
-
 
 // OBS: verificar se vai precisar de autenticação de usuário
 router.get('/pagamento', function (req, res, next) {
-  res.render('ir-para-pagamento', { title: 'Empório do Laser - Pagamento'});
+  res.render('ir-para-pagamento', { title: 'Empório do Laser - Pagamento' });
 });
 
 // -------------- //
-
 
 /* POST nav bar */
 router.post('/cadastrar', usuarioController.cadastrar);
@@ -64,6 +61,8 @@ router.post('/login', usuarioController.logar);
 router.post('/logout', usuarioController.logout);
 
 router.get('/validar-cpf-cnpj', validatorController.validarCpfCnpj);
+
+router.get('/validar-cpf-cnpj-unico', validatorController.validarCpfCnpjUnico);
 
 router.get('/validar-email', validatorController.validarEmail);
 
