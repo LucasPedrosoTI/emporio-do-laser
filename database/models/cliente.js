@@ -12,8 +12,6 @@ module.exports = (sequelize, DataTypes) => {
 
       Cliente.updateDados = async (id, telefone, cpfCnpj, nomeRazaoSocial) => {
         return await sequelize.transaction(async transaction => {
-          // const dados = ehPessoaFisica ? { telefone, PessoaFisica: { nome: nomeRazaoSocial, cpf: cpfCnpj } } : { telefone, PessoaJuridica: { razao_social: nomeRazaoSocial, cnpj: cpfCnpj } };
-
           return await Cliente.findByPk(id, { include: [models.PessoaFisica, models.PessoaJuridica] }).then(async Cliente => {
             Cliente.telefone = telefone;
             await Cliente.save({ transaction });

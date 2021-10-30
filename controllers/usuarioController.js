@@ -119,8 +119,7 @@ module.exports = {
       const { nome, cpfCNPJ, telefone } = req.body;
       const { id, Cliente: cliente } = req.session.usuario;
 
-      await Cliente.updateDados(cliente.id, telefone, cpfCNPJ, nome);
-      req.session.usuario = await Usuario.findOne({ where: { id }, include: [{ model: Cliente, include: [PessoaFisica, PessoaJuridica] }] });
+      req.session.usuario.Cliente = await Cliente.updateDados(cliente.id, telefone, cpfCNPJ, nome);
     } catch (error) {
       return res.render('minha-conta/dados', { error: error.message, menu: 'dados' });
     }
