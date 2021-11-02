@@ -30,4 +30,26 @@ router.get('/cadastrarendereco', auth, function (req, res, next) {
 router.get('/editarendereco', auth, function (req, res, next) {
   res.render('minha-conta/editarendereco', { title: 'Minha Conta: Cadastrar novo Endereço', menu: 'enderecos' });
 });
+
+router.get('/administrador', auth, function (req, res, next) {
+  res.render('minha-conta-admin/administrador', { title: 'Minha Conta: Administrador' });
+});
+
+router.get('/cupons', auth, function (req, res, next) {
+  res.render('minha-conta-admin/cupons', { title: 'Minha Conta: Cupons', menu: 'cupons' });
+});
+
+router.get('/meusprodutos', auth, function (req, res, next) {
+  res.render('minha-conta-admin/meusprodutos', { title: 'Minha Conta: Produtos', menu: 'produtos' });
+});
+
+router.get('/senha-admin', auth, function (req, res, next) {
+  res.render('minha-conta-admin/senhaadmin', { title: 'Minha Conta: Senha', menu: 'senha-admin' });
+});
+
+router.get('/dados-admin', auth, function (req, res, next) {
+  res.render('minha-conta-admin/dadosadmin', { title: 'Minha Conta: Senha', menu: 'dados-admin' });
+});
+
+
 module.exports = router;

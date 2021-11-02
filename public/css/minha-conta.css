@@ -106,6 +106,13 @@
   height: 584px;
 }
 
+.container-conteudo-admin {
+  margin-left: 350px;
+  margin-right: 10px;
+  margin-top: -440px;
+  height: 584px;
+}
+
 .title {
   color: white;
   font-size: 30px;

@@ -1,0 +1,45 @@
+
+<link href="/css/minha-conta.css" rel="stylesheet" />
+
+<div class="content minhaconta">
+  <div class="center">
+    <div class="sideBar">
+      <div class="filtros">
+        <div class="filtroTitle text-light">
+          Administrador
+          <a href="#" id="mobile_menu">
+            <button class="icon" type="checkbox"><span class="bi-list"></button>
+          </a>
+        </div>
+        <ul id="menu-minha-conta">
+          <li class="filtroPai">
+            <ul class="filtroFilho">
+              Gerenciamento
+              <li>
+                <a href="/minha-conta/cupons" class="box-filho <%=menu=='cupons' && 'active'%>" title="Meus Cupons">Meus Cupons<i class="box bi-card-heading" ></i></a>     
+              </li>
+              <li>
+                <a href="/minha-conta/meusprodutos" class="box-filho <%=menu=='produtos' && 'active'%>" title="Meus Produtos">Meus Produtos<i class="box bi-journals" ></i></a>     
+              </li>
+            </ul>
+          </li>
+          <li class="filtroPai">
+            <ul class="filtroFilho">
+              Dados Pessoais
+              <li>
+                <a href="/minha-conta/senha-admin" class="box-filho <%=menu=='senha-admin' && 'active'%>" title="Alterar Senha">Alterar Senha<i class="box bi-key" ></i></a>
+              </li>
+              <li>
+                  <a href="/minha-conta/dados-admin" class="box-filho <%=menu=='dados-admin' && 'active'%>" title="Meus Dados">Meus Dados<i class="box bi-person" ></i></a>
+              </li>
+                <form action="/logout" method="POST">
+                  <button type="submit" class="box-filho" title="Sair">Sair<i class="box bi-x-circle" ></i></button>
+                </form>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>       
+</div>
