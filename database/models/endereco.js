@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   Endereco.init(
     {
       clienteId: DataTypes.BIGINT,
+      destinatario: DataTypes.STRING,
       rua: DataTypes.STRING,
       numero: DataTypes.NUMBER,
       complemento: DataTypes.STRING,

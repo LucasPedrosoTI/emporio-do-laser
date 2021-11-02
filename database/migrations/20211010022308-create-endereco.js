@@ -13,6 +13,10 @@ module.exports = {
         allowNull: false,
         references: { model: 'clientes', key: 'id' },
       },
+      destinatario: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       rua: {
         type: Sequelize.STRING,
         allowNull: false,
