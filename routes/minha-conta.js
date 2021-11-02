@@ -28,6 +28,6 @@ router.get('/cadastrarendereco', auth, function (req, res, next) {
 });
 
 router.get('/editarendereco', auth, function (req, res, next) {
-  res.render('minha-conta/editarendereco', { title: 'Minha Conta: Cadastrar novo Endereço' });
+  res.render('minha-conta/editarendereco', { title: 'Minha Conta: Cadastrar novo Endereço', menu: 'enderecos' });
 });
 module.exports = router;
