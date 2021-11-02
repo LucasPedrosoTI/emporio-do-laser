@@ -24,11 +24,11 @@ router.get('/enderecos', auth, function (req, res, next) {
 });
 
 router.get('/cadastrarendereco', auth, function (req, res, next) {
-  res.render('minha-conta/cadastrarendereco', { title: 'Minha Conta: Cadastrar novo Endereço' });
+  res.render('minha-conta/cadastrarendereco', { title: 'Minha Conta: Cadastrar novo Endereço', menu: 'enderecos' });
 });
 
 router.get('/editarendereco', auth, function (req, res, next) {
-  res.render('minha-conta/editarendereco', { title: 'Minha Conta: Cadastrar novo Endereço', menu: 'enderecos' });
+  res.render('minha-conta/editarendereco', { title: 'Minha Conta: Alterar Endereço', menu: 'enderecos' });
 });
 
 router.get('/administrador', auth, function (req, res, next) {

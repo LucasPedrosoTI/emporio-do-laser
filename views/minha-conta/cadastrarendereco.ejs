@@ -1,48 +1,33 @@
 <%- include('../components/head', {title: 'Minha Conta: Cadastrar novo Endereço'}) %> <%- include('../components/navbar') %>
 
-<div class="corpo">
-  <section>
-    <%- include('../components/minha-conta/lateral-menu') %>
+<section>
+  <div class="corpo ">
+    <div class="page-grid">
+      
+      <nav>
+        <%- include('../components/minha-conta/lateral-menu') %>
+      </nav>
 
-    <form action="" method="post" class="container-conteudo" data-toggle="validator"></form>
-    <div class="cadastro">
-      <ul class="cadastro-title">
-        <strong>Cadastrar Novo Endereço</strong>
-      </ul>
-      <div class="componentes">
-        <div class="caixa1">
-          <p class="subtitulos espaco">Nome do Destinatário</p>
-          <p class="subtitulos espaco esp-cep">CEP</p>
-          <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="subtitulos">Não sabe seu CEP?</a>
-        </div>
+      <div class="container-conteudo">
 
-        <div class="caixa2">
-          <input type="text" name="nome" class="caixas margens" value="ex: José da Silva" />
-          <input type="text" name="cep" class="caixas distancia" onkeypress="$(this).mask('00.000-00')" />
-        </div>
+        <ul class="cadastro-title">
+          <strong>Cadastrar Endereço</strong>
+        </ul>     
 
-        <div class="caixa1">
-          <p class="subtitulos espaco">Número</p>
-          <p class="subtitulos espaco esp-comp">Complemento</p>
-        </div>
+        <!-- CONTEUDO DA PAGINA AQUI -->
 
-        <div class="caixa2">
-          <input type="text" name="num" value="" class="caixas phone_with_ddd"/>
-          <input type="text" name="complemento" value="ex: apartamento 100 - torre 4" class="caixas distancia" />
-        </div>
-
-        <div class="caixa1">
-          <p class="subtitulos espaco">Referência</p>
-        </div>
-
-        <div class="caixa2">
-          <input type="text" name="salvar-endereco" value="ex: Travessa da Avenida Nordestina" class="caixas" />
-          <button type="submit" class="btn btn-primary my-3">Salvar Endereço</button>
-        </div>
-      </form>
       </div>
+
     </div>
-  </section>
-</div>
+  </div>
+</section>
 
 <%- include('../components/foot') %>
+
+
+
+
+
+
+
+<!-- <form action="" method="post" class="container-conteudo" data-toggle="validator"></form> -->

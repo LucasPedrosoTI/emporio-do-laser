@@ -136,6 +136,25 @@ body {
 }
 /* fim do style do contato */
 
+/* Divisão de elementos */
+
+.page-grid {
+  display: flex;
+}
+
+.grid-line {
+  display: flex;
+  flex-direction: row;
+}
+
+.grid-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* fim de divisão de elementos */
+
+
 .login-cadastro {
   width: 50%;
 }

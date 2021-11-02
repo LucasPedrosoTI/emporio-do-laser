@@ -1,57 +1,63 @@
 <%- include('../components/head', {title}) %> <%- include('../components/navbar') %>
 
-<div class="corpo">
-  <section>
-    <%- include('../components/minha-conta/lateral-menu') %>
-
-    <div class="container-conteudo">
-      <h2 class="title">Meus Pedidos</h2>
-      <div class="caixa">
-        <div class="caixaindividual">
-          <div class="pedidos">
-            <ul class="titles">
-              Nº do Pedido
-            </ul>
-            <ul class="conteudo">
-              123456789
-            </ul>
-          </div>
-          <div class="pedidos">
-            <ul class="titles">
-              Pagamento
-            </ul>
-            <ul class="conteudo">
-              Cartão
-            </ul>
-          </div>
-          <div class="pedidos">
-            <ul class="titles">
-              Status
-            </ul>
-            <ul class="conteudo">
-              Enviado
-            </ul>
-          </div>
-          <div class="pedidos">
-            <ul class="titles">
-              Valor Total
-            </ul>
-            <ul class="conteudo">
-              R$100,00
-            </ul>
-          </div>
-          <div class="pedidos">
-            <ul class="titles">
-              Rastreamento
-            </ul>
-            <ul class="conteudo">
-              EMP-283902183
-            </ul>
+<section>
+  <div class="corpo">
+    <div class="page-grid">
+      
+      <nav>
+        <%- include('../components/minha-conta/lateral-menu') %>
+      </nav>
+  
+      <div class="container-conteudo">
+        <h2 class="title">Meus Pedidos</h2>
+        <div class="caixa">
+          <div class="caixaindividual">
+            <div class="pedidos">
+              <ul class="titles">
+                Nº do Pedido
+              </ul>
+              <ul class="conteudo">
+                123456789
+              </ul>
+            </div>
+            <div class="pedidos">
+              <ul class="titles">
+                Pagamento
+              </ul>
+              <ul class="conteudo">
+                Cartão
+              </ul>
+            </div>
+            <div class="pedidos">
+              <ul class="titles">
+                Status
+              </ul>
+              <ul class="conteudo">
+                Enviado
+              </ul>
+            </div>
+            <div class="pedidos">
+              <ul class="titles">
+                Valor Total
+              </ul>
+              <ul class="conteudo">
+                R$100,00
+              </ul>
+            </div>
+            <div class="pedidos">
+              <ul class="titles">
+                Rastreamento
+              </ul>
+              <ul class="conteudo">
+                EMP-283902183
+              </ul>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
-  </section>
-</div>
+  </div>
+</section>
 
 <%- include('../components/foot') %>

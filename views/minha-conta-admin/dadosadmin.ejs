@@ -1,42 +1,50 @@
 <%- include('../components/head', {title: 'Minha Conta: Admnistrador'}) %> <%- include('../components/navbar') %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
-<div class="corpo">
-  <section>
-    <%- include('../components/minha-conta/lateral-menu-admin') %>
-    
-    <form action="/usuarios/alterar-dados?_method=PUT" method="post" class="container-conteudo-admin" data-toggle="validator">
-      <h2 class="title mb-5">Meus Dados</h2>
-      <div class="componentes">
-        <div class="form-group w-25">
-          <label class="subtitulos" for="nome"><%= ehPF ? 'Nome' : 'Razão Social' %></label>
-          <input id="nome" type="text" name="nome" class="form-control my-2" value="<%= ehPF ? USUARIO.Cliente.PessoaFisica.nome : USUARIO.Cliente.PessoaJuridica.razao_social  %>" required />
-          <div class="help-block with-errors"></div>
-        </div>
 
-        <div class="form-group w-25">
-          <label class="subtitulos" for="cpfCNPJ"><%= ehPF ? 'CPF' : 'CNPJ' %> </label>
-          <input
-            type="text"
-            id="cpfCNPJ"
-            name="cpfCNPJ"
-            class="form-control my-2 <%= ehPF ? 'cpf' : 'cnpj' %>"
-            value="<%= ehPF ? USUARIO.Cliente.PessoaFisica.cpf : USUARIO.Cliente.PessoaJuridica.cnpj  %>"
-            minlength="14"
-            maxlength="18"
-            data-remote="http://localhost:3000/validar-cpf-cnpj"
-            required
-          />
-          <div class="help-block with-errors"></div>
-        </div>
+<section>
+  <div class="corpo">
+    <div class="page-grid">
 
-        <div class="form-group w-25">
-          <label for="telefone" class="subtitulos">Telefone Principal</label>
-          <input type="text" name="telefone" id="telefone" class="form-control my-2 phone_with_ddd" value="<%=USUARIO.Cliente.telefone%>" required />
-          <div class="help-block with-errors"></div>
+      <nav>
+        <%- include('../components/minha-conta/lateral-menu-admin') %>
+      </nav>
+      
+      <form action="/usuarios/alterar-dados?_method=PUT" method="post" class="container-conteudo" data-toggle="validator">
+        <h2 class="title mb-5">Meus Dados</h2>
+        <div class="componentes">
+          <div class="form-group w-25">
+            <label class="subtitulos" for="nome"><%= ehPF ? 'Nome' : 'Razão Social' %></label>
+            <input id="nome" type="text" name="nome" class="form-control my-2" value="<%= ehPF ? USUARIO.Cliente.PessoaFisica.nome : USUARIO.Cliente.PessoaJuridica.razao_social  %>" required />
+            <div class="help-block with-errors"></div>
+          </div>
+
+          <div class="form-group w-25">
+            <label class="subtitulos" for="cpfCNPJ"><%= ehPF ? 'CPF' : 'CNPJ' %> </label>
+            <input
+              type="text"
+              id="cpfCNPJ"
+              name="cpfCNPJ"
+              class="form-control my-2 <%= ehPF ? 'cpf' : 'cnpj' %>"
+              value="<%= ehPF ? USUARIO.Cliente.PessoaFisica.cpf : USUARIO.Cliente.PessoaJuridica.cnpj  %>"
+              minlength="14"
+              maxlength="18"
+              data-remote="http://localhost:3000/validar-cpf-cnpj"
+              required
+            />
+            <div class="help-block with-errors"></div>
+          </div>
+
+          <div class="form-group w-25">
+            <label for="telefone" class="subtitulos">Telefone Principal</label>
+            <input type="text" name="telefone" id="telefone" class="form-control my-2 phone_with_ddd" value="<%=USUARIO.Cliente.telefone%>" required />
+            <div class="help-block with-errors"></div>
+          </div>
+          <%- include('../components/error-alert', {error}) %>
+          <button type="submit" class="btn btn-primary my-3">Salvar Dados</button>
         </div>
-        <%- include('../components/error-alert', {error}) %>
-        <button type="submit" class="btn btn-primary my-3">Salvar Dados</button>
-      </div>
-    </form>
-  </section>
+      </form>
+
+    </div>
+  </div>
+</section>
 
 <%- include('../components/foot') %>

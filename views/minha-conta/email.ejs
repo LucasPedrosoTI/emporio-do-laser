@@ -1,43 +1,49 @@
 <%- include('../components/head', {title}) %> <%- include('../components/navbar') %>
 
-<div class="corpo">
-  <section>
-    <%- include('../components/minha-conta/lateral-menu') %>
+<section>
+  <div class="corpo">
+    <div class="page-grid">
 
-    <div class="container-conteudo">
-      <h2 class="title mb-5">Alteração de E-mail</h2>
-
-      <div class="componentes">
-        <p class="subtitulos mt-5">E-mail Atual</p>
-        <div class="caixa-email-atual">
-          <a><%= USUARIO.email %> </a>
-        </div>
-        <p class="subtitulos">Digite e confirme o novo e-mail</p>
-        <form action="/usuarios/alterar-email?_method=PUT" method="post" data-toggle="validator">
-          <div class="row g-2">
-            <div class="col-auto w-25 form-group">
-              <input type="email" name="email" class="form-control" id="email" placeholder="Digite o novo e-mail" required data-remote="http://localhost:3000/validar-email" />
-              <div class="help-block with-errors mt-3"></div>
-            </div>
-            <div class="col-auto w-25 form-group">
-              <input
-                type="email"
-                name="confirmEmail"
-                class="form-control col-auto"
-                placeholder="Confirme o e-mail"
-                required
-                data-match="#email"
-                data-match-error="Atenção! Os e-mails não estão iguais."
-              />
-              <div class="help-block with-errors mt-3"></div>
-            </div>
-            <%- include('../components/error-alert', {error}) %>
+      <nav>
+        <%- include('../components/minha-conta/lateral-menu') %>
+      </nav>
+  
+      <div class="container-conteudo">
+        <h2 class="title mb-5">Alteração de E-mail</h2>
+  
+        <div class="componentes">
+          <p class="subtitulos mt-5">E-mail Atual</p>
+          <div class="caixa-email-atual">
+            <a><%= USUARIO.email %> </a>
           </div>
-          <div class="my-3"><button type="submit" class="btn btn-primary">Alterar</button></div>
-        </form>
+          <p class="subtitulos">Digite e confirme o novo e-mail</p>
+          <form action="/usuarios/alterar-email?_method=PUT" method="post" data-toggle="validator">
+            <div class="row g-2">
+              <div class="col-auto w-25 form-group">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Digite o novo e-mail" required data-remote="http://localhost:3000/validar-email" />
+                <div class="help-block with-errors mt-3"></div>
+              </div>
+              <div class="col-auto w-25 form-group">
+                <input
+                  type="email"
+                  name="confirmEmail"
+                  class="form-control col-auto"
+                  placeholder="Confirme o e-mail"
+                  required
+                  data-match="#email"
+                  data-match-error="Atenção! Os e-mails não estão iguais."
+                />
+                <div class="help-block with-errors mt-3"></div>
+              </div>
+              <%- include('../components/error-alert', {error}) %>
+            </div>
+            <div class="my-3"><button type="submit" class="btn btn-primary">Alterar</button></div>
+          </form>
+        </div>
       </div>
+
     </div>
-  </section>
-</div>
+  </div>
+</section>
 
 <%- include('../components/foot') %>

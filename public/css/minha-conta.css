@@ -27,14 +27,16 @@
   top: -2px;
 }
 
+.filtros,
 .filtroFilho {
-  left: -300px;
+  /* left: -300px; */
+  padding: 0;
 }
 
 .filtroTitle {
   font: bold;
   font-size: 25px;
-  margin-left: 62px;
+  /* margin-left: 62px; */
 }
 
 .minhaconta .sideBar .filtroPai {
@@ -66,10 +68,12 @@
 .minhaconta .sideBar .filtros ul {
   display: block;
   list-style: none;
+  padding: 0;
 }
 
 .sideBar {
-  width: 400px;
+  margin-left: 30px;
+  max-width: 250px;
 }
 
 .box-filho:hover {
@@ -100,18 +104,15 @@
 /* ---------- PEDIDOS ---------- */
 
 .container-conteudo {
-  margin-left: 350px;
-  margin-right: 10px;
-  margin-top: -500px;
-  height: 584px;
+  /* margin-left: 350px; */
+  /* margin-right: 10px; */
+  /* margin-top: -500px; */
+  /* height: 584px; */
+  width: 100%;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
-.container-conteudo-admin {
-  margin-left: 350px;
-  margin-right: 10px;
-  margin-top: -440px;
-  height: 584px;
-}
 
 .title {
   color: white;

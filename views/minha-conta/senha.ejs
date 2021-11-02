@@ -1,39 +1,46 @@
 <%- include('../components/head', {title}) %> <%- include('../components/navbar') %>
 
-<div class="corpo">
-  <section>
-    <%- include('../components/minha-conta/lateral-menu') %>
+<section>
+  <div class="corpo">
+    <div class="page-grid">
 
-    <div class="container-conteudo">
-      <h2 class="title mb-5">Alteração de Senha</h2>
-      <div class="componentes">
-        <form method="post" action="/usuarios/alterar-senha?_method=PUT" class="novo-email" data-toggle="validator">
-          <p class="subtitulos">Senha Atual</p>
-          <input type="password" name="senhaAtual" class="form-control w-25" placeholder="Digite a senha atual" required />
-          <p class="subtitulos">Digite e confirme a nova senha</p>
-          <div class="row g-2">
-            <div class="col-auto w-25 form-group">
-              <input type="password" name="senha" id="senha" class="form-control" placeholder="Crie sua nova senha" minlength="6" required />
-              <div class="help-block with-errors mt-3"></div>
+      <nav>
+        <%- include('../components/minha-conta/lateral-menu') %>
+      </nav>
+  
+      <div class="container-conteudo">
+        <h2 class="title mb-5">Alteração de Senha</h2>
+        <div class="componentes">
+          <form method="post" action="/usuarios/alterar-senha?_method=PUT" class="novo-email" data-toggle="validator">
+            <p class="subtitulos">Senha Atual</p>
+            <input type="password" name="senhaAtual" class="form-control w-25" placeholder="Digite a senha atual" required />
+            <p class="subtitulos">Digite e confirme a nova senha</p>
+            <div class="row g-2">
+              <div class="col-auto w-25 form-group">
+                <input type="password" name="senha" id="senha" class="form-control" placeholder="Crie sua nova senha" minlength="6" required />
+                <div class="help-block with-errors mt-3"></div>
+              </div>
+              <div class="col-auto w-25 form-group">
+                <input
+                  type="password"
+                  name="confirmSenha"
+                  class="form-control"
+                  placeholder="Confirme a nova senha"
+                  required
+                  data-match="#senha"
+                  data-match-error="Atenção! As senhas não estão iguais."
+                />
+                <div class="help-block with-errors mt-3"></div>
+              </div>
             </div>
-            <div class="col-auto w-25 form-group">
-              <input
-                type="password"
-                name="confirmSenha"
-                class="form-control"
-                placeholder="Confirme a nova senha"
-                required
-                data-match="#senha"
-                data-match-error="Atenção! As senhas não estão iguais."
-              />
-              <div class="help-block with-errors mt-3"></div>
-            </div>
-          </div>
-          <%- include('../components/error-alert', {error}) %>
-          <button type="submit" class="btn btn-primary">Alterar</button>
-        </form>
+            <%- include('../components/error-alert', {error}) %>
+            <button type="submit" class="btn btn-primary">Alterar</button>
+          </form>
+        </div>
       </div>
+
     </div>
-  </section>
-</div>
+  </div>
+</section>
+
 <%- include('../components/foot') %>

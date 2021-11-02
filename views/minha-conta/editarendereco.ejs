@@ -1,14 +1,21 @@
 <%- include('../components/head', {title: 'Minha Conta: Editar Endereço'}) %> <%- include('../components/navbar') %>
 
-<div class="corpo">
-  <section>
-    <%- include('../components/minha-conta/lateral-menu') %>
-    <form action="" method="post" class="container-conteudo" data-toggle="validator"></form>
-    <div class="cadastro">
-      <ul class="cadastro-title">
-        <strong>Editar Endereço</strong>
-      </ul>
-      <div class="componentes">
+<section>
+  <div class="corpo">
+    <div class="page-grid">
+
+      <nav>
+        <%- include('../components/minha-conta/lateral-menu') %>
+      </nav>
+
+      <div class="container-conteudo">
+
+        <!-- <form action="" method="post" class="container-conteudo" data-toggle="validator"></form> -->
+  
+        <ul class="cadastro-title">
+          <strong>Editar Endereço</strong>
+        </ul>
+        
         <div class="caixa1">
           <p class="subtitulos espaco">Nome do Destinatário</p>
           <p class="subtitulos espaco esp-cep">CEP</p>
@@ -38,10 +45,11 @@
           <input type="text" name="salvar-endereco" class="caixas" />
           <button type="submit" class="btn btn-primary my-3">Salvar Endereço</button>
         </div>
-      </form>
+    
       </div>
+
     </div>
-  </section>
-</div>
+  </div>
+</section>
 
 <%- include('../components/foot') %>
