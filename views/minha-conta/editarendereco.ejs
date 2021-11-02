@@ -3,7 +3,7 @@
 <div class="corpo">
   <section>
     <%- include('../components/minha-conta/lateral-menu') %>
-
+    <form action="" method="post" class="container-conteudo" data-toggle="validator"></form>
     <div class="cadastro">
       <ul class="cadastro-title">
         <strong>Editar Endereço</strong>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="caixa2">
-          <input type="text" name="num" class="caixas" />
+          <input type="text" name="num" class="caixas phone_with_ddd" />
           <input type="text" name="complemento" class="caixas distancia" />
         </div>
 
@@ -36,8 +36,9 @@
 
         <div class="caixa2">
           <input type="text" name="salvar-endereco" class="caixas" />
-          <button type="submit" class="btn-gravar-dados">Salvar Endereço</button>
+          <button type="submit" class="btn btn-primary my-3">Salvar Endereço</button>
         </div>
+      </form>
       </div>
     </div>
   </section>

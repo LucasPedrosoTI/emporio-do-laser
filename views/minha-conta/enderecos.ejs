@@ -1,17 +1,27 @@
-<%- include('../components/head', {title: 'Minha Conta: Endereços'}) %> <%- include('../components/navbar') %>
-
+<%- include('../components/head', {title: 'Minha Conta: Dados'}) %> <%- include('../components/navbar') %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
 <div class="corpo">
   <section>
     <%- include('../components/minha-conta/lateral-menu') %>
 
-    <div class="endereco">
-      <ul class="endereco-title">
-        <strong>Meus Endereços</strong>
-      </ul>
-      <div class="">
+    <form action="" method="post" class="container-conteudo" data-toggle="validator">
+      <h2 class="title mb-5">Meus Endereços</h2>
         <!-- seu codigo. Obs: definir a classe dessa div -->
+      <div class="box-geral">
+        <a href="/minha-conta/cadastrarendereco" type="submit" class="btn btn-primary my-3 cadastrar-botao">Cadastrar Endereço</a>
+        <div class="box-endereco">
+          <h3 class="nome-destinatario">José da Silva</h3>
+          <b>Endereço: </b>Rua Tibúrcio de Souza, 10<br>
+          <b>Bairro: </b>Itaim Paulista<br>
+          <b>Cidade: </b>São Paulo<br>
+          <b>CEP: </b>00000000
+
+          <div class="botao-editar">
+          <a href="/minha-conta/editarendereco" type="submit" class="btn btn-primary my-3">Editar</a>
+          </div>
+        </div>
       </div>
     </div>
+    </form>
   </section>
 </div>
 

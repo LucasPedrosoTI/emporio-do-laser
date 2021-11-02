@@ -205,7 +205,7 @@
 }
 
 .subtitulos {
-  margin-top: 22px;
+  margin-top: 29px;
   font-size: 20px;
   color: white;
 }
@@ -336,10 +336,37 @@
 
 /* /////////////////////////// */
 .sideBar .active{
-  border: 1px solid black;
+  border: 1px solid var(--secundaria);
   color: var(--primaria);
-  background-color: var(--secundaria);
+  background-color: var(--cinza);
   font-weight: bold;
   
 }
 
+.nome-destinatario{
+  text-align: center;
+  padding:0;
+}
+.box-endereco{
+  background-color: white;
+  color: var(--primaria);
+  padding-top: 10px;
+  padding-left: 20px;
+  width: 400px;
+  margin-top: -50px;
+  border-radius: 5px;
+}
+
+.botao-editar{
+  margin-top: -55px;
+  margin-left: 290px;
+}
+
+.box-geral{
+  width: 100%;
+  height: 100%;
+}
+.cadastrar-botao{
+  margin-left: 500px;
+
+}
