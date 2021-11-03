@@ -1,4 +1,4 @@
-const { Usuario, Cliente, PessoaJuridica, PessoaFisica } = require('../database/models');
+const { Usuario, Cliente, PessoaJuridica, PessoaFisica, Endereco } = require('../database/models');
 const isValidCPF = require('../utils/validaCpf');
 const isValidCNPJ = require('../utils/validaCnpj');
 const bcrypt = require('bcrypt');
@@ -129,6 +129,20 @@ module.exports = {
     }
 
     return res.redirect('/minha-conta/dados');
+  },
+
+  cadastrarEndereco: async (req, res) => {
+    try {
+      const { destinatario, rua, numero, complemento, bairro, cidade, estado, cep } = req.body;
+      let clienteId = req.session.usuario.Cliente.id;
+
+      await Endereco.create({clienteId, destinatario, rua, numero, complemento, bairro, cidade, estado, cep});
+
+    } catch (error) {
+      return res.render('minha-conta/cadastrarendereco', { error: error.message, menu: 'enderecos' });
+    }
+
+    return res.redirect('/minha-conta/cadastrarendereco');
   },
 };
 
