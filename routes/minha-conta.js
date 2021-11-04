@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var auth = require('../middlewares/auth');
+const usuarioController = require('../controllers/usuarioController');
 
 /* GET nav bar Produtos */
 router.get('/pedidos', auth, function (req, res, next) {
@@ -19,17 +20,13 @@ router.get('/dados', auth, function (req, res, next) {
   res.render('minha-conta/dados', { title: 'Minha Conta: Dados', menu: 'dados' });
 });
 
-router.get('/enderecos', auth, function (req, res, next) {
-  res.render('minha-conta/enderecos', { title: 'Minha Conta: Endereços', menu: 'enderecos' });
-});
+router.get('/enderecos', auth, usuarioController.listarEnderecos);
 
 router.get('/cadastrarendereco', auth, function (req, res, next) {
   res.render('minha-conta/cadastrarendereco', { title: 'Minha Conta: Cadastrar novo Endereço', menu: 'enderecos' });
 });
 
-router.get('/editarendereco', auth, function (req, res, next) {
-  res.render('minha-conta/editarendereco', { title: 'Minha Conta: Alterar Endereço', menu: 'enderecos' });
-});
+router.get('/editarendereco', auth, usuarioController.editarEnderecos);
 
 router.get('/administrador', auth, function (req, res, next) {
   res.render('minha-conta-admin/administrador', { title: 'Minha Conta: Administrador' });

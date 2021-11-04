@@ -150,6 +150,7 @@ body {
 .grid-column {
   display: flex;
   flex-direction: column;
+  max-width: 100%;
 }
 
 /* fim de divisão de elementos */

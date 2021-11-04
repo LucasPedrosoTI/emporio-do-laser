@@ -33,7 +33,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/sac">Contato/SAC</a>
         </li>
-        <% if (USUARIO) { %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
+        <% if (USUARIO && USUARIO.Cliente) { %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-circle"></i>

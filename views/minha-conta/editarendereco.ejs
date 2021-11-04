@@ -1,51 +1,34 @@
 <%- include('../components/head', {title: 'Minha Conta: Editar Endereço'}) %> <%- include('../components/navbar') %>
 
 <section>
-  <div class="corpo">
+  <div class="corpo ">
     <div class="page-grid">
-
+      
       <nav>
         <%- include('../components/minha-conta/lateral-menu') %>
       </nav>
 
       <div class="container-conteudo">
-
-        <!-- <form action="" method="post" class="container-conteudo" data-toggle="validator"></form> -->
-  
+        
         <ul class="cadastro-title">
-          <strong>Editar Endereço</strong>
+          <strong>Alterar Endereço</strong>
+          
         </ul>
         
-        <div class="caixa1">
-          <p class="subtitulos espaco">Nome do Destinatário</p>
-          <p class="subtitulos espaco esp-cep">CEP</p>
-          <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="subtitulos">Não sabe seu CEP?</a>
-        </div>
+        <!-- CONTEUDO DA PAGINA AQUI -->
+        <form method="post" action="/usuarios/alterar-endereco?_method=PUT">
+          <input type="text" name="destinatario" value="<%= endereco.destinatario %>" placeholder="destinatario">
+          <input type="text" name="rua" value="<%= endereco.rua %>" placeholder="rua">
+          <input type="text" name="numero" value="<%= endereco.numero %>" placeholder="numero">
+          <input type="text" name="complemento" value="<%= endereco.complemento %>" placeholder="complemento">
+          <input type="text" name="bairro" value="<%= endereco.bairro %>" placeholder="bairro">
+          <input type="text" name="cidade" value="<%= endereco.cidade %>" placeholder="cidade">
+          <input type="text" name="estado" value="<%= endereco.estado %>" placeholder="estado">
+          <input type="text" name="cep" value="<%= endereco.cep %>" placeholder="cep">
+          <input type="hidden" name="id" value="<%= endereco.id %>">
+          <button type="submit">Alterar</button>
+        </form>
 
-        <div class="caixa2">
-          <input type="text" name="nome" class="caixas margens" />
-          <input type="text" name="cep" class="caixas distancia" onkeypress="$(this).mask('00.000-00')" />
-        </div>
-
-        <div class="caixa1">
-          <p class="subtitulos espaco">Número</p>
-          <p class="subtitulos espaco esp-comp">Complemento</p>
-        </div>
-
-        <div class="caixa2">
-          <input type="text" name="num" class="caixas phone_with_ddd" />
-          <input type="text" name="complemento" class="caixas distancia" />
-        </div>
-
-        <div class="caixa1">
-          <p class="subtitulos espaco">Referência</p>
-        </div>
-
-        <div class="caixa2">
-          <input type="text" name="salvar-endereco" class="caixas" />
-          <button type="submit" class="btn btn-primary my-3">Salvar Endereço</button>
-        </div>
-    
       </div>
 
     </div>
@@ -53,3 +36,9 @@
 </section>
 
 <%- include('../components/foot') %>
+
+<!-- <div class="caixa1">
+  <p class="subtitulos espaco">Nome do Destinatário</p>
+  <p class="subtitulos espaco esp-cep">CEP</p>
+  <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="subtitulos">Não sabe seu CEP?</a>
+</div> -->

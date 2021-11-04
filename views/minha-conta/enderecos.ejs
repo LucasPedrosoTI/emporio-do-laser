@@ -7,26 +7,54 @@
       <nav>
         <%- include('../components/minha-conta/lateral-menu') %>
       </nav>
-  
-      <form action="" method="post" class="container-conteudo" data-toggle="validator">
+       
+      <div class="container-conteudo">  
         <h2 class="title mb-5">Meus Endereços</h2>
-          <!-- seu codigo. Obs: definir a classe dessa div -->
-        <div class="box-geral">
-          <a href="/minha-conta/cadastrarendereco" type="submit" class="btn btn-primary my-3 cadastrar-botao">Cadastrar Endereço</a>
-          <div class="box-endereco">
-            <h3 class="nome-destinatario">José da Silva</h3>
-            <b>Endereço: </b>Rua Tibúrcio de Souza, 10<br>
-            <b>Bairro: </b>Itaim Paulista<br>
-            <b>Cidade: </b>São Paulo<br>
-            <b>CEP: </b>00000000
+
+        <div class="grid-line">  
+          <div class="subcontainer-left">
   
-            <div class="botao-editar">
-              <a href="/minha-conta/editarendereco" type="submit" class="btn btn-primary my-3">Editar</a>
-            </div>
+            <table class="text-white">
+              <% enderecos.forEach(endereco => { %>
+                <tr>
+                  <td>  
+                    <h3><%= endereco.destinatario %></h3>  
+                  </td>
+                  <td align="right">
+                    
+                    <form action="/minha-conta/editarendereco" method="get">
+                      <button type="submit" name="enderecoId" value="<%= endereco.id %>" class="btn btn-primary btn-tabela">Editar</button>
+                    </form>
+                    
+                  </td>
+                  <td>
+                    
+                    <form action="/usuarios/excluir-endereco?_method=DELETE" method="post">
+                      <button type="submit" name="id" value="<%= endereco.id %>" class="btn btn-primary btn-tabela" onClick="if(!(confirm('Deseja mesmo excluir este endereço?'))) return false">Excluir</button>
+                    </form>
+
+                  </td>
+
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <%= endereco.rua %>, <%= endereco.numero %>, <%= endereco.complemento %> - <%= endereco.bairro %> - <%= endereco.cidade %> - <%= endereco.estado %>, <%= endereco.cep %>
+                    <hr>
+                  </td>
+                </tr>                  
+              <% }); %>
+            </table>
+              
           </div>
+          
+          <div class="subcontainer-right text-white">
+            <a href="/minha-conta/cadastrarendereco" class="btn btn-primary">Cadastrar Endereço</a>
+          </div>
+  
         </div>
-      </form>
-    
+
+      </div>
+
     </div>
   </div>
 </section>

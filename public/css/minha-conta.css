@@ -113,6 +113,24 @@
   margin-right: 30px;
 }
 
+.subcontainer-left {
+  width: 100%;
+  margin-right: 10px;
+}
+
+.subcontainer-center {
+  width: 100%;
+  margin: 0 10px;
+}
+
+.subcontainer-right {
+  width: 100%;
+  margin-left: 10px;
+}
+
+.btn-tabela {
+  width: 100%;
+}
 
 .title {
   color: white;
@@ -274,6 +292,10 @@
   border-bottom: solid 1px white;
   padding: 0;
 }
+
+/* .btn-esquerdo {
+  margin: 0 15% ;
+} */
 
 /* ------ CADASTRAR ENDERECOS ------ */
 
