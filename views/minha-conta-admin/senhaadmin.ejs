@@ -1,15 +1,19 @@
 <%- include('../components/head', {title: 'Minha Conta: Admnistrador' }) %><%- include('../components/navbar') %><% const ehPF=USUARIO.Cliente.ehPessoaFisica; %>
 
 <section>
-  <div class="corpo">
-    <div class="page-grid">
+  <div class="corpo container-fluid text-branco">
+    <div class="row g-1">
+      <div class="col-sm-3 px-3 mb-4">
 
-      <nav>
         <%- include('../components/minha-conta/lateral-menu-admin') %>
-      </nav>
 
-      <div class="container-conteudo">
-        <h2 class="title mb-5">Alteração de Senha</h2>
+      </div>
+      <div class="col-sm-9 px-3">
+
+        <h4>Alterar Senha</h4>      
+        <hr class="mb-4">
+
+        <!-- CODIGO AQUI -->
         <div class="componentes">
           <form method="post" action="/usuarios/alterar-senha?_method=PUT" class="novo-email" data-toggle="validator">
             <p class="subtitulos">Senha Atual</p>
@@ -32,6 +36,7 @@
               <button type="submit" class="btn btn-primary">Alterar</button>
           </form>
         </div>
+        <!-- FIM DO CODIGO -->
       </div>
     </div>
   </div>

@@ -1,16 +1,17 @@
 <%- include('../components/head', {title: 'Minha Conta: Cadastrar novo Endereço'}) %> <%- include('../components/navbar') %>
 
 <section>
-  <div class="corpo ">
-    <div class="page-grid">
-      
-      <nav>
+  <div class="corpo container-fluid text-branco">
+    <div class="row g-1">
+      <div class="col-sm-3 px-3 mb-4">
+
         <%- include('../components/minha-conta/lateral-menu') %>
-      </nav>
+           
+      </div>
+      <div class="col-sm-9 px-3">
 
-      <div class="container-conteudo">
-
-        <h2 class="title mb-5">Cadastrar Endereço</h2>     
+        <h4>Cadastrar Endereço</h4>      
+        <hr class="mb-4">
 
         <form method="post" action="/usuarios/cadastrar-endereco">
 
@@ -60,7 +61,6 @@
         </form>
 
       </div>
-
     </div>
   </div>
 </section>

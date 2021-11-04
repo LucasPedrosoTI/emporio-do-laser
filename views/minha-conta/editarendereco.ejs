@@ -1,17 +1,22 @@
 <%- include('../components/head', {title: 'Minha Conta: Editar Endereço'}) %> <%- include('../components/navbar') %>
 
-<section>
-  <div class="corpo ">
-    <div class="page-grid">
-      
-      <nav>
-        <%- include('../components/minha-conta/lateral-menu') %>
-      </nav>
 
-      <div class="container-conteudo">
-        
-        <h2 class="title mb-5">Alterar Endereço</h2>
-        
+
+
+
+<section>
+  <div class="corpo container-fluid text-branco">
+    <div class="row g-1">
+      <div class="col-sm-3 px-3 mb-4">
+
+        <%- include('../components/minha-conta/lateral-menu') %>
+
+      </div>
+      <div class="col-sm-9 px-3">
+
+        <h4>Alterar Endereço</h4>      
+        <hr class="mb-4">
+
         <form method="post" action="/usuarios/alterar-endereco?_method=PUT">
 
           <div class="row g-3 mb-2">
@@ -60,15 +65,10 @@
         </form>
 
       </div>
-
     </div>
   </div>
 </section>
 
+
 <%- include('../components/foot') %>
 
-<!-- <div class="caixa1">
-  <p class="subtitulos espaco">Nome do Destinatário</p>
-  <p class="subtitulos espaco esp-cep">CEP</p>
-  <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" class="subtitulos">Não sabe seu CEP?</a>
-</div> -->

@@ -1,16 +1,26 @@
 <%- include('components/head', {title: 'Empório do Laser - Minha Conta'}) %> <%- include('components/navbar') %>
 
-<div class="corpo">
-  <section>
-    
-    <link href="/css/menu-minha-conta/menu-minha-conta.css" rel="stylesheet" />
-    <%- include('components/minha-conta/lateral-menu') %>
-    
-    <div class="bem-vindo">
-      <ul class="bem-vindo-title"><strong>Bem-Vindo(a)</strong></ul>
-    </div>
+<section>
+  <div class="corpo container-fluid text-branco">
+    <div class="row g-1">
+      <div class="col-sm-3 px-3 mb-4">
 
-  </section>
-</div>
+        <link href="/css/menu-minha-conta/menu-minha-conta.css" rel="stylesheet" />
+        <%- include('components/minha-conta/lateral-menu') %>
+           
+      </div>
+      <div class="col-sm-9 px-3">
+
+        <h4>Bem-Vindo(a)</h4>      
+        <hr class="mb-4">
+
+        <!-- CODIGO AQUI -->
+
+
+        <!-- FIM DO CODIGO -->
+      </div>
+    </div>
+  </div>
+</section>
 
 <%- include('components/foot') %>

@@ -1,15 +1,19 @@
 <%- include('../components/head', {title}) %> <%- include('../components/navbar') %>
 
 <section>
-  <div class="corpo">
-    <div class="page-grid">
-      
-      <nav>
+  <div class="corpo container-fluid text-branco">
+    <div class="row g-1">
+      <div class="col-sm-3 px-3 mb-4">
+
         <%- include('../components/minha-conta/lateral-menu') %>
-      </nav>
-  
-      <div class="container-conteudo">
-        <h2 class="title">Meus Pedidos</h2>
+
+      </div>
+      <div class="col-sm-9 px-3">
+
+        <h4>Meus Pedidos</h4>      
+        <hr class="mb-4">
+
+        <!-- CODIGO AQUI. OBS: Este trecho não é Responsivo -->
         <div class="caixa">
           <div class="caixaindividual">
             <div class="pedidos">
@@ -54,10 +58,12 @@
             </div>
           </div>
         </div>
-      </div>
 
+        <!-- FIM DO CODIGO -->
+      </div>
     </div>
   </div>
 </section>
+
 
 <%- include('../components/foot') %>

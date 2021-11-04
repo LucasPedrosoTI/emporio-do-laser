@@ -1,3 +1,16 @@
+/* ---------- MENU LATERAL NOVO ---------- */
+
+.text-branco {
+  color: var(--branco);
+}
+
+.list-group .active{
+  border: 1px solid var(--secundaria);
+  color: var(--primaria);
+  background-color: var(--cinza);
+  font-weight: bold;
+}
+
 /* ---------- MENU LATERAL ---------- */
 
 .sideBar .box-filho {
@@ -63,6 +76,8 @@
 
 .btnLink {
   border: 0;
+  padding: 0;
+  background-color: transparent;
 }
 
 .minhaconta .sideBar .filtros ul {

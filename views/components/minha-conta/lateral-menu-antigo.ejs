@@ -1,0 +1,51 @@
+
+<link href="/css/minha-conta.css" rel="stylesheet" />
+
+<div class="content minhaconta">
+  <div class="center">
+    <div class="sideBar">
+      <div class="filtros">
+        <div class="filtroTitle text-light">
+          Minha Conta
+          <a href="#" id="mobile_menu">
+            <button class="icon" type="checkbox"><span class="bi-list"></button>
+          </a>
+        </div>
+        <ul id="menu-minha-conta">
+          <li class="filtroPai">
+            <ul class="filtroFilho">
+              Minhas Compras
+              <li>
+                <a href="/minha-conta/pedidos" class="box-filho <%=menu=='pedidos' && 'active'%>" title="Meus Pedidos">Meus Pedidos<i class="box bi-cart" ></i></a>     
+              </li>
+            </ul>
+          </li>
+          <li class="filtroPai">
+            <ul class="filtroFilho">
+              Cadastro
+              <li>
+                <a href="/minha-conta/email" class="box-filho <%=menu=='email' && 'active'%>" title="Alterar E-mail">Alterar E-mail<i class="box bi-at" ></i></a>
+              </li>
+              <li>
+                <a href="/minha-conta/senha" class="box-filho <%=menu=='senha' && 'active'%>" title="Alterar Senha">Alterar Senha<i class="box bi-key" ></i></a>
+              </li>
+              <% if (USUARIO && !USUARIO.admin) { %>
+                <li>
+                  <a href="/minha-conta/dados" class="box-filho <%=menu=='dados' && 'active'%>" title="Meus Dados">Meus Dados<i class="box bi-person" ></i></a>
+                </li>
+                <li>
+                  <a href="/minha-conta/enderecos" class="box-filho <%=menu=='enderecos' && 'active'%>" title="Meus Endereços">Meus Endereços<i class="box bi-geo-alt" ></i></a>
+                </li>
+              <% } %>
+              <li>
+                <form action="/logout" method="POST">
+                  <button type="submit" class="box-filho" title="Sair">Sair<i class="box bi-x-circle" ></i></button>
+                </form>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>       
+</div>

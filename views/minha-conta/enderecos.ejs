@@ -1,15 +1,19 @@
 <%- include('../components/head', {title: 'Minha Conta: Dados'}) %> <%- include('../components/navbar') %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
 
 <section>
-  <div class="corpo">
-    <div class="page-grid">
+  <div class="corpo container-fluid text-branco">
+    <div class="row g-1">
+      <div class="col-sm-3 px-3 mb-4"     >
+        <!-- SIDEBAR AQUI -->
 
-      <nav>
         <%- include('../components/minha-conta/lateral-menu') %>
-      </nav>
-       
-      <div class="container-conteudo">  
-        <h2 class="title mb-5">Meus Endereços</h2>
+           
+        <!-- FIM DO SIDEBAR -->
+      </div>
+      <div class="col-sm-9 px-3"    >
+        <h4>Meus Endereços</h4>      
+        <hr class="mb-4">
+        <!-- CODIGO AQUI -->
 
         <div class="row g-3 max-width-610p">  
           <div class="col-sm-12">
@@ -52,8 +56,8 @@
             
         </div>
 
+        <!-- FIM DO CODIGO -->
       </div>
-
     </div>
   </div>
 </section>
