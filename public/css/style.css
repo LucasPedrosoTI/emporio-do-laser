@@ -154,6 +154,87 @@ body {
 
 /* fim de divisão de elementos */
 
+.imageview {
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  opacity: 1;
+  display: block;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.valorproduto {
+  color: #194351;
+}
+
+.infoproduto {
+  margin-top: 10px;
+}
+
+.produto-sobrepor{
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.produto-titolo{
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: none;
+  color: inherit;
+  font-family: 'Open Sans' ,sans-serif;
+}
+
+.produto-lista{
+  background-color: white;
+  padding: 5px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.imagem-lista{
+  position: relative;
+  height: 220px;
+}
+
+.produto-lista:hover .image {
+  opacity: 0.3;
+}
+
+.produto-lista:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #194351;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 100%;
+}
 
 .login-cadastro {
   width: 50%;
