@@ -1,45 +1,39 @@
 
 <link href="/css/minha-conta.css" rel="stylesheet" />
 
-<div class="content minhaconta">
-  <div class="center">
-    <div class="sideBar">
-      <div class="filtros">
-        <div class="filtroTitle text-light">
-          Administrador
-          <a href="#" id="mobile_menu">
-            <button class="icon" type="checkbox"><span class="bi-list"></button>
-          </a>
-        </div>
-        <ul id="menu-minha-conta">
-          <li class="filtroPai">
-            <ul class="filtroFilho">
-              Gerenciamento
-              <li>
-                <a href="/minha-conta/cupons" class="box-filho <%=menu=='cupons' && 'active'%>" title="Meus Cupons">Meus Cupons<i class="box bi-card-heading" ></i></a>     
-              </li>
-              <li>
-                <a href="/minha-conta/meusprodutos" class="box-filho <%=menu=='produtos' && 'active'%>" title="Meus Produtos">Meus Produtos<i class="box bi-journals" ></i></a>     
-              </li>
-            </ul>
-          </li>
-          <li class="filtroPai">
-            <ul class="filtroFilho">
-              Dados Pessoais
-              <li>
-                <a href="/minha-conta/senha-admin" class="box-filho <%=menu=='senha-admin' && 'active'%>" title="Alterar Senha">Alterar Senha<i class="box bi-key" ></i></a>
-              </li>
-              <li>
-                  <a href="/minha-conta/dados-admin" class="box-filho <%=menu=='dados-admin' && 'active'%>" title="Meus Dados">Meus Dados<i class="box bi-person" ></i></a>
-              </li>
-                <form action="/logout" method="POST">
-                  <button type="submit" class="box-filho" title="Sair">Sair<i class="box bi-x-circle" ></i></button>
-                </form>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+<h4>Administrador</h4>
+<hr>
+
+<h6>Gerenciamento</h6>
+<div class="list-group mb-4">
+
+  <a href="/minha-conta/cupons" class="list-group-item list-group-item-action <%=menu=='cupons' && 'active'%>" title="Meus Cupons" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <p class="mb-1 bi-card-heading">&nbsp Meus Cupons </p>
     </div>
-  </div>       
+  </a>
+  <a href="/minha-conta/meusprodutos" class="list-group-item list-group-item-action <%=menu=='produtos' && 'active'%>" title="Meus Produtos" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <p class="mb-1 bi-journals">&nbsp Meus Produtos </p>
+    </div>
+  </a>
+</div>
+
+<h6>Dados</h6>
+<div class="list-group">
+  <a href="/minha-conta/senha-admin" class="list-group-item list-group-item-action <%=menu=='senha-admin' && 'active'%>" title="Alterar Senha" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <p class="mb-1 bi-key">&nbsp Alterar Senha </p>
+    </div>
+  </a>
+  <a href="/minha-conta/dados-admin" class="list-group-item list-group-item-action <%=menu=='dados-admin' && 'active'%>" title="Meus Dados" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <p class="mb-1 bi-person">&nbsp Meus Dados </p>
+    </div>
+  </a>
+  <form action="/logout" method="POST" class="list-group-item list-group-item-action " aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <button class="mb-1 bi-x-circle btnLink">&nbsp Sair </button>
+    </div>
+  </form>
 </div>
