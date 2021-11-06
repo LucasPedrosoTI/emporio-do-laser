@@ -1,4 +1,4 @@
-<%- include('../components/head', {title: 'Minha Conta: Dados'}) %> <%- include('../components/navbar') %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
+<%- include('../components/head', {title: 'Minha Conta: Endereços'}) %> <%- include('../components/navbar') %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
 
 <section>
   <div class="corpo container-fluid text-branco">
@@ -10,7 +10,6 @@
         
         <h4>Meus Endereços</h4>      
         <hr class="mb-4">
-        <!-- CODIGO AQUI -->
 
         <div class="row g-3 max-width-610p">  
           <div class="col-sm-12">
@@ -49,11 +48,9 @@
               <% }); %>
             </div>
               
-          </div>
-            
+          </div>      
         </div>
 
-        <!-- FIM DO CODIGO -->
       </div>
     </div>
   </div>

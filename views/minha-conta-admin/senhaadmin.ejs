@@ -11,30 +11,39 @@
         <h4>Alterar Senha</h4>      
         <hr class="mb-4">
 
-        <!-- CODIGO AQUI -->
-        <div class="componentes">
-          <form method="post" action="/usuarios/alterar-senha?_method=PUT" class="novo-email" data-toggle="validator">
-            <p class="subtitulos">Senha Atual</p>
-            <input type="password" name="senhaAtual" class="form-control w-25" placeholder="Digite a senha atual"
-              required />
-            <p class="subtitulos">Digite e confirme a nova senha</p>
-            <div class="row g-2">
-              <div class="col-auto w-25 form-group">
-                <input type="password" name="senha" id="senha" class="form-control" placeholder="Crie sua nova senha"
-                  minlength="6" required />
-                <div class="help-block with-errors mt-3"></div>
-              </div>
-              <div class="col-auto w-25 form-group">
-                <input type="password" name="confirmSenha" class="form-control" placeholder="Confirme a nova senha"
-                  required data-match="#senha" data-match-error="Atenção! As senhas não estão iguais." />
-                <div class="help-block with-errors mt-3"></div>
-              </div>
+        <!-- INICIO -->
+        <form method="post" action="/usuarios/alterar-senha?_method=PUT" class="m-w-800" data-toggle="validator">
+          <div class="row g-3 mb-4">
+            <div class="col-sm">
+              <label class="font-18-bold text-white">Senha atual</label>
+              <input type="password" name="senhaAtual" class="form-control" placeholder="Digite a senha atual" required />
             </div>
-            <%- include('../components/error-alert', {error}) %>
-              <button type="submit" class="btn btn-primary">Alterar</button>
-          </form>
-        </div>
-        <!-- FIM DO CODIGO -->
+          </div>
+
+          <div class="row g-3 mb-2">
+            <div class="col-sm">
+              <label for="email" class="font-18-bold text-white">Novo Senha</label>
+              <input type="password" name="senha" id="senha" class="form-control" placeholder="Crie sua nova senha" minlength="6" required />
+            </div>
+            <div class="col-sm">
+              <label class="font-18-bold text-white">Confirmar</label>
+              <input
+                type="password"
+                name="confirmSenha"
+                class="form-control"
+                placeholder="Confirme a nova senha"
+                required
+                data-match="#senha"
+                data-match-error="Atenção! As senhas não estão iguais."
+              />
+              <div class="help-block with-errors mt-3"></div>
+            </div>
+          </div>
+          <%- include('../components/error-alert', {error}) %>
+          <div class="my-3"><button type="submit" class="btn btn-primary">Alterar</button></div>
+        </form>
+        <!-- FINAL -->
+
       </div>
     </div>
   </div>

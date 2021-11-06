@@ -11,24 +11,27 @@
         <h4>Cadastrar Endereço</h4>      
         <hr class="mb-4">
 
-        <form method="post" action="/usuarios/cadastrar-endereco">
+        <form class="m-w-800" method="post" action="/usuarios/cadastrar-endereco">
 
           <div class="row g-3 mb-2">
-            <div class="col-sm-6">
+            <div class="col-sm">
               <label class="font-18-bold text-white">Destinatário</label>
               <input type="text" name="destinatario" class="form-control" placeholder="Ex: Minha Casa">
             </div>
           </div>
 
           <div class="row g-3 mb-2">
-            <div class="col-sm-5">
+            <div class="col-sm-9">
               <label class="font-18-bold text-white">Rua</label>
               <input type="text" name="rua" class="form-control" placeholder="Ex: Rua Tuiuti">
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm">
               <label class="font-18-bold text-white">Nº</label>
               <input type="text" name="numero" class="form-control" placeholder="Ex: 50">
             </div>
+          </div>
+
+          <div class="row g-3 mb-2">
             <div class="col-sm">
               <label class="font-18-bold text-white">Complemento</label>
               <input type="text" name="complemento" class="form-control" placeholder="Ex: apto. 35">
@@ -38,12 +41,15 @@
               <input type="text" name="bairro" class="form-control" placeholder="Ex: Tatuapé">
             </div>
           </div>
-
-          <div class="row g-3 mb-4">
-            <div class="col-sm-7">
+          
+          <div class="row g-3 mb-2">
+            <div class="col-sm">
               <label class="font-18-bold text-white">Cidade</label>
               <input type="text" name="cidade" class="form-control" placeholder="Ex: São Paulo" aria-label="City">
             </div>
+          </div>
+
+          <div class="row g-3 mb-4">
             <div class="col-sm">
               <label class="font-18-bold text-white">Estado</label>
               <input type="text" name="estado" class="form-control" placeholder="Ex: SP" aria-label="State">

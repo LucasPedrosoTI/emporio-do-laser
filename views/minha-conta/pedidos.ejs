@@ -1,4 +1,4 @@
-<%- include('../components/head', {title}) %> <%- include('../components/navbar') %>
+<%- include('../components/head', {title: 'Minha Conta: Pedidos'}) %> <%- include('../components/navbar') %>
 
 <section>
   <div class="corpo container-fluid text-branco">
@@ -9,55 +9,41 @@
       <div class="col-sm px-3">
 
         <h4>Meus Pedidos</h4>      
-        <hr class="mb-4">
+        <hr class="mb-5">
 
-        <!-- CODIGO AQUI. OBS: Este trecho não é Responsivo -->
-        <div class="caixa">
-          <div class="caixaindividual">
-            <div class="pedidos">
-              <ul class="titles">
-                Nº do Pedido
-              </ul>
-              <ul class="conteudo">
-                123456789
-              </ul>
-            </div>
-            <div class="pedidos">
-              <ul class="titles">
-                Pagamento
-              </ul>
-              <ul class="conteudo">
-                Cartão
-              </ul>
-            </div>
-            <div class="pedidos">
-              <ul class="titles">
-                Status
-              </ul>
-              <ul class="conteudo">
-                Enviado
-              </ul>
-            </div>
-            <div class="pedidos">
-              <ul class="titles">
-                Valor Total
-              </ul>
-              <ul class="conteudo">
-                R$100,00
-              </ul>
-            </div>
-            <div class="pedidos">
-              <ul class="titles">
-                Rastreamento
-              </ul>
-              <ul class="conteudo">
-                EMP-283902183
-              </ul>
+        <div class="list-group max-width-610p centraliza-itens">
+          <div class="list-group-item list-group-item-action" aria-current="true">
+            <div class="row g-1">
+              
             </div>
           </div>
+
+          <!-- FOREACH -->
+          <div class="list-group-item list-group-item-action" aria-current="true">
+            <div class="row g-1">
+              <strong class="col-sm m-w-130">Nº do Pedido</strong>
+              <p class="col-sm">123456789</p>
+            </div>
+            <div class="row g-1">
+              <strong class="col-sm m-w-130">Pagamento</strong>
+              <p class="col-sm">Cartão</p>
+            </div>
+            <div class="row g-1">
+              <strong class="col-sm m-w-130">Status</strong>
+              <p class="col-sm">Enviado</p>
+            </div>
+            <div class="row g-1">
+              <strong class="col-sm m-w-130">Valor Total</strong>
+              <p class="col-sm">R$ 100,00</p>
+            </div>
+            <div class="row g-1">
+              <strong class="col-sm m-w-130">Rastreamento</strong>
+              <p class="col-sm">EMP-283902183</p>
+            </div>
+          </div>
+          <!-- FINAL FOREACH -->
         </div>
 
-        <!-- FIM DO CODIGO -->
       </div>
     </div>
   </div>

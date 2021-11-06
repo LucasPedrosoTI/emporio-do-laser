@@ -425,12 +425,36 @@
 
 }
 
+.m-w-130 {
+  max-width: 130px;
+}
+
 .m-w-278 {
-  max-width: 278px ;
+  max-width: 278px;
+}
+
+.m-w-800 {
+  max-width: 500px;
 }
 
 @media (max-width: 576px) {
+
+  .centraliza-itens {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .m-w-130 {
+    max-width: 100%;
+  }
+
   .m-w-278 {
+    max-width: 100%;
+  }
+
+  .m-w-800 {
     max-width: 100%;
   }
 }
