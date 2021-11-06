@@ -12,14 +12,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      tipo: {
-        type: Sequelize.STRING(10),
-        allowNull: false,
-      },
-      arquivo: {
-        type: Sequelize.BLOB,
-        allowNull: false,
-      },
       produtoId: {
         type: Sequelize.BIGINT,
         allowNull: false,

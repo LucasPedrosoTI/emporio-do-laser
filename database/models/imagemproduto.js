@@ -9,8 +9,6 @@ module.exports = (sequelize, DataTypes) => {
   ImagemProduto.init(
     {
       nomeImagem: DataTypes.STRING,
-      tipo: DataTypes.STRING,
-      arquivo: DataTypes.BLOB,
       produtoId: DataTypes.BIGINT,
     },
     {
