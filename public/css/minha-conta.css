@@ -424,3 +424,13 @@
   margin-left: 500px;
 
 }
+
+.m-w-278 {
+  max-width: 278px ;
+}
+
+@media (max-width: 576px) {
+  .m-w-278 {
+    max-width: 100%;
+  }
+}

@@ -1,44 +1,48 @@
 
 <link href="/css/minha-conta.css" rel="stylesheet" />
 
-<h4>Minha Conta</h4>
-<hr>
+<div class="col-sm px-3 mb-4 m-w-278">
 
-<h6>Minhas Compras</h6>
-<div class="list-group mb-4">
+  <h4>Minha Conta</h4>
+  <hr>
+  
+  <h6>Minhas Compras</h6>
+  <div class="list-group mb-4">
+  
+    <a href="/minha-conta/pedidos" class="list-group-item list-group-item-action <%=menu=='pedidos' && 'active'%>" title="Meus Pedidos" aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <p class="mb-1 bi-cart">&nbsp Meus Pedidos </p>
+      </div>
+    </a>
+  </div>
+  
+  <h6>Cadastro</h6>
+  <div class="list-group">
+    <a href="/minha-conta/email" class="list-group-item list-group-item-action <%=menu=='email' && 'active'%>" title="Alterar E-mail" aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <p class="mb-1 bi-at">&nbsp Alterar E-mail </p>
+      </div>
+    </a>
+    <a href="/minha-conta/senha" class="list-group-item list-group-item-action <%=menu=='senha' && 'active'%>" title="Alterar Senha" aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <p class="mb-1 bi-key">&nbsp Alterar Senha </p>
+      </div>
+    </a>
+    <a href="/minha-conta/dados" class="list-group-item list-group-item-action <%=menu=='dados' && 'active'%>" title="Meus Dados" aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <p class="mb-1 bi-person">&nbsp Meus Dados </p>
+      </div>
+    </a>
+    <a href="/minha-conta/enderecos" class="list-group-item list-group-item-action box-filho <%=menu=='enderecos' && 'active'%>" title="Meus Endereços" aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <p class="mb-1 bi-geo-alt">&nbsp Meus Endereços </p>
+      </div>
+    </a>
+    <form action="/logout" method="POST" class="list-group-item list-group-item-action " aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <button class="mb-1 bi-x-circle btnLink">&nbsp Sair </button>
+      </div>
+    </form>
+  </div>
 
-  <a href="/minha-conta/pedidos" class="list-group-item list-group-item-action <%=menu=='pedidos' && 'active'%>" title="Meus Pedidos" aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
-      <p class="mb-1 bi-cart">&nbsp Meus Pedidos </p>
-    </div>
-  </a>
-</div>
-
-<h6>Cadastro</h6>
-<div class="list-group">
-  <a href="/minha-conta/email" class="list-group-item list-group-item-action <%=menu=='email' && 'active'%>" title="Alterar E-mail" aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
-      <p class="mb-1 bi-at">&nbsp Alterar E-mail </p>
-    </div>
-  </a>
-  <a href="/minha-conta/senha" class="list-group-item list-group-item-action <%=menu=='senha' && 'active'%>" title="Alterar Senha" aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
-      <p class="mb-1 bi-key">&nbsp Alterar Senha </p>
-    </div>
-  </a>
-  <a href="/minha-conta/dados" class="list-group-item list-group-item-action <%=menu=='dados' && 'active'%>" title="Meus Dados" aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
-      <p class="mb-1 bi-person">&nbsp Meus Dados </p>
-    </div>
-  </a>
-  <a href="/minha-conta/enderecos" class="list-group-item list-group-item-action box-filho <%=menu=='enderecos' && 'active'%>" title="Meus Endereços" aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
-      <p class="mb-1 bi-geo-alt">&nbsp Meus Endereços </p>
-    </div>
-  </a>
-  <form action="/logout" method="POST" class="list-group-item list-group-item-action " aria-current="true">
-    <div class="d-flex w-100 justify-content-between">
-      <button class="mb-1 bi-x-circle btnLink">&nbsp Sair </button>
-    </div>
-  </form>
 </div>
