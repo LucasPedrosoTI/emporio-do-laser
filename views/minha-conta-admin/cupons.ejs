@@ -1,18 +1,15 @@
-<%- include('../components/head', {title: 'Minha Conta: Admnistrador'}) %> <%- include('../components/navbar') %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
+<%- include('../components/head', {title: 'Minha Conta: Admnistrador'}) %> <%- include('../components/navbar') %>
 
 <section>
   <div class="corpo container-fluid text-branco">
     <div class="row g-1">
+      <%- include('../components/lateral-menu') %>
 
-      <%- include('../components/minha-conta/lateral-menu-admin') %>
-           
       <div class="col-sm px-3">
-
-        <h4>Cupons</h4>      
-        <hr class="mb-4">
+        <h4>Cupons</h4>
+        <hr class="mb-4" />
 
         <!-- CODIGO AQUI -->
-
 
         <!-- FIM DO CODIGO -->
       </div>

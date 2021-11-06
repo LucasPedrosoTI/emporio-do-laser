@@ -3,17 +3,14 @@
 <section>
   <div class="corpo container-fluid text-branco">
     <div class="row g-1">
-      
-      <%- include('../components/minha-conta/lateral-menu') %>
-           
-      <div class="col-sm px-3">
-        
-        <h4>Meus Endereços</h4>      
-        <hr class="mb-4">
+      <%- include('../components/lateral-menu') %>
 
-        <div class="row g-3 max-width-610p">  
+      <div class="col-sm px-3">
+        <h4>Meus Endereços</h4>
+        <hr class="mb-4" />
+
+        <div class="row g-3 max-width-610p">
           <div class="col-sm-12">
-  
             <div class="list-group">
               <div class="list-group-item list-group-item-action" aria-current="true">
                 <div class="row g-1">
@@ -22,35 +19,29 @@
               </div>
 
               <% enderecos.forEach(endereco => { %>
-                <div class="list-group-item list-group-item-action" aria-current="true">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><%= endereco.destinatario %></h5>
-                    
-                  </div>
-                  <p class="mb-1"><%= endereco.rua %>, <%= endereco.numero %>, <%= endereco.complemento %> - <%= endereco.bairro %></p>
-                  <small><%= endereco.cidade %> - <%= endereco.estado %>, <%= endereco.cep %></small>
-
-                  <div class="row">
-
-                    <form class="col-sm-6" action="/minha-conta/editarendereco" method="get">
-                      <input type="hidden" name="enderecoId" value="<%= endereco.id %>">
-                      <input type="submit" value="Editar" class="btn btn-primary btn-tabela"/>
-                    </form>
-
-                    <form class="col-sm-6" action="/usuarios/excluir-endereco?_method=DELETE" method="post">
-                      <input type="hidden" name="id" value="<%= endereco.id %>">
-                      <input type="submit" value="Excluir"  class="btn btn-primary btn-tabela" onClick="if(!(confirm('Deseja mesmo excluir este endereço?'))) return false"/>
-                    </form>
-
-                  </div>
-
+              <div class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1"><%= endereco.destinatario %></h5>
                 </div>
+                <p class="mb-1"><%= endereco.rua %>, <%= endereco.numero %>, <%= endereco.complemento %> - <%= endereco.bairro %></p>
+                <small><%= endereco.cidade %> - <%= endereco.estado %>, <%= endereco.cep %></small>
+
+                <div class="row">
+                  <form class="col-sm-6" action="/minha-conta/editarendereco" method="get">
+                    <input type="hidden" name="enderecoId" value="<%= endereco.id %>" />
+                    <input type="submit" value="Editar" class="btn btn-primary btn-tabela" />
+                  </form>
+
+                  <form class="col-sm-6" action="/usuarios/excluir-endereco?_method=DELETE" method="post">
+                    <input type="hidden" name="id" value="<%= endereco.id %>" />
+                    <input type="submit" value="Excluir" class="btn btn-primary btn-tabela" onClick="if(!(confirm('Deseja mesmo excluir este endereço?'))) return false" />
+                  </form>
+                </div>
+              </div>
               <% }); %>
             </div>
-              
-          </div>      
+          </div>
         </div>
-
       </div>
     </div>
   </div>

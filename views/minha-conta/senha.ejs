@@ -3,13 +3,11 @@
 <section>
   <div class="corpo container-fluid text-branco">
     <div class="row g-1">
-
-      <%- include('../components/minha-conta/lateral-menu') %>
+      <%- include('../components/lateral-menu') %>
 
       <div class="col-sm px-3">
-
-        <h4>Alterar Senha</h4>      
-        <hr class="mb-3">
+        <h4>Alterar Senha</h4>
+        <hr class="mb-3" />
 
         <form method="post" action="/usuarios/alterar-senha?_method=PUT" class="m-w-800" data-toggle="validator">
           <div class="row g-3 mb-4">
@@ -41,7 +39,6 @@
           <%- include('../components/error-alert', {error}) %>
           <div class="my-3"><button type="submit" class="btn btn-primary">Alterar</button></div>
         </form>
-
       </div>
     </div>
   </div>

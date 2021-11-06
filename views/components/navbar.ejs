@@ -33,11 +33,15 @@
         <li class="nav-item">
           <a class="nav-link" href="/sac">Contato/SAC</a>
         </li>
-        <% if (USUARIO && USUARIO.Cliente) { %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
+        <% if (USUARIO) { %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-circle"></i>
-            <span><%= ehPF ? USUARIO.Cliente.PessoaFisica.nome : USUARIO.Cliente.PessoaJuridica.razao_social %></span>
+            <% if (USUARIO.Cliente) { %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
+            <span> <%= ehPF ? USUARIO.Cliente.PessoaFisica.nome : USUARIO.Cliente.PessoaJuridica.razao_social %> </span>
+            <% } else { %>
+            <span> <%= USUARIO.email %> </span>
+            <% } %>
           </a>
           <ul class="dropdown-menu" aria-labelledby="usuario">
             <li><a class="dropdown-item" href="/minha-conta">Minha Conta</a></li>
@@ -49,10 +53,6 @@
         <% } else { %>
         <li class="nav-item">
           <a class="nav-link" href="/identifique-se">Entrar</a>
-        </li>
-        <% } %> <% if (USUARIO && USUARIO.admin) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="/administracao">Administração</a>
         </li>
         <% } %>
       </ul>
