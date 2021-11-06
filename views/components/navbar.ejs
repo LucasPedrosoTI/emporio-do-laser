@@ -44,7 +44,7 @@
             <% } %>
           </a>
           <ul class="dropdown-menu" aria-labelledby="usuario">
-            <li><a class="dropdown-item" href="/minha-conta">Minha Conta</a></li>
+            <li><a class="dropdown-item" href="/minha-conta"> <%= USUARIO && USUARIO.admin ? 'Administração' : 'Minha conta' %> </a></li>
             <li>
               <form action="/logout" method="POST"><button type="submit" class="dropdown-item">Sair</button></form>
             </li>

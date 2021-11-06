@@ -1,7 +1,7 @@
 <link href="/css/minha-conta.css" rel="stylesheet" />
 
 <div class="col-sm px-3 mb-4 m-w-278">
-  <h4>Minha Conta</h4>
+  <h4><%= USUARIO && USUARIO.admin ? 'Administração' : 'Minha Conta' %></h4>
   <hr />
 
   <% if (USUARIO && USUARIO.admin) { %>
