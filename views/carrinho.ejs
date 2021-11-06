@@ -1,18 +1,15 @@
-<%- include('components/head', {title: 'Empório do Laser - Carrinho'}) %> <%- include('components/navbar') %>
+<%- include('components/head') %> <%- include('components/navbar') %>
 
 <script src="/js/carrinho.js" defer></script>
 
 <section class="corpo flex-fill">
-  
   <div class="container">
     <h1 class="text-white">Carrinho de Compras</h1>
-    
+
     <ul class="list-group mp-3">
       <form id="formItens" action="/" method="post"></form>
     </ul>
-    
   </div>
 </section>
-  
+
 <%- include('components/foot') %>
-  

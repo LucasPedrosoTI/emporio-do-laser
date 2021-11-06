@@ -1,19 +1,16 @@
-<%- include('components/head', {title: 'Empório do Laser - Fechar Compra'}) %> <%- include('components/navbar') %>
+<%- include('components/head') %> <%- include('components/navbar') %>
 
 <script src="/js/fechar-compra.js" defer></script>
 
 <section class="corpo flex-fill">
-  
   <div class="container">
     <h1 class="text-white">Confira os Itens</h1>
     <h4 class="text-white">Confira os itens e clique em <b>Continuar</b> para prosseguir para a <b>seleção do endereço de entrega</b>.</h4>
-    
+
     <ul class="list-group mp-3">
       <form id="formItens" action="/" method="post"></form>
     </ul>
-    
   </div>
 </section>
-  
+
 <%- include('components/foot') %>
-  

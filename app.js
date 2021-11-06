@@ -46,6 +46,7 @@ app.use(function (req, res, next) {
   res.locals.USUARIO = req.session.usuario;
   res.locals.error = null;
   res.locals.menu = null;
+  res.locals.title = 'Empório do Laser';
   next();
 });
 

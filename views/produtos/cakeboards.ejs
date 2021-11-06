@@ -1,108 +1,108 @@
-<%- include('../components/head', {title: 'Produtos: Cakeboards'}) %> <%- include('../components/navbar') %>
+<%- include('../components/head') %> <%- include('../components/navbar') %>
 
 <div class="corpo">
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 my-2 align-items-center justify-content-center" style="--bs-bg-opacity: 1;">
-                    <div style="background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important; padding:10px;border-radius: 5px;">
-                        <form action="filtro">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Nome do Produto</label>
-                                <input type="NomeProduto" class="form-control" id="productname" placeholder="Produto">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Categoria</label>
-                                <select name="producttypes" class="form-control" id="producttypes">
-                                    <option value="selecionar">---Selecione---</option>
-                                    <option value="cakeboards">Cakeboards</option>
-                                    <option value="cakeboards">Cakeboards</option>
-                                    <option value="bolos">Topos de Bolo</option>
-                                    <option value="caixacenario">Caixa Cenário</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Peso</label>
-                                <select name="peso" class="form-control" id="pesoproduto">
-                                    <option value="selecionar">---Selecione---</option>
-                                    <option value="cakeboards">Cakeboards</option>
-                                    <option value="bolos">Topos de Bolo</option>
-                                    <option value="caixacenario">Caixa Cenário</option>
-                                </select>
-                            </div>
-                            <div class="form-group" style="margin-top:10px; text-align: right;">
-                                <button type="submit" style="background-color: #194351;" class="btn btn-primary">Filtrar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-9 my-2 align-items-center justify-content-center">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="produto-lista">
-                                <a href="#" class="produto-sobrepor"></a>
-                                <div class="imagem-lista">
-                                    <img src="/img/cake1.jpg" class="imageview" alt="cakeboard">
-                                    <div class="middle">
-                                        <i class=" text bi bi-cart"></i>
-                                    </div>
-                                </div>
-                                <div class="caption infoproduto">
-                                    <a class="produto-titolo">Cakeboards redondos</a>
-                                    <p>A partir de <strong class="valorproduto">R$ 49,99</strong></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="produto-lista">
-                                <a href="#" class="produto-sobrepor"></a>
-                                <div class="imagem-lista">
-                                    <img src="/img/cake2.jpg" class="imageview" alt="cakeboard">
-                                    <div class="middle">
-                                        <i class=" text bi bi-cart"></i>
-                                    </div>
-                                </div>
-                                <div class="caption infoproduto">
-                                    <a class="produto-titolo">Cakeboards redondos</a>
-                                    <p>A partir de <strong class="valorproduto">R$ 49,99</strong></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="produto-lista">
-                                <a href="#" class="produto-sobrepor"></a>
-                                <div class="imagem-lista">
-                                    <img src="/img/cake1.jpg" class="imageview" alt="cakeboard">
-                                    <div class="middle">
-                                        <i class=" text bi bi-cart carrinho"></i>
-                                    </div>
-                                </div>
-                                <div class="caption infoproduto">
-                                    <a class="produto-titolo">Cakeboards redondos</a>
-                                    <p>A partir de <strong class="valorproduto">R$ 49,99</strong></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="produto-lista">
-                                <a href="#" class="produto-sobrepor"></a>
-                                <div class="imagem-lista">
-                                    <img src="/img/cake2.jpg" class="imageview" alt="cakeboard">
-                                    <div class="middle">
-                                        <i class=" text bi bi-cart"></i>
-                                    </div>
-                                </div>
-                                <div class="caption infoproduto">
-                                    <a class="produto-titolo">Cakeboards redondos</a>
-                                    <p>A partir de <strong class="valorproduto">R$ 49,99</strong></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 my-2 align-items-center justify-content-center" style="--bs-bg-opacity: 1">
+          <div style="background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; padding: 10px; border-radius: 5px">
+            <form action="filtro">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Nome do Produto</label>
+                <input type="NomeProduto" class="form-control" id="productname" placeholder="Produto" />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Categoria</label>
+                <select name="producttypes" class="form-control" id="producttypes">
+                  <option value="selecionar">---Selecione---</option>
+                  <option value="cakeboards">Cakeboards</option>
+                  <option value="cakeboards">Cakeboards</option>
+                  <option value="bolos">Topos de Bolo</option>
+                  <option value="caixacenario">Caixa Cenário</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Peso</label>
+                <select name="peso" class="form-control" id="pesoproduto">
+                  <option value="selecionar">---Selecione---</option>
+                  <option value="cakeboards">Cakeboards</option>
+                  <option value="bolos">Topos de Bolo</option>
+                  <option value="caixacenario">Caixa Cenário</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-top: 10px; text-align: right">
+                <button type="submit" style="background-color: #194351" class="btn btn-primary">Filtrar</button>
+              </div>
+            </form>
+          </div>
         </div>
-    </section>
+        <div class="col-md-9 my-2 align-items-center justify-content-center">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="produto-lista">
+                <a href="#" class="produto-sobrepor"></a>
+                <div class="imagem-lista">
+                  <img src="/img/cake1.jpg" class="imageview" alt="cakeboard" />
+                  <div class="middle">
+                    <i class="text bi bi-cart"></i>
+                  </div>
+                </div>
+                <div class="caption infoproduto">
+                  <a class="produto-titolo">Cakeboards redondos</a>
+                  <p>A partir de <strong class="valorproduto">R$ 49,99</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="produto-lista">
+                <a href="#" class="produto-sobrepor"></a>
+                <div class="imagem-lista">
+                  <img src="/img/cake2.jpg" class="imageview" alt="cakeboard" />
+                  <div class="middle">
+                    <i class="text bi bi-cart"></i>
+                  </div>
+                </div>
+                <div class="caption infoproduto">
+                  <a class="produto-titolo">Cakeboards redondos</a>
+                  <p>A partir de <strong class="valorproduto">R$ 49,99</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="produto-lista">
+                <a href="#" class="produto-sobrepor"></a>
+                <div class="imagem-lista">
+                  <img src="/img/cake1.jpg" class="imageview" alt="cakeboard" />
+                  <div class="middle">
+                    <i class="text bi bi-cart carrinho"></i>
+                  </div>
+                </div>
+                <div class="caption infoproduto">
+                  <a class="produto-titolo">Cakeboards redondos</a>
+                  <p>A partir de <strong class="valorproduto">R$ 49,99</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="produto-lista">
+                <a href="#" class="produto-sobrepor"></a>
+                <div class="imagem-lista">
+                  <img src="/img/cake2.jpg" class="imageview" alt="cakeboard" />
+                  <div class="middle">
+                    <i class="text bi bi-cart"></i>
+                  </div>
+                </div>
+                <div class="caption infoproduto">
+                  <a class="produto-titolo">Cakeboards redondos</a>
+                  <p>A partir de <strong class="valorproduto">R$ 49,99</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <%- include('../components/foot') %>
