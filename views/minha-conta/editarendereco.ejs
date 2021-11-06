@@ -9,53 +9,53 @@
       <div class="col-sm px-3">
 
         <h4>Alterar Endereço</h4>      
-        <hr class="mb-4">
+        <hr class="mb-3">
 
         <form class="m-w-800" method="post" action="/usuarios/alterar-endereco?_method=PUT">
 
           <div class="row g-3 mb-2">
             <div class="col-sm">
-              <label class="font-18-bold text-white">Destinatário</label>
+              <label class="copy-h6-format text-white">Destinatário</label>
               <input type="text" name="destinatario" value="<%= endereco.destinatario %>" class="form-control" placeholder="Destinataro">
             </div>
           </div>
 
           <div class="row g-3 mb-2">
             <div class="col-sm-9">
-              <label class="font-18-bold text-white">Rua</label>
+              <label class="copy-h6-format text-white">Rua</label>
               <input type="text" name="rua" value="<%= endereco.rua %>" class="form-control" placeholder="Rua">
             </div>
             <div class="col-sm">
-              <label class="font-18-bold text-white">Nº</label>
+              <label class="copy-h6-format text-white">Nº</label>
               <input type="text" name="numero" value="<%= endereco.numero %>" class="form-control" placeholder="Nº">
             </div>
           </div>
 
           <div class="row g-3 mb-2">
             <div class="col-sm">
-              <label class="font-18-bold text-white">Complemento</label>
+              <label class="copy-h6-format text-white">Complemento</label>
               <input type="text" name="complemento" value="<%= endereco.complemento %>" class="form-control" placeholder="Complemento">
             </div>
             <div class="col-sm">
-              <label class="font-18-bold text-white">Bairro</label>
+              <label class="copy-h6-format text-white">Bairro</label>
               <input type="text" name="bairro" value="<%= endereco.bairro %>" class="form-control" placeholder="Bairro">
             </div>
           </div>
 
           <div class="row g-3 mb-2">
             <div class="col-sm">
-              <label class="font-18-bold text-white">Cidade</label>
+              <label class="copy-h6-format text-white">Cidade</label>
               <input type="text" name="cidade" value="<%= endereco.cidade %>" class="form-control" placeholder="Cidade" aria-label="City">
             </div>
           </div>
 
           <div class="row g-3 mb-4">
             <div class="col-sm">
-              <label class="font-18-bold text-white">Estado</label>
+              <label class="copy-h6-format text-white">Estado</label>
               <input type="text" name="estado" value="<%= endereco.estado %>" class="form-control" placeholder="Estado" aria-label="State">
             </div>
             <div class="col-sm">
-              <label class="font-18-bold text-white">Cep</label>
+              <label class="copy-h6-format text-white">Cep</label>
               <input type="text" name="cep" value="<%= endereco.cep %>" class="form-control" placeholder="CEP" aria-label="Zip">
             </div>
           </div>

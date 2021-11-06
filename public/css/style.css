@@ -251,6 +251,18 @@ body {
   padding: 5px 10px;
 }
 
+.copy-h6-format{
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.max-width-test{
+  max-width: 500px;
+}
+
 @media (max-width: 830px) {
   .contato-sac {
     width: 100%;
