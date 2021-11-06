@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Pedido.belongsTo(models.Cliente);
       Pedido.belongsTo(models.StatusPedido);
-      Pedido.belongsTo(models.Logo);
       Pedido.belongsTo(models.TipoEnvio);
       Pedido.belongsTo(models.Cupom);
       Pedido.belongsTo(models.TipoPagamento);
@@ -16,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       clienteId: DataTypes.BIGINT,
       statusPedidoId: DataTypes.INTEGER,
-      logoId: DataTypes.BIGINT,
       subtotal: DataTypes.DECIMAL,
       tipoEnvioId: DataTypes.INTEGER,
       cupomId: DataTypes.BIGINT,

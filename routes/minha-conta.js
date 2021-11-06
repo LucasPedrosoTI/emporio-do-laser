@@ -22,15 +22,15 @@ router.get('/dados', auth, function (req, res, next) {
 
 router.get('/enderecos', auth, usuarioController.listarEnderecos);
 
+router.get('/logo', auth, function (req, res, next) {
+  res.render('minha-conta/logo', { title: 'Minha Conta: Logo', menu: 'logo' });
+});
+
 router.get('/cadastrarendereco', auth, function (req, res, next) {
   res.render('minha-conta/cadastrarendereco', { title: 'Minha Conta: Cadastrar novo Endereço', menu: 'enderecos' });
 });
 
 router.get('/editarendereco', auth, usuarioController.editarEnderecos);
-
-router.get('/administrador', auth, function (req, res, next) {
-  res.render('minha-conta-admin/administrador', { title: 'Minha Conta: Administrador' });
-});
 
 router.get('/cupons', auth, function (req, res, next) {
   res.render('minha-conta-admin/cupons', { title: 'Minha Conta: Cupons', menu: 'cupons' });
@@ -39,14 +39,5 @@ router.get('/cupons', auth, function (req, res, next) {
 router.get('/meusprodutos', auth, function (req, res, next) {
   res.render('minha-conta-admin/meusprodutos', { title: 'Minha Conta: Produtos', menu: 'produtos' });
 });
-
-router.get('/senha-admin', auth, function (req, res, next) {
-  res.render('minha-conta-admin/senhaadmin', { title: 'Minha Conta: Senha', menu: 'senha-admin' });
-});
-
-router.get('/dados-admin', auth, function (req, res, next) {
-  res.render('minha-conta-admin/dadosadmin', { title: 'Minha Conta: Senha', menu: 'dados-admin' });
-});
-
 
 module.exports = router;

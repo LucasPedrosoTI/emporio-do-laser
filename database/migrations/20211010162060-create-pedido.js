@@ -18,10 +18,6 @@ module.exports = {
         allowNull: false,
         references: { model: 'status_pedido', key: 'id' },
       },
-      logoId: {
-        type: Sequelize.BIGINT,
-        references: { model: 'logos', key: 'id' },
-      },
       subtotal: {
         type: Sequelize.DECIMAL,
         allowNull: false,

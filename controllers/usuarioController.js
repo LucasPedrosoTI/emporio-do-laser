@@ -125,20 +125,38 @@ module.exports = {
 
       req.session.usuario.Cliente = await Cliente.updateDados(cliente.id, telefone, cpfCNPJ, nome);
     } catch (error) {
-      return res.render('minha-conta/dados', { error: error.message, menu: 'dados' });
+      return res.render('minha-conta/dados', { error: error.message, menu: 'dados', title: 'Minha Conta: Dados' });
     }
 
     return res.redirect('/minha-conta/dados');
   },
 
-  cadastrarEndereco: async (req, res) => {
+  alterarLogo: async (req, res) => {
+    try {
+      const logo = `/img/logos/${req.file.filename}`;
+      const { id } = req.session.usuario.Cliente;
 
+      await Cliente.update(
+        {
+          logo,
+        },
+        { where: { id } }
+      );
+
+      req.session.usuario.Cliente.logo = logo;
+    } catch (error) {
+      return res.render('minha-conta/logo', { error: error.message, menu: 'logo', title: 'Minha Conta: Logo' });
+    }
+
+    return res.redirect('/minha-conta/logo');
+  },
+
+  cadastrarEndereco: async (req, res) => {
     try {
       const { destinatario, rua, numero, complemento, bairro, cidade, estado, cep } = req.body;
       const { id: clienteId } = req.session.usuario.Cliente;
 
-      await Endereco.create({clienteId, destinatario, rua, numero, complemento, bairro, cidade, estado, cep});
-
+      await Endereco.create({ clienteId, destinatario, rua, numero, complemento, bairro, cidade, estado, cep });
     } catch (error) {
       return res.render('minha-conta/cadastrarendereco', { error: error.message, menu: 'enderecos' });
     }
@@ -147,50 +165,43 @@ module.exports = {
   },
 
   listarEnderecos: async (req, res) => {
-
     let clienteId = req.session.usuario.Cliente.id;
-    Endereco.findAll({where: {clienteId}}).then(function(enderecos){
+    Endereco.findAll({ where: { clienteId } }).then(function (enderecos) {
       res.render('minha-conta/enderecos', { title: 'Minha Conta: Endereços', enderecos: enderecos, menu: 'enderecos' });
-    })
-
+    });
   },
 
   editarEnderecos: async (req, res) => {
+    const { enderecoId } = req.query;
 
-    const {enderecoId} = req.query;
-    
     const endereco = await Endereco.findByPk(enderecoId);
 
     res.render('minha-conta/editarendereco', { title: 'Minha Conta: Alterar Endereço', endereco, menu: 'enderecos' });
-    
   },
-  
+
   alterarEndereco: async (req, res) => {
     try {
       const { id, destinatario, rua, numero, complemento, bairro, cidade, estado, cep } = req.body;
-      
-      await Endereco.update( { destinatario, rua, numero, complemento, bairro, cidade, estado, cep}, {where: {id} });
-  
+
+      await Endereco.update({ destinatario, rua, numero, complemento, bairro, cidade, estado, cep }, { where: { id } });
     } catch (error) {
       return res.render('minha-conta/editarendereco', { error: error.message, menu: 'enderecos' });
     }
-  
+
     return res.redirect('/minha-conta/enderecos');
   },
 
   excluirEndereco: async (req, res) => {
     try {
-      const {id} = req.body;
-    
+      const { id } = req.body;
+
       await Endereco.destroy({ where: { id } });
-  
     } catch (error) {
       return res.render('minha-conta/enderecos', { error: error.message, menu: 'enderecos' });
     }
-  
+
     return res.redirect('/minha-conta/enderecos');
   },
-
 };
 
 function renderWithError(res, error) {

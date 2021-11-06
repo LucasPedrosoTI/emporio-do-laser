@@ -1,0 +1,37 @@
+<%- include('../components/head', {title}) %> <%- include('../components/navbar') %>
+
+<section>
+  <div class="corpo container-fluid text-branco">
+    <div class="row g-1">
+      <%- include('../components/lateral-menu') %>
+
+      <div class="col-sm px-3">
+        <h4>Alteração de Logo</h4>
+        <hr class="mb-3" />
+
+        <div class="componentes">
+          <% if (USUARIO.Cliente.logo) { %>
+          <p class="subtitulos mt-5">Logo Atual</p>
+          <img src="<%=USUARIO.Cliente.logo%>" class="img-thumbnail rounded user-logo" alt="<%= `logo de ${USUARIO.email}` %>" />
+          <% } %>
+
+          <p class="subtitulos">Anexe o novo logo</p>
+          <form action="/usuarios/alterar-logo?_method=PUT" method="post" enctype="multipart/form-data" data-toggle="validator">
+            <div class="row g-2">
+              <div class="col-auto w-25 form-group">
+                <input type="file" name="imagem" class="form-control" required />
+                <div id="imgHelp" class="form-text text-white">Tamanho máximo: 2MB</div>
+                <div id="imgHelp" class="form-text text-white">Formatos válidos: PNG ou CDE</div>
+                <div class="help-block with-errors mt-3"></div>
+              </div>
+              <%- include('../components/error-alert', {error}) %>
+            </div>
+            <div class="my-3"><button type="submit" class="btn btn-primary">Salvar</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../components/foot') %>

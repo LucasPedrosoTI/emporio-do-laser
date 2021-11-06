@@ -39,6 +39,8 @@ jspm_packages/
 # Typescript v1 declaration files
 typings/
 
+public/img/logos/*
+
 # Optional npm cache directory
 .npm
 

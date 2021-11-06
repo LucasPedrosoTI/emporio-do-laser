@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       Cliente.hasOne(models.PessoaFisica);
       Cliente.hasOne(models.PessoaJuridica);
       Cliente.hasMany(models.Endereco);
-      Cliente.hasOne(models.Logo);
       Cliente.hasMany(models.Pedido);
 
       Cliente.updateDados = async (id, telefone, cpfCnpj, nomeRazaoSocial) => {
@@ -35,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       usuarioId: DataTypes.BIGINT,
       telefone: DataTypes.STRING,
+      logo: DataTypes.STRING,
       ehPessoaFisica: DataTypes.BOOLEAN,
     },
     {

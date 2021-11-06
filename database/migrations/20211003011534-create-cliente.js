@@ -19,6 +19,9 @@ module.exports = {
         type: Sequelize.STRING(15),
         allowNull: false,
       },
+      logo: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
