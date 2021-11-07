@@ -37,7 +37,7 @@ module.exports = {
         references: { model: 'tipo_pagamento', key: 'id' },
       },
       boleto: {
-        type: Sequelize.BLOB,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

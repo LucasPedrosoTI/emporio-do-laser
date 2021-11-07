@@ -13,6 +13,9 @@ module.exports = {
         allowNull: false,
         references: { model: 'produtos', key: 'id' },
       },
+      tamanho: {
+        type: Sequelize.STRING,
+      },
       quantidade: {
         type: Sequelize.INTEGER,
         allowNull: false,

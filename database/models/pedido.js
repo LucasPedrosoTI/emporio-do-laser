@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       tipoEnvioId: DataTypes.INTEGER,
       cupomId: DataTypes.BIGINT,
       tipoPagamentoId: DataTypes.INTEGER,
-      boleto: DataTypes.BLOB,
+      boleto: DataTypes.STRING,
     },
     {
       sequelize,

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   TamanhoProduto.init(
     {
       produtoId: DataTypes.BIGINT,
+      tamanho: DataTypes.STRING,
       quantidade: DataTypes.INTEGER,
       peso: DataTypes.DOUBLE,
       preco: DataTypes.DECIMAL,

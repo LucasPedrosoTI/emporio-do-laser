@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       },
 
       quantidade: DataTypes.INTEGER,
+      comLogomarca: DataTypes.BOOLEAN,
     },
     {
       sequelize,
