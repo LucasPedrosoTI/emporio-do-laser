@@ -1,4 +1,5 @@
 const { Categoria, Produto, ImagemProduto, TamanhoProduto } = require('../database/models');
+const { currencyFormatter } = require('../utils/formatter');
 
 module.exports = {
   renderProdutos: async (req, res) => {
@@ -8,6 +9,14 @@ module.exports = {
       include: [TamanhoProduto, ImagemProduto],
     });
 
-    return res.render('produtos', { categorias, produtos });
+    const produtosFormatado = produtos.map(produto => ({
+      ...produto,
+      TamanhoProdutos: produto.TamanhoProdutos.map(tProd => ({
+        ...tProd,
+        preco: currencyFormatter.format(tProd.preco),
+      })),
+    }));
+
+    return res.render('produtos', { categorias, produtos: produtosFormatado });
   },
 };
