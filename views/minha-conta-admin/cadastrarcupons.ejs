@@ -10,11 +10,11 @@
         <hr class="mb-3" />
 
         <!-- CODIGO AQUI -->
-        <form class="m-w-800" method="post" action="#">
+        <form class="m-w-800" method="post" action="/usuarios/cadastrar-cupom">
           <div class="row g-3 mb-2">
             <div class="col-sm">
               <label class="copy-h6-format text-white">Código</label>
-              <input type="text" name="codigo" class="form-control" placeholder="Ex: CLIENTE10" />
+              <input type="text" name="codigo" class="form-control" placeholder="Ex: CLIENTE10" required/>
             </div>
           </div>
 
@@ -23,39 +23,48 @@
               <label class="copy-h6-format text-white">É porcentagem?</label>
               <!-- <input type="text" name="rua" class="form-control" placeholder="Ex: Rua Tuiuti" /> -->
               <select class="form-control" name="ehPorcentagem">
-                <option value="Sim">Sim</option>
-                <option value="Não">Não</option>
+                <option value="1">Sim</option>
+                <option value="0">Não</option>
               </select>
             </div>
             <div class="col-sm">
               <label class="copy-h6-format text-white">Taxa de Desconto</label>
-              <input type="text" name="taxaDeDesconto" class="form-control" placeholder="Ex: 10" />
+              <input type="text" name="taxaDeDesconto" class="form-control" placeholder="Ex: 10" required/>
             </div>
           </div>
 
           <div class="row g-3 mb-2">
             <div class="col-sm">
               <label class="copy-h6-format text-white">Habilitado?</label>
+              <input type="hidden" name="habilitado" value="1"/>
               <small class="form-control">Sim</small>
             </div>
             <div class="col-sm">
               <label class="copy-h6-format text-white">Expiração</label>
-              <input type="date" name="dataExpiracao" class="form-control"/>
+              <input type="date" name="dataExpiracao" class="form-control" required/>
             </div>
           </div>
 
-          <div class="row g-3 mb-4">
+          <div class="row g-3 mb-2">
             <div class="col-sm">
               <label class="copy-h6-format text-white">Categoria</label>
-              <select class="form-control" name="categorias">
-                <option value="default">---Selecione---</option>
-                <option value="0">Todas</option>
+              <select class="form-control" name="categoriaId">
+                <!-- <option value="default">---Selecione---</option> -->
+                <!-- <option value="0">Todas</option> -->
                 <option value="1">Cakebord</option>
                 <option value="2">Topo de Bolo</option>
                 <option value="3">Caixa Cenário</option>
               </select>  
             </div> 
           </div> 
+
+          <div class="row g-3 mb-4">
+            <div class="col-sm">
+              <label class="copy-h6-format text-white">Descricao</label>
+              <textarea type="text" name="descricao" class="form-control" placeholder="Ex: 10 Reais de desconto." required></textarea>
+            </div>
+          </div>
+
           <button class="btn btn-primary" type="submit">Salvar</button>
           
         </form>

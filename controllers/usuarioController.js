@@ -1,4 +1,4 @@
-const { Usuario, Cliente, PessoaJuridica, PessoaFisica, Endereco } = require('../database/models');
+const { Usuario, Cliente, PessoaJuridica, PessoaFisica, Endereco, Cupom, CupomCatoria, Categoria } = require('../database/models');
 const isValidCPF = require('../utils/validaCpf');
 const isValidCNPJ = require('../utils/validaCnpj');
 const bcrypt = require('bcrypt');
@@ -202,6 +202,34 @@ module.exports = {
 
     return res.redirect('/minha-conta/enderecos');
   },
+
+  // Funções Administrador
+
+  alterarCupom: (req, res) => {
+
+  },
+
+  habilitarDesabilitarCupom: (req, res) => {
+
+  },
+
+  cadastrarCupom: async (req, res) => {
+
+    console.log(req.body)
+
+    try {
+      const { codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categoriaId } = req.body;
+      // const { id: clienteId } = req.session.usuario.Cliente;
+
+      await Cupom.create({ codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem });
+
+    } catch (error) {
+      return res.render('minha-conta-admin/cadastrarcupons', { error: error.message, menu: 'cupons' });
+    }
+
+    return res.redirect('/minha-conta/cupons');
+  },
+
 };
 
 function renderWithError(res, error) {
