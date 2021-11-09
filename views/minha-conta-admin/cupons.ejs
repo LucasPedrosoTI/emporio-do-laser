@@ -19,29 +19,30 @@
                 </div>
               </div>
 
-              <!-- for each -->
+              <% cupoms.forEach(cupom => { %>
+
               <div class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">CLIENTE10</h5>
+                  <h5 class="mb-1"><%= cupom.codigo %></h5>
                 </div>
                 <div class="mb-3">
-                <p class="mb-1">Porcentagem (N), Taxa de Desconto: R$ 10,00 </p> 
-                <p class="mb-1">Data Expiração: 08/12/2021 - Categoria: Cakeboard</p>
-                <small>Descrição: 10 reais de desconto na primeira compra - Status: Habilitado</small>
+                  <p class="mb-1">Porcentagem?: <%= cupom.ehPorcentagem %>, Taxa de Desconto: R$ <%= cupom.taxaDeDesconto %>  </p> 
+                  <p class="mb-1">Data Expiração: <span class="date"><%= cupom.dataExpiracao %></span>  - Categoria: Cakeboard </p>
+                  <small>Descrição: <%= cupom.descricao %>  - Habilitado?: <%= cupom.habilitado %> </small>
                 </div>
                 <div class="row">
-                  <form class="col-sm-6" action="/minha-conta/editarcupons" method="get">
-                    <!-- <input type="hidden" name="enderecoId" value="id" /> -->
+                  <form class="col-sm-6 mb-2" action="/minha-conta/editarcupons" method="get">
+                    <input type="hidden" name="cupomId" value="<%= cupom.id %> " />
                     <input type="submit" href="minha-conta/editarcupons" value="Editar" class="btn btn-primary btn-tabela" />
                   </form>
 
                   <form class="col-sm-6" action="#" method="post">
-                    <input type="hidden" name="id" value="id" />
+                    <input type="hidden" name="id" value="<%= cupom.id %> " />
                     <input type="submit" value="Desabilitar/Habilitar" class="btn btn-primary btn-tabela" onClick="if(!(confirm('Deseja mesmo desativar este cupom?'))) return false" />
                   </form>
                 </div>
               </div>
-              <!-- fim for each -->
+              <% }); %> 
             </div>
           </div>
         </div>

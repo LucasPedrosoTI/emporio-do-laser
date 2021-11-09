@@ -32,9 +32,13 @@ router.get('/cadastrarendereco', auth, function (req, res, next) {
 
 router.get('/editarendereco', auth, usuarioController.editarEnderecos);
 
-router.get('/cupons', auth, function (req, res, next) {
-  res.render('minha-conta-admin/cupons', { menu: 'cupons' });
-});
+// -----------------------------
+// router.get('/cupons', auth, function (req, res, next) {
+//   res.render('minha-conta-admin/cupons', { menu: 'cupons' });
+// });
+
+router.get('/cupons', auth, usuarioController.listarCupoms);
+// -----------------------------
 
 router.get('/meusprodutos', auth, function (req, res, next) {
   res.render('minha-conta-admin/meusprodutos', { menu: 'produtos' });

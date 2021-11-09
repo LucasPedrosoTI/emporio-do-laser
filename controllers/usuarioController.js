@@ -206,15 +206,6 @@ module.exports = {
 
   // Funções Administrador
 
-
-  alterarCupom: (req, res) => {
-
-  },
-
-  habilitarDesabilitarCupom: (req, res) => {
-
-  },
-
   cadastrarCupom: async (req, res) => {
 
     console.log(req.body)
@@ -243,7 +234,26 @@ module.exports = {
     return res.redirect('/minha-conta/cupons');
   },
 
+  listarCupoms: async (req, res) => {
 
+    // let clienteId = req.session.usuario.Cliente.id;
+    await Cupom.findAll().then(function (cupoms) {
+      res.render('minha-conta-admin/cupons', { title: 'Minha Conta: Cupoms', cupoms: cupoms, menu: 'cupons' });
+    });
+
+  },
+
+  editarCupom: (req, res) => {
+
+  },
+
+  alterarCupom: (req, res) => {
+
+  },
+
+  habilitarDesabilitarCupom: (req, res) => {
+
+  },
 
 };
 
