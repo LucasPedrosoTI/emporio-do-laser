@@ -292,3 +292,37 @@ body {
 .imageview, .produto-lista{
   border-radius: 5px;
 }
+
+.carousel-item, .imageproduct{
+  height: 300px;
+  width: 300px;
+  border-radius: 5px;
+}
+
+@media (min-width: 1400px) {
+  .carousel-item, .imageproduct{
+    height: 600px;
+    width: 600px;
+    border-radius: 5px;
+  }
+}
+
+.info-peso{
+  color: var(--secundaria);
+}
+
+.info-comprar{
+  text-align: right;
+  margin-right: 50px;
+  margin-top: 70px;
+}
+
+.descricao-produto{
+  padding: 20px;
+}
+
+.produto{
+  --bs-bg-opacity: 1; 
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  border-radius: 5px;
+}
