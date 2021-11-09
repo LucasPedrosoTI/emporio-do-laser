@@ -1,4 +1,4 @@
-const { Usuario, Cliente, PessoaJuridica, PessoaFisica, Endereco, Cupom, CupomCatoria, Categoria } = require('../database/models');
+const { Usuario, Cliente, PessoaJuridica, PessoaFisica, Endereco, Cupom, CupomCategoria, Categoria } = require('../database/models');
 const isValidCPF = require('../utils/validaCpf');
 const isValidCNPJ = require('../utils/validaCnpj');
 const bcrypt = require('bcrypt');
@@ -203,7 +203,9 @@ module.exports = {
     return res.redirect('/minha-conta/enderecos');
   },
 
+
   // Funções Administrador
+
 
   alterarCupom: (req, res) => {
 
@@ -221,7 +223,18 @@ module.exports = {
       const { codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categoriaId } = req.body;
       // const { id: clienteId } = req.session.usuario.Cliente;
 
-      await Cupom.create({ codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem });
+      const cupom = await Cupom.create({ 
+        codigo, 
+        descricao, 
+        taxaDeDesconto, 
+        dataExpiracao, 
+        habilitado, 
+        ehPorcentagem });
+
+      const categoriaCupom = await CupomCategoria.create({
+        cupomId: cupom.id,
+        categoriaId
+      })
 
     } catch (error) {
       return res.render('minha-conta-admin/cadastrarcupons', { error: error.message, menu: 'cupons' });
@@ -229,6 +242,8 @@ module.exports = {
 
     return res.redirect('/minha-conta/cupons');
   },
+
+
 
 };
 
