@@ -1,7 +1,7 @@
 $(function () {
     $.ajax({
         method: 'GET',
-        url: '/carrinho-listar',
+        url: '/carrinho/listar',
         dataType: 'json',
         beforeSend: function () { $("#formItens").html("Carregando..."); },
         success: function (data) {
@@ -13,7 +13,7 @@ $(function () {
 function deletarItem(id) {
     $.ajax({
         method: 'POST',
-        url: '/carrinho-excluir',
+        url: '/carrinho/excluir',
         data: { id: id },
         dataType: 'json',
         beforeSend: function () { $("#formItens").html("Carregando..."); },
@@ -27,7 +27,7 @@ function mudaQuantia(id, qtd) {
     if (qtd > 0) {
         $.ajax({
             method: 'POST',
-            url: '/carrinho-qtd',
+            url: '/carrinho/alterar-qtd-items',
             data: { id: id, qtd: qtd },
             dataType: 'json',
             beforeSend: function () { $("#formItens").html("Carregando..."); },
@@ -48,7 +48,7 @@ function listarItens(data) {
         let total = 0;
 
         $.each(data, function (key, value) {
-            let totalItem = value.valorUnit * value.qtd;
+            let totalItem = value.preco * value.qtd;
 
             let bloco = `
                   <div class="bloco">
@@ -75,7 +75,7 @@ function listarItens(data) {
                             </button>
                           </div>
                           <div class="text-right mt-2">
-                            <small class="text-secondary"> Valor: R$ ${value.valorUnit}</small><br>
+                            <small class="text-secondary"> Valor: R$ ${value.preco}</small><br>
                             <span class="text-dark">Subtotal: R$ ${totalItem}</span>
                           </div>
                         </div>
@@ -95,7 +95,7 @@ function listarItens(data) {
                   <div class="text-end">
                     <h4 class="text-dark mb-3"><b>Total: R$ ${total}</b></h4>
                       <a href="/" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
-                      <a href="/fechar-compra" class="btn btn-danger btn-lg">Fechar Compra</a>
+                      <a href="/carrinho/pagamento" class="btn btn-primary btn-lg">Fechar Compra</a>
                   </div>
                 </li>
               </div>

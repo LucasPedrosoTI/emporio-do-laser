@@ -1,7 +1,7 @@
 $(function () {
     $.ajax({
         method: 'GET',
-        url: '/carrinho-listar',
+        url: '/carrinho/listar',
         dataType: 'json',
         beforeSend: function () { $("#divItens").html("Carregando..."); },
         success: function (data) {
@@ -19,7 +19,7 @@ function listarItens(data) {
         let qtdItensCart = 0;
 
         $.each(data, function (key, value) {
-            let totalItem = value.valorUnit * value.qtd;
+            let totalItem = value.preco * value.qtd;
             qtdItensCart++;
 
             let bloco = `
@@ -43,7 +43,7 @@ function listarItens(data) {
         $("#divItens").append(`
               <div class="bloco_2">
                 <li class="list-group-item d-flex justify-content-between">
-                  <span>Total (USD)</span>
+                  <span>Total (R$)</span>
                   <strong>R$ ${total}</strong>
                 </li>
               </div>
