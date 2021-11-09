@@ -23,8 +23,10 @@
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-1"><%= endereco.destinatario %></h5>
                 </div>
-                <p class="mb-1"><%= endereco.rua %>, <%= endereco.numero %>, <%= endereco.complemento %> - <%= endereco.bairro %></p>
-                <small><%= endereco.cidade %> - <%= endereco.estado %>, <%= endereco.cep %></small>
+                <div class="mb-3">
+                  <p class="mb-1"><%= endereco.rua %>, <%= endereco.numero %>, <%= endereco.complemento %> - <%= endereco.bairro %></p>
+                  <small><%= endereco.cidade %> - <%= endereco.estado %>, <%= endereco.cep %></small>
+                </div>
 
                 <div class="row">
                   <form class="col-sm-6" action="/minha-conta/editarendereco" method="get">
