@@ -26,11 +26,12 @@
                   <h5 class="mb-1"><%= cupom.codigo %></h5>
                 </div>
                 <div class="mb-3">
-                  <p class="mb-1">Porcentagem?: <%= cupom.ehPorcentagem %>, Taxa de Desconto: R$ <%= cupom.taxaDeDesconto %></p>
+                  <p class="mb-1">É Porcentagem? <%= cupom.ehPorcentagem ? 'Sim' : 'Não' %>, Taxa de Desconto: <%= cupom.taxaDeDesconto %></p>
+                  <p class="mb-1">Data Expiração: <span><%= cupom.dataExpiracao %></span></p>
                   <p class="mb-1">
-                    Data Expiração: <span class="date"><%= cupom.dataExpiracao %></span> - Categoria: <% cupom.Categoria.forEach(categoria => { %> <%= categoria.nomeCategoria %> <% }) %>
+                    Categoria: <% cupom.Categoria.forEach((categoria, index) => { %> <%= index + 1 === cupom.Categoria.length ? categoria.nomeCategoria : categoria.nomeCategoria + ', ' %> <% }) %>
                   </p>
-                  <small>Descrição: <%= cupom.descricao %> - Habilitado?: <%= cupom.habilitado %> </small>
+                  <small>Descrição: <%= cupom.descricao %> - Habilitado? <%= cupom.habilitado ? 'Sim' : 'Não' %> </small>
                 </div>
                 <div class="row">
                   <form class="col-sm-6 mb-2" action="/minha-conta/editarcupons" method="get">

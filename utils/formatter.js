@@ -3,4 +3,12 @@ const currencyFormatter = new Intl.NumberFormat('pt-BR', {
   currency: 'BRL',
 });
 
-module.exports = { currencyFormatter };
+const percentFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'percent',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+const dateFormatter = new Intl.DateTimeFormat('pt-BR');
+
+module.exports = { currencyFormatter, percentFormatter, dateFormatter };

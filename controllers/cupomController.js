@@ -1,25 +1,27 @@
 const { Cupom, CupomCategoria, Categoria } = require('../database/models');
-
+const { currencyFormatter, percentFormatter, dateFormatter } = require('../utils/formatter');
 module.exports = {
   cadastrarCupom: async (req, res) => {
     console.log(req.body);
 
     try {
-      const { codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categoriaId } = req.body;
+      const { codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categorias } = req.body;
 
       const cupom = await Cupom.create({
         codigo,
         descricao,
-        taxaDeDesconto,
+        taxaDeDesconto: ehPorcentagem ? taxaDeDesconto / 100 : taxaDeDesconto,
         dataExpiracao,
         habilitado,
         ehPorcentagem,
       });
 
-      const categoriaCupom = await CupomCategoria.create({
-        cupomId: cupom.id,
-        categoriaId,
-      });
+      await CupomCategoria.bulkCreate(
+        categorias.map(categoriaId => ({
+          cupomId: cupom.id,
+          categoriaId,
+        }))
+      );
     } catch (error) {
       return res.render('minha-conta-admin/cadastrarcupons', { error: error.message, menu: 'cupons' });
     }
@@ -32,7 +34,21 @@ module.exports = {
       include: [Categoria],
     });
 
-    return res.render('minha-conta-admin/cupons', { cupoms, menu: 'cupons' });
+    const cupomsFormatados = cupoms.map(cupom => ({
+      ...cupom,
+      descricao: cupom.descricao,
+      codigo: cupom.codigo,
+      dataExpiracao: dateFormatter.format(cupom.dataExpiracao),
+      taxaDeDesconto: cupom.ehPorcentagem ? percentFormatter.format(cupom.taxaDeDesconto) : currencyFormatter.format(cupom.taxaDeDesconto),
+    }));
+
+    return res.render('minha-conta-admin/cupons', { cupoms: cupomsFormatados, menu: 'cupons' });
+  },
+
+  renderCadastrarCupom: async (req, res, next) => {
+    const categorias = await Categoria.findAll();
+
+    res.render('minha-conta-admin/cadastrarcupons', { categorias, menu: 'cupons' });
   },
 
   editarCupom: (req, res) => {},

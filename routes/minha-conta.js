@@ -40,9 +40,7 @@ router.get('/meusprodutos', auth, function (req, res, next) {
   res.render('minha-conta-admin/meusprodutos', { menu: 'produtos' });
 });
 
-router.get('/cadastrarcupons', auth, function (req, res, next) {
-  res.render('minha-conta-admin/cadastrarcupons', { menu: 'cupons' });
-});
+router.get('/cadastrarcupons', auth, cupomController.renderCadastrarCupom);
 
 router.get('/editarcupons', auth, function (req, res, next) {
   res.render('minha-conta-admin/editarcupons', { menu: 'editarcupons' });
