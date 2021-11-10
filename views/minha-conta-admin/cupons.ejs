@@ -26,9 +26,11 @@
                   <h5 class="mb-1"><%= cupom.codigo %></h5>
                 </div>
                 <div class="mb-3">
-                  <p class="mb-1">Porcentagem?: <%= cupom.ehPorcentagem %>, Taxa de Desconto: R$ <%= cupom.taxaDeDesconto %>  </p> 
-                  <p class="mb-1">Data Expiração: <span class="date"><%= cupom.dataExpiracao %></span>  - Categoria: Cakeboard </p>
-                  <small>Descrição: <%= cupom.descricao %>  - Habilitado?: <%= cupom.habilitado %> </small>
+                  <p class="mb-1">Porcentagem?: <%= cupom.ehPorcentagem %>, Taxa de Desconto: R$ <%= cupom.taxaDeDesconto %></p>
+                  <p class="mb-1">
+                    Data Expiração: <span class="date"><%= cupom.dataExpiracao %></span> - Categoria: <% cupom.Categoria.forEach(categoria => { %> <%= categoria.nomeCategoria %> <% }) %>
+                  </p>
+                  <small>Descrição: <%= cupom.descricao %> - Habilitado?: <%= cupom.habilitado %> </small>
                 </div>
                 <div class="row">
                   <form class="col-sm-6 mb-2" action="/minha-conta/editarcupons" method="get">
@@ -42,7 +44,7 @@
                   </form>
                 </div>
               </div>
-              <% }); %> 
+              <% }); %>
             </div>
           </div>
         </div>

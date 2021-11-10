@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var auth = require('../middlewares/auth');
+const express = require('express');
+const router = express.Router();
+const auth = require('../middlewares/auth');
 const usuarioController = require('../controllers/usuarioController');
+const cupomController = require('../controllers/cupomController');
 
 /* GET nav bar Produtos */
 router.get('/pedidos', auth, function (req, res, next) {
@@ -32,12 +33,7 @@ router.get('/cadastrarendereco', auth, function (req, res, next) {
 
 router.get('/editarendereco', auth, usuarioController.editarEnderecos);
 
-// -----------------------------
-// router.get('/cupons', auth, function (req, res, next) {
-//   res.render('minha-conta-admin/cupons', { menu: 'cupons' });
-// });
-
-router.get('/cupons', auth, usuarioController.listarCupoms);
+router.get('/cupons', auth, cupomController.listarCupoms);
 // -----------------------------
 
 router.get('/meusprodutos', auth, function (req, res, next) {

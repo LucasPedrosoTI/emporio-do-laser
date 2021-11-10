@@ -1,4 +1,4 @@
-const { Usuario, Cliente, PessoaJuridica, PessoaFisica, Endereco, Cupom, CupomCategoria, Categoria } = require('../database/models');
+const { Usuario, Cliente, PessoaJuridica, PessoaFisica, Endereco } = require('../database/models');
 const isValidCPF = require('../utils/validaCpf');
 const isValidCNPJ = require('../utils/validaCnpj');
 const bcrypt = require('bcrypt');
@@ -202,59 +202,6 @@ module.exports = {
 
     return res.redirect('/minha-conta/enderecos');
   },
-
-
-  // Funções Administrador
-
-  cadastrarCupom: async (req, res) => {
-
-    console.log(req.body)
-
-    try {
-      const { codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categoriaId } = req.body;
-      // const { id: clienteId } = req.session.usuario.Cliente;
-
-      const cupom = await Cupom.create({ 
-        codigo, 
-        descricao, 
-        taxaDeDesconto, 
-        dataExpiracao, 
-        habilitado, 
-        ehPorcentagem });
-
-      const categoriaCupom = await CupomCategoria.create({
-        cupomId: cupom.id,
-        categoriaId
-      })
-
-    } catch (error) {
-      return res.render('minha-conta-admin/cadastrarcupons', { error: error.message, menu: 'cupons' });
-    }
-
-    return res.redirect('/minha-conta/cupons');
-  },
-
-  listarCupoms: async (req, res) => {
-
-    // let clienteId = req.session.usuario.Cliente.id;
-    await Cupom.findAll().then(function (cupoms) {
-      res.render('minha-conta-admin/cupons', { title: 'Minha Conta: Cupoms', cupoms: cupoms, menu: 'cupons' });
-    });
-
-  },
-
-  editarCupom: (req, res) => {
-
-  },
-
-  alterarCupom: (req, res) => {
-
-  },
-
-  habilitarDesabilitarCupom: (req, res) => {
-
-  },
-
 };
 
 function renderWithError(res, error) {

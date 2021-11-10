@@ -13,6 +13,7 @@ const usersRouter = require('./routes/usuarios');
 const produtosRouter = require('./routes/produtos');
 const minhaContaRouter = require('./routes/minha-conta');
 const carrinhoRouter = require('./routes/carrinho');
+const cupomRouter = require('./routes/cupoms');
 const cookieLogin = require('./middlewares/cookieLogin');
 
 const app = express();
@@ -56,6 +57,7 @@ app.use('/usuarios', usersRouter);
 app.use('/produtos', produtosRouter);
 app.use('/minha-conta', minhaContaRouter);
 app.use('/carrinho', carrinhoRouter);
+app.use('/cupoms', cupomRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

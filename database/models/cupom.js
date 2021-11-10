@@ -1,10 +1,11 @@
 'use strict';
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Cupom extends Model {
     static associate(models) {
       Cupom.hasMany(models.Pedido);
-      Cupom.belongsToMany(models.Categoria, { through: 'Cupoms_Categorias' });
+      Cupom.belongsToMany(models.Categoria, { through: models.CupomCategoria, foreignKey: 'cupomId' });
     }
   }
   Cupom.init(
@@ -21,5 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Cupom',
     }
   );
+
   return Cupom;
 };

@@ -13,9 +13,4 @@ router.put('/alterar-endereco', usuarioController.alterarEndereco);
 router.delete('/excluir-endereco', usuarioController.excluirEndereco);
 router.post('/cadastrar-endereco', usuarioController.cadastrarEndereco);
 
-// Administrador
-router.put('/alterar-cupom', usuarioController.alterarCupom);
-router.delete('/habilitar-desabilitar', usuarioController.habilitarDesabilitarCupom);
-router.post('/cadastrar-cupom', usuarioController.cadastrarCupom);
-
 module.exports = router;
