@@ -42,8 +42,6 @@ router.get('/meusprodutos', auth, function (req, res, next) {
 
 router.get('/cadastrarcupons', auth, cupomController.renderCadastrarCupom);
 
-router.get('/editarcupons', auth, function (req, res, next) {
-  res.render('minha-conta-admin/editarcupons', { menu: 'editarcupons' });
-});
+router.get('/editarcupons', auth, cupomController.editarCupom);
 
 module.exports = router;

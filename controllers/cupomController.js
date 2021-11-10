@@ -36,7 +36,9 @@ module.exports = {
 
     const cupomsFormatados = cupoms.map(cupom => ({
       ...cupom,
+      id: cupom.id,
       descricao: cupom.descricao,
+      ehPorcentagem: cupom.ehPorcentagem,
       codigo: cupom.codigo,
       habilitado: cupom.habilitado,
       dataExpiracao: dateFormatter.format(cupom.dataExpiracao),
@@ -52,9 +54,45 @@ module.exports = {
     res.render('minha-conta-admin/cadastrarcupons', { categorias, menu: 'cupons' });
   },
 
-  editarCupom: (req, res) => {},
+  editarCupom: async (req, res) => {
+    const { cupomId } = req.query;
 
-  alterarCupom: (req, res) => {},
+    const categorias = await Categoria.findAll();
+    let  cupom = await Cupom.findByPk(cupomId);
+
+    res.render('minha-conta-admin/editarcupons', { cupom, categorias, menu: 'cupons' });
+  },
+
+  alterarCupom: async (req, res) => {
+    console.log(req.body)
+    try {
+      const { id, codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categorias } = req.body;
+
+      const cupom = await Cupom.update({
+        codigo,
+        descricao,
+        taxaDeDesconto: ehPorcentagem == 1 ? taxaDeDesconto / 100 : taxaDeDesconto,
+        dataExpiracao,
+        habilitado,
+        ehPorcentagem,
+      },
+      {
+        where: { id }
+      });
+
+      // await CupomCategoria.bulkUpdate(
+      //   categorias.map(categoriaId => ({
+      //     cupomId: cupom.id,
+      //     categoriaId,
+      //   }))
+      // );
+
+    } catch (error) {
+      return res.render('minha-conta-admin/editarcupons', { error: error.message, menu: 'cupons' });
+    }
+
+    return res.redirect('/minha-conta/cupons');
+  },
 
   habilitarDesabilitarCupom: (req, res) => {},
 };
