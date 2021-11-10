@@ -10,7 +10,7 @@ module.exports = {
       const cupom = await Cupom.create({
         codigo,
         descricao,
-        taxaDeDesconto: ehPorcentagem ? taxaDeDesconto / 100 : taxaDeDesconto,
+        taxaDeDesconto: ehPorcentagem == 1 ? taxaDeDesconto / 100 : taxaDeDesconto,
         dataExpiracao,
         habilitado,
         ehPorcentagem,
@@ -38,6 +38,7 @@ module.exports = {
       ...cupom,
       descricao: cupom.descricao,
       codigo: cupom.codigo,
+      habilitado: cupom.habilitado,
       dataExpiracao: dateFormatter.format(cupom.dataExpiracao),
       taxaDeDesconto: cupom.ehPorcentagem ? percentFormatter.format(cupom.taxaDeDesconto) : currencyFormatter.format(cupom.taxaDeDesconto),
     }));
