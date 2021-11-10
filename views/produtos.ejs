@@ -43,7 +43,7 @@
             <% produtos.forEach(produto => { %>
             <div class="col-md-3">
               <div class="produto-lista">
-                <a href="#" class="produto-sobrepor"></a>
+                <a href="produtos/<%= produto.id %>" class="produto-sobrepor"></a>
                 <div class="imagem-lista">
                   <img src="<%= produto.ImagemProdutos[0].nomeImagem %>" class="imageview" alt="<%= produto.nomeProduto %>" />
                   <div class="middle">
@@ -51,7 +51,7 @@
                   </div>
                 </div>
                 <div class="caption infoproduto">
-                  <a class="produto-titolo"><%= produto.nomeProduto %></a>
+                  <a class="produto-titulo"><%= produto.nomeProduto %></a>
                   <p>A partir de <strong class="valorproduto"><%= produto.TamanhoProdutos[0].preco %></strong></p>
                 </div>
               </div>

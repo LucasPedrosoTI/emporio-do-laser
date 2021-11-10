@@ -4,8 +4,8 @@ const produtoController = require('../controllers/produtoController');
 /* GET nav bar Produtos */
 router.get('/', produtoController.renderProdutos);
 
-router.get('/produto', function (req, res, next) {
-    res.render('produto', { title: 'Empório do Laser - Sobre Nós' });
-  });
+router.get('/:id', produtoController.renderProduto);
+
+router.get('/tamanhos/:id', produtoController.getTamanhoById);
 
 module.exports = router;

@@ -3,7 +3,7 @@
   --secundaria: #fac2b3;
   --branco: #fcfcfc;
   --erro: #ae2012;
-  --cinza: rgb(220,221,225);
+  --cinza: rgb(220, 221, 225);
 }
 
 body {
@@ -168,7 +168,7 @@ body {
   opacity: 1;
   display: block;
   height: auto;
-  transition: .5s ease;
+  transition: 0.5s ease;
   backface-visibility: hidden;
 }
 
@@ -181,7 +181,7 @@ body {
   text-align: center;
 }
 
-.produto-sobrepor{
+.produto-sobrepor {
   display: block;
   position: absolute;
   left: 0;
@@ -191,15 +191,15 @@ body {
   z-index: 10;
 }
 
-.produto-titolo{
+.produto-titulo {
   font-size: 18px;
   font-weight: 400;
   text-decoration: none;
   color: inherit;
-  font-family: 'Open Sans' ,sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.produto-lista{
+.produto-lista {
   background-color: white;
   padding: 5px;
   margin-top: 0px;
@@ -207,8 +207,8 @@ body {
   position: relative;
 }
 
-  .middle {
-  transition: .5s ease;
+.middle {
+  transition: 0.5s ease;
   opacity: 0;
   position: absolute;
   top: 50%;
@@ -218,8 +218,7 @@ body {
   text-align: center;
 }
 
-
-.imagem-lista{
+.imagem-lista {
   position: relative;
   height: 220px;
 }
@@ -251,7 +250,7 @@ body {
   padding: 5px 10px;
 }
 
-.copy-h6-format{
+.copy-h6-format {
   font-size: 1rem;
   margin-top: 0;
   margin-bottom: 0.5rem;
@@ -259,7 +258,7 @@ body {
   line-height: 1.2;
 }
 
-.max-width-test{
+.max-width-test {
   max-width: 500px;
 }
 
@@ -289,40 +288,43 @@ body {
   }
 }
 
-.imageview, .produto-lista{
+.imageview,
+.produto-lista {
   border-radius: 5px;
 }
 
-.carousel-item, .imageproduct{
+.carousel-item,
+.imageproduct {
   height: 300px;
   width: 300px;
   border-radius: 5px;
 }
 
 @media (min-width: 1400px) {
-  .carousel-item, .imageproduct{
+  .carousel-item,
+  .imageproduct {
     height: 600px;
     width: 600px;
     border-radius: 5px;
   }
 }
 
-.info-peso{
+.info-peso {
   color: var(--secundaria);
 }
 
-.info-comprar{
+.info-comprar {
   text-align: right;
   margin-right: 50px;
   margin-top: 70px;
 }
 
-.descricao-produto{
+.descricao-produto {
   padding: 20px;
 }
 
-.produto{
-  --bs-bg-opacity: 1; 
+.produto {
+  --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
   border-radius: 5px;
 }
