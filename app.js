@@ -14,6 +14,7 @@ const produtosRouter = require('./routes/produtos');
 const minhaContaRouter = require('./routes/minha-conta');
 const carrinhoRouter = require('./routes/carrinho');
 const cupomRouter = require('./routes/cupoms');
+const enderecoRouter = require('./routes/enderecos');
 const cookieLogin = require('./middlewares/cookieLogin');
 
 const app = express();
@@ -58,6 +59,7 @@ app.use('/produtos', produtosRouter);
 app.use('/minha-conta', minhaContaRouter);
 app.use('/carrinho', carrinhoRouter);
 app.use('/cupoms', cupomRouter);
+app.use('/enderecos', enderecoRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

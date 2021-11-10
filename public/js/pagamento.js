@@ -1,28 +1,29 @@
 $(function () {
-    $.ajax({
-        method: 'GET',
-        url: '/carrinho/listar',
-        dataType: 'json',
-        beforeSend: function () { $("#divItens").html("Carregando..."); },
-        success: function (data) {
-            listarItens(data);
-        }
-    });
+  $.ajax({
+    method: 'GET',
+    url: '/carrinho/listar',
+    dataType: 'json',
+    beforeSend: function () {
+      $('#divItens').html('Carregando...');
+    },
+    success: function (data) {
+      listarItens(data);
+    },
+  });
 });
 
 function listarItens(data) {
+  $('#divItens').html('');
 
-    $("#divItens").html("");
+  if ($(data).length > 0) {
+    let total = 0;
+    let qtdItensCart = 0;
 
-    if ($(data).length > 0) {
-        let total = 0;
-        let qtdItensCart = 0;
+    $.each(data, function (key, value) {
+      let totalItem = value.preco * value.qtd;
+      qtdItensCart++;
 
-        $.each(data, function (key, value) {
-            let totalItem = value.preco * value.qtd;
-            qtdItensCart++;
-
-            let bloco = `
+      let bloco = `
                   <div class="bloco">
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
@@ -35,12 +36,12 @@ function listarItens(data) {
                   </div>       
               `;
 
-            total += totalItem;
+      total += totalItem;
 
-            $("#divItens").append(bloco);
-        });
+      $('#divItens').append(bloco);
+    });
 
-        $("#divItens").append(`
+    $('#divItens').append(`
               <div class="bloco_2">
                 <li class="list-group-item d-flex justify-content-between">
                   <span>Total (R$)</span>
@@ -48,8 +49,8 @@ function listarItens(data) {
                 </li>
               </div>
           `);
-    } else {
-        $("#divItens").html(`
+  } else {
+    $('#divItens').html(`
               <div class="bloco_2">
                 <li class="list-group-item py-3">
                   <div class="text-center">
@@ -59,30 +60,62 @@ function listarItens(data) {
                 </li>
               </div>
           `);
-    }
-
+  }
 }
-
 
 // Validações
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
-    'use strict';
+  'use strict';
 
-    window.addEventListener('load', function () {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
+  window.addEventListener(
+    'load',
+    function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
 
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener(
+          'submit',
+          function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          },
+          false
+        );
+      });
+    },
+    false
+  );
 })();
+
+const selectEndereco = document.getElementById('selectEndereco');
+const destinatario = document.getElementById('destinatario');
+const rua = document.getElementById('rua');
+const numero = document.getElementById('numero');
+const complemento = document.getElementById('complemento');
+const bairro = document.getElementById('bairro');
+const cidade = document.getElementById('cidade');
+const estado = document.getElementById('estado');
+const cep = document.getElementById('cep');
+
+selectEndereco.addEventListener('change', async function (e) {
+  const enderecoId = e.target.value;
+
+  const response = await fetch(`/enderecos/${enderecoId}`);
+  const { endereco } = await response.json();
+
+  destinatario.innerText = endereco.destinatario;
+  rua.innerText = endereco.rua;
+  numero.innerText = endereco.numero;
+  complemento.innerText = endereco.complemento;
+  bairro.innerText = endereco.bairro;
+  cidade.innerText = endereco.cidade;
+  estado.innerText = endereco.estado;
+  cep.innerText = endereco.cep;
+});
