@@ -5,5 +5,6 @@ const cupomController = require('../controllers/cupomController');
 router.put('/alterar-cupom', cupomController.alterarCupom);
 router.delete('/habilitar-desabilitar', cupomController.habilitarDesabilitarCupom);
 router.post('/cadastrar-cupom', cupomController.cadastrarCupom);
+router.get('/validar-cupom', cupomController.validarCupom);
 
 module.exports = router;

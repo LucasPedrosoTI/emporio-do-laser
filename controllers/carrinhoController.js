@@ -26,26 +26,6 @@ module.exports = {
         },
         {
           produto: {
-            id: 2,
-            nomeProduto: 'Cakeboard Quadrado',
-            descricao:
-              'Base para Bolo ou Tabuleiro, Ideal principalmente para expor os bolos, tortas entre outros, pois se incorporam nas decorações, trazendo sofisticação para as festas. Podem ser usados tambem como apoio ou para transporte.',
-            personalizavel: true,
-            categoriaId: 1,
-            deletedAt: null,
-            createdAt: '2021-11-11T01:06:31.000Z',
-            updatedAt: '2021-11-11T01:06:31.000Z',
-            ImagemProdutos: [
-              { id: 2, nomeImagem: '/img/produtos/cake2.jpg', produtoId: 2, createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 2 },
-              { id: 3, nomeImagem: '/img/produtos/cake2.png', produtoId: 2, createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 2 },
-            ],
-          },
-          tamanhoProduto: { id: 4, produtoId: 2, tamanho: '20 cm', quantidade: 10, peso: 0.5, preco: '5', createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 2 },
-          qtd: '2',
-          comLogomarca: false,
-        },
-        {
-          produto: {
             id: 1,
             nomeProduto: 'Cakeboard Redondo',
             descricao:
@@ -60,6 +40,22 @@ module.exports = {
           tamanhoProduto: { id: 1, produtoId: 1, tamanho: '20 cm', quantidade: 50, peso: 0.5, preco: '4', createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 1 },
           qtd: '2',
           comLogomarca: true,
+        },
+        {
+          produto: {
+            id: 4,
+            nomeProduto: 'Topo de Bolo Parabéns',
+            descricao: 'Topo de Bolo em MDF Revestido Branco 3mm e 15cm de Altura.',
+            personalizavel: false,
+            categoriaId: 2,
+            deletedAt: null,
+            createdAt: '2021-11-11T01:48:00.000Z',
+            updatedAt: '2021-11-11T01:48:00.000Z',
+            ImagemProdutos: [{ id: 5, nomeImagem: '/img/produtos/topo-parabens.png', produtoId: 4, createdAt: '2021-11-11T01:48:00.000Z', updatedAt: '2021-11-11T01:48:00.000Z', ProdutoId: 4 }],
+          },
+          tamanhoProduto: { id: 8, produtoId: 4, tamanho: '15 cm', quantidade: 15, peso: 0.4, preco: '15', createdAt: '2021-11-11T01:48:00.000Z', updatedAt: '2021-11-11T01:48:00.000Z', ProdutoId: 4 },
+          qtd: '1',
+          comLogomarca: false,
         },
       ];
 

@@ -1,4 +1,5 @@
 const { Cupom, CupomCategoria, Categoria } = require('../database/models');
+const { Op } = require('sequelize');
 const { currencyFormatter, percentFormatter, dateFormatter } = require('../utils/formatter');
 module.exports = {
   cadastrarCupom: async (req, res) => {
@@ -7,8 +8,8 @@ module.exports = {
     try {
       const { codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categorias } = req.body;
 
-      if(!categorias) {
-        throw new Error('Selecione pelo menos uma categoria.')
+      if (!categorias) {
+        throw new Error('Selecione pelo menos uma categoria.');
       }
 
       const cupom = await Cupom.create({
@@ -20,7 +21,7 @@ module.exports = {
         ehPorcentagem,
       });
 
-      if(categorias.length > 1){
+      if (categorias.length > 1) {
         await CupomCategoria.bulkCreate(
           categorias.map(categoriaId => ({
             cupomId: cupom.id,
@@ -28,13 +29,12 @@ module.exports = {
           }))
         );
       } else {
-        let categoriaId = categorias
+        let categoriaId = categorias;
         await CupomCategoria.create({
           cupomId: cupom.id,
           categoriaId,
-        }); 
+        });
       }
-
     } catch (error) {
       const categorias = await Categoria.findAll();
       return res.render('minha-conta-admin/cadastrarcupons', { categorias, error: error.message, menu: 'cupons' });
@@ -72,27 +72,29 @@ module.exports = {
     const { cupomId } = req.query;
 
     const categorias = await Categoria.findAll();
-    let  cupom = await Cupom.findByPk(cupomId);
+    let cupom = await Cupom.findByPk(cupomId);
 
     res.render('minha-conta-admin/editarcupons', { cupom, categorias, menu: 'cupons' });
   },
 
   alterarCupom: async (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     try {
       const { id, codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categorias } = req.body;
 
-      const cupom = await Cupom.update({
-        codigo,
-        descricao,
-        taxaDeDesconto: ehPorcentagem == 1 ? parseFloat(taxaDeDesconto) / 100 : parseFloat(taxaDeDesconto),
-        dataExpiracao,
-        habilitado,
-        ehPorcentagem: ehPorcentagem == 1,
-      },
-      {
-        where: { id }
-      });
+      const cupom = await Cupom.update(
+        {
+          codigo,
+          descricao,
+          taxaDeDesconto: ehPorcentagem == 1 ? parseFloat(taxaDeDesconto) / 100 : parseFloat(taxaDeDesconto),
+          dataExpiracao,
+          habilitado,
+          ehPorcentagem: ehPorcentagem == 1,
+        },
+        {
+          where: { id },
+        }
+      );
 
       // await CupomCategoria.bulkUpdate(
       //   categorias.map(categoriaId => ({
@@ -100,7 +102,6 @@ module.exports = {
       //     categoriaId,
       //   }))
       // );
-
     } catch (error) {
       return res.render('minha-conta-admin/editarcupons', { error: error.message, menu: 'cupons' });
     }
@@ -109,4 +110,43 @@ module.exports = {
   },
 
   habilitarDesabilitarCupom: (req, res) => {},
+
+  validarCupom: async (req, res) => {
+    try {
+      const { codigoCupom, categorias } = req.query;
+      const categoriasCarrinho = categorias.split(',').map(c => parseInt(c));
+
+      const cupom = await Cupom.findOne({
+        where: {
+          codigo: codigoCupom,
+          habilitado: { [Op.eq]: 1 },
+          dataExpiracao: { [Op.gt]: new Date() },
+        },
+        include: [
+          {
+            model: Categoria,
+            where: {
+              id: categoriasCarrinho,
+            },
+          },
+        ],
+      });
+
+      if(!cupom){
+        throw new Error('Cupom inválido ou expirado')
+      }
+
+      const categoriasAceitas = cupom.Categoria.map(categoria => categoria.id);
+
+      categoriasCarrinho.forEach(categoria => {
+        if (!categoriasAceitas.includes(categoria)) {
+          throw new Error('Há itens no carrinho que são inválidos para este cupom');
+        }
+      });
+
+      res.status(200).json(cupom);
+    } catch (error) {
+      res.status(400).json({error: error.message});
+    }
+  },
 };

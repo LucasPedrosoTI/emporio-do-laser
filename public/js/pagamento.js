@@ -1,6 +1,16 @@
-const formatter = new Intl.NumberFormat('pt-BR', {
+let total = 0;
+let cupomJaAdd = false;
+const categorias = new Set();
+
+const currencyformatter = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
   currency: 'BRL',
+});
+
+const percentFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'percent',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
 });
 
 $(function () {
@@ -21,24 +31,24 @@ function listarItens(data) {
   $('#divItens').html('');
 
   if ($(data).length > 0) {
-    let total = 0;
     let qtdItensCart = 0;
 
     $.each(data, function (key, value) {
       let totalItem = value.tamanhoProduto.preco * value.qtd;
+      categorias.add(value.produto.categoriaId);
       qtdItensCart++;
 
       let bloco = `
                   <div class="bloco">
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
-                            <h6 class="my-0">${value.produto.nomeProduto} - ${value.qtd}x${formatter.format(value.tamanhoProduto.preco)}</h6>
+                            <h6 class="my-0">${value.produto.nomeProduto} - ${value.qtd}x${currencyformatter.format(value.tamanhoProduto.preco)}</h6>
                             <small class="text-muted">Tamanho: ${value.tamanhoProduto.tamanho}</small>
                             <p>
                               <small class="text-muted">Com logomarca: ${value.comLogomarca ? 'Sim' : 'Não'}</small>
                             </p>
                         </div>
-                        <span class="text-muted">${formatter.format(totalItem)}</span>
+                        <span class="text-muted">${currencyformatter.format(totalItem)}</span>
                         <input name="products" type="hidden" value="${value.produto.nomeProduto}">
                     </li>
                   </div>       
@@ -53,8 +63,8 @@ function listarItens(data) {
               <div class="bloco_2">
                 <li class="list-group-item d-flex justify-content-between">
                   <span>Total (R$)</span>
-                  <strong>${formatter.format(total)}</strong>
-                  <input type="hidden" value=${total} name="subtotal" />
+                  <strong id="total_text">${currencyformatter.format(total)}</strong>
+                  <input id="total_input" type="hidden" value=${total} name="subtotal" />
                 </li>
               </div>
           `);
@@ -165,4 +175,67 @@ $('input[name="tipoPagamentoId"]').on('click change', function (e) {
     
     `);
   }
+});
+
+$('#btnAplicarCupom').on('click', async function (e) {
+  e.preventDefault();
+
+  const codigoCupom = $('#codigoCupom').val();
+
+  const response = await fetch(`/cupoms/validar-cupom?codigoCupom=${codigoCupom}&categorias=${Array.from(categorias)}`);
+  const cupom = await response.json();
+
+  console.log(cupom);
+
+  if (!response.ok) {
+    if ($('#cupom-alert').length) return;
+
+    const errorAlert = `
+      <div class="alert alert-danger alert-dismissible fade show mt-4" id="cupom-alert" role="alert">
+        <i class="bi bi-x-circle-fill"></i> ${cupom.error}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    `;
+    $('.form-cupom').append(errorAlert);
+    return;
+  }
+
+  const desconto = cupom.ehPorcentagem ? total * cupom.taxaDeDesconto : cupom.taxaDeDesconto;
+  const totalComDesconto = parseFloat(total) - desconto;
+
+  if (cupomJaAdd) {
+    $('.bloco-cupom h6').text(`${cupom.codigo} - ${cupom.ehPorcentagem ? percentFormatter.format(cupom.taxaDeDesconto) : currencyformatter.format(cupom.taxaDeDesconto)}`);
+    $('.bloco-cupom small').text(cupom.descricao);
+    $('#text_desconto').text(currencyformatter.format(totalComDesconto));
+    $('#desconto_cupom').text(`- ${currencyformatter.format(desconto)}`);
+  } else {
+    let bloco = `
+    <div class="bloco-cupom">
+      <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+              <h6 class="my-0">${cupom.codigo} - ${cupom.ehPorcentagem ? percentFormatter.format(cupom.taxaDeDesconto) : currencyformatter.format(cupom.taxaDeDesconto)}</h6>
+              <small class="text-muted">${cupom.descricao}</small>
+          </div>
+
+          <span id="desconto_cupom" class="text-danger text-nowrap"> - ${currencyformatter.format(desconto)}</span>
+      </li>
+    </div>       
+          `;
+
+    $(bloco).insertBefore($('.bloco_2'));
+
+    $('#divItens').append(`
+              <div class="bloco-descontoo">
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Total com desconto(R$)</span>
+                  <strong id="text_desconto">${currencyformatter.format(totalComDesconto)}</strong>
+                </li>
+              </div>
+    `);
+
+    cupomJaAdd = true;
+  }
+
+  $('#total_input').val(totalComDesconto);
+  $('#cupomId').val(cupom.id);
 });
