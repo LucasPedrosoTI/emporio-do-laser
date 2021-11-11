@@ -98,12 +98,20 @@ module.exports = {
   },
 
   pagamento: async (req, res) => {
-    const { id: clienteId } = req.session.usuario.Cliente;
-    const enderecos = await Endereco.findAll({ where: { clienteId } });
-    const tiposPagamento = await TipoPagamento.findAll();
-    const tiposEnvio = await TipoEnvio.findAll();
+    try {
+      if (req.session.usuario.admin) {
+        throw new Error('Não é possível fechar pedido como administrador');
+      }
 
-    res.render('pagamento', { enderecos, tiposPagamento, tiposEnvio });
+      const { id: clienteId } = req.session.usuario.Cliente;
+      const enderecos = await Endereco.findAll({ where: { clienteId } });
+      const tiposPagamento = await TipoPagamento.findAll();
+      const tiposEnvio = await TipoEnvio.findAll();
+
+      res.render('pagamento', { enderecos, tiposPagamento, tiposEnvio });
+    } catch (error) {
+      res.redirect('/minha-conta');
+    }
   },
 
   addAoCarrinho: async (req, res) => {

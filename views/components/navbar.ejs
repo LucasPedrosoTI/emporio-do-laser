@@ -66,9 +66,15 @@
         <button class="btn btn-outline-success" type="submit">Procurar</button>
       </form>
 
+      <% if (USUARIO) { %> <% if (!USUARIO.admin) { %>
       <a href="/carrinho" class="me-4 ms-5">
         <img class="carrinho" src="https://i.pinimg.com/favicons/044bbc186193a9f069ebb3d1c4b8c2009778494504af6e4c52763fe2.png?b2ec44314e6e1201dd5d8102b251ee50" />
       </a>
+      <% } %> <% } else { %>
+      <a href="/carrinho" class="me-4 ms-5">
+        <img class="carrinho" src="https://i.pinimg.com/favicons/044bbc186193a9f069ebb3d1c4b8c2009778494504af6e4c52763fe2.png?b2ec44314e6e1201dd5d8102b251ee50" />
+      </a>
+      <% } %>
     </div>
   </div>
 </nav>
