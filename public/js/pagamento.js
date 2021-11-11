@@ -133,8 +133,36 @@ $('input[name="tipoPagamentoId"]').on('click change', function (e) {
   const tipoPagamento = $('input[name="tipoPagamentoId"]:checked')[0];
 
   if (tipoPagamento.value != 1) {
-    $('#campos-cartao').hide();
+    $('#campos-cartao').html(``);
   } else {
-    $('#campos-cartao').show();
+    $('#campos-cartao').html(`
+    
+      <div class="col-md mb-2">
+        <label for="cc-name">Nome Completo</label>
+        <input class="form-control" id="cc-name" name="cardName" placeholder="" required="" type="text" />
+        <small class="text-muted">Nome completo como impresso no cartão</small>
+        <div class="invalid-feedback">Insira o nome completo como impresso no cartão</div>
+      </div>
+
+      <div class="col-md mb-2">
+        <label for="cc-number">Número</label>
+        <input class="form-control" id="cc-number" name="cardNumber" placeholder="" required="" type="text" />
+        <div class="invalid-feedback">Insira o Número do cartão</div>
+      </div>
+
+      <div class="row">
+        <div class="col-md mb-2">
+          <label for="cc-expiration">Validade</label>
+          <input class="form-control" id="cc-expiration" name="cardDate" placeholder="" required="" type="text" />
+          <div class="invalid-feedback">Insira a data de validade do cartão</div>
+        </div>
+        <div class="col-md mb-2">
+          <label for="cc-cvv">CVV</label>
+          <input class="form-control" id="cc-cvv" name="cardCvv" placeholder="" required="" type="text" />
+          <div class="invalid-feedback">Insira o CVV</div>
+        </div>
+      </div>
+    
+    `);
   }
 });
