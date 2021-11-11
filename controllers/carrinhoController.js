@@ -1,12 +1,69 @@
-const { Endereco, Produto, TamanhoProduto, ImagemProduto } = require('../database/models');
+const { Endereco, Produto, TamanhoProduto, ImagemProduto, Pedido, PedidoProduto, TipoPagamento, TipoEnvio } = require('../database/models');
 
 module.exports = {
   listar: (req, res) => {
-    let carrinho = req.session.carrinho;
+    if (!req.session.carrinho)
+      req.session.carrinho = [
+        {
+          produto: {
+            id: 2,
+            nomeProduto: 'Cakeboard Quadrado',
+            descricao:
+              'Base para Bolo ou Tabuleiro, Ideal principalmente para expor os bolos, tortas entre outros, pois se incorporam nas decorações, trazendo sofisticação para as festas. Podem ser usados tambem como apoio ou para transporte.',
+            personalizavel: true,
+            categoriaId: 1,
+            deletedAt: null,
+            createdAt: '2021-11-11T01:06:31.000Z',
+            updatedAt: '2021-11-11T01:06:31.000Z',
+            ImagemProdutos: [
+              { id: 2, nomeImagem: '/img/produtos/cake2.jpg', produtoId: 2, createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 2 },
+              { id: 3, nomeImagem: '/img/produtos/cake2.png', produtoId: 2, createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 2 },
+            ],
+          },
+          tamanhoProduto: { id: 5, produtoId: 2, tamanho: '25 cm', quantidade: 20, peso: 0.75, preco: '5', createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 2 },
+          qtd: '4',
+          comLogomarca: true,
+        },
+        {
+          produto: {
+            id: 2,
+            nomeProduto: 'Cakeboard Quadrado',
+            descricao:
+              'Base para Bolo ou Tabuleiro, Ideal principalmente para expor os bolos, tortas entre outros, pois se incorporam nas decorações, trazendo sofisticação para as festas. Podem ser usados tambem como apoio ou para transporte.',
+            personalizavel: true,
+            categoriaId: 1,
+            deletedAt: null,
+            createdAt: '2021-11-11T01:06:31.000Z',
+            updatedAt: '2021-11-11T01:06:31.000Z',
+            ImagemProdutos: [
+              { id: 2, nomeImagem: '/img/produtos/cake2.jpg', produtoId: 2, createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 2 },
+              { id: 3, nomeImagem: '/img/produtos/cake2.png', produtoId: 2, createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 2 },
+            ],
+          },
+          tamanhoProduto: { id: 4, produtoId: 2, tamanho: '20 cm', quantidade: 10, peso: 0.5, preco: '5', createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 2 },
+          qtd: '2',
+          comLogomarca: false,
+        },
+        {
+          produto: {
+            id: 1,
+            nomeProduto: 'Cakeboard Redondo',
+            descricao:
+              'Base para Bolo ou Tabuleiro, Ideal principalmente para expor os bolos, tortas entre outros, pois se incorporam nas decorações, trazendo sofisticação para as festas. Podem ser usados tambem como apoio ou para transporte.',
+            personalizavel: true,
+            categoriaId: 1,
+            deletedAt: null,
+            createdAt: '2021-11-11T01:06:31.000Z',
+            updatedAt: '2021-11-11T01:06:31.000Z',
+            ImagemProdutos: [{ id: 1, nomeImagem: '/img/produtos/cake1.jpg', produtoId: 1, createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 1 }],
+          },
+          tamanhoProduto: { id: 1, produtoId: 1, tamanho: '20 cm', quantidade: 50, peso: 0.5, preco: '4', createdAt: '2021-11-11T01:06:31.000Z', updatedAt: '2021-11-11T01:06:31.000Z', ProdutoId: 1 },
+          qtd: '2',
+          comLogomarca: true,
+        },
+      ];
 
-    if (!carrinho) carrinho = [];
-
-    return res.json(carrinho);
+    return res.json(req.session.carrinho);
   },
 
   excluir: (req, res) => {
@@ -40,15 +97,17 @@ module.exports = {
     }
   },
 
-  pagamento: (req, res) => {
-    let clienteId = req.session.usuario.Cliente.id;
-    Endereco.findAll({ where: { clienteId } }).then(function (enderecos) {
-      res.render('pagamento', { title: 'Empório do Laser - Pagamento', enderecos: enderecos });
-    });
+  pagamento: async (req, res) => {
+    const { id: clienteId } = req.session.usuario.Cliente;
+    const enderecos = await Endereco.findAll({ where: { clienteId } });
+    const tiposPagamento = await TipoPagamento.findAll();
+    const tiposEnvio = await TipoEnvio.findAll();
+
+    res.render('pagamento', { enderecos, tiposPagamento, tiposEnvio });
   },
 
   addAoCarrinho: async (req, res) => {
-    const { produtoId, quantidade, tamanhoProduto: tamanhoProdutoId } = req.body;
+    const { produtoId, quantidade, tamanhoProduto: tamanhoProdutoId, comLogomarca } = req.body;
     let productOnCart = false;
 
     if (!req.session.carrinho) {
@@ -69,9 +128,60 @@ module.exports = {
     });
 
     if (!productOnCart) {
-      req.session.carrinho.push({ produto, tamanhoProduto, qtd: quantidade });
+      req.session.carrinho.push({ produto, tamanhoProduto, qtd: quantidade, comLogomarca: !!comLogomarca });
     }
 
     res.redirect('/carrinho').json(req.sesion.carrinho);
+  },
+
+  fecharPedido: async (req, res) => {
+    const { id: clienteId } = req.session.usuario.Cliente;
+    const { subtotal, tipoEnvioId, tipoPagamentoId, cupomId, enderecoId } = req.body;
+    const { carrinho } = req.session;
+
+    try {
+      const pedido = await Pedido.create({
+        clienteId,
+        statusPedidoId: 1,
+        subtotal,
+        tipoEnvioId,
+        cupomId,
+        tipoPagamentoId,
+        enderecoId,
+      });
+
+      await PedidoProduto.bulkCreate(
+        carrinho.map(item => {
+          return {
+            pedidoId: pedido.id,
+            tamanhoProdutoId: item.tamanhoProduto.id,
+            quantidade: item.qtd,
+            comLogomarca: item.comLogomarca,
+          };
+        })
+      );
+
+      carrinho.forEach(async item => {
+        await TamanhoProduto.update(
+          {
+            quantidade: parseInt(item.tamanhoProduto.quantidade) - parseInt(item.qtd),
+          },
+          {
+            where: {
+              id: item.tamanhoProduto.id,
+            },
+          }
+        );
+      });
+
+      req.session.carrinho = [];
+    } catch (error) {
+      const enderecos = await Endereco.findAll({ where: { clienteId } });
+      const tiposPagamento = await TipoPagamento.findAll();
+      const tiposEnvio = await TipoEnvio.findAll();
+      return res.render('pagamento', { enderecos, tiposPagamento, tiposEnvio, error: error.message });
+    }
+
+    return res.redirect('/minha-conta/pedidos');
   },
 };

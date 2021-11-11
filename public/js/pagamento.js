@@ -1,3 +1,8 @@
+const formatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+});
+
 $(function () {
   $.ajax({
     method: 'GET',
@@ -20,18 +25,21 @@ function listarItens(data) {
     let qtdItensCart = 0;
 
     $.each(data, function (key, value) {
-      let totalItem = value.preco * value.qtd;
+      let totalItem = value.tamanhoProduto.preco * value.qtd;
       qtdItensCart++;
 
       let bloco = `
                   <div class="bloco">
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
-                            <h6 class="my-0">${value.nomeProduto} - ${value.qtd} x</h6>
-                            <small class="text-muted">${value.descricao}</small>
+                            <h6 class="my-0">${value.produto.nomeProduto} - ${value.qtd}x${formatter.format(value.tamanhoProduto.preco)}</h6>
+                            <small class="text-muted">Tamanho: ${value.tamanhoProduto.tamanho}</small>
+                            <p>
+                              <small class="text-muted">Com logomarca: ${value.comLogomarca ? 'Sim' : 'Não'}</small>
+                            </p>
                         </div>
-                        <span class="text-muted">R$ ${totalItem}</span>
-                        <input name="products" type="hidden" value="${value.nomeProduto}">
+                        <span class="text-muted">${formatter.format(totalItem)}</span>
+                        <input name="products" type="hidden" value="${value.produto.nomeProduto}">
                     </li>
                   </div>       
               `;
@@ -45,7 +53,8 @@ function listarItens(data) {
               <div class="bloco_2">
                 <li class="list-group-item d-flex justify-content-between">
                   <span>Total (R$)</span>
-                  <strong>R$ ${total}</strong>
+                  <strong>${formatter.format(total)}</strong>
+                  <input type="hidden" value=${total} name="subtotal" />
                 </li>
               </div>
           `);

@@ -23,6 +23,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('Enderecos', null, {});
     return await queryInterface.bulkDelete('Clientes', null, {});
   },
 };

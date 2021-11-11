@@ -2,10 +2,10 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class PedidoProduto extends Model {
-    static associate(models) {
-      PedidoProduto.belongsTo(models.Pedido);
-      PedidoProduto.belongsTo(models.Produto);
-    }
+    // static associate(models) {
+    //   PedidoProduto.belongsTo(models.Pedido, {});
+    //   PedidoProduto.belongsTo(models.Produto);
+    // }
   }
   PedidoProduto.init(
     {
@@ -17,10 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
 
-      produtoId: {
+      tamanhoProdutoId: {
         type: DataTypes.BIGINT,
         references: {
-          model: 'Produtos',
+          model: 'Tamanho_Produtos',
           key: 'id',
         },
       },

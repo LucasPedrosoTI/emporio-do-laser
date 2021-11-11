@@ -13,10 +13,10 @@ module.exports = {
         allowNull: false,
         references: { model: 'pedidos', key: 'id' },
       },
-      produtoId: {
+      tamanhoProdutoId: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        references: { model: 'produtos', key: 'id' },
+        references: { model: 'Tamanho_Produtos', key: 'id' },
       },
       quantidade: {
         type: Sequelize.INTEGER,

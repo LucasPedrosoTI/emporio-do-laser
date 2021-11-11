@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       });
       Produto.hasMany(models.TamanhoProduto);
       Produto.hasMany(models.ImagemProduto);
-      Produto.belongsToMany(models.Pedido, { through: 'Pedidos_Produtos' });
     }
   }
   Produto.init(

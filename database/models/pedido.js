@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       Pedido.belongsTo(models.TipoEnvio);
       Pedido.belongsTo(models.Cupom);
       Pedido.belongsTo(models.TipoPagamento);
-      Pedido.belongsToMany(models.Produto, { through: 'Pedidos_Produtos' });
+      Pedido.belongsToMany(models.TamanhoProduto, { through: models.PedidoProduto, foreignKey: 'pedidoId' });
     }
   }
   Pedido.init(
@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       tipoEnvioId: DataTypes.INTEGER,
       cupomId: DataTypes.BIGINT,
       tipoPagamentoId: DataTypes.INTEGER,
+      enderecoId: DataTypes.BIGINT,
       boleto: DataTypes.STRING,
     },
     {

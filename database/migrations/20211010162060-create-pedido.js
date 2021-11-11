@@ -22,6 +22,11 @@ module.exports = {
         type: Sequelize.DECIMAL,
         allowNull: false,
       },
+      enderecoId: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        references: { model: 'enderecos', key: 'id' },
+      },
       tipoEnvioId: {
         type: Sequelize.INTEGER,
         allowNull: false,

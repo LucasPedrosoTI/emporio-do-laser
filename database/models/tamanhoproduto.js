@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class TamanhoProduto extends Model {
     static associate(models) {
       TamanhoProduto.belongsTo(models.Produto);
+      TamanhoProduto.belongsToMany(models.Pedido, { through: models.PedidoProduto, foreignKey: 'tamanhoProdutoId' });
     }
   }
   TamanhoProduto.init(

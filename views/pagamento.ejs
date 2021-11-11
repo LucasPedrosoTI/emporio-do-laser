@@ -4,7 +4,7 @@
 
 <section class="corpo flex-fill">
   <div class="container" style="background-color: #ffff; padding: 30px">
-    <form action="" class="needs-validation" method="" novalidate="">
+    <form action="/carrinho/fechar-pedido" class="needs-validation" method="post" novalidate="">
       <div class="row">
         <div class="col-md">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -33,13 +33,13 @@
             <span class="text-muted">Endereço de Entrega</span>
           </h4>
           <% if (enderecos.length > 0) { %>
-          <select class="form-select mb-2" id="selectEndereco">
+          <select class="form-select mb-2" id="selectEndereco" name="enderecoId">
             <% enderecos.forEach(endereco => { %>
             <option value="<%= endereco.id %>"><%= endereco.destinatario %></option>
             <% }) %>
           </select>
 
-          <div class="list-group-item">
+          <div class="list-group-item mb-4">
             <p>
               <strong id="destinatario"><%= enderecos[0].destinatario %></strong>
             </p>
@@ -58,6 +58,21 @@
               <span id="cep"> <%= enderecos[0].cep %> </span>
             </p>
           </div>
+
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Tipo de Envio</span>
+          </h4>
+          <div class="list-group-item">
+            <% tiposEnvio.forEach(tipoEnvio => { %>
+            <div class="custom-control custom-radio my-1">
+              <input class="custom-control-input" id="<%= tipoEnvio.nomeTipoEnvio %>" name="tipoEnvioId" required="" type="radio" value="<%= tipoEnvio.id %>" />
+              <label class="custom-control-label" for="<%= tipoEnvio.nomeTipoEnvio %>"> <%= tipoEnvio.nomeTipoEnvio %> </label>
+            </div>
+            <% }) %>
+          </div>
+
+          <% } else { %>
+          <a href="/minha-conta/cadastrarendereco" class="btn btn-primary">Cadastrar Novo Endereço</a>
           <% } %>
         </div>
 
@@ -77,10 +92,12 @@
             <span class="text-muted">Pagamento</span>
           </h4>
           <div class="list-group-item">
-            <div class="custom-control custom-radio">
-              <input checked="" class="custom-control-input" id="credit" name="paymentMethod" required="" type="radio" value="CREDIT" />
-              <label class="custom-control-label" for="credit">Cartão de crédito</label>
+            <% tiposPagamento.forEach(tipoPagamento => { %>
+            <div class="custom-control custom-radio my-1">
+              <input class="custom-control-input" id="<%= tipoPagamento.nomeTipoPagamento %>" name="tipoPagamentoId" required="" type="radio" value="<%= tipoPagamento.id %>" />
+              <label class="custom-control-label" for="<%= tipoPagamento.nomeTipoPagamento %>"> <%= tipoPagamento.nomeTipoPagamento %> </label>
             </div>
+            <% }) %>
 
             <div class="col-md mb-2">
               <label for="cc-name">Nome Completo</label>
@@ -121,32 +138,12 @@
             <!-- divItens: Fim do LOOP  -->
           </ul>
 
+          <%- include('components/error-alert', {error}) %>
           <button class="btn btn-outline-success btn-lg btn-block" type="submit">Finalizar Compra</button>
         </div>
       </div>
     </form>
   </div>
 </section>
-
-<!-- <script 
-  crossorigin="anonymous"
-  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-  src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
-</script>
-<script 
-  crossorigin="anonymous"
-  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
-</script>
-<script 
-  crossorigin="anonymous"
-  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-  src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
-</script>
-<script 
-  crossorigin="anonymous"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
-</script> -->
 
 <%- include('components/foot') %>

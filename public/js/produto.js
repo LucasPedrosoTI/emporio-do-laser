@@ -19,6 +19,4 @@ selectTamanhoProduto.addEventListener('change', async function (e) {
   txtEstoque.classList.contains('invisible') && txtEstoque.classList.remove('invisible');
 
   estoque.innerText = tamanhoProduto.quantidade;
-
-  console.log(tamanhoProduto);
 });

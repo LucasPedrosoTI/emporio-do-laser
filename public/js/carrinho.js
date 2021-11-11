@@ -67,7 +67,10 @@ function listarItens(data) {
                         <div class="col-8 col-md-9 col-lg-7 col-xl-8 text-left align-self-center">
                           <h4><b><a href="/produtos/${value.produto.id}" class="text-decoration-none text-danger">${value.produto.nomeProduto}</a></b></h4>
                           <h5>
-                            <small>${value.tamanhoProduto.tamanho}</small>
+                            <small>Tamanho: ${value.tamanhoProduto.tamanho}</small>
+                          </h5>
+                          <h5>
+                            <small>Com logomarca: ${value.comLogomarca ? 'Sim' : 'Não'}</small>
                           </h5>
                         </div>
                         <div class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
