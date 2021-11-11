@@ -7,7 +7,7 @@ module.exports = {
     listarPedidos: async (req, res) => {
         
         const clienteId = req.session.usuario.Cliente.id;
-        const pedidos = await Pedido.findAll({ where: { clienteId }, include: [ TipoPagamento, StatusPedido, TipoEnvio ] });
+        const pedidos = await Pedido.findAll({ where: { clienteId }, include: [ TipoPagamento, StatusPedido, TipoEnvio, Endereco, TamanhoProduto ] });
 
         res.render('minha-conta/pedidos', { pedidos, menu: 'pedidos' });
    
