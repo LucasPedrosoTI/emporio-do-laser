@@ -1,4 +1,4 @@
-<%- include('../components/head') %> <%- include('../components/navbar') %>
+<%- include('../components/head') %> <%- include('../components/navbar') %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
 
 <section>
   <div class="corpo container-fluid text-branco">
@@ -15,28 +15,33 @@
           </div>
 
           <!-- FOREACH -->
+          <% pedidos.forEach(pedido => { %>
+                      
+            
+
           <div class="list-group-item list-group-item-action" aria-current="true">
             <div class="row g-1">
               <strong class="col-sm m-w-130">Nº do Pedido</strong>
-              <p class="col-sm">123456789</p>
+              <p class="col-sm"><%= pedido.id %> </p>
             </div>
             <div class="row g-1">
               <strong class="col-sm m-w-130">Pagamento</strong>
-              <p class="col-sm">Cartão</p>
+              <p class="col-sm"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
             </div>
             <div class="row g-1">
               <strong class="col-sm m-w-130">Status</strong>
-              <p class="col-sm">Enviado</p>
+              <p class="col-sm"><%= pedido.StatusPedido.descricao %></p>
             </div>
             <div class="row g-1">
               <strong class="col-sm m-w-130">Valor Total</strong>
-              <p class="col-sm">R$ 100,00</p>
+              <p class="col-sm">R$ <%= pedido.subtotal %> </p>
             </div>
             <div class="row g-1">
-              <strong class="col-sm m-w-130">Rastreamento</strong>
-              <p class="col-sm">EMP-283902183</p>
+              <strong class="col-sm m-w-130">Tipo de Envio</strong>
+              <p class="col-sm"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
             </div>
           </div>
+          <% }); %>
           <!-- FINAL FOREACH -->
         </div>
       </div>
