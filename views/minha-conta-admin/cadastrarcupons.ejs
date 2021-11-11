@@ -54,6 +54,7 @@
                 <label class="form-check-label" for="<%= categoria.nomeCategoria %>"> <%= categoria.nomeCategoria %> </label>
               </div>
               <% }) %>
+              <%- include('../components/error-alert', {error}) %>
             </div>
           </div>
 

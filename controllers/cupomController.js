@@ -7,6 +7,10 @@ module.exports = {
     try {
       const { codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categorias } = req.body;
 
+      if(!categorias) {
+        throw new Error('Selecione pelo menos uma categoria.')
+      }
+
       const cupom = await Cupom.create({
         codigo,
         descricao,
@@ -16,14 +20,24 @@ module.exports = {
         ehPorcentagem,
       });
 
-      await CupomCategoria.bulkCreate(
-        categorias.map(categoriaId => ({
+      if(categorias.length > 1){
+        await CupomCategoria.bulkCreate(
+          categorias.map(categoriaId => ({
+            cupomId: cupom.id,
+            categoriaId,
+          }))
+        );
+      } else {
+        let categoriaId = categorias
+        await CupomCategoria.create({
           cupomId: cupom.id,
           categoriaId,
-        }))
-      );
+        }); 
+      }
+
     } catch (error) {
-      return res.render('minha-conta-admin/cadastrarcupons', { error: error.message, menu: 'cupons' });
+      const categorias = await Categoria.findAll();
+      return res.render('minha-conta-admin/cadastrarcupons', { categorias, error: error.message, menu: 'cupons' });
     }
 
     return res.redirect('/minha-conta/cupons');
