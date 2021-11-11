@@ -328,3 +328,21 @@ body {
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
   border-radius: 5px;
 }
+
+.alinhamento-produtos{
+  display: inline-block;
+  width: 100%;
+}
+
+
+.form-switch .form-check-input {
+  width: 70px;
+  height: 30px;
+  background-color: var(--secundaria);
+  margin-right: 20px;
+}
+
+.titlepersonalizavel{
+  color: var(--primaria);
+  margin-top:10px; 
+}

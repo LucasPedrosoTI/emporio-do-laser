@@ -10,7 +10,50 @@
         <hr class="mb-4" />
 
         <!-- CODIGO AQUI -->
+        <div class="row g-3 max-width-610p">
+          <div class="col-sm-12">
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action" aria-current="true">
+                <div class="row g-1">
+                  <a href="/minha-conta/meusprodutos" class="col-sm-12 btn btn-primary">Cadastrar Produto</a>
+                </div>
+              </div>
+              <div class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1"></h5>
+                </div>
+                <div class="mb-3 alinhamento-produtos">
+                
+                <div class="foto">
+                  <img src=" https://thumbs.dreamstime.com/b/texto-vermelho-do-selo-do-exemplo-43363006.jpg" width="200px">
+                </div>  
+                
+                <div class="descrição">
+                  
+                  <div class="textoss">
 
+                    <p class="mb-1">Nome, Preço, Habilitado?, Descrição, Categoria </p>
+                    <p class="mb-1">Tamanhos disponíveis, Quantidade Estoque, Personalizável<span></span></p>  
+                  
+                  </div>
+                </div>
+                
+                </div>
+                <div class="row">
+                  <form class="col-sm-6 mb-2" action="" method="get">
+                    <input type="hidden" name="cupomId" value="" />
+                    <input type="submit" value="Editar" class="btn btn-primary btn-tabela" />
+                  </form>
+
+                  <form class="col-sm-6" action="#" method="post">
+                    <input type="hidden" name="id" value="" />
+                    <input type="submit" value="Desabilitar/Habilitar" class="btn btn-primary btn-tabela" onClick="if(!(confirm('Deseja mesmo desativar este cupom?'))) return false" />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- FIM DO CODIGO -->
       </div>
     </div>
