@@ -5,11 +5,11 @@ module.exports = {
     await queryInterface.bulkInsert('Tipo_envio', [
       {
         id: 1,
-        opcao1: Correios,
+        nomeTipoEnvio: 'Correios',
       },
       {
         id: 2,
-        opcao2: ClickEntregas,
+        nomeTipoEnvio: 'ClickEntregas',
       },
     ]);
   },
