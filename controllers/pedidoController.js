@@ -1,16 +1,25 @@
-const { Pedido, TipoPagamento, TipoEnvio, StatusPedido, PedidoProduto, Categoria, Produto, ImagemProduto, TamanhoProduto, Usuario, Cliente, PessoaJuridica, PessoaFisica, Endereco }  = require('../database/models');
+const { Pedido, TipoPagamento, TipoEnvio, StatusPedido, Produto, TamanhoProduto, Endereco, Cupom } = require('../database/models');
 
 const { currencyFormatter } = require('../utils/formatter');
 
 module.exports = {
+  listarPedidos: async (req, res) => {
+    const clienteId = req.session.usuario.Cliente.id;
+    const pedidos = await Pedido.findAll({
+      where: { clienteId },
+      include: [
+        TipoPagamento,
+        StatusPedido,
+        TipoEnvio,
+        Endereco,
+        Cupom,
+        {
+          model: TamanhoProduto,
+          include: [Produto],
+        },
+      ],
+    });
 
-    listarPedidos: async (req, res) => {
-        
-        const clienteId = req.session.usuario.Cliente.id;
-        const pedidos = await Pedido.findAll({ where: { clienteId }, include: [ TipoPagamento, StatusPedido, TipoEnvio, Endereco, TamanhoProduto ] });
-
-        res.render('minha-conta/pedidos', { pedidos, menu: 'pedidos' });
-   
-    },
-
-}
+    res.render('minha-conta/pedidos', { pedidos, menu: 'pedidos' });
+  },
+};

@@ -185,8 +185,6 @@ $('#btnAplicarCupom').on('click', async function (e) {
   const response = await fetch(`/cupoms/validar-cupom?codigoCupom=${codigoCupom}&categorias=${Array.from(categorias)}`);
   const cupom = await response.json();
 
-  console.log(cupom);
-
   if (!response.ok) {
     if ($('#cupom-alert').length) return;
 

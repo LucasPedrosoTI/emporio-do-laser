@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Endereco extends Model {
     static associate(models) {
       Endereco.belongsTo(models.Cliente);
+      Endereco.hasMany(models.Pedido);
     }
   }
   Endereco.init(
