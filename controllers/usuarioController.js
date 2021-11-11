@@ -2,6 +2,11 @@ const { Usuario, Cliente, PessoaJuridica, PessoaFisica, Endereco } = require('..
 const isValidCPF = require('../utils/validaCpf');
 const isValidCNPJ = require('../utils/validaCnpj');
 const bcrypt = require('bcrypt');
+require('dotenv').config();
+const mailgun = require('mailgun-js')({
+  apiKey: process.env.MAILGUN_KEY,
+  domain: 'sandbox0f5b4592763f40378b2621ba5625fbba.mailgun.org',
+});
 
 module.exports = {
   logar: async (req, res) => {
@@ -201,6 +206,26 @@ module.exports = {
     }
 
     return res.redirect('/minha-conta/enderecos');
+  },
+
+  enviarEmail: async (req, res) => {
+    const { nome, email, subject, text } = req.body;
+
+    const data = {
+      from: `${nome} <${email}>`,
+      to: 'lucas.pedrosoti@gmail.com',
+      subject,
+      text,
+    };
+
+    mailgun.messages().send(data, (error, body) => {
+      if (error) {
+        res.render('sac', { message: error.message, alertType: 'danger' });
+      } else {
+        console.log(body);
+        res.render('sac', { message: 'Enviado com sucesso', alertType: 'success' });
+      }
+    });
   },
 };
 

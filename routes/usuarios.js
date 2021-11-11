@@ -13,4 +13,6 @@ router.put('/alterar-endereco', usuarioController.alterarEndereco);
 router.delete('/excluir-endereco', usuarioController.excluirEndereco);
 router.post('/cadastrar-endereco', usuarioController.cadastrarEndereco);
 
+router.post('/enviar-email', usuarioController.enviarEmail);
+
 module.exports = router;

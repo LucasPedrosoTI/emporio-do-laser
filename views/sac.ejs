@@ -4,11 +4,13 @@
   <section>
     <div class="content-center">
       <div class="container max-width-test">
+        <%- include('components/alert', {message, alertType}) %>
         <h1 class="font-size-25 rosa margin-bottom-20px">Entre em contato conosco para dúvidas e orçamentos!</h1>
-        <form class="form-sac" method="" action="">
-          <input class="field espacamento" type="text" name="name" placeholder="  Nome" aria-label="text" />
-          <input class="field espacamento" type="email" name="email" placeholder="  E-mail" aria-label="email" />
-          <textarea class="field espacamento contato-assunto" type="field" name="message" placeholder="  Assunto" aria-label="text"></textarea>
+        <form class="form-sac" method="post" action="/usuarios/enviar-email">
+          <input class="field espacamento" type="text" name="nome" placeholder="Nome" aria-label="text" required />
+          <input class="field espacamento" type="email" name="email" placeholder="  E-mail" aria-label="email" required />
+          <input class="field espacamento" type="text" name="subject" placeholder="Assunto" aria-label="assunto" required />
+          <textarea class="field espacamento contato-assunto" type="field" name="text" placeholder="Mensagem" aria-label="text" required></textarea>
           <button class="btn-sac espacamento" type="submit">Enviar</button>
         </form>
       </div>

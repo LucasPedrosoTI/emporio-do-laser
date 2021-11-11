@@ -48,6 +48,8 @@ app.use(cookieLogin);
 app.use(function (req, res, next) {
   res.locals.USUARIO = req.session.usuario;
   res.locals.error = null;
+  res.locals.message = null;
+  res.locals.alertType = null;
   res.locals.menu = null;
   res.locals.title = 'Empório do Laser';
   next();
