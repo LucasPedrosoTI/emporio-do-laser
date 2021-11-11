@@ -21,46 +21,52 @@
           <div onclick="detalharPedido('<%= pedido.id %>')" class="list-group-item list-group-item-action" aria-current="true">
             <div class="row g-1">
               <strong class="col-sm m-w-130">Nº do Pedido</strong>
-              <p class="col-sm"><%= pedido.id %> </p>
+              <p class="col-sm mb-1"><%= pedido.id %> </p>
             </div>
             <div class="row g-1">
               <strong class="col-sm m-w-130">Pagamento</strong>
-              <p class="col-sm"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
+              <p class="col-sm mb-1"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
             </div>
             <div class="row g-1">
               <strong class="col-sm m-w-130">Status</strong>
-              <p class="col-sm"><%= pedido.StatusPedido.descricao %></p>
+              <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
             </div>
             <div class="row g-1">
               <strong class="col-sm m-w-130">Valor Total</strong>
-              <p class="col-sm">R$ <%= pedido.subtotal %> </p>
+              <p class="col-sm mb-1">R$ <%= pedido.subtotal %> </p>
             </div>
             <div class="row g-1">
               <strong class="col-sm m-w-130">Tipo de Envio</strong>
-              <p class="col-sm"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
+              <p class="col-sm mb-1"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
             </div>
             <!-- DETALHES DO PEDIDO -->
             <div id="<%= pedido.id %>" class="detalhesPedido">
               <div class="list-group-item list-group-item-action" aria-current="true">
 
                 <div class="row g-1 mb-3">
-                  <div class="d-flex w-100 mb-2">
+                  <div class="col-sm w-100 mb-2">
                     <i class="bi bi-geo-alt me-2"></i>
-                    <strong>Endereço de Entrega</strong>
+                    <u>
+                      <strong>Endereço de Entrega</strong>
+                    </u>          
                   </div>
-                  <p class="mb-1"><strong>Logradouro:</strong> <%= pedido.Endereco.rua %></p> 
-                  <p class="mb-1"><strong>Numero:</strong> <%= pedido.Endereco.numero %></p> 
-                  <p class="mb-1"><strong>Complemento:</strong> <%= pedido.Endereco.complemento %></p> 
-                  <p class="mb-1"><strong>Bairro:</strong> <%= pedido.Endereco.bairro %></p> 
-                  <p class="mb-1"><strong>Cidade:</strong> <%= pedido.Endereco.cidade %></p>
-                  <p class="mb-1"><strong>Estado:</strong> <%= pedido.Endereco.estado %></p> 
-                  <p class="mb-1"><strong>CEP:</strong> <%= pedido.Endereco.cep %></p>   
+                  <div>
+                    <p class="mb-1"><strong>Logradouro:</strong> <%= pedido.Endereco.rua %></p> 
+                    <p class="mb-1"><strong>Numero:</strong> <%= pedido.Endereco.numero %></p> 
+                    <p class="mb-1"><strong>Complemento:</strong> <%= pedido.Endereco.complemento %></p> 
+                    <p class="mb-1"><strong>Bairro:</strong> <%= pedido.Endereco.bairro %></p> 
+                    <p class="mb-1"><strong>Cidade:</strong> <%= pedido.Endereco.cidade %></p>
+                    <p class="mb-1"><strong>Estado:</strong> <%= pedido.Endereco.estado %></p> 
+                    <p class="mb-1"><strong>CEP:</strong> <%= pedido.Endereco.cep %></p>   
+                  </div>
                 </div>
                 <hr>
                 <div class="row g-1 list">
-                  <div class="d-flex w-100 mb-2">
+                  <div class="col-sm w-100 mb-2">
                     <i class="bi bi-box-seam me-2"></i>
-                    <strong>Produtos Adquiridos</strong>
+                    <u>
+                      <strong>Produtos Adquiridos</strong>
+                    </u>
                   </div>
 
                   <!-- segundo forEach -->
