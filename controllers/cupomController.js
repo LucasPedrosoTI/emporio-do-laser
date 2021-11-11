@@ -85,10 +85,10 @@ module.exports = {
       const cupom = await Cupom.update({
         codigo,
         descricao,
-        taxaDeDesconto: ehPorcentagem == 1 ? taxaDeDesconto / 100 : taxaDeDesconto,
+        taxaDeDesconto: ehPorcentagem == 1 ? parseFloat(taxaDeDesconto) / 100 : parseFloat(taxaDeDesconto),
         dataExpiracao,
         habilitado,
-        ehPorcentagem,
+        ehPorcentagem: ehPorcentagem == 1,
       },
       {
         where: { id }
