@@ -128,3 +128,13 @@ selectEndereco.addEventListener('change', async function (e) {
   estado.innerText = endereco.estado;
   cep.innerText = endereco.cep;
 });
+
+$('input[name="tipoPagamentoId"]').on('click change', function (e) {
+  const tipoPagamento = $('input[name="tipoPagamentoId"]:checked')[0];
+
+  if (tipoPagamento.value != 1) {
+    $('#campos-cartao').hide();
+  } else {
+    $('#campos-cartao').show();
+  }
+});
