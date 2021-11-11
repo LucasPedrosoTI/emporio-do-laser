@@ -338,7 +338,6 @@ body {
 .form-switch .form-check-input {
   width: 70px;
   height: 30px;
-  background-color: var(--secundaria);
   margin-right: 20px;
 }
 
