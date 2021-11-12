@@ -83,8 +83,8 @@ function listarItens(data) {
                             </button>
                           </div>
                           <div class="text-right mt-2">
-                            <small class="text-secondary"> Valor: R$ ${value.tamanhoProduto.preco}</small><br>
-                            <span class="text-dark">Subtotal: R$ ${totalItem}</span>
+                            <small class="text-secondary"> Valor: ${currencyformatter.format(value.tamanhoProduto.preco)}</small><br>
+                            <span class="text-dark">Subtotal: ${currencyformatter.format(totalItem)}</span>
                           </div>
                         </div>
                       </div>
@@ -101,7 +101,7 @@ function listarItens(data) {
               <div class="bloco_2">
                 <li class="list-group-item py-3">
                   <div class="text-end">
-                    <h4 class="text-dark mb-3"><b>Total: R$ ${total}</b></h4>
+                    <h4 class="text-dark mb-3"><b>Total: ${currencyformatter.format(total)}</b></h4>
                       <a href="/produtos" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
                       <a href="/carrinho/pagamento" class="btn btn-primary btn-lg">Fechar Compra</a>
                   </div>

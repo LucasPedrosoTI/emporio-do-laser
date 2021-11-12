@@ -1,7 +1,5 @@
 const { Pedido, TipoPagamento, TipoEnvio, StatusPedido, Produto, TamanhoProduto, Endereco, Cupom } = require('../database/models');
 
-const { currencyFormatter } = require('../utils/formatter');
-
 module.exports = {
   listarPedidos: async (req, res) => {
     const clienteId = req.session.usuario.Cliente.id;

@@ -4,7 +4,7 @@ module.exports = {
   listar: (req, res) => {
     if (!req.session.carrinho)
       req.session.carrinho = [
-        {
+        /*{
           produto: {
             id: 2,
             nomeProduto: 'Cakeboard Quadrado',
@@ -56,7 +56,7 @@ module.exports = {
           tamanhoProduto: { id: 8, produtoId: 4, tamanho: '15 cm', quantidade: 15, peso: 0.4, preco: '15', createdAt: '2021-11-11T01:48:00.000Z', updatedAt: '2021-11-11T01:48:00.000Z', ProdutoId: 4 },
           qtd: '1',
           comLogomarca: false,
-        },
+        },*/
       ];
 
     return res.json(req.session.carrinho);

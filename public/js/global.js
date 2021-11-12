@@ -34,3 +34,14 @@ $(document).ready(function () {
   });
   $('.selectonfocus').mask('00/00/0000', { selectOnFocus: true });
 });
+
+const currencyformatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+});
+
+const percentFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'percent',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
