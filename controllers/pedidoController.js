@@ -9,7 +9,7 @@ module.exports = {
         TipoPagamento,
         StatusPedido,
         TipoEnvio,
-        Endereco,
+        { model: Endereco, paranoid: false },
         Cupom,
         {
           model: TamanhoProduto,

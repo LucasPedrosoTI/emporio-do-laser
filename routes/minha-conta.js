@@ -4,6 +4,7 @@ const auth = require('../middlewares/auth');
 const usuarioController = require('../controllers/usuarioController');
 const cupomController = require('../controllers/cupomController');
 const pedidoController = require('../controllers/pedidoController');
+const enderecoController = require('../controllers/enderecoController');
 
 /* GET nav bar Produtos */
 
@@ -19,7 +20,7 @@ router.get('/dados', auth, function (req, res, next) {
   res.render('minha-conta/dados', { menu: 'dados' });
 });
 
-router.get('/enderecos', auth, usuarioController.listarEnderecos);
+router.get('/enderecos', auth, enderecoController.listarEnderecos);
 
 router.get('/logo', auth, function (req, res, next) {
   res.render('minha-conta/logo', { menu: 'logo' });
@@ -29,12 +30,9 @@ router.get('/cadastrarendereco', auth, function (req, res, next) {
   res.render('minha-conta/cadastrarendereco', { menu: 'enderecos' });
 });
 
-router.get('/editarendereco', auth, usuarioController.editarEnderecos);
+router.get('/editarendereco', auth, enderecoController.editarEnderecos);
 
 router.get('/pedidos', auth, pedidoController.listarPedidos);
-
-
-
 
 // ADMINISTRADOR
 

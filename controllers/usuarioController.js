@@ -156,58 +156,6 @@ module.exports = {
     return res.redirect('/minha-conta/logo');
   },
 
-  cadastrarEndereco: async (req, res) => {
-    try {
-      const { destinatario, rua, numero, complemento, bairro, cidade, estado, cep } = req.body;
-      const { id: clienteId } = req.session.usuario.Cliente;
-
-      await Endereco.create({ clienteId, destinatario, rua, numero, complemento, bairro, cidade, estado, cep });
-    } catch (error) {
-      return res.render('minha-conta/cadastrarendereco', { error: error.message, menu: 'enderecos' });
-    }
-
-    return res.redirect('/minha-conta/enderecos');
-  },
-
-  listarEnderecos: async (req, res) => {
-    let clienteId = req.session.usuario.Cliente.id;
-    Endereco.findAll({ where: { clienteId } }).then(function (enderecos) {
-      res.render('minha-conta/enderecos', { title: 'Minha Conta: Endereços', enderecos: enderecos, menu: 'enderecos' });
-    });
-  },
-
-  editarEnderecos: async (req, res) => {
-    const { enderecoId } = req.query;
-
-    const endereco = await Endereco.findByPk(enderecoId);
-
-    res.render('minha-conta/editarendereco', { title: 'Minha Conta: Alterar Endereço', endereco, menu: 'enderecos' });
-  },
-
-  alterarEndereco: async (req, res) => {
-    try {
-      const { id, destinatario, rua, numero, complemento, bairro, cidade, estado, cep } = req.body;
-
-      await Endereco.update({ destinatario, rua, numero, complemento, bairro, cidade, estado, cep }, { where: { id } });
-    } catch (error) {
-      return res.render('minha-conta/editarendereco', { error: error.message, menu: 'enderecos' });
-    }
-
-    return res.redirect('/minha-conta/enderecos');
-  },
-
-  excluirEndereco: async (req, res) => {
-    try {
-      const { id } = req.body;
-
-      await Endereco.destroy({ where: { id } });
-    } catch (error) {
-      return res.render('minha-conta/enderecos', { error: error.message, menu: 'enderecos' });
-    }
-
-    return res.redirect('/minha-conta/enderecos');
-  },
-
   enviarEmail: async (req, res) => {
     const { nome, email, subject, text } = req.body;
 
