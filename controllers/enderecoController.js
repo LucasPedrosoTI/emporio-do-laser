@@ -17,7 +17,7 @@ module.exports = {
     res.render('minha-conta/enderecos', { enderecos, menu: 'enderecos' });
   },
 
-  editarEnderecos: async (req, res) => {
+  renderEditarEnderecos: async (req, res) => {
     const { enderecoId } = req.query;
 
     const endereco = await Endereco.findByPk(enderecoId);
@@ -32,20 +32,20 @@ module.exports = {
       const { destinatario, rua, numero, complemento, bairro, cidade, estado, cep } = req.body;
       await Endereco.create({ clienteId, destinatario, rua, numero, complemento, bairro, cidade, estado, cep });
     } catch (error) {
-      return await renderWithError(clienteId, 'minha-conta/cadastraendereco', error, res);
+      return await renderWithError(clienteId, 'minha-conta/cadastrarendereco', error, res);
     }
 
     return res.redirect('/minha-conta/enderecos');
   },
 
   alterarEndereco: async (req, res) => {
-    try {
-      const { id, destinatario, rua, numero, complemento, bairro, cidade, estado, cep } = req.body;
+    const { id, destinatario, rua, numero, complemento, bairro, cidade, estado, cep } = req.body;
 
+    try {
       await Endereco.update({ destinatario, rua, numero, complemento, bairro, cidade, estado, cep }, { where: { id } });
     } catch (error) {
-      const { id: clienteId } = req.session.usuario.Cliente;
-      return await renderWithError(clienteId, 'minha-conta/editarendereco', error, res);
+      const endereco = await Endereco.findByPk(id);
+      res.render('minha-conta/editarendereco', { endereco, menu: 'enderecos' });
     }
 
     return res.redirect('/minha-conta/enderecos');

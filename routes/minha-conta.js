@@ -30,7 +30,7 @@ router.get('/cadastrarendereco', auth, function (req, res, next) {
   res.render('minha-conta/cadastrarendereco', { menu: 'enderecos' });
 });
 
-router.get('/editarendereco', auth, enderecoController.editarEnderecos);
+router.get('/editarendereco', auth, enderecoController.renderEditarEnderecos);
 
 router.get('/pedidos', auth, pedidoController.listarPedidos);
 
