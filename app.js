@@ -51,6 +51,7 @@ app.use(function (req, res, next) {
   res.locals.message = null;
   res.locals.alertType = null;
   res.locals.menu = null;
+  res.locals.endereco = null;
   res.locals.title = 'Empório do Laser';
   next();
 });
