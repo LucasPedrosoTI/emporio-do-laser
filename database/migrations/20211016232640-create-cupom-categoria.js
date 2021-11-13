@@ -11,12 +11,12 @@ module.exports = {
       cupomId: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        references: { model: 'cupoms', key: 'id' },
+        references: { model: 'Cupoms', key: 'id' },
       },
       categoriaId: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        references: { model: 'categorias', key: 'id' },
+        references: { model: 'Categorias', key: 'id' },
       },
       createdAt: {
         allowNull: false,

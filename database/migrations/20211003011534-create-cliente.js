@@ -11,7 +11,7 @@ module.exports = {
       usuarioId: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        references: { model: 'usuarios', key: 'id' },
+        references: { model: 'Usuarios', key: 'id' },
         onUpdate: 'NO ACTION',
         onDelete: 'RESTRICT',
       },

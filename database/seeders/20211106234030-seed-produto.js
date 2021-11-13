@@ -57,7 +57,7 @@ module.exports = {
       },
     ]);
 
-    return await queryInterface.bulkInsert('Imagens_produtos', [
+    return await queryInterface.bulkInsert('Imagens_Produtos', [
       {
         id: 1,
         nomeImagem: '/img/produtos/cake1.jpg',
@@ -107,7 +107,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Imagens_produtos', null, {});
+    await queryInterface.bulkDelete('Imagens_Produtos', null, {});
 
     return await queryInterface.bulkDelete('Produtos', null, {});
   },

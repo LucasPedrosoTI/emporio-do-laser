@@ -19,7 +19,7 @@ module.exports = {
       clienteId: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        references: { model: 'clientes', key: 'id' },
+        references: { model: 'Clientes', key: 'id' },
       },
       createdAt: {
         allowNull: false,

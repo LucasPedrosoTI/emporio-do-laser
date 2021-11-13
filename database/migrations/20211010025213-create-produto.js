@@ -22,7 +22,7 @@ module.exports = {
       categoriaId: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        references: { model: 'categorias', key: 'id' },
+        references: { model: 'Categorias', key: 'id' },
       },
       createdAt: {
         allowNull: false,

@@ -15,7 +15,7 @@ module.exports = {
       produtoId: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        references: { model: 'produtos', key: 'id' },
+        references: { model: 'Produtos', key: 'id' },
       },
       createdAt: {
         allowNull: false,

@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return await queryInterface.bulkInsert('Status_pedido', [
+    return await queryInterface.bulkInsert('Status_Pedido', [
       {
         id: 1,
         descricao: 'Aguardando Aprovação do Pagamento',
@@ -31,6 +31,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return await queryInterface.bulkDelete('Status_pedido', null, {});
-  }
+    return await queryInterface.bulkDelete('Status_Pedido', null, {});
+  },
 };

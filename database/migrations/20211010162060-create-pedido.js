@@ -11,12 +11,12 @@ module.exports = {
       clienteId: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        references: { model: 'clientes', key: 'id' },
+        references: { model: 'Clientes', key: 'id' },
       },
       statusPedidoId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'status_pedido', key: 'id' },
+        references: { model: 'Status_Pedido', key: 'id' },
       },
       subtotal: {
         type: Sequelize.DECIMAL,
@@ -25,21 +25,21 @@ module.exports = {
       enderecoId: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        references: { model: 'enderecos', key: 'id' },
+        references: { model: 'Enderecos', key: 'id' },
       },
       tipoEnvioId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'tipo_envio', key: 'id' },
+        references: { model: 'Tipo_Envio', key: 'id' },
       },
       cupomId: {
         type: Sequelize.BIGINT,
-        references: { model: 'cupoms', key: 'id' },
+        references: { model: 'Cupoms', key: 'id' },
       },
       tipoPagamentoId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'tipo_pagamento', key: 'id' },
+        references: { model: 'Tipo_Pagamento', key: 'id' },
       },
       boleto: {
         type: Sequelize.STRING,
