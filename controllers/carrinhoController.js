@@ -1,4 +1,4 @@
-const { Endereco, Produto, TamanhoProduto, ImagemProduto, Pedido, PedidoProduto, TipoPagamento, TipoEnvio } = require('../database/models');
+const { Endereco, Produto, TamanhoProduto, ImagemProduto, TipoPagamento, TipoEnvio } = require('../database/models');
 
 module.exports = {
   listar: (req, res) => {
@@ -136,56 +136,5 @@ module.exports = {
     }
 
     res.redirect('/carrinho').json(req.sesion.carrinho);
-  },
-
-  fecharPedido: async (req, res) => {
-    const { id: clienteId } = req.session.usuario.Cliente;
-    const { subtotal, tipoEnvioId, tipoPagamentoId, cupomId, enderecoId } = req.body;
-    const { carrinho } = req.session;
-
-    try {
-      const pedido = await Pedido.create({
-        clienteId,
-        statusPedidoId: 1,
-        subtotal,
-        tipoEnvioId,
-        cupomId,
-        tipoPagamentoId,
-        enderecoId,
-      });
-
-      await PedidoProduto.bulkCreate(
-        carrinho.map(item => {
-          return {
-            pedidoId: pedido.id,
-            tamanhoProdutoId: item.tamanhoProduto.id,
-            quantidade: item.qtd,
-            comLogomarca: item.comLogomarca,
-          };
-        })
-      );
-
-      carrinho.forEach(async item => {
-        await TamanhoProduto.update(
-          {
-            quantidade: parseInt(item.tamanhoProduto.quantidade) - parseInt(item.qtd),
-          },
-          {
-            where: {
-              id: item.tamanhoProduto.id,
-            },
-          }
-        );
-      });
-
-      req.session.carrinho = [];
-    } catch (error) {
-      const enderecos = await Endereco.findAll({ where: { clienteId } });
-      const tiposPagamento = await TipoPagamento.findAll();
-      const tiposEnvio = await TipoEnvio.findAll();
-      return res.render('pagamento', { enderecos, tiposPagamento, tiposEnvio, error: error.message });
-    }
-
-    return res.redirect('/minha-conta/pedidos');
   },
 };
