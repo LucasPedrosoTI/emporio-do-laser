@@ -1,0 +1,62 @@
+<%- include('../components/head') %> <%- include('../components/navbar') %>
+
+<section>
+  <div class="corpo container-fluid text-branco">
+    <div class="row g-1">
+      <%- include('../components/lateral-menu') %>
+
+      <div class="col-sm px-3">
+        <h4>Produtos</h4>
+        <hr class="mb-4" />
+
+        <!-- CODIGO AQUI -->
+        <form class="m-w-800" method="post" action="/produtos/cadastrar-produto?_method=PUT">
+          <div class="row g-3 mb-2">
+            <div class="col-sm">
+              <label class="copy-h6-format text-white">Alterar Produto</label>
+              <input type="text" name="nomeProduto" class="form-control" value="<%= produto.nomeProduto %>" placeholder="Ex: Cakeboard Quadrado" required />
+            </div>
+          </div>
+
+          <div class="row g-3 mb-2">
+            <div class="col-sm">
+              <label class="copy-h6-format text-white">Personalizavel</label>
+              <select class="form-control" name="personalizavel">
+                <option value="1" <%= produto.personalizavel && 'selected' %>>Sim</option>
+                <option value="0" <%= !produto.personalizavel && 'selected' %>>Não</option>
+              </select>
+            </div>
+            <div class="col-sm">
+              <label class="copy-h6-format text-white">Categoria</label>
+              <select class="form-control" name="categoriaId">
+                  <% categorias.forEach(categoria => { %>
+                    <option value="<%= categoria.id %>"><%= categoria.nomeCategoria %></option>
+                  <% }) %>
+                </select>
+            </div>
+          </div>
+
+          <div class="row g-3 mb-2">
+            <div class="col-sm">
+              <label class="copy-h6-format text-white">Imagem</label>
+              <input type="file" name="nomeImagem" class="form-control"/>
+            </div>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-sm">
+              <label class="copy-h6-format text-white">Descricao</label>
+              <textarea type="text" name="descricao" class="form-control" placeholder="Ex: Cakeboard quadrado em MDF." required><%= produto.descricao %> </textarea>
+            </div>
+          </div>
+
+          <input type="hidden" name="id" value="<%= produto.id %>" />
+          <button class="btn btn-primary" type="submit">Salvar</button>
+        </form>
+        <!-- FIM DO CODIGO -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../components/foot') %>

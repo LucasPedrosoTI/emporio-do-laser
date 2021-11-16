@@ -1,0 +1,64 @@
+<%- include('../components/head') %> <%- include('../components/navbar') %>
+
+<section>
+  <div class="corpo container-fluid text-branco">
+    <div class="row g-1">
+      <%- include('../components/lateral-menu') %>
+
+      <div class="col-sm px-3">
+        <h4><%= produto.nomeProduto %> </h4>
+        <hr class="mb-4" />
+
+        <!-- CODIGO AQUI -->
+        <div class="row g-3 max-width-610p">
+          <div class="col-sm-12">
+            <div class="list-group">
+              <div class="list-group-item list-group-item-action mb-3" aria-current="true">
+                <div class="row g-1">
+                  <a href="/minha-conta/estoqueproduto" class="col-sm-12 btn btn-primary">Cadastrar</a>
+                </div>
+              </div>
+              <% tamanhos.forEach(tamanho => { %>
+              <div class="list-group-item list-group-item-action mb-3" aria-current="true">
+                <div class="row g-1 mb-2">
+                  <div class="col-sm d-flex justify-content-between mx-1">
+                    <div>
+                      <strong>Tamanho:</strong>
+                      <span><%= tamanho.tamanho %> </span>
+                    </div>
+                    <div>
+                      <strong>Estoque:</strong>
+                      <span><%= tamanho.quantidade %> </span>
+                    </div>
+                    <div>
+                      <strong>Peso:</strong>
+                      <span><%= tamanho.peso %> </span>
+                    </div>
+                    <div>
+                      <strong>Preço:</strong>
+                      <span class="mb-1"><%= tamanho.preco %> </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-1">
+                  <form class="col-sm" action="/minha-conta/estoqueproduto" method="get">
+                    <input type="hidden" name="produtoId" value="aa" />
+                    <input type="submit" value="Editar" class="btn btn-outline-secondary btn-tabela" />
+                  </form>
+                  <form class="col-sm" action="/minha-conta/estoqueproduto" method="get">
+                    <input type="hidden" name="produtoId" value="aa" />
+                    <input type="submit" value="Excluir" class="btn btn-outline-danger btn-tabela" />
+                  </form>
+                </div>
+              </div>
+              <% }); %>
+            </div>
+          </div>
+        </div>
+        <!-- FIM DO CODIGO -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../components/foot') %>

@@ -45,4 +45,8 @@ router.get('/editarcupons', auth, cupomController.editarCupom);
 
 router.get('/meusprodutos', auth, produtoController.listarProdutos);
 
+router.get('/cadastrarproduto', auth, produtoController.cadastrarProdutoForm);
+router.get('/editarproduto', auth, produtoController.editarProduto);
+router.get('/estoqueproduto', auth, produtoController.estoqueProduto);
+
 module.exports = router;

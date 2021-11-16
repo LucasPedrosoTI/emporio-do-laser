@@ -15,19 +15,18 @@
             <div class="list-group">
               <div class="list-group-item list-group-item-action mb-3" aria-current="true">
                 <div class="row g-1">
-                  <a href="/minha-conta/meusprodutos" class="col-sm-12 btn btn-primary">Cadastrar Produto</a>
+                  <a href="/minha-conta/cadastrarproduto" class="col-sm-12 btn btn-primary">Cadastrar Produto</a>
                 </div>
               </div>
               <% produtos.forEach(produto => { %>
               <div class="list-group-item list-group-item-action mb-3" aria-current="true">
                 <div class="row g-1 mb-2">
-                  <div class="col-sm mx-1">
+                  <div class="col-sm mx-1 mb-1">
                     <img src="<%= produto.ImagemProdutos[0].nomeImagem %>" style="border: 1px solid gray;"/>
                   </div>
                   <div class="col-sm-8 mx-1">
-                    <div class="mb-2">
-                      <strong>Nome:</strong>
-                      <span><%= produto.nomeProduto %></span>
+                    <div class="mb-2" align="center">
+                      <h4><%= produto.nomeProduto %></h4>
                     </div>
                     <div class="mb-2">
                       <strong>Descrição:</strong>
@@ -44,11 +43,18 @@
                   </div>
                 </div>
                 <div class="row g-1">
-                  <div class="col-sm d-flex">
-                    <button class="w-100 btn btn-outline-secondary">Editar</button>
-                    <button class="w-100 mx-1 btn btn-outline-secondary">Tamanho</button>
-                    <button class="w-100 btn btn-outline-danger">Excluir</button>
-                  </div>
+                  <form class="col-sm-4" action="/minha-conta/editarproduto" method="get">
+                    <input type="hidden" name="produtoId" value="<%= produto.id %>" />
+                    <input type="submit" value="Editar" class="btn btn-outline-secondary btn-tabela" />
+                  </form>
+                  <form class="col-sm-4" action="/minha-conta/estoqueproduto" method="get">
+                    <input type="hidden" name="produtoId" value="<%= produto.id %>" />
+                    <input type="submit" value="Estoque" class="btn btn-outline-secondary btn-tabela" />
+                  </form>
+                  <form class="col-sm-4" action="/minha-conta/meusprodutos" method="get">
+                    <input type="hidden" name="produtoId" value="<%= produto.id %>" />
+                    <input type="submit" value="Excluir" class="btn btn-outline-danger btn-tabela" />
+                  </form>
                 </div>
               </div>
               <% }); %>
