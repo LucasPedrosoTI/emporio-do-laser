@@ -41,4 +41,12 @@ module.exports = {
 
     return res.json(tamanhoProduto);
   },
+
+  listarProdutos: async (req, res, next) => {
+
+    const produtos = await Produto.findAll({ include: [ Categoria, ImagemProduto ] });
+
+    res.render('minha-conta-admin/meusprodutos', { produtos, menu: 'produtos' });
+  },
+
 };

@@ -5,6 +5,7 @@ const usuarioController = require('../controllers/usuarioController');
 const cupomController = require('../controllers/cupomController');
 const pedidoController = require('../controllers/pedidoController');
 const enderecoController = require('../controllers/enderecoController');
+const produtoController = require('../controllers/produtoController');
 
 /* GET nav bar Produtos */
 
@@ -38,12 +39,10 @@ router.get('/pedidos', auth, pedidoController.listarPedidos);
 
 router.get('/cupons', auth, cupomController.listarCupoms);
 
-router.get('/meusprodutos', auth, function (req, res, next) {
-  res.render('minha-conta-admin/meusprodutos', { menu: 'produtos' });
-});
-
 router.get('/cadastrarcupons', auth, cupomController.renderCadastrarCupom);
 
 router.get('/editarcupons', auth, cupomController.editarCupom);
+
+router.get('/meusprodutos', auth, produtoController.listarProdutos);
 
 module.exports = router;
