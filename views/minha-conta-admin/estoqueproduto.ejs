@@ -15,7 +15,10 @@
             <div class="list-group">
               <div class="list-group-item list-group-item-action mb-3" aria-current="true">
                 <div class="row g-1">
-                  <a href="/minha-conta/estoqueproduto" class="col-sm-12 btn btn-primary">Cadastrar</a>
+                  <form class="col-sm" action="/minha-conta/cadastrartamanho" method="get">
+                    <input type="hidden" name="produtoId" value="<%= produto.id %>" />
+                    <input type="submit" value="Cadastrar" class="btn btn btn-primary w-100" />
+                  </form>
                 </div>
               </div>
               <% tamanhos.forEach(tamanho => { %>
@@ -41,12 +44,12 @@
                   </div>
                 </div>
                 <div class="row g-1">
-                  <form class="col-sm" action="/minha-conta/estoqueproduto" method="get">
-                    <input type="hidden" name="produtoId" value="aa" />
+                  <form class="col-sm" action="/minha-conta/editartamanho" method="get">
+                    <input type="hidden" name="tamanhoId" value="<%= tamanho.id %>" />
                     <input type="submit" value="Editar" class="btn btn-outline-secondary btn-tabela" />
                   </form>
                   <form class="col-sm" action="/minha-conta/estoqueproduto" method="get">
-                    <input type="hidden" name="produtoId" value="aa" />
+                    <input type="hidden" name="tamanhoId" value="<%= tamanho.id %>" />
                     <input type="submit" value="Excluir" class="btn btn-outline-danger btn-tabela" />
                   </form>
                 </div>

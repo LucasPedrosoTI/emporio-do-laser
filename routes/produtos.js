@@ -9,6 +9,11 @@ router.get('/:id', produtoController.renderProduto);
 router.get('/tamanhos/:id', produtoController.getTamanhoById);
 
 router.post('/cadastrar-produto', produtoController.cadastrarProduto);
-router.put('/cadastrar-produto', produtoController.alterarProduto);
+
+router.put('/alterar-produto', produtoController.alterarProduto);
+
+router.post('/cadastrar-tamanho', produtoController.cadastrarTamanho);
+
+router.put('/alterar-tamanho', produtoController.alterarTamanho);
 
 module.exports = router;

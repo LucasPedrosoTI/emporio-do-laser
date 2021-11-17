@@ -80,7 +80,7 @@ module.exports = {
     const produto = await Produto.update({ nomeProduto, descricao, personalizavel, categoriaId }, { where: { id } });
     
     if(nomeImagem){
-      // CONDIÇÃO PARA ALTERAR IMAGEM DO PRODUTO
+      await ImagemProduto.update({ nomeImagem }, { where: { produtoId: id } })
     }
 
     res.redirect('/minha-conta/meusprodutos');
@@ -95,8 +95,39 @@ module.exports = {
     res.render('minha-conta-admin/estoqueproduto', { tamanhos, produto, menu: 'produtos' });
   },
 
-  adicionarImagem: async (req, res) => {
+  cadastrarTamanhoForm: async (req, res) => {
+    const { produtoId } = req.query;
+
+    res.render('minha-conta-admin/cadastrartamanho', { produtoId, menu: 'produtos' });
+  },
+
+  cadastrarTamanho: async (req, res) => {
+    const { produtoId, tamanho, quantidade, peso, preco } = req.body;
+
+    const produto = await Produto.findByPk(produtoId);
+    const tamanhos = await TamanhoProduto.findAll({ where: { produtoId } });
+    await TamanhoProduto.create({ tamanho, quantidade, peso, preco, produtoId })
+
+    res.render('minha-conta-admin/estoqueproduto', { produto, tamanhos, menu: 'produtos' });
+  },
+
+  editarTamanho: async (req, res) => {
+    const { tamanhoId } = req.query;
+
+    let tamanho = await TamanhoProduto.findByPk(tamanhoId);
+
+    res.render('minha-conta-admin/editartamanho', { tamanho, menu: 'produtos' });
+  },
+
+  alterarTamanho: async (req, res) => {
+    const { id, produtoId, tamanho, quantidade, peso, preco } = req.body;
+
+    await TamanhoProduto.update({ tamanho, quantidade, peso, preco }, { where: { id } });
+
+    const produto = await Produto.findByPk(produtoId);
+    const tamanhos = await TamanhoProduto.findAll({ where: { produtoId } });
     
+    res.render('minha-conta-admin/estoqueproduto', { produto, tamanhos, menu: 'produtos' });
   },
 
 };

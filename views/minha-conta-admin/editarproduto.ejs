@@ -6,14 +6,14 @@
       <%- include('../components/lateral-menu') %>
 
       <div class="col-sm px-3">
-        <h4>Produtos</h4>
+        <h4>Editar Produto</h4>
         <hr class="mb-4" />
 
         <!-- CODIGO AQUI -->
-        <form class="m-w-800" method="post" action="/produtos/cadastrar-produto?_method=PUT">
+        <form class="m-w-800" method="post" action="/produtos/alterar-produto?_method=PUT">
           <div class="row g-3 mb-2">
             <div class="col-sm">
-              <label class="copy-h6-format text-white">Alterar Produto</label>
+              <label class="copy-h6-format text-white">Produto</label>
               <input type="text" name="nomeProduto" class="form-control" value="<%= produto.nomeProduto %>" placeholder="Ex: Cakeboard Quadrado" required />
             </div>
           </div>
