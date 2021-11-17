@@ -100,6 +100,10 @@ module.exports = {
     res.render('minha-conta-admin/historicopedidos', { pedidos, filtro, pedidoStatus, menu: 'historico' });
   },
 
+  gerenciarPedidos: async (req, res) => {
+    res.render('minha-conta-admin/pedidos', { menu: 'pedidos' });
+  },
+
 };
 
 function validarPedido(subtotal, tipoEnvioId, tipoPagamentoId, enderecoId, carrinho, cardData) {

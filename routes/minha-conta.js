@@ -7,6 +7,7 @@ const cupomController = require('../controllers/cupomController');
 const pedidoController = require('../controllers/pedidoController');
 const enderecoController = require('../controllers/enderecoController');
 const produtoController = require('../controllers/produtoController');
+const categoriaController = require('../controllers/categoriaController');
 
 /* GET nav bar Produtos */
 
@@ -36,26 +37,28 @@ router.get('/editarendereco', auth, enderecoController.renderEditarEnderecos);
 
 router.get('/pedidos', auth, pedidoController.listarPedidos);
 
-// ADMINISTRADOR
+// --- ADMINISTRADOR --- //
 
+  // --> Cupons
 router.get('/cupons', authAdmin, cupomController.listarCupoms);
-
 router.get('/cadastrarcupons', authAdmin, cupomController.renderCadastrarCupom);
-
 router.get('/editarcupons', authAdmin, cupomController.editarCupom);
 
+  // --> Produtos
 router.get('/meusprodutos', authAdmin, produtoController.listarProdutos);
-
 router.get('/cadastrarproduto', authAdmin, produtoController.cadastrarProdutoForm);
-
 router.get('/editarproduto', authAdmin, produtoController.editarProduto);
-
 router.get('/estoqueproduto', authAdmin, produtoController.estoqueProduto);
-
 router.get('/cadastrartamanho', authAdmin, produtoController.cadastrarTamanhoForm);
-
 router.get('/editartamanho', authAdmin, produtoController.editarTamanho);
 
-router.get('/historicopedidos', auth, pedidoController.listAllPedidos);
+  // -- Categorias
+router.get('/categorias', authAdmin, categoriaController.listarCategorias);
+
+  // --> Pedidos
+router.get('/gerenciarpedidos', authAdmin, pedidoController.gerenciarPedidos);
+router.get('/historicopedidos', authAdmin, pedidoController.listAllPedidos);
+
+// ----------------------- //
 
 module.exports = router;

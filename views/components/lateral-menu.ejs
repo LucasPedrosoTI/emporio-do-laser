@@ -9,19 +9,25 @@
   <div class="list-group mb-4">
     <a href="/minha-conta/cupons" class="list-group-item list-group-item-action <%=menu=='cupons' && 'active'%>" title="Meus Cupons" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-card-heading ms-2 me-3"></i>
-        <p class="mb-1">Meus Cupons</p>
+        <i class="bi bi-card-heading me-3"></i>
+        <p class="mb-1">Cupons</p>
       </div>
     </a>
     <a href="/minha-conta/meusprodutos" class="list-group-item list-group-item-action <%=menu=='produtos' && 'active'%>" title="Meus Produtos" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-journals ms-2 me-3"></i>
-        <p class="mb-1">Meus Produtos</p>
+        <i class="bi bi-bag-check me-3"></i>
+        <p class="mb-1">Produtos</p>
       </div>
     </a>
-    <a href="#" class="list-group-item list-group-item-action <%=menu=='Pedidos' && 'active'%>" title="Pedidos" aria-current="true">
+    <a href="/minha-conta/categorias" class="list-group-item list-group-item-action <%=menu=='categorias' && 'active'%>" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-cart-check ms-2 me-3"></i>
+        <i class="bi bi-clipboard me-3"></i>
+        <p class="mb-1">Categorias</p>
+      </div>
+    </a>
+    <a href="/minha-conta/gerenciarpedidos" class="list-group-item list-group-item-action <%=menu=='pedidos' && 'active'%>" aria-current="true">
+      <div class="d-flex w-100">
+        <i class="bi bi-cart-check me-3"></i>
         <p class="mb-1">Pedidos</p>
       </div>
     </a>
@@ -31,7 +37,7 @@
   <div class="list-group mb-4">
     <a href="/minha-conta/historicopedidos" class="list-group-item list-group-item-action <%=menu=='historico' && 'active'%>" title="Histórico de Pedidos" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-cart-check ms-2 me-3"></i>
+        <i class="bi bi-clipboard-data me-3"></i>
         <p class="mb-1">Histórico de Pedidos</p>
       </div>
     </a>
@@ -42,7 +48,7 @@
   <div class="list-group mb-4">
     <a href="/minha-conta/pedidos" class="list-group-item list-group-item-action <%=menu=='pedidos' && 'active'%>" title="Meus Pedidos" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-cart ms-2 me-3"></i>
+        <i class="bi bi-cart me-3"></i>
         <p class="mb-1">Meus Pedidos</p>
       </div>
     </a>
@@ -52,39 +58,39 @@
   <div class="list-group">
     <a href="/minha-conta/email" class="list-group-item list-group-item-action <%=menu=='email' && 'active'%>" title="Alterar E-mail" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-at ms-2 me-3"></i>
+        <i class="bi bi-at me-3"></i>
         <p class="mb-1">Alterar E-mail</p>
       </div>
     </a>
     <a href="/minha-conta/senha" class="list-group-item list-group-item-action <%=menu=='senha' && 'active'%>" title="Alterar Senha" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-key ms-2 me-3"></i>
+        <i class="bi bi-key me-3"></i>
         <p class="mb-1">Alterar Senha</p>
       </div>
     </a>
     <% if (USUARIO && !USUARIO.admin) { %>
     <a href="/minha-conta/dados" class="list-group-item list-group-item-action <%=menu=='dados' && 'active'%>" title="Meus Dados" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-person ms-2 me-3"></i>
+        <i class="bi bi-person me-3"></i>
         <p class="mb-1">Meus Dados</p>
       </div>
     </a>
     <a href="/minha-conta/enderecos" class="list-group-item list-group-item-action box-filho <%=menu=='enderecos' && 'active'%>" title="Meus Endereços" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-geo-alt ms-2 me-3"></i>
+        <i class="bi bi-geo-alt me-3"></i>
         <p class="mb-1">Meus Endereços</p>
       </div>
     </a>
     <a href="/minha-conta/logo" class="list-group-item list-group-item-action box-filho <%=menu=='logo' && 'active'%>" title="Meu logo" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-images ms-2 me-3"></i>
+        <i class="bi bi-images me-3"></i>
         <p class="mb-1">Alterar Logo</p>
       </div>
     </a>
     <% } %>
     <form action="/logout" method="POST" class="list-group-item list-group-item-action" aria-current="true">
       <div class="d-flex w-100">
-        <i class="bi bi-x-circle ms-2 me-3"></i>
+        <i class="bi bi-x-circle me-3"></i>
         <button class="mb-1 btnLink">Sair</button>
       </div>
     </form>
