@@ -31,6 +31,10 @@ router.get('/cadastrarendereco', auth, function (req, res, next) {
   res.render('minha-conta/cadastrarendereco', { menu: 'enderecos' });
 });
 
+router.get('/historicopedidos', auth, function (req, res, next) {
+  res.render('minha-conta-admin/historicopedidos', { menu: 'historico' });
+});
+
 router.get('/editarendereco', auth, enderecoController.renderEditarEnderecos);
 
 router.get('/pedidos', auth, pedidoController.listarPedidos);
@@ -54,5 +58,7 @@ router.get('/estoqueproduto', auth, produtoController.estoqueProduto);
 router.get('/cadastrartamanho', auth, produtoController.cadastrarTamanhoForm);
 
 router.get('/editartamanho', auth, produtoController.editarTamanho);
+
+router.get('/historicopedidos', auth, pedidoController.listarPedidos);
 
 module.exports = router;

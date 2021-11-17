@@ -19,6 +19,12 @@
         <p class="mb-1">Meus Produtos</p>
       </div>
     </a>
+    <a href="/minha-conta/historicopedidos" class="list-group-item list-group-item-action <%=menu=='historico' && 'active'%>" title="Histórico de Pedidos" aria-current="true">
+      <div class="d-flex w-100">
+        <i class="bi bi-cart-check ms-2 me-3"></i>
+        <p class="mb-1">Histórico de Pedidos</p>
+      </div>
+    </a>
   </div>
   <% } %> <% if (USUARIO && !USUARIO.admin) { %>
   <h6>Minhas Compras</h6>
