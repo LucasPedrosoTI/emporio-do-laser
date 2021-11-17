@@ -98,7 +98,6 @@ function listarItens(data) {
 
 const selectEndereco = document.getElementById('selectEndereco');
 if (selectEndereco) {
-  const destinatario = document.getElementById('destinatario');
   const rua = document.getElementById('rua');
   const numero = document.getElementById('numero');
   const complemento = document.getElementById('complemento');
@@ -113,7 +112,6 @@ if (selectEndereco) {
     const response = await fetch(`/enderecos/${enderecoId}`);
     const { endereco } = await response.json();
 
-    destinatario.innerText = endereco.destinatario;
     rua.innerText = endereco.rua;
     numero.innerText = endereco.numero;
     complemento.innerText = endereco.complemento;
@@ -121,6 +119,8 @@ if (selectEndereco) {
     cidade.innerText = endereco.cidade;
     estado.innerText = endereco.estado;
     cep.innerText = endereco.cep;
+
+    calcularFrete()(e);
   });
 }
 

@@ -1,6 +1,7 @@
 <%- include('components/head') %> <%- include('components/navbar') %> <% const ehPF = USUARIO.Cliente.ehPessoaFisica; %>
 
 <script src="/js/pagamento.js" defer></script>
+<script src="/js/frete.js" defer></script>
 <script src="/js/cupom.js" defer></script>
 
 <section class="corpo flex-fill">
@@ -45,9 +46,6 @@
 
           <div class="list-group-item mb-4">
             <p>
-              <strong id="destinatario"><%= enderecos[0].destinatario %></strong>
-            </p>
-            <p>
               <strong>Endereço:</strong>
               <span id="rua"> <%= enderecos[0].rua %> </span>, <span id="numero"><%= enderecos[0].numero %></span>
             </p>
@@ -59,7 +57,7 @@
             <p><strong>Cidade: </strong> <span id="cidade"> <%= enderecos[0].cidade %> </span> - <span id="estado"><%= enderecos[0].estado %></span></p>
             <p>
               <strong>CEP: </strong>
-              <span id="cep"> <%= enderecos[0].cep %> </span>
+              <span id="cep"><%=enderecos[0].cep%></span>
             </p>
           </div>
 

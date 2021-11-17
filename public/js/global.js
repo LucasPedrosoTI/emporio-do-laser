@@ -46,3 +46,9 @@ const percentFormatter = new Intl.NumberFormat('pt-BR', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 });
+
+const round = (num, numDecimais) => {
+  const casasDecimais = Math.pow(10, numDecimais);
+
+  return Math.round(num * casasDecimais) / casasDecimais;
+};

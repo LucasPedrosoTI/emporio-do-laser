@@ -7,6 +7,7 @@ const mailgun = require('mailgun-js')({
   apiKey: process.env.MAILGUN_KEY,
   domain: 'sandbox0f5b4592763f40378b2621ba5625fbba.mailgun.org',
 });
+const env = process.env.NODE_ENV || 'development';
 
 module.exports = {
   logar: async (req, res) => {
@@ -27,7 +28,9 @@ module.exports = {
       req.session.usuario = usuario;
 
       if (manterLogado) {
-        res.cookie('manterLogado', usuario.email, { maxAge: 3600000 });
+        res.cookie('manterLogado', usuario.email, {
+          maxAge: env === 'development' ? 1000 * 60 * 60 * 24 * 365 : 1000 * 60 * 60 * 24 * 7, // 1 semana
+        });
       }
 
       res.redirect('minha-conta');

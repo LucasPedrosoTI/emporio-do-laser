@@ -1,5 +1,19 @@
+function returnErrorAlert(message) {
+  return `
+  <div class="alert alert-danger alert-dismissible fade show mt-4" id="cupom-alert" role="alert">
+    <i class="bi bi-x-circle-fill"></i> ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+`;
+}
+
 $('#btnAplicarCupom').on('click', async function (e) {
   e.preventDefault();
+
+  if (!$('input[name="tipoEnvioId"]:checked')[0]) {
+    $('.form-cupom').append(returnErrorAlert('Selecione um tipo de envio antes'));
+    return;
+  }
 
   const codigoCupom = $('#codigoCupom').val();
 
@@ -9,18 +23,13 @@ $('#btnAplicarCupom').on('click', async function (e) {
   if (!response.ok) {
     if ($('#cupom-alert').length) return;
 
-    const errorAlert = `
-      <div class="alert alert-danger alert-dismissible fade show mt-4" id="cupom-alert" role="alert">
-        <i class="bi bi-x-circle-fill"></i> ${cupom.error}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    `;
+    const errorAlert = returnErrorAlert(cupom.error);
     $('.form-cupom').append(errorAlert);
     return;
   }
 
   const desconto = cupom.ehPorcentagem ? total * cupom.taxaDeDesconto : cupom.taxaDeDesconto;
-  const totalComDesconto = parseFloat(total) - desconto;
+  const totalComDesconto = totalComFrete > 0 ? totalComFrete - desconto : total - desconto;
 
   if (cupomJaAdd) {
     $('.bloco-cupom h6').text(`${cupom.codigo} - ${cupom.ehPorcentagem ? percentFormatter.format(cupom.taxaDeDesconto) : currencyformatter.format(cupom.taxaDeDesconto)}`);
@@ -44,7 +53,7 @@ $('#btnAplicarCupom').on('click', async function (e) {
     $(bloco).insertBefore($('.bloco_2'));
 
     $('#divItens').append(`
-              <div class="bloco-descontoo">
+              <div class="bloco-desconto">
                 <li class="list-group-item d-flex justify-content-between">
                   <span>Total com desconto(R$)</span>
                   <strong id="text_desconto">${currencyformatter.format(totalComDesconto)}</strong>
@@ -55,6 +64,6 @@ $('#btnAplicarCupom').on('click', async function (e) {
     cupomJaAdd = true;
   }
 
-  $('#total_input').val(totalComDesconto);
+  $('#total_input').val(round(totalComDesconto, 2));
   $('#cupomId').val(cupom.id);
 });
