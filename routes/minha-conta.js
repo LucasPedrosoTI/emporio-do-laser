@@ -56,10 +56,6 @@ router.get('/cadastrartamanho', authAdmin, produtoController.cadastrarTamanhoFor
 
 router.get('/editartamanho', authAdmin, produtoController.editarTamanho);
 
-router.get('/historicopedidos', authAdmin, function (req, res, next) {
-  res.render('minha-conta-admin/historicopedidos', { menu: 'historico' });
-});
-
-// router.get('/historicopedidos', auth, pedidoController.listarPedidos);
+router.get('/historicopedidos', auth, pedidoController.listAllPedidos);
 
 module.exports = router;

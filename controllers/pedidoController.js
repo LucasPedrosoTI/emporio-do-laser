@@ -77,6 +77,29 @@ module.exports = {
 
     return res.redirect('/minha-conta/pedidos');
   },
+
+  listAllPedidos: async (req, res) => {
+    const { filtro } = req.query;
+    const pedidos = await Pedido.findAll({
+      include: [
+        TipoPagamento,
+        StatusPedido,
+        TipoEnvio,
+        { model: Endereco, paranoid: false },
+        Cupom,
+        {
+          model: TamanhoProduto,
+          include: [Produto],
+        },
+      ],
+      order: [['id', 'DESC']],
+    });
+
+    const pedidoStatus = await StatusPedido.findAll();
+
+    res.render('minha-conta-admin/historicopedidos', { pedidos, filtro, pedidoStatus, menu: 'historico' });
+  },
+
 };
 
 function validarPedido(subtotal, tipoEnvioId, tipoPagamentoId, enderecoId, carrinho, cardData) {

@@ -8,84 +8,109 @@
       <%- include('../components/lateral-menu') %>
 
       <div class="col-sm px-3">
-        <h4>Histórico de Pedidos</h4>
+        <h4><%= filtro == null ? 'Histórico de Pedidos' : filtro %></h4>
         <hr class="mb-4" />
 
         <!-- CODIGO AQUI -->
         <div class="list-group max-width-610p centraliza-itens">
-          <!-- <div class="list-group-item list-group-item-action" aria-current="true">
-            <div class="row g-1"></div>
-          </div> -->
+
+          <div class="list-group-item list-group-item-action my-2">
+            <form class="row g-1" action="/minha-conta/historicopedidos" method="get">
+              <div class="col-sm">
+                <button class="btn btn-outline-success w-100 my-1">Filtrar</button>
+              </div>
+              <div class="col-sm-8">
+                <select class="form-control my-1" name="filtro">
+                  <option value="Todos">Todos</option>
+                  <% pedidoStatus.forEach(status => { %>
+                    <option value="<%= status.descricao %>"><%= status.descricao %></option>
+                  <% }); %>
+                </select>
+              </div>
+            </form>
+          </div>
 
           <!-- FOREACH -->
-
-          <div onclick="detalharPedido('0')" class="list-group-item list-group-item-action my-3" aria-current="true">
-              <div class="row g-1">
-                <strong class="col-sm m-w-130">Nº do Pedido</strong>
-                <p class="col-sm mb-1"></p>
-              </div>
-              <div class="row g-1">
-                <strong class="col-sm m-w-130">Pagamento</strong>
-                <p class="col-sm mb-1"></p>
-              </div>
-              <div class="row g-1">
-                <strong class="col-sm m-w-130">Status</strong>
-                <p class="col-sm mb-1"></p>
-              </div>
-              <div class="row g-1">
-                <strong class="col-sm m-w-130">Valor Total</strong>
-                <p class="col-sm mb-1"></p>
-              </div>
-              <div class="row g-1">
-                <strong class="col-sm m-w-130">Tipo de Envio</strong>
-                <p class="col-sm mb-1"></p>
-              </div>
-            <!-- DETALHES DO PEDIDO -->
-            <div id="0" class="detalhesPedido my-3">
-              <div class="list-group-item list-group-item-action" aria-current="true">
-                <div class="row g-1 mb-3">
-                  <div class="col-sm w-100 mb-2">
-                    <i class="bi bi-geo-alt me-2"></i>
-                    <u>
-                      <strong>Endereço de Entrega</strong>
-                    </u>
+          <% pedidos.forEach(pedido => { %>
+            <% if (pedido.StatusPedido.descricao == filtro || filtro == "Todos") { %>
+              <div onclick="detalharPedido('<%= pedido.id %>')" class="list-group-item list-group-item-action my-2" aria-current="true">
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Nº do Pedido</strong>
+                  <p class="col-sm mb-1"><%= pedido.id %></p>
+                </div>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Pagamento</strong>
+                  <p class="col-sm mb-1"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
+                </div>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Status</strong>
+                  <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
+                </div>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Valor Total</strong>
+                  <p class="col-sm mb-1"><%= currencyFormatter.format(pedido.subtotal) %></p>
+                </div>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Tipo de Envio</strong>
+                  <p class="col-sm mb-1"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
+                </div>
+                <% if (pedido.Cupom) { %>
+                  <div class="row g-1">
+                    <strong class="col-sm m-w-130">Cupom</strong>
+                    <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
                   </div>
-                  <div>
-                    <p class="mb-1"><strong>Logradouro:</strong></p>
-                    <p class="mb-1"><strong>Numero:</strong></p>
-                    <p class="mb-1"><strong>Complemento:</strong></p>
-                    <p class="mb-1"><strong>Bairro:</strong></p>
-                    <p class="mb-1"><strong>Cidade:</strong></p>
-                    <p class="mb-1"><strong>Estado:</strong></p>
-                    <p class="mb-1"><strong>CEP:</strong></p>
+                <% } %>
+                <!-- DETALHES DO PEDIDO -->
+                <div id="<%= pedido.id %>" class="detalhesPedido">
+                  <div class="list-group-item list-group-item-action" aria-current="true">
+                    <div class="row g-1 mb-3">
+                      <div class="col-sm w-100 mb-2">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        <u>
+                        <strong>Endereço de Entrega</strong>
+                        </u>
+                      </div>
+                      <div>
+                        <p class="mb-1"><strong>Logradouro:</strong> <%= pedido.Endereco.rua %></p>
+                        <p class="mb-1"><strong>Numero:</strong> <%= pedido.Endereco.numero %></p>
+                        <p class="mb-1"><strong>Complemento:</strong> <%= pedido.Endereco.complemento %></p>
+                        <p class="mb-1"><strong>Bairro:</strong> <%= pedido.Endereco.bairro %></p>
+                        <p class="mb-1"><strong>Cidade:</strong> <%= pedido.Endereco.cidade %></p>
+                        <p class="mb-1"><strong>Estado:</strong> <%= pedido.Endereco.estado %></p>
+                        <p class="mb-1"><strong>CEP:</strong> <%= pedido.Endereco.cep %></p>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="row g-1 list">
+                      <div class="col-sm w-100 mb-2">
+                        <i class="bi bi-box-seam me-2"></i>
+                        <u>
+                          <strong>Produtos Adquiridos</strong>
+                        </u>
+                      </div>
+
+                      <!-- segundo forEach -->
+                      <% pedido.TamanhoProdutos.forEach(tProd => { %>
+                        <div class="list-group-item">
+                          <p class="mb-1"><strong>Nome:</strong> <%= tProd.Produto.nomeProduto %></p>
+                          <p class="mb-1"><strong>Tamanho:</strong> <%= tProd.tamanho %></p>
+                          <p class="mb-1"><strong>Com Logomarca?:</strong> <%= tProd.PedidoProduto.comLogomarca ? 'Sim' : 'Não' %></p>
+                          <p class="mb-1"><strong>Quantidade:</strong> <%= tProd.PedidoProduto.quantidade %></p>
+                        </div>
+                      <% }) %>
+                      <!-- fim do segundo forEach -->
+                    </div>
                   </div>
                 </div>
-                <hr />
-                <div class="row g-1 list">
-                  <div class="col-sm w-100 mb-2">
-                    <i class="bi bi-box-seam me-2"></i>
-                    <u>
-                      <strong>Produtos Adquiridos</strong>
-                    </u>
-                  </div>
-
-                  <!-- segundo forEach -->
-                  <div class="list-group-item">
-                    <p class="mb-1"><strong>Nome:</strong></p>
-                    <p class="mb-1"><strong>Tamanho:</strong></p>
-                    <p class="mb-1"><strong>Com Logomarca?:</strong></p>
-                    <p class="mb-1"><strong>Quantidade:</strong></p>
-                  </div>
-
-                  <!-- fim do segundo forEach -->
-                </div>
+                <!-- Detalhes do Pedido -->
               </div>
-            </div>
-            <!-- Detalhes do Pedido -->
-          </div>
+            <% } %>    
+          <% }); %>
           <!-- FINAL FOREACH -->
-        
+
+        </div>
         <!-- FIM DO CODIGO -->
+        
       </div>
     </div>
   </div>
