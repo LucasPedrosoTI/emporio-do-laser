@@ -56,10 +56,11 @@ module.exports = {
 
   cadastrarProduto: async (req, res) => {
     console.log(req.body);
-    const { nomeProduto, personalizavel, categoriaId, nomeImagem, descricao } = req.body;
+    const { nomeProduto, personalizavel, categoriaId, nomeImagem, descricao, tamanho, quantidade, peso, preco } = req.body;
 
     const produto = await Produto.create({ nomeProduto, descricao, personalizavel, categoriaId });
     await ImagemProduto.create({ nomeImagem, produtoId: produto.id });
+    await TamanhoProduto.create({ tamanho, quantidade, peso, preco, produtoId: produto.id })
 
     res.redirect('/minha-conta/meusprodutos');
     

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middlewares/auth');
+const authAdmin = require('../middlewares/authAdmin');
 const usuarioController = require('../controllers/usuarioController');
 const cupomController = require('../controllers/cupomController');
 const pedidoController = require('../controllers/pedidoController');
@@ -31,34 +32,34 @@ router.get('/cadastrarendereco', auth, function (req, res, next) {
   res.render('minha-conta/cadastrarendereco', { menu: 'enderecos' });
 });
 
-router.get('/historicopedidos', auth, function (req, res, next) {
-  res.render('minha-conta-admin/historicopedidos', { menu: 'historico' });
-});
-
 router.get('/editarendereco', auth, enderecoController.renderEditarEnderecos);
 
 router.get('/pedidos', auth, pedidoController.listarPedidos);
 
 // ADMINISTRADOR
 
-router.get('/cupons', auth, cupomController.listarCupoms);
+router.get('/cupons', authAdmin, cupomController.listarCupoms);
 
-router.get('/cadastrarcupons', auth, cupomController.renderCadastrarCupom);
+router.get('/cadastrarcupons', authAdmin, cupomController.renderCadastrarCupom);
 
-router.get('/editarcupons', auth, cupomController.editarCupom);
+router.get('/editarcupons', authAdmin, cupomController.editarCupom);
 
-router.get('/meusprodutos', auth, produtoController.listarProdutos);
+router.get('/meusprodutos', authAdmin, produtoController.listarProdutos);
 
-router.get('/cadastrarproduto', auth, produtoController.cadastrarProdutoForm);
+router.get('/cadastrarproduto', authAdmin, produtoController.cadastrarProdutoForm);
 
-router.get('/editarproduto', auth, produtoController.editarProduto);
+router.get('/editarproduto', authAdmin, produtoController.editarProduto);
 
-router.get('/estoqueproduto', auth, produtoController.estoqueProduto);
+router.get('/estoqueproduto', authAdmin, produtoController.estoqueProduto);
 
-router.get('/cadastrartamanho', auth, produtoController.cadastrarTamanhoForm);
+router.get('/cadastrartamanho', authAdmin, produtoController.cadastrarTamanhoForm);
 
-router.get('/editartamanho', auth, produtoController.editarTamanho);
+router.get('/editartamanho', authAdmin, produtoController.editarTamanho);
 
-router.get('/historicopedidos', auth, pedidoController.listarPedidos);
+router.get('/historicopedidos', authAdmin, function (req, res, next) {
+  res.render('minha-conta-admin/historicopedidos', { menu: 'historico' });
+});
+
+// router.get('/historicopedidos', auth, pedidoController.listarPedidos);
 
 module.exports = router;
