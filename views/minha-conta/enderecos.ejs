@@ -31,12 +31,12 @@
                 <div class="row">
                   <form class="col-sm-6" action="/minha-conta/editarendereco" method="get">
                     <input type="hidden" name="enderecoId" value="<%= endereco.id %>" />
-                    <input type="submit" value="Editar" class="btn btn-primary btn-tabela" />
+                    <input type="submit" value="Editar" class="btn btn-outline-secondary btn-tabela" />
                   </form>
 
                   <form class="col-sm-6" action="/usuarios/excluir-endereco?_method=DELETE" method="post">
                     <input type="hidden" name="id" value="<%= endereco.id %>" />
-                    <input type="submit" value="Excluir" class="btn btn-primary btn-tabela" onClick="if(!(confirm('Deseja mesmo excluir este endereço?'))) return false" />
+                    <input type="submit" value="Excluir" class="btn btn-outline-danger btn-tabela" onClick="if(!(confirm('Deseja mesmo excluir este endereço?'))) return false" />
                   </form>
                 </div>
               </div>

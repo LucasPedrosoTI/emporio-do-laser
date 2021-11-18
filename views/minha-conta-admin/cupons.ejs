@@ -36,12 +36,12 @@
                 <div class="row">
                   <form class="col-sm-6 mb-2" action="/minha-conta/editarcupons" method="get">
                     <input type="hidden" name="cupomId" value="<%= cupom.id %> " />
-                    <input type="submit" value="Editar" class="btn btn-primary btn-tabela" />
+                    <input type="submit" value="Editar" class="btn btn-outline-secondary btn-tabela" />
                   </form>
 
                   <form class="col-sm-6" action="#" method="post">
                     <input type="hidden" name="id" value="<%= cupom.id %> " />
-                    <input type="submit" value="Desabilitar/Habilitar" class="btn btn-primary btn-tabela" onClick="if(!(confirm('Deseja mesmo desativar este cupom?'))) return false" />
+                    <input type="submit" value="Desabilitar/Habilitar" class="btn btn-outline-secondary btn-tabela"/>
                   </form>
                 </div>
               </div>
