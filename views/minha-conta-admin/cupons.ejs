@@ -23,7 +23,7 @@
 
               <div class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1"><%= cupom.codigo %></h5>
+                  <h5 class="mb-2"><%= cupom.codigo %></h5>
                 </div>
                 <div class="mb-3">
                   <p class="mb-1">É Porcentagem? <%= cupom.ehPorcentagem ? 'Sim' : 'Não' %>, Taxa de Desconto: <%= cupom.taxaDeDesconto %></p>
@@ -31,7 +31,8 @@
                   <p class="mb-1">
                     Categoria: <% cupom.Categoria.forEach((categoria, index) => { %> <%= index + 1 === cupom.Categoria.length ? categoria.nomeCategoria : categoria.nomeCategoria + ', ' %> <% }) %>
                   </p>
-                  <small>Descrição: <%= cupom.descricao %> - Habilitado? <%= cupom.habilitado ? 'Sim' : 'Não' %> </small>
+                  <p class="mb-1">Descrição: <span><%= cupom.descricao %></span></p>
+                  <p class="mb-1">Habilitado: <span><%= cupom.habilitado ? 'Sim' : 'Não' %></span></p>
                 </div>
                 <div class="row">
                   <form class="col-sm-6 mb-2" action="/minha-conta/editarcupons" method="get">
@@ -39,9 +40,10 @@
                     <input type="submit" value="Editar" class="btn btn-outline-secondary btn-tabela" />
                   </form>
 
-                  <form class="col-sm-6" action="#" method="post">
-                    <input type="hidden" name="id" value="<%= cupom.id %> " />
-                    <input type="submit" value="Desabilitar/Habilitar" class="btn btn-outline-secondary btn-tabela"/>
+                  <form class="col-sm-6" action="/cupoms/habilitar-desabilitar?_method=PUT" method="post">
+                    <input type="hidden" name="id" value="<%= cupom.id %>" />
+                    <input type="hidden" name="habilitado" value="<%= cupom.habilitado ? '0' : '1' %>" />
+                    <input type="submit" value="<%= cupom.habilitado ? 'Desabilitar' : 'Habilitar' %>" class="btn btn-outline-secondary btn-tabela"/>
                   </form>
                 </div>
               </div>

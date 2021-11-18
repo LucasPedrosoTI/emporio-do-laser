@@ -1,5 +1,11 @@
 <%- include('../components/head') %> <%- include('../components/navbar') %>
 
+<!-- CONVERSÃO DATA EXPIRAÇÃO -->
+<% const dataFormatter = new Intl.DateTimeFormat('en-ZA', { timeZone: 'UTC'}) %>
+<% let expiracao = dataFormatter.format(cupom.dataExpiracao) %> 
+<% for(let i = 0; i < 2; i++) { expiracao = expiracao.replace("/","-") } %>
+<!-- ------------------------ -->
+
 <section>
   <div class="corpo container-fluid text-branco">
     <div class="row g-1">
@@ -40,9 +46,9 @@
                 <option value="<%= cupom.habilitado == 0 ? 1 : 0 %>"><%= cupom.habilitado == 0 ? 'Sim' : 'Não' %></option>
               </select>
             </div>
-            <div class="col-sm">
+            <div class="col-sm">              
               <label class="copy-h6-format text-white">Expiração</label>
-              <input type="date" name="dataExpiracao" value="<%= cupom.dataExpiracao %> " class="form-control" required />
+              <input type="date" name="dataExpiracao" value="<%= expiracao %>" class="form-control" required />
             </div>
           </div>
 

@@ -78,7 +78,6 @@ module.exports = {
   },
 
   alterarCupom: async (req, res) => {
-    console.log(req.body);
     try {
       const { id, codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categorias } = req.body;
 
@@ -109,7 +108,20 @@ module.exports = {
     return res.redirect('/minha-conta/cupons');
   },
 
-  habilitarDesabilitarCupom: (req, res) => {},
+  habilitarDesabilitarCupom: async (req, res) => {
+    const { id, habilitado } = req.body;
+
+    await Cupom.update(
+      {
+        habilitado
+      },
+      {
+        where: { id },
+      }
+    );
+
+    res.redirect('/minha-conta/cupons');
+  },
 
   validarCupom: async (req, res) => {
     try {
