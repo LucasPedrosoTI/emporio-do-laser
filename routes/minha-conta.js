@@ -58,6 +58,7 @@ router.get('/categorias', authAdmin, categoriaController.listarCategorias);
   // --> Pedidos
 router.get('/gerenciarpedidos', authAdmin, pedidoController.gerenciarPedidos);
 router.get('/historicopedidos', authAdmin, pedidoController.listAllPedidos);
+router.put('/alterar-status-pedido', pedidoController.alterarStatusPedido);
 
 // ----------------------- //
 

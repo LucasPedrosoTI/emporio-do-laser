@@ -79,7 +79,7 @@ module.exports = {
   },
 
   listAllPedidos: async (req, res) => {
-    const { filtro } = req.query;
+    let { filtro } = req.query;
     const pedidos = await Pedido.findAll({
       include: [
         TipoPagamento,
@@ -95,14 +95,50 @@ module.exports = {
       order: [['id', 'DESC']],
     });
 
+    if (filtro == null){
+      filtro = "Todos";
+      console.log(filtro)
+    }
+
     const pedidoStatus = await StatusPedido.findAll();
 
     res.render('minha-conta-admin/historicopedidos', { pedidos, filtro, pedidoStatus, menu: 'historico' });
   },
 
   gerenciarPedidos: async (req, res) => {
-    res.render('minha-conta-admin/pedidos', { menu: 'pedidos' });
+    let { filtro } = req.query;
+    const pedidos = await Pedido.findAll({
+      include: [
+        TipoPagamento,
+        StatusPedido,
+        TipoEnvio,
+        { model: Endereco, paranoid: false },
+        Cupom,
+        {
+          model: TamanhoProduto,
+          include: [Produto],
+        },
+      ],
+      order: [['id', 'ASC']],
+    });
+
+    if (filtro == null){
+      filtro = "Todos";
+      console.log(filtro)
+    }
+
+    const pedidoStatus = await StatusPedido.findAll();
+
+    res.render('minha-conta-admin/pedidos', { pedidos, filtro, pedidoStatus, menu: 'pedidos' });
   },
+
+  alterarStatusPedido: async (req, res) => {
+    const { pedidoId, statusPedidoId } = req.body;
+
+    await Pedido.update({ statusPedidoId }, { where: { id: pedidoId } });
+
+    res.redirect('/minha-conta/gerenciarpedidos');
+  }
 
 };
 

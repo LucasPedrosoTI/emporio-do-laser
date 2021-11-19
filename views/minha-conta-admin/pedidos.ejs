@@ -1,4 +1,6 @@
 <%- include('../components/head') %> <%- include('../components/navbar') %>
+<% const currencyFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', }) %>
+<% const dateFormatter = new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }) %>
 
 <section>
   <div class="corpo container-fluid text-branco">
@@ -6,11 +8,132 @@
       <%- include('../components/lateral-menu') %>
 
       <div class="col-sm px-3">
-        <h4>Pedidos</h4>
+        <h4>Pedidos <%= filtro == 'Todos' ? '' : filtro %></h4>
         <hr class="mb-4" />
 
         <!-- CODIGO AQUI -->
+        <div class="list-group max-width-610p centraliza-itens">
 
+          <div class="list-group-item list-group-item-action my-2">
+            <form class="row g-1" action="/minha-conta/gerenciarpedidos" method="get">
+              <div class="col-sm">
+                <button class="btn btn-outline-success w-100 my-1">Filtrar</button>
+              </div>
+              <div class="col-sm-8">
+                <select class="form-control my-1" name="filtro">
+                  <option value="Todos">Todos</option>
+                  <option value="Em Andamento">Em Andamento</option>
+                  <option value="Concluidos">Concluidos</option>
+                  <option value="Cancelados">Cancelados</option>
+                </select>
+              </div>
+            </form>
+          </div>
+
+          <% let status1 = "Aguardando Aprovação do Pagamento"; %>
+          <% let status2 = "Pagamento Aprovado"; %>
+          <% let status3 = "Em Produção"; %>
+          <% let status4 = "Pedido Enviado"; %>
+          <% let status5 = "Pedido Concluido"; %>
+          <% let status6 = "Pedido Cancelado"; %>
+
+          <% if (filtro == "Em Andamento") { %>
+            <% status5 = ""; %>
+            <% status6 = ""; %>
+          <% } else if (filtro == "Concluidos") { %>
+            <% status1 = ""; %>
+            <% status2 = ""; %>
+            <% status3 = ""; %>
+            <% status4 = ""; %>
+            <% status6 = ""; %>
+          <% } else if (filtro == "Cancelados") {%>
+            <% status1 = ""; %>
+            <% status2 = ""; %>
+            <% status3 = ""; %>
+            <% status4 = ""; %>
+            <% status5 = ""; %>
+          <% }  %>
+          <!-- FOREACH -->
+          <% pedidos.forEach(pedido => { %>
+            <% if ( pedido.StatusPedido.descricao == status1 || pedido.StatusPedido.descricao == status2 || pedido.StatusPedido.descricao == status3 || pedido.StatusPedido.descricao == status4 || pedido.StatusPedido.descricao == status5 || pedido.StatusPedido.descricao == status6 ) { %>
+
+              <div onclick="detalharPedido('<%= pedido.id %>')" class="list-group-item list-group-item-action my-2" aria-current="true">
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Nº do Pedido</strong>
+                  <p class="col-sm mb-1"><%= pedido.id %></p>
+                </div>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Pagamento</strong>
+                  <p class="col-sm mb-1"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
+                </div>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Status</strong>
+                  <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
+                </div>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Valor Total</strong>
+                  <p class="col-sm mb-1"><%= currencyFormatter.format(pedido.subtotal) %></p>
+                </div>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Tipo de Envio</strong>
+                  <p class="col-sm mb-1"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
+                </div>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Data do Pedido</strong>
+                  <p class="col-sm mb-1"><%= dateFormatter.format(pedido.TipoEnvio.createdAt)  %></p>
+                </div>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Atualização</strong>
+                  <p class="col-sm mb-1"><%= dateFormatter.format(pedido.TipoEnvio.updatedAt) %></p>
+                </div>
+                <% if (pedido.Cupom) { %>
+                  <div class="row g-1">
+                    <strong class="col-sm m-w-130">Cupom</strong>
+                    <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
+                  </div>
+                <% } %>
+                <!-- Button trigger modal Editar -->
+                <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#id_<%= pedido.id %>">
+                  Alterar Status
+                </button>
+                <!-- DETALHES DO PEDIDO -->
+                <!--  -->
+                <!-- Detalhes do Pedido -->
+              </div>
+            <% } %>
+            
+            <!-- Modal Editar -->
+            <div class="modal fade" id="id_<%= pedido.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <form class="modal-content text-black" action="/minha-conta/alterar-status-pedido?_method=PUT" method="post">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Editar Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <label class="copy-h6-format">Status Atual</label>
+                    <div class="form-control my-1 mb-4"><%= pedido.StatusPedido.descricao %></div>
+
+                    <label class="copy-h6-format">Novo Status</label>
+                    <select class="form-control my-1" name="statusPedidoId">
+                      <% pedidoStatus.forEach(status => { %>
+                        <option value="<%= status.id %>"><%= status.descricao %></option>
+                      <% }); %>
+                    </select>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>     
+                    <input type="hidden" name="pedidoId" value="<%= pedido.id %>"/>
+                    <button type="submit" class="btn btn-outline-success">Salvar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- fim Modal Editar -->
+            
+          <% }); %>
+          <!-- FINAL FOREACH -->
+        </div>
         <!-- FIM DO CODIGO -->
       </div>
     </div>
