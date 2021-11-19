@@ -80,7 +80,16 @@ module.exports = {
 
   listAllPedidos: async (req, res) => {
     let { filtro } = req.query;
-    const pedidos = await Pedido.findAll({
+    let status;
+
+    if(filtro == null || filtro == "Todos"){
+      filtro = "Todos";
+      status = [5, 6];
+    } else {
+      status = filtro;
+    }
+    
+    let pedidos = await Pedido.findAll({
       include: [
         TipoPagamento,
         StatusPedido,
@@ -91,14 +100,10 @@ module.exports = {
           model: TamanhoProduto,
           include: [Produto],
         },
-      ],
+      ], 
+      where: { statusPedidoId: status },
       order: [['id', 'DESC']],
     });
-
-    if (filtro == null){
-      filtro = "Todos";
-      console.log(filtro)
-    }
 
     const pedidoStatus = await StatusPedido.findAll();
 
@@ -107,7 +112,16 @@ module.exports = {
 
   gerenciarPedidos: async (req, res) => {
     let { filtro } = req.query;
-    const pedidos = await Pedido.findAll({
+    let status;
+
+    if(filtro == null || filtro == "Todos"){
+      filtro = "Todos";
+      status = [1, 2, 3, 4];
+    } else {
+      status = filtro;
+    }
+    
+    let pedidos = await Pedido.findAll({
       include: [
         TipoPagamento,
         StatusPedido,
@@ -118,15 +132,11 @@ module.exports = {
           model: TamanhoProduto,
           include: [Produto],
         },
-      ],
+      ], 
+      where: { statusPedidoId: status },
       order: [['id', 'ASC']],
     });
-
-    if (filtro == null){
-      filtro = "Todos";
-      console.log(filtro)
-    }
-
+         
     const pedidoStatus = await StatusPedido.findAll();
 
     res.render('minha-conta-admin/pedidos', { pedidos, filtro, pedidoStatus, menu: 'pedidos' });
@@ -139,7 +149,6 @@ module.exports = {
 
     res.redirect('/minha-conta/gerenciarpedidos');
   }
-
 };
 
 function validarPedido(subtotal, tipoEnvioId, tipoPagamentoId, enderecoId, carrinho, cardData) {

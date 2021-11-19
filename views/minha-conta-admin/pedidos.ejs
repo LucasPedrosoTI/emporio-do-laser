@@ -9,7 +9,7 @@
       <%- include('../components/lateral-menu') %>
 
       <div class="col-sm px-3">
-        <h4><%= filtro == 'Todos' ? 'Pedidos' : filtro %></h4>
+        <h4><%= filtro == 'Todos' ? 'Pedidos' : pedidoStatus[filtro - 1].descricao %></h4>
         <hr class="mb-4" />
 
         <!-- CODIGO AQUI -->
@@ -23,129 +23,105 @@
               <div class="col-sm-8">
                 <select class="form-control my-1" name="filtro">
                   <option value="Todos">Todos</option>
-                  <option value="Aguardando Aprovação do Pagamento">Aguardando Aprovação do Pagamento</option>
-                  <option value="Pagamento Aprovado">Pagamento Aprovado</option>
-                  <option value="Em Produção">Em Produção</option>
-                  <option value="Pedido Enviado">Pedido Enviado</option>
+                  <option value="1">Aguardando Aprovação do Pagamento</option>
+                  <option value="2">Pagamento Aprovado</option>
+                  <option value="3">Em Produção</option>
+                  <option value="4">Pedido Enviado</option>
                 </select>
               </div>
             </form>
           </div>
 
           <!-- Condições Filtro -->
-          <% let status1 = "Aguardando Aprovação do Pagamento"; %>
-          <% let status2 = "Pagamento Aprovado"; %>
-          <% let status3 = "Em Produção"; %>
-          <% let status4 = "Pedido Enviado"; %>
 
-          <% if (filtro == "Aguardando Aprovação do Pagamento") { %>
-            <% status2 = ""; %>
-            <% status3 = ""; %>
-            <% status4 = ""; %>
-          <% } else if (filtro == "Pagamento Aprovado") { %>
-            <% status1 = ""; %>
-            <% status3 = ""; %>
-            <% status4 = ""; %>
-          <% } else if (filtro == "Em Produção") {%>
-            <% status1 = ""; %>
-            <% status2 = ""; %>
-            <% status4 = ""; %>
-          <% } else if (filtro == "Pedido Enviado") {%>
-            <% status1 = ""; %>
-            <% status2 = ""; %>
-            <% status3 = ""; %>
-          <% }  %>
           <!-- ---------------- -->
 
           <!-- FOREACH -->
           <% pedidos.forEach(pedido => { %>
-            <% if ( pedido.StatusPedido.descricao == status1 || pedido.StatusPedido.descricao == status2 || pedido.StatusPedido.descricao == status3 || pedido.StatusPedido.descricao == status4 ) { %>
-
-              <div onclick="detalharPedido('<%= pedido.id %>')" class="list-group-item list-group-item-action my-2" aria-current="true">
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Nº do Pedido</strong>
-                  <p class="col-sm mb-1"><%= pedido.id %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Pagamento</strong>
-                  <p class="col-sm mb-1"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Status</strong>
-                  <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Valor Total</strong>
-                  <p class="col-sm mb-1"><%= currencyFormatter.format(pedido.subtotal) %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Tipo de Envio</strong>
-                  <p class="col-sm mb-1"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Data do Pedido</strong>
-                  <p class="col-sm mb-1"><%= dateFormatter.format(pedido.TipoEnvio.createdAt)  %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Atualização</strong>
-                  <p class="col-sm mb-1"><%= dateFormatter.format(pedido.TipoEnvio.updatedAt) %></p>
-                </div>
-                <% if (pedido.Cupom) { %>
-                  <div class="row g-1">
-                    <strong class="col-sm m-w-130">Cupom</strong>
-                    <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
-                  </div>
-                <% } %>
-                <!-- Button trigger modal Editar -->
-                <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#id_<%= pedido.id %>">
-                  Alterar Status
-                </button>
-                <!-- DETALHES DO PEDIDO -->
-                <div id="<%= pedido.id %>" class="detalhesPedido my-3">
-                  <div class="list-group-item list-group-item-action" aria-current="true">
-                    <div class="row g-1 mb-3">
-                      <div class="col-sm w-100 mb-2">
-                        <i class="bi bi-geo-alt me-2"></i>
-                        <u>
-                        <strong>Endereço de Entrega</strong>
-                        </u>
-                      </div>
-                      <div>
-                        <p class="mb-1"><strong>Logradouro:</strong> <%= pedido.Endereco.rua %></p>
-                        <p class="mb-1"><strong>Numero:</strong> <%= pedido.Endereco.numero %></p>
-                        <p class="mb-1"><strong>Complemento:</strong> <%= pedido.Endereco.complemento %></p>
-                        <p class="mb-1"><strong>Bairro:</strong> <%= pedido.Endereco.bairro %></p>
-                        <p class="mb-1"><strong>Cidade:</strong> <%= pedido.Endereco.cidade %></p>
-                        <p class="mb-1"><strong>Estado:</strong> <%= pedido.Endereco.estado %></p>
-                        <p class="mb-1"><strong>CEP:</strong> <%= pedido.Endereco.cep %></p>
-                      </div>
-                    </div>
-                    <hr />
-                    <div class="row g-1 list">
-                      <div class="col-sm w-100 mb-2">
-                        <i class="bi bi-box-seam me-2"></i>
-                        <u>
-                          <strong>Produtos Adquiridos</strong>
-                        </u>
-                      </div>
-
-                      <!-- segundo forEach -->
-                      <% pedido.TamanhoProdutos.forEach(tProd => { %>
-                        <div class="list-group-item">
-                          <p class="mb-1"><strong>Nome:</strong> <%= tProd.Produto.nomeProduto %></p>
-                          <p class="mb-1"><strong>Tamanho:</strong> <%= tProd.tamanho %></p>
-                          <p class="mb-1"><strong>Com Logomarca?:</strong> <%= tProd.PedidoProduto.comLogomarca ? 'Sim' : 'Não' %></p>
-                          <p class="mb-1"><strong>Quantidade:</strong> <%= tProd.PedidoProduto.quantidade %></p>
-                        </div>
-                      <% }) %>
-                      <!-- fim do segundo forEach -->
-                    </div>
-                  </div>
-                </div>
-                <!-- Detalhes do Pedido -->
+            <div onclick="detalharPedido('<%= pedido.id %>')" class="list-group-item list-group-item-action my-2" aria-current="true">
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Nº do Pedido</strong>
+                <p class="col-sm mb-1"><%= pedido.id %></p>
               </div>
-            <% } %>
-            
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Pagamento</strong>
+                <p class="col-sm mb-1"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
+              </div>
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Status</strong>
+                <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
+              </div>
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Valor Total</strong>
+                <p class="col-sm mb-1"><%= currencyFormatter.format(pedido.subtotal) %></p>
+              </div>
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Tipo de Envio</strong>
+                <p class="col-sm mb-1"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
+              </div>
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Data do Pedido</strong>
+                <p class="col-sm mb-1"><%= dateFormatter.format(pedido.createdAt)  %></p>
+              </div>
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Atualização</strong>
+                <p class="col-sm mb-1"><%= dateFormatter.format(pedido.updatedAt) %></p>
+              </div>
+              <% if (pedido.Cupom) { %>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Cupom</strong>
+                  <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
+                </div>
+              <% } %>
+              <!-- Button trigger modal Editar -->
+              <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#id_<%= pedido.id %>">
+                Alterar Status
+              </button>
+              <!-- DETALHES DO PEDIDO -->
+              <div id="<%= pedido.id %>" class="detalhesPedido my-3">
+                <div class="list-group-item list-group-item-action" aria-current="true">
+                  <div class="row g-1 mb-3">
+                    <div class="col-sm w-100 mb-2">
+                      <i class="bi bi-geo-alt me-2"></i>
+                      <u>
+                      <strong>Endereço de Entrega</strong>
+                      </u>
+                    </div>
+                    <div>
+                      <p class="mb-1"><strong>Logradouro:</strong> <%= pedido.Endereco.rua %></p>
+                      <p class="mb-1"><strong>Numero:</strong> <%= pedido.Endereco.numero %></p>
+                      <p class="mb-1"><strong>Complemento:</strong> <%= pedido.Endereco.complemento %></p>
+                      <p class="mb-1"><strong>Bairro:</strong> <%= pedido.Endereco.bairro %></p>
+                      <p class="mb-1"><strong>Cidade:</strong> <%= pedido.Endereco.cidade %></p>
+                      <p class="mb-1"><strong>Estado:</strong> <%= pedido.Endereco.estado %></p>
+                      <p class="mb-1"><strong>CEP:</strong> <%= pedido.Endereco.cep %></p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row g-1 list">
+                    <div class="col-sm w-100 mb-2">
+                      <i class="bi bi-box-seam me-2"></i>
+                      <u>
+                        <strong>Produtos Adquiridos</strong>
+                      </u>
+                    </div>
+
+                    <!-- segundo forEach -->
+                    <% pedido.TamanhoProdutos.forEach(tProd => { %>
+                      <div class="list-group-item">
+                        <p class="mb-1"><strong>Nome:</strong> <%= tProd.Produto.nomeProduto %></p>
+                        <p class="mb-1"><strong>Tamanho:</strong> <%= tProd.tamanho %></p>
+                        <p class="mb-1"><strong>Com Logomarca?:</strong> <%= tProd.PedidoProduto.comLogomarca ? 'Sim' : 'Não' %></p>
+                        <p class="mb-1"><strong>Quantidade:</strong> <%= tProd.PedidoProduto.quantidade %></p>
+                      </div>
+                    <% }) %>
+                    <!-- fim do segundo forEach -->
+                  </div>
+                </div>
+              </div>
+              <!-- Detalhes do Pedido -->
+            </div>
+           
             <!-- Modal Editar -->
             <div class="modal fade" id="id_<%= pedido.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered">

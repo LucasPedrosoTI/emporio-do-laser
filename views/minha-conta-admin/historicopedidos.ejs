@@ -9,7 +9,7 @@
       <%- include('../components/lateral-menu') %>
 
       <div class="col-sm px-3">
-        <h4><%= filtro == 'Todos' ? 'Histórico de Pedidos' : filtro %></h4>
+        <h4><%= filtro == 'Todos' ? 'Histórico de Pedidos' : pedidoStatus[filtro - 1].descricao %></h4>
         <hr class="mb-4" />
 
         <!-- CODIGO AQUI -->
@@ -23,65 +23,54 @@
               <div class="col-sm-8">
                 <select class="form-control my-1" name="filtro">
                   <option value="Todos">Todos</option>
-                  <option value="Concluidos">Concluidos</option>
-                  <option value="Cancelados">Cancelados</option>
+                  <option value="5">Concluidos</option>
+                  <option value="6">Cancelados</option>
                 </select>
               </div>
             </form>
           </div>
 
-          <% let status1 = "Pedido Concluido"; %>
-          <% let status2 = "Pedido Cancelado"; %>
-
-          <% if (filtro == "Concluidos") { %>
-            <% status2 = ""; %>
-          <% } else if (filtro == "Cancelados") { %>
-            <% status1 = ""; %>
-          <% } %>
-
           <!-- FOREACH -->
           <% pedidos.forEach(pedido => { %>
-            <% if (pedido.StatusPedido.descricao == status1 || pedido.StatusPedido.descricao == status2) { %>
-              <div onclick="detalharPedido('<%= pedido.id %>')" class="list-group-item list-group-item-action my-2" aria-current="true">
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Nº do Pedido</strong>
-                  <p class="col-sm mb-1"><%= pedido.id %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Pagamento</strong>
-                  <p class="col-sm mb-1"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Status</strong>
-                  <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Valor Total</strong>
-                  <p class="col-sm mb-1"><%= currencyFormatter.format(pedido.subtotal) %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Tipo de Envio</strong>
-                  <p class="col-sm mb-1"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Data do Pedido</strong>
-                  <p class="col-sm mb-1"><%= dateFormatter.format(pedido.TipoEnvio.createdAt)  %></p>
-                </div>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Atualização</strong>
-                  <p class="col-sm mb-1"><%= dateFormatter.format(pedido.TipoEnvio.updatedAt) %></p>
-                </div>
-                <% if (pedido.Cupom) { %>
-                  <div class="row g-1">
-                    <strong class="col-sm m-w-130">Cupom</strong>
-                    <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
-                  </div>
-                <% } %>
-                <!-- DETALHES DO PEDIDO -->
-                <!--  -->
-                <!-- Detalhes do Pedido -->
+            <div onclick="detalharPedido('<%= pedido.id %>')" class="list-group-item list-group-item-action my-2" aria-current="true">
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Nº do Pedido</strong>
+                <p class="col-sm mb-1"><%= pedido.id %></p>
               </div>
-            <% } %>    
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Pagamento</strong>
+                <p class="col-sm mb-1"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
+              </div>
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Status</strong>
+                <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
+              </div>
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Valor Total</strong>
+                <p class="col-sm mb-1"><%= currencyFormatter.format(pedido.subtotal) %></p>
+              </div>
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Tipo de Envio</strong>
+                <p class="col-sm mb-1"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
+              </div>
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Data do Pedido</strong>
+                <p class="col-sm mb-1"><%= dateFormatter.format(pedido.TipoEnvio.createdAt)  %></p>
+              </div>
+              <div class="row g-1">
+                <strong class="col-sm m-w-130">Atualização</strong>
+                <p class="col-sm mb-1"><%= dateFormatter.format(pedido.TipoEnvio.updatedAt) %></p>
+              </div>
+              <% if (pedido.Cupom) { %>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Cupom</strong>
+                  <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
+                </div>
+              <% } %>
+              <!-- DETALHES DO PEDIDO -->
+              <!--  -->
+              <!-- Detalhes do Pedido -->
+            </div>   
           <% }); %>
           <!-- FINAL FOREACH -->
 
