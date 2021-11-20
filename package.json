@@ -15,6 +15,7 @@
     "dbsuall": "npx sequelize-cli db:seed:undo:all"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "cls-hooked": "^4.2.2",
     "cookie-parser": "~1.4.4",

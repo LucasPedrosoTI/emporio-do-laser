@@ -52,3 +52,12 @@ const round = (num, numDecimais) => {
 
   return Math.round(num * casasDecimais) / casasDecimais;
 };
+
+function returnErrorAlert(message) {
+  return `
+  <div class="alert alert-danger alert-dismissible fade show mt-4" id="error-alert" role="alert">
+    <i class="bi bi-x-circle-fill"></i> ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+`;
+}

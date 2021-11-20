@@ -61,10 +61,10 @@
             </p>
           </div>
 
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="d-flex justify-content-between align-items-center mb-3" id="title-tipo-envio">
             <span class="text-muted">Tipo de Envio</span>
           </h4>
-          <div class="list-group-item form-group">
+          <div class="list-group-item form-group form-tipo-envio">
             <% tiposEnvio.forEach(tipoEnvio => { %>
             <div class="custom-control custom-radio my-1">
               <input class="custom-control-input" id="<%= tipoEnvio.nomeTipoEnvio %>" name="tipoEnvioId" required type="radio" value="<%= tipoEnvio.id %>" />
