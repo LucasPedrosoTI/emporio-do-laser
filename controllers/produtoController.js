@@ -56,8 +56,9 @@ module.exports = {
 
   cadastrarProduto: async (req, res) => {
     console.log(req.body);
-    const { nomeProduto, personalizavel, categoriaId, nomeImagem, descricao, tamanho, quantidade, peso, preco } = req.body;
-
+    const { nomeProduto, personalizavel, categoriaId, descricao, tamanho, quantidade, peso, preco } = req.body;
+    const nomeImagem = `/img/produtos/${req.file.filename}`;
+    
     const produto = await Produto.create({ nomeProduto, descricao, personalizavel, categoriaId });
     await ImagemProduto.create({ nomeImagem, produtoId: produto.id });
     await TamanhoProduto.create({ tamanho, quantidade, peso, preco, produtoId: produto.id })
@@ -76,11 +77,12 @@ module.exports = {
   },
 
   alterarProduto: async (req, res) => {
-    const { id, nomeProduto, personalizavel, categoriaId, nomeImagem, descricao } = req.body;
+    const { id, nomeProduto, personalizavel, categoriaId, descricao } = req.body;
 
     const produto = await Produto.update({ nomeProduto, descricao, personalizavel, categoriaId }, { where: { id } });
     
-    if(nomeImagem){
+    if(req.file){
+      const nomeImagem = `/img/produtos/${req.file.filename}`;
       await ImagemProduto.update({ nomeImagem }, { where: { produtoId: id } })
     }
 
