@@ -50,7 +50,7 @@
                   </form>
                   <form class="col-sm" action="/minha-conta/estoqueproduto" method="get">
                     <input type="hidden" name="tamanhoId" value="<%= tamanho.id %>" />
-                    <input type="submit" value="Excluir" class="btn btn-outline-danger btn-tabela" />
+                    <input type="submit" value="Excluir" class="btn btn-outline-danger btn-tabela" onClick="if(!(confirm('Deseja mesmo excluir este produto?'))) return false"/>
                   </form>
                 </div>
               </div>

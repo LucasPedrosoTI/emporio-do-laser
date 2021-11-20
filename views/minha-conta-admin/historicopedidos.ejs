@@ -55,11 +55,11 @@
               </div>
               <div class="row g-1">
                 <strong class="col-sm m-w-130">Data do Pedido</strong>
-                <p class="col-sm mb-1"><%= dateFormatter.format(pedido.TipoEnvio.createdAt)  %></p>
+                <p class="col-sm mb-1"><%= dateFormatter.format(pedido.createdAt)  %></p>
               </div>
               <div class="row g-1">
                 <strong class="col-sm m-w-130">Atualização</strong>
-                <p class="col-sm mb-1"><%= dateFormatter.format(pedido.TipoEnvio.updatedAt) %></p>
+                <p class="col-sm mb-1"><%= dateFormatter.format(pedido.updatedAt) %></p>
               </div>
               <% if (pedido.Cupom) { %>
                 <div class="row g-1">
