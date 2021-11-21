@@ -79,11 +79,24 @@ module.exports = {
   alterarProduto: async (req, res) => {
     const { id, nomeProduto, personalizavel, categoriaId, descricao } = req.body;
 
-    const produto = await Produto.update({ nomeProduto, descricao, personalizavel, categoriaId }, { where: { id } });
+    await Produto.update({ nomeProduto, descricao, personalizavel, categoriaId }, { where: { id } });
     
     if(req.file){
+      const fs = require('fs');
+      const path = require('path');
+      const public = path.join('public');
       const nomeImagem = `/img/produtos/${req.file.filename}`;
-      await ImagemProduto.update({ nomeImagem }, { where: { produtoId: id } })
+      
+      let imagem = await ImagemProduto.findOne({ where: { produtoId: id } });
+
+      await ImagemProduto.update({ nomeImagem }, { where: { id: imagem.id } });
+      
+      // deletar arquivo antigo
+      fs.unlink(public+""+imagem.nomeImagem, async function (err){
+        if (err) throw err;
+        console.log(public+""+imagem);
+        console.log('Arquivo deletado!');
+      })
     }
 
     res.redirect('/minha-conta/meusprodutos');
