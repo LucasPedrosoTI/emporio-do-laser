@@ -6,17 +6,17 @@
       <div class="row">
         <div class="col-md-3 my-2 align-items-center justify-content-center" style="--bs-bg-opacity: 1">
           <div style="background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; padding: 10px; border-radius: 5px">
-            <form action="filtro">
+            <form action="produtos" method="get">
               <div class="form-group">
-                <label for="exampleInputEmail1">Nome do Produto</label>
-                <input type="NomeProduto" class="form-control" id="productname" placeholder="Produto" />
+                <label for="nomeProduto">Nome do Produto</label>
+                <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" placeholder="Produto" />
               </div>
               <div class="form-group">
                 <label for="categoria">Categoria</label>
-                <select name="categoria" class="form-control" id="categoria">
-                  <option value="selecionar">---Selecione---</option>
+                <select name="categoriaId" class="form-control" id="categoria">
+                  <option value="">---Selecione---</option>
                   <% categorias.forEach(categoria => { %>
-                  <option value="<%= categoria.id %> "><%= categoria.nomeCategoria %></option>
+                  <option value="<%= categoria.id %>"><%= categoria.nomeCategoria %></option>
                   <% }) %>
                 </select>
               </div>
@@ -40,7 +40,7 @@
         </div>
         <div class="col-md-9 my-2 align-items-center justify-content-center">
           <div class="row">
-            <% produtos.forEach(produto => { %>
+            <% if (produtos && produtos.length > 0) { %> <% produtos.forEach(produto => { %>
             <div class="col-md-3">
               <div class="produto-lista">
                 <a href="produtos/<%= produto.id %>" class="produto-sobrepor"></a>
@@ -56,7 +56,11 @@
                 </div>
               </div>
             </div>
-            <% }) %>
+            <% }) %> <% } else { %>
+            <div class="col-12 bg-light bg-gradient text-center rounded-pill p-3">
+              <h3>Nenhum produto encontrado para o filtro informado</h3>
+            </div>
+            <% } %>
           </div>
         </div>
       </div>

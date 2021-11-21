@@ -1,11 +1,20 @@
 const { Categoria, Produto, ImagemProduto, TamanhoProduto } = require('../database/models');
 const { currencyFormatter } = require('../utils/formatter');
+const { Op } = require('sequelize');
 
 module.exports = {
   renderProdutos: async (req, res) => {
+    const { nomeProduto, categoriaId } = req.query;
+
     const categorias = await Categoria.findAll();
 
     const produtos = await Produto.findAll({
+      where: {
+        categoriaId: categoriaId || categorias.map(c => c.id),
+        nomeProduto: {
+          [Op.substring]: nomeProduto || '',
+        },
+      },
       include: [TamanhoProduto, ImagemProduto],
     });
 
@@ -43,8 +52,7 @@ module.exports = {
   },
 
   listarProdutos: async (req, res, next) => {
-
-    const produtos = await Produto.findAll({ include: [ Categoria, ImagemProduto ] });
+    const produtos = await Produto.findAll({ include: [Categoria, ImagemProduto] });
 
     res.render('minha-conta-admin/meusprodutos', { produtos, menu: 'produtos' });
   },
@@ -55,16 +63,14 @@ module.exports = {
   },
 
   cadastrarProduto: async (req, res) => {
-    console.log(req.body);
     const { nomeProduto, personalizavel, categoriaId, descricao, tamanho, quantidade, peso, preco } = req.body;
     const nomeImagem = `/img/produtos/${req.file.filename}`;
-    
+
     const produto = await Produto.create({ nomeProduto, descricao, personalizavel, categoriaId });
     await ImagemProduto.create({ nomeImagem, produtoId: produto.id });
-    await TamanhoProduto.create({ tamanho, quantidade, peso, preco, produtoId: produto.id })
+    await TamanhoProduto.create({ tamanho, quantidade, peso, preco, produtoId: produto.id });
 
     res.redirect('/minha-conta/meusprodutos');
-    
   },
 
   editarProduto: async (req, res) => {
@@ -80,23 +86,23 @@ module.exports = {
     const { id, nomeProduto, personalizavel, categoriaId, descricao } = req.body;
 
     await Produto.update({ nomeProduto, descricao, personalizavel, categoriaId }, { where: { id } });
-    
-    if(req.file){
+
+    if (req.file) {
       const fs = require('fs');
       const path = require('path');
       const public = path.join('public');
       const nomeImagem = `/img/produtos/${req.file.filename}`;
-      
+
       let imagem = await ImagemProduto.findOne({ where: { produtoId: id } });
 
       await ImagemProduto.update({ nomeImagem }, { where: { id: imagem.id } });
-      
+
       // deletar arquivo antigo
-      fs.unlink(public+""+imagem.nomeImagem, async function (err){
+      fs.unlink(public + '' + imagem.nomeImagem, async function (err) {
         if (err) throw err;
-        console.log(public+""+imagem);
+        console.log(public + '' + imagem);
         console.log('Arquivo deletado!');
-      })
+      });
     }
 
     res.redirect('/minha-conta/meusprodutos');
@@ -122,7 +128,7 @@ module.exports = {
 
     const produto = await Produto.findByPk(produtoId);
     const tamanhos = await TamanhoProduto.findAll({ where: { produtoId } });
-    await TamanhoProduto.create({ tamanho, quantidade, peso, preco, produtoId })
+    await TamanhoProduto.create({ tamanho, quantidade, peso, preco, produtoId });
 
     res.render('minha-conta-admin/estoqueproduto', { produto, tamanhos, menu: 'produtos' });
   },
@@ -142,8 +148,7 @@ module.exports = {
 
     const produto = await Produto.findByPk(produtoId);
     const tamanhos = await TamanhoProduto.findAll({ where: { produtoId } });
-    
+
     res.render('minha-conta-admin/estoqueproduto', { produto, tamanhos, menu: 'produtos' });
   },
-
 };
