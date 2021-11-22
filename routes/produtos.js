@@ -19,4 +19,6 @@ router.post('/cadastrar-tamanho', produtoController.cadastrarTamanho);
 
 router.put('/alterar-tamanho', produtoController.alterarTamanho);
 
+router.put('/alterar-estoque', produtoController.alterarEstoque);
+
 module.exports = router;

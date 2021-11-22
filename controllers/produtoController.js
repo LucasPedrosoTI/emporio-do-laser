@@ -52,7 +52,7 @@ module.exports = {
   },
 
   listarProdutos: async (req, res, next) => {
-    const produtos = await Produto.findAll({ include: [Categoria, ImagemProduto] });
+    const produtos = await Produto.findAll({ include: [Categoria, ImagemProduto, TamanhoProduto] });
 
     res.render('minha-conta-admin/meusprodutos', { produtos, menu: 'produtos' });
   },
@@ -142,13 +142,28 @@ module.exports = {
   },
 
   alterarTamanho: async (req, res) => {
-    const { id, produtoId, tamanho, quantidade, peso, preco } = req.body;
+    const { id, produtoId, tamanho, peso, preco } = req.body;
 
-    await TamanhoProduto.update({ tamanho, quantidade, peso, preco }, { where: { id } });
+    await TamanhoProduto.update({ tamanho, peso, preco }, { where: { id } });
 
     const produto = await Produto.findByPk(produtoId);
     const tamanhos = await TamanhoProduto.findAll({ where: { produtoId } });
 
     res.render('minha-conta-admin/estoqueproduto', { produto, tamanhos, menu: 'produtos' });
+  },
+
+  alterarEstoque: async (req, res) => {
+    console.log(req.body)
+    let { id, estoque, entrada } = req.body;
+
+    if (entrada == null || entrada.trim() == '') {
+      entrada = 0;
+    }
+
+    let quantidade = (parseInt(estoque) + parseInt(entrada));
+
+    await TamanhoProduto.update({ quantidade }, { where: { id } });
+
+    res.redirect('/minha-conta/meusprodutos');
   },
 };
