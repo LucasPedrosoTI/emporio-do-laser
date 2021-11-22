@@ -53,19 +53,13 @@
                         </form>
                       </li>
                       <li>
-                        <form class="col-sm" action="/minha-conta/estoqueproduto" method="get">
+                        <form class="col-sm" action="/minha-conta/tamanhos" method="get">
                           <input type="hidden" name="produtoId" value="<%= produto.id %>" />
                           <input type="submit" value="Tamanhos" class="btn btn-outline-secondary btn-tabela" />
                         </form>
                       </li>
                     </ul>
                   </div>
-
-                  <!-- <form class="col-sm" action="/minha-conta/estoqueproduto" method="get">
-                    <input type="hidden" name="produtoId" value="" />
-                    <input type="submit" value="Estoque" class="btn btn-outline-secondary btn-tabela" />
-                  </form> -->
-
 
                   <div class="col-sm">
                     <!-- Button trigger modal Editar -->
@@ -74,14 +68,12 @@
                     </button>
                   </div>
 
-
                   <form class="col-sm" action="/minha-conta/meusprodutos" method="get">
                     <input type="hidden" name="produtoId" value="<%= produto.id %>" />
                     <input type="submit" value="Excluir" class="btn btn-outline-danger btn-tabela" onClick="if(!(confirm('Deseja mesmo excluir este produto?'))) return false"/>
                   </form>
                 </div>
               </div>
-
 
               <!-- Modal estoque -->
               <div class="modal fade" id="id_<%= produto.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -108,13 +108,13 @@ module.exports = {
     res.redirect('/minha-conta/meusprodutos');
   },
 
-  estoqueProduto: async (req, res) => {
+  tamanhos: async (req, res) => {
     const { produtoId } = req.query;
 
     const produto = await Produto.findByPk(produtoId);
     const tamanhos = await TamanhoProduto.findAll({ where: { produtoId } });
 
-    res.render('minha-conta-admin/estoqueproduto', { tamanhos, produto, menu: 'produtos' });
+    res.render('minha-conta-admin/tamanhos', { tamanhos, produto, menu: 'produtos' });
   },
 
   cadastrarTamanhoForm: async (req, res) => {
@@ -130,7 +130,7 @@ module.exports = {
     const tamanhos = await TamanhoProduto.findAll({ where: { produtoId } });
     await TamanhoProduto.create({ tamanho, quantidade, peso, preco, produtoId });
 
-    res.render('minha-conta-admin/estoqueproduto', { produto, tamanhos, menu: 'produtos' });
+    res.render('minha-conta-admin/tamanhos', { produto, tamanhos, menu: 'produtos' });
   },
 
   editarTamanho: async (req, res) => {
@@ -149,7 +149,7 @@ module.exports = {
     const produto = await Produto.findByPk(produtoId);
     const tamanhos = await TamanhoProduto.findAll({ where: { produtoId } });
 
-    res.render('minha-conta-admin/estoqueproduto', { produto, tamanhos, menu: 'produtos' });
+    res.render('minha-conta-admin/tamanhos', { produto, tamanhos, menu: 'produtos' });
   },
 
   alterarEstoque: async (req, res) => {
