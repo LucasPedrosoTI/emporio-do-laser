@@ -78,7 +78,7 @@ function listarItens(data) {
 
                             <input type="number" class="form-control text-center border-dark qtd" value="${value.qtd}" onchange="mudaQuantia(${value.tamanhoProduto.id}, this.value)">
 
-                            <button type="button" class="btn btn-outline-danger border-dark btn-sm" onclick="deletarItem(${value.tamanhoProduto.id})">
+                            <button type="button" class="btn btn-outline-danger border-dark btn-sm" onClick="if((confirm('Deseja mesmo remover este item do carrrinho?'))) return deletarItem(${value.tamanhoProduto.id})">
                               <i class="bi-trash" style="font-size: 24px; line-height: 24px;"></i>
                             </button>
                           </div>
