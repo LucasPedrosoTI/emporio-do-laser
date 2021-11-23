@@ -37,6 +37,8 @@ router.get('/editarendereco', auth, enderecoController.renderEditarEnderecos);
 
 router.get('/pedidos', auth, pedidoController.listarPedidos);
 
+router.put('/cancelar-pedido', pedidoController.cancelarPedido);
+
 // --- ADMINISTRADOR --- //
 
   // --> Cupons

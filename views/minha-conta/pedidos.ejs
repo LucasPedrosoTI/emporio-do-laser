@@ -43,6 +43,14 @@
                 <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
               </div>
             <% } %>
+            <% if (pedido.statusPedidoId != 6) { %>
+            <div class="row g-1">
+              <form class="col-sm mb-2" action="/minha-conta/cancelar-pedido?_method=PUT" method="post">
+                <input type="hidden" name="pedidoId" value="<%= pedido.id %>"/>
+                <input type="submit" value="Cancelar Pedido" class="btn btn-outline-secondary w-100" onClick="if(!(confirm('Deseja mesmo cancelar este pedido?'))) return false"/>
+              </form>
+            </div>
+            <% } %>
             <!-- DETALHES DO PEDIDO -->
             <div id="<%= pedido.id %>" class="detalhesPedido">
               <div class="list-group-item list-group-item-action" aria-current="true">

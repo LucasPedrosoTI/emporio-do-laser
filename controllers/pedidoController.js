@@ -78,6 +78,16 @@ module.exports = {
     return res.redirect('/minha-conta/pedidos');
   },
 
+  cancelarPedido: async (req, res) => {
+    const { id: clienteId } = req.session.usuario.Cliente;
+    const { pedidoId } = req.body;
+    const statusPedidoId = 6;
+    
+    await Pedido.update({ statusPedidoId }, { where: { id: pedidoId, clienteId: clienteId } });
+
+    res.redirect('/minha-conta/pedidos');
+  },
+
   listAllPedidos: async (req, res) => {
     let { filtro } = req.query;
     let status;
