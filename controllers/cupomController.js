@@ -81,6 +81,10 @@ module.exports = {
     try {
       const { id, codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categorias } = req.body;
 
+      if (!categorias) {
+        throw new Error('Selecione pelo menos uma categoria.');
+      }
+
       const cupom = await Cupom.update(
         {
           codigo,
@@ -95,14 +99,25 @@ module.exports = {
         }
       );
 
-      // await CupomCategoria.bulkUpdate(
-      //   categorias.map(categoriaId => ({
-      //     cupomId: cupom.id,
-      //     categoriaId,
-      //   }))
-      // );
+      await CupomCategoria.destroy({ where: { cupomId: id } });
+
+      if (categorias.length > 1) {
+        await CupomCategoria.bulkCreate(
+          categorias.map(categoriaId => ({
+            cupomId: id,
+            categoriaId,
+          }))
+        );
+      } else {
+        let categoriaId = categorias;
+        await CupomCategoria.create({
+          cupomId: id,
+          categoriaId,
+        });
+      }
+
     } catch (error) {
-      return res.render('minha-conta-admin/editarcupons', { error: error.message, menu: 'cupons' });
+      return res.redirect('/minha-conta/cupons');
     }
 
     return res.redirect('/minha-conta/cupons');
