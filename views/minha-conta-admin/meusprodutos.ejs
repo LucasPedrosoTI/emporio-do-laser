@@ -20,7 +20,7 @@
                 </div>
               </div>
               <% produtos.forEach(produto => { %>
-              <div class="list-group-item list-group-item-action mb-3" aria-current="true" style="<%= produto.deletedAt && "opacity: 0.7;" %>">
+              <div class="list-group-item list-group-item-action mb-3 <%= produto.deletedAt && "o-70" %>" aria-current="true">
                 <div class="row g-1 mb-2">
                   <div class="col-sm mx-1 mb-1">
                     <img src="<%= produto.ImagemProdutos[0].nomeImagem %>" style="border: 1px solid gray" />

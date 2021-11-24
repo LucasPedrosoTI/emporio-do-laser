@@ -68,24 +68,26 @@ module.exports = {
     res.render('minha-conta-admin/cadastrarcupons', { categorias, menu: 'cupons' });
   },
 
-  editarCupom: async (req, res) => {
+  renderEditarCupom: async (req, res) => {
     const { cupomId } = req.query;
 
     const categorias = await Categoria.findAll();
-    let cupom = await Cupom.findByPk(cupomId);
+    const cupom = await Cupom.findByPk(cupomId, {
+      include: [Categoria],
+    });
 
     res.render('minha-conta-admin/editarcupons', { cupom, categorias, menu: 'cupons' });
   },
 
   alterarCupom: async (req, res) => {
-    try {
-      const { id, codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categorias } = req.body;
+    const { id, codigo, descricao, taxaDeDesconto, dataExpiracao, habilitado, ehPorcentagem, categorias } = req.body;
 
+    try {
       if (!categorias) {
         throw new Error('Selecione pelo menos uma categoria.');
       }
 
-      const cupom = await Cupom.update(
+      await Cupom.update(
         {
           codigo,
           descricao,
@@ -109,15 +111,15 @@ module.exports = {
           }))
         );
       } else {
-        let categoriaId = categorias;
         await CupomCategoria.create({
           cupomId: id,
-          categoriaId,
+          categoriaId: categorias,
         });
       }
-
     } catch (error) {
-      return res.redirect('/minha-conta/cupons');
+      const categorias = await Categoria.findAll();
+      const cupom = await Cupom.findByPk(id);
+      res.render('minha-conta-admin/editarcupons', { cupom, categorias, menu: 'cupons', error: error.message });
     }
 
     return res.redirect('/minha-conta/cupons');
@@ -128,7 +130,7 @@ module.exports = {
 
     await Cupom.update(
       {
-        habilitado
+        habilitado,
       },
       {
         where: { id },
@@ -159,8 +161,8 @@ module.exports = {
         ],
       });
 
-      if(!cupom){
-        throw new Error('Cupom inválido ou expirado')
+      if (!cupom) {
+        throw new Error('Cupom inválido ou expirado');
       }
 
       const categoriasAceitas = cupom.Categoria.map(categoria => categoria.id);
@@ -173,7 +175,7 @@ module.exports = {
 
       res.status(200).json(cupom);
     } catch (error) {
-      res.status(400).json({error: error.message});
+      res.status(400).json({ error: error.message });
     }
   },
 };

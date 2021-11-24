@@ -1,9 +1,9 @@
 <%- include('../components/head') %> <%- include('../components/navbar') %>
 
 <!-- CONVERSÃO DATA EXPIRAÇÃO -->
-<% const dataFormatter = new Intl.DateTimeFormat('en-ZA', { timeZone: 'UTC'}) %>
-<% let expiracao = dataFormatter.format(cupom.dataExpiracao) %> 
-<% for(let i = 0; i < 2; i++) { expiracao = expiracao.replace("/","-") } %>
+<% 
+  const expiracao = new Intl.DateTimeFormat('en-ZA', { timeZone: 'UTC'}).format(cupom.dataExpiracao).replace(/\//g,"-");
+%>
 <!-- ------------------------ -->
 
 <section>
@@ -58,7 +58,7 @@
 
               <% categorias.forEach(categoria => { %>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="<%= categoria.id %>" name="categorias" id="<%= categoria.nomeCategoria %>" />
+                <input class="form-check-input" type="checkbox" value="<%= categoria.id %>" name="categorias" id="<%= categoria.nomeCategoria %>"  <%= cupom.Categoria.some(cat => cat.id == categoria.id) && "checked" %>/>
                 <label class="form-check-label" for="<%= categoria.nomeCategoria %>"> <%= categoria.nomeCategoria %> </label>
               </div>
               <% }) %>
@@ -74,6 +74,8 @@
 
           <input type="hidden" name="id" value="<%= cupom.id %>" />
           <button class="btn btn-primary" type="submit" >Alterar</button>
+
+          <%- include('../components/error-alert', {error}) %>
         </form>
         <!-- FIM DO CODIGO -->
       </div>

@@ -44,7 +44,7 @@ router.put('/cancelar-pedido', pedidoController.cancelarPedido);
 // --> Cupons
 router.get('/cupons', authAdmin, cupomController.listarCupoms);
 router.get('/cadastrarcupons', authAdmin, cupomController.renderCadastrarCupom);
-router.get('/editarcupons', authAdmin, cupomController.editarCupom);
+router.get('/editarcupons', authAdmin, cupomController.renderEditarCupom);
 
 // --> Produtos
 router.get('/meusprodutos', authAdmin, produtoController.listarProdutos);
