@@ -9,7 +9,11 @@ module.exports = {
 
     if (filtro == null || filtro == 'Todos') {
       filtro = 'Todos';
-      status = [1, 2, 3, 4];
+      if (clienteId) {
+        status = [1, 2, 3, 4, 5, 6];
+      } else {
+        status = [1, 2, 3, 4];
+      }
     } else {
       status = filtro;
     }
@@ -141,8 +145,6 @@ module.exports = {
 
     res.redirect('/minha-conta/pedidos');
   },
-
-
 };
 
 async function retornarQuantidadeAoEstoque(pedidoId) {

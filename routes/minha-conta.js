@@ -37,7 +37,7 @@ router.get('/editarendereco', auth, enderecoController.renderEditarEnderecos);
 
 router.get('/pedidos', auth, pedidoController.listarPedidos);
 
-router.put('/cancelar-pedido', pedidoController.cancelarPedido);
+router.put('/cancelar-pedido', auth, pedidoController.cancelarPedido);
 
 // --- ADMINISTRADOR --- //
 
@@ -58,10 +58,9 @@ router.get('/editartamanho', authAdmin, produtoController.renderEditarTamanho);
 router.get('/categorias', authAdmin, categoriaController.listarCategorias);
 
 // --> Pedidos
-// router.get('/gerenciarpedidos', authAdmin, pedidoController.renderGerenciarPedidos);
 router.get('/historicopedidos', authAdmin, pedidoController.renderHistoricoPedido);
-router.put('/alterar-status-pedido', pedidoController.alterarStatusPedido);
-router.put('/adicionar-codigo-rastreio', pedidoController.adicionarCodigoRastreio);
+router.put('/alterar-status-pedido', authAdmin, pedidoController.alterarStatusPedido);
+router.put('/adicionar-codigo-rastreio', authAdmin, pedidoController.adicionarCodigoRastreio);
 
 // ----------------------- //
 
