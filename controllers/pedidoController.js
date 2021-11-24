@@ -3,11 +3,24 @@ const { Op } = require('sequelize');
 
 module.exports = {
   listarPedidos: async (req, res) => {
-    const clienteId = req.session.usuario.Cliente.id;
+    const clienteId = req.session.usuario.Cliente && req.session.usuario.Cliente.id;
+    let { filtro } = req.query;
+    let status;
 
-    const pedidos = await Pedido.findAllWithAllInformation({ clienteId }, [['id', 'DESC']]);
+    if (filtro == null || filtro == 'Todos') {
+      filtro = 'Todos';
+      status = [1, 2, 3, 4];
+    } else {
+      status = filtro;
+    }
 
-    res.render('minha-conta/pedidos', { pedidos, menu: 'pedidos' });
+    const pedidos = clienteId
+      ? await Pedido.findAllWithAllInformation({ clienteId, statusPedidoId: status }, [['id', 'DESC']])
+      : await Pedido.findAllWithAllInformation({ statusPedidoId: status }, [['id', 'ASC']]);
+
+    const pedidoStatus = await StatusPedido.findAll();
+
+    res.render('minha-conta/pedidos', { pedidos, filtro, pedidoStatus, menu: 'pedidos' });
   },
 
   fecharPedido: async function (req, res) {
@@ -80,9 +93,11 @@ module.exports = {
   cancelarPedido: async (req, res) => {
     const { id: clienteId } = req.session.usuario.Cliente;
     const { pedidoId } = req.body;
-    const statusPedidoId = 6;
+    const statusPedidoCancelado = 6;
 
-    await Pedido.update({ statusPedidoId }, { where: { id: pedidoId, clienteId: clienteId } });
+    await Pedido.update({ statusPedidoId: statusPedidoCancelado }, { where: { id: pedidoId, clienteId: clienteId } });
+
+    await retornarQuantidadeAoEstoque(pedidoId);
 
     res.redirect('/minha-conta/pedidos');
   },
@@ -105,32 +120,33 @@ module.exports = {
     res.render('minha-conta-admin/historicopedidos', { pedidos, filtro, pedidoStatus, menu: 'historico' });
   },
 
-  renderGerenciarPedidos: async (req, res) => {
-    let { filtro } = req.query;
-    let status;
-
-    if (filtro == null || filtro == 'Todos') {
-      filtro = 'Todos';
-      status = [1, 2, 3, 4];
-    } else {
-      status = filtro;
-    }
-
-    const pedidos = await Pedido.findAllWithAllInformation({ statusPedidoId: status }, [['id', 'ASC']]);
-
-    const pedidoStatus = await StatusPedido.findAll();
-
-    res.render('minha-conta-admin/pedidos', { pedidos, filtro, pedidoStatus, menu: 'pedidos' });
-  },
-
   alterarStatusPedido: async (req, res) => {
     const { pedidoId, statusPedidoId } = req.body;
 
     await Pedido.update({ statusPedidoId }, { where: { id: pedidoId } });
 
-    res.redirect('/minha-conta/gerenciarpedidos');
+    if (statusPedidoId == 6) {
+      await retornarQuantidadeAoEstoque(pedidoId);
+    }
+
+    res.redirect('/minha-conta/pedidos');
   },
 };
+
+async function retornarQuantidadeAoEstoque(pedidoId) {
+  const pedido = await Pedido.findByPk(pedidoId, {
+    include: [{ model: TamanhoProduto, paranoid: false }],
+  });
+
+  pedido.TamanhoProdutos.forEach(async tamanho => {
+    await TamanhoProduto.update(
+      {
+        quantidade: tamanho.quantidade + tamanho.PedidoProduto.quantidade,
+      },
+      { where: { id: tamanho.id }, paranoid: false }
+    );
+  });
+}
 
 async function validarProdutos(produtoIds) {
   const produtosDesabilitados = await Produto.findAll({

@@ -1,0 +1,42 @@
+<div id="<%= pedido.id %>" class="detalhesPedido">
+  <div class="list-group-item list-group-item-action" aria-current="true">
+    <div class="row g-1 mb-3">
+      <div class="col-sm w-100 mb-2">
+        <i class="bi bi-geo-alt me-2"></i>
+        <u>
+          <strong>Endereço de Entrega</strong>
+        </u>
+      </div>
+      <div>
+        <p class="mb-1"><strong>Logradouro:</strong> <%= pedido.Endereco.rua %></p>
+        <p class="mb-1"><strong>Numero:</strong> <%= pedido.Endereco.numero %></p>
+        <p class="mb-1"><strong>Complemento:</strong> <%= pedido.Endereco.complemento %></p>
+        <p class="mb-1"><strong>Bairro:</strong> <%= pedido.Endereco.bairro %></p>
+        <p class="mb-1"><strong>Cidade:</strong> <%= pedido.Endereco.cidade %></p>
+        <p class="mb-1"><strong>Estado:</strong> <%= pedido.Endereco.estado %></p>
+        <p class="mb-1"><strong>CEP:</strong> <%= pedido.Endereco.cep %></p>
+      </div>
+    </div>
+    <hr />
+    <div class="row g-1 list">
+      <div class="col-sm w-100 mb-2">
+        <i class="bi bi-box-seam me-2"></i>
+        <u>
+          <strong>Produtos Adquiridos</strong>
+        </u>
+      </div>
+
+      <!-- segundo forEach -->
+      <% pedido.TamanhoProdutos.forEach(tProd => { %>
+      <div class="list-group-item">
+        <p class="mb-1"><strong>Nome:</strong> <%= tProd.Produto.nomeProduto %></p>
+        <p class="mb-1"><strong>Tamanho:</strong> <%= tProd.tamanho %></p>
+        <p class="mb-1"><strong>Com Logomarca?:</strong> <%= tProd.PedidoProduto.comLogomarca ? 'Sim' : 'Não' %></p>
+        <p class="mb-1"><strong>Quantidade:</strong> <%= tProd.PedidoProduto.quantidade %></p>
+      </div>
+      <% }) %>
+
+      <!-- fim do segundo forEach -->
+    </div>
+  </div>
+</div>
