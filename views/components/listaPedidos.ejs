@@ -1,7 +1,7 @@
 <% const currencyFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', }) %> <% const dateFormatter = new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' }) %>
 
 <div onclick="detalharPedido('<%= pedido.id %>')" class="list-group-item list-group-item-action my-3" aria-current="true">
-  <div class="row g-1">
+  <div class="row g-1 mt-1">
     <strong class="col-sm m-w-130">Nº do Pedido</strong>
     <p class="col-sm mb-1"><%= pedido.id %></p>
   </div>
@@ -13,6 +13,14 @@
     <strong class="col-sm m-w-130">Status</strong>
     <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
   </div>
+
+  <% if (pedido.Cupom) { %>
+    <div class="row g-1">
+      <strong class="col-sm m-w-130">Cupom</strong>
+      <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
+    </div>
+  <% } %>
+
   <div class="row g-1">
     <strong class="col-sm m-w-130">Valor Total</strong>
     <p class="col-sm mb-1"><%= currencyFormatter.format(pedido.subtotal) %></p>
@@ -21,40 +29,63 @@
     <strong class="col-sm m-w-130">Tipo de Envio</strong>
     <p class="col-sm mb-1"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
   </div>
+
+  <% if (pedido.codigoRastreio) { %>
+    <div class="row g-1">
+      <strong class="col-sm m-w-130 text-nowrap">Cod. Rastreio</strong>
+      <p class="col-sm mb-1"><%= pedido.codigoRastreio %></p>
+    </div>
+  <% } %>
+
   <div class="row g-1">
     <strong class="col-sm m-w-130">Data do Pedido</strong>
     <p class="col-sm mb-1"><%= dateFormatter.format(pedido.createdAt) %></p>
   </div>
-
   <div class="row g-1">
     <strong class="col-sm m-w-130 text-nowrap">Atualizado em</strong>
     <p class="col-sm mb-1"><%= dateFormatter.format(pedido.updatedAt) %></p>
   </div>
 
-  <% if (pedido.Cupom) { %>
-  <div class="row g-1">
-    <strong class="col-sm m-w-130">Cupom</strong>
-    <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
-  </div>
-  <% } %> <% if (USUARIO && USUARIO.Cliente) { %> <% if (pedido.statusPedidoId == 1 || pedido.statusPedidoId == 2) { %>
-  <div class="row g-1">
-    <form class="col-sm mb-2" method="post">
-      <input type="hidden" name="pedidoId" value="<%= pedido.id %>" />
-      <input type="submit" value="Cancelar Pedido" class="btn btn-outline-secondary w-100" onClick="if(!(confirm('Deseja mesmo cancelar este pedido?'))) return false" />
-    </form>
-  </div>
-  <% } %> <% } %> <% if (USUARIO && USUARIO.admin) { %>
-  <button
-    type="button"
-    class="btn btn-outline-secondary w-100"
-    data-bs-toggle="modal"
-    data-bs-target="#alteraPedidoModal"
-    data-id="<%= pedido.id %>"
-    data-statusatual="<%= pedido.StatusPedido.descricao %>"
-    data-pedidostatus="<%= pedidoStatus.map(status => (JSON.stringify({id: status.id, descricao: status.descricao}))) %>"
-  >
-    Alterar Status
-  </button>
+  <% if (USUARIO && USUARIO.Cliente) { %> <% if (pedido.statusPedidoId == 1 || pedido.statusPedidoId == 2) { %>
+    <div class="row g-1">
+      <form class="col-sm mb-2" method="post">
+        <input type="hidden" name="pedidoId" value="<%= pedido.id %>" />
+        <input type="submit" value="Cancelar Pedido" class="btn btn-outline-secondary w-100" onClick="if(!(confirm('Deseja mesmo cancelar este pedido?'))) return false" />
+      </form>
+    </div>
+  <% } %>
+
+  <% } %> <% if (USUARIO && USUARIO.admin) { %>
+    <div class="row g-1">
+      <div class="col-sm mb-2">
+        <button
+          type="button"
+          class="btn btn-outline-secondary w-100"
+          data-bs-toggle="modal"
+          data-bs-target="#alteraPedidoModal"
+          data-id="<%= pedido.id %>"
+          data-statusatual="<%= pedido.StatusPedido.descricao %>"
+          data-pedidostatus="<%= pedidoStatus.map(status => (JSON.stringify({id: status.id, descricao: status.descricao}))) %>"
+        >
+          Alterar Status
+        </button>
+      </div>
+
+      <% if (pedido.StatusPedido.id == 3 || pedido.StatusPedido.id == 4) { %>
+        <div class="col-sm mb-2">
+          <button
+            type="button"
+            class="btn btn-outline-secondary w-100"
+            data-bs-toggle="modal"
+            data-bs-target="#addCodigoRastreio"
+            data-id="<%= pedido.id %>"
+          >
+            Codigo Rastreio
+          </button>
+        </div>
+      <% } %>
+
+    </div>
   <% } %>
 
   <!-- DETALHES DO PEDIDO -->

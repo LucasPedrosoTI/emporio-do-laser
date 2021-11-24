@@ -61,6 +61,7 @@ router.get('/categorias', authAdmin, categoriaController.listarCategorias);
 // router.get('/gerenciarpedidos', authAdmin, pedidoController.renderGerenciarPedidos);
 router.get('/historicopedidos', authAdmin, pedidoController.renderHistoricoPedido);
 router.put('/alterar-status-pedido', pedidoController.alterarStatusPedido);
+router.put('/adicionar-codigo-rastreio', pedidoController.adicionarCodigoRastreio);
 
 // ----------------------- //
 

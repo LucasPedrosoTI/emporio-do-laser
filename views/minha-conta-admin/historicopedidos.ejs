@@ -45,6 +45,14 @@
                 <strong class="col-sm m-w-130">Status</strong>
                 <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
               </div>
+
+              <% if (pedido.Cupom) { %>
+                <div class="row g-1">
+                  <strong class="col-sm m-w-130">Cupom</strong>
+                  <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
+                </div>
+              <% } %>
+              
               <div class="row g-1">
                 <strong class="col-sm m-w-130">Valor Total</strong>
                 <p class="col-sm mb-1"><%= currencyFormatter.format(pedido.subtotal) %></p>
@@ -61,12 +69,6 @@
                 <strong class="col-sm m-w-130">Atualização</strong>
                 <p class="col-sm mb-1"><%= dateFormatter.format(pedido.updatedAt) %></p>
               </div>
-              <% if (pedido.Cupom) { %>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Cupom</strong>
-                  <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
-                </div>
-              <% } %>
               <!-- DETALHES DO PEDIDO -->
               <!--  -->
               <!-- Detalhes do Pedido -->

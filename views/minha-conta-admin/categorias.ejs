@@ -11,7 +11,7 @@
 
         <!-- CODIGO AQUI -->
         <div class="max-width-610p list-group">
-          <div class="list-group-item list-group-item-action">
+          <div class="list-group-item list-group-item-action mb-2">
             <div class="row g-1 w-100">
               <!-- Button trigger modal Cadastrar -->
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -42,7 +42,7 @@
           <!-- Fim Modal Cadastrar -->
 
           <% categorias.forEach(categoria => { %>
-          <div class="list-group-item list-group-item-action">
+          <div class="list-group-item list-group-item-action my-2">
             <div class="row g-1 mb-2">
               <div class="col-sm d-flex justify-content-around">
                 <strong><%= categoria.nomeCategoria %></strong>
@@ -55,10 +55,6 @@
                   Editar
                 </button>
               </div>
-              <form class="col-sm" action="/minha-conta/categorias" method="get">
-                <input type="hidden" name="variavel" value="valor"/>
-                <button type="submit" class="btn btn-outline-danger w-100" onClick="if(!(confirm('Deseja mesmo excluir esta categoria?'))) return false">Excluir</button>
-              </form>
             </div>
           </div>
 

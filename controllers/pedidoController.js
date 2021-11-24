@@ -131,6 +131,18 @@ module.exports = {
 
     res.redirect('/minha-conta/pedidos');
   },
+
+  adicionarCodigoRastreio: async (req, res) => {
+    const { pedidoId, codigoRastreio } = req.body;
+
+    if (codigoRastreio.trim()) {
+      await Pedido.update({ statusPedidoId: 4, codigoRastreio }, { where: { id: pedidoId } });
+    }
+
+    res.redirect('/minha-conta/pedidos');
+  },
+
+
 };
 
 async function retornarQuantidadeAoEstoque(pedidoId) {

@@ -22,3 +22,15 @@ $('#alteraPedidoModal').on('show.bs.modal', function (event) {
     selectStatus.append(`<option value="${s.id}">${s.descricao}</option>`);
   });
 });
+
+$('#addCodigoRastreio').on('show.bs.modal', function (event) {
+  const button = $(event.relatedTarget);
+
+  const pedidoId = button.data('id');
+
+  const modal = $(this);
+  const form = modal.find('form');
+
+  form.attr('action', '/minha-conta/adicionar-codigo-rastreio?_method=PUT');
+  modal.find('#pedidoId').val(pedidoId);
+});

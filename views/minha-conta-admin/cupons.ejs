@@ -13,7 +13,7 @@
         <div class="row g-3 max-width-610p">
           <div class="col-sm-12">
             <div class="list-group">
-              <div class="list-group-item list-group-item-action" aria-current="true">
+              <div class="list-group-item list-group-item-action mb-2" aria-current="true">
                 <div class="row g-1">
                   <a href="/minha-conta/cadastrarcupons" class="col-sm-12 btn btn-primary">Cadastrar Cupom</a>
                 </div>
@@ -21,7 +21,7 @@
 
               <% cupoms.forEach(cupom => { %>
 
-              <div class="list-group-item list-group-item-action <%= !cupom.habilitado && "o-70" %>" aria-current="true">
+              <div class="list-group-item list-group-item-action my-2 <%= !cupom.habilitado && "o-70" %>" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-2"><%= cupom.codigo %></h5>
                 </div>
@@ -40,10 +40,13 @@
                     <input type="submit" value="Editar" class="btn btn-outline-secondary btn-tabela" />
                   </form>
 
+                  <% const acaoTxt = cupom.habilitado ? "Desabilitar" : "Habilitar" %>
+                  <% const acao = acaoTxt.toLowerCase() %>
+
                   <form class="col-sm-6" action="/cupoms/habilitar-desabilitar?_method=PUT" method="post">
                     <input type="hidden" name="id" value="<%= cupom.id %>" />
                     <input type="hidden" name="habilitado" value="<%= cupom.habilitado ? '0' : '1' %>" />
-                    <input type="submit" value="<%= cupom.habilitado ? 'Desabilitar' : 'Habilitar' %>" class="btn btn-outline-secondary btn-tabela"/>
+                    <input type="submit" value="<%= acaoTxt %>" class="btn btn-outline-<%= cupom.habilitado ? "danger" : "success" %> btn-tabela" onClick="if(!(confirm('Deseja mesmo <%= acao %> este cupom?'))) return false"/>
                   </form>
                 </div>
               </div>

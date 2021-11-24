@@ -1,0 +1,23 @@
+<% if (USUARIO && USUARIO.admin) { %>
+<!-- Modal Codigo Rastreio -->
+<div class="modal fade" id="addCodigoRastreio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content text-black" method="post">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel2">Adicionar Código de Rastreio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label class="copy-h6-format">Código</label>
+        <input class="form-control" type="text" name="codigoRastreio"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+        <input type="hidden" name="pedidoId" id="pedidoId" />
+        <button type="submit" class="btn btn-outline-success">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- fim Modal Rastreio -->
+<% } %>
