@@ -1,4 +1,5 @@
 const { Pedido, TipoPagamento, TipoEnvio, StatusPedido, Produto, TamanhoProduto, Endereco, Cupom, PedidoProduto } = require('../database/models');
+const { Op } = require('sequelize');
 
 module.exports = {
   listarPedidos: async (req, res) => {
@@ -18,6 +19,8 @@ module.exports = {
 
     try {
       validarPedido(subtotal, tipoEnvioId, tipoPagamentoId, enderecoId, carrinho, cardData);
+
+      await validarTamanhos(carrinho);
 
       const pedido = await Pedido.create({
         clienteId,
@@ -119,6 +122,26 @@ module.exports = {
     res.redirect('/minha-conta/gerenciarpedidos');
   },
 };
+
+async function validarTamanhos(carrinho) {
+  const tamanhos = carrinho.map(item => item.tamanhoProduto.id);
+
+  const tamanhosDesabilitados = await TamanhoProduto.findAll({
+    where: {
+      id: tamanhos,
+      deletedAt: {
+        [Op.not]: null,
+      },
+    },
+    paranoid: false,
+    include: [Produto],
+  });
+
+  if (tamanhosDesabilitados && tamanhosDesabilitados.length > 0) {
+    const produtosTxt = tamanhosDesabilitados.map(tamanho => `\n${tamanho.Produto.nomeProduto} - ${tamanho.tamanho}`);
+    throw new Error(`Os produtos abaixo não estão mais disponíveis: ${produtosTxt}`);
+  }
+}
 
 function validarPedido(subtotal, tipoEnvioId, tipoPagamentoId, enderecoId, carrinho, cardData) {
   if (!enderecoId) throw new Error('Cadastre um endereço antes de prosseguir');

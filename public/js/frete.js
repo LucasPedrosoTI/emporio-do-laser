@@ -4,6 +4,7 @@ $('input[name="tipoEnvioId"]').on('change', calcularFrete());
 
 function calcularFrete() {
   return function (e) {
+    e.preventDefault();
     const tipoEnvio = $('input[name="tipoEnvioId"]:checked')[0].value;
     const cep = $('#cep').text();
 
@@ -76,7 +77,7 @@ function handleError(xhr, ex) {
 
   if (!$('#btn-retry').length) {
     $('#title-tipo-envio').append(`
-    <button class="btn" id="btn-retry">
+    <button class="btn" type="button" id="btn-retry">
       <i class="bi bi-arrow-clockwise"></i>
     </button>
   `);

@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
             {
               model: models.TamanhoProduto,
               include: [{ model: models.Produto, paranoid: false }],
+              paranoid: false,
             },
           ],
           [order && 'order']: order,

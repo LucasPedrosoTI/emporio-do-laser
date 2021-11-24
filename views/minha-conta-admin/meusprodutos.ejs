@@ -66,11 +66,14 @@
                     <!-- Button trigger modal Editar -->
                     <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#id_<%= produto.id %>">Estoque</button>
                   </div>
-                  <% const acao = produto.deletedAt ? "habilitar" : "desabilitar" %>
+                  
+                  <% const acaoTxt = produto.deletedAt ? "Habilitar" : "Desabilitar" %>
+                  <% const acao = acaoTxt.toLowerCase() %>
+
                   <form class="col-sm" action="/produtos/habilitar-desabilitar?_method=PUT" method="post">
                     <input type="hidden" name="produtoId" value="<%= produto.id %>" />
                     <input type="hidden" name="acao" value="<%= acao %>" />
-                    <input type="submit" value="<%= acao.toUpperCase() %>" class="btn btn-outline-<%= produto.deletedAt ? "success" : "danger" %> btn-tabela" onClick="if(!(confirm('Deseja mesmo <%=
+                    <input type="submit" value="<%= acaoTxt %>" class="btn btn-outline-<%= produto.deletedAt ? "success" : "danger" %> btn-tabela" onClick="if(!(confirm('Deseja mesmo <%=
                     acao %> este produto?'))) return false" />
                   </form>
                 </div>

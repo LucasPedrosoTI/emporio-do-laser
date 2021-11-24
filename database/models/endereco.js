@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       cidade: DataTypes.STRING,
       estado: DataTypes.STRING,
       cep: DataTypes.STRING,
+      deletedAt: DataTypes.DATE,
     },
     {
       sequelize,

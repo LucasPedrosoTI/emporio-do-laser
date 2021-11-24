@@ -9,6 +9,8 @@ router.get('/', produtoController.renderProdutos);
 
 router.put('/habilitar-desabilitar', produtoController.habilitarDesabilitarProduto);
 
+router.put('/habilitar-desabilitar-tamanho', produtoController.habilitarDesabilitarTamanho);
+
 router.get('/:id', produtoController.renderProduto);
 
 router.get('/tamanhos/:id', produtoController.getTamanhoById);

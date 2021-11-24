@@ -14,11 +14,13 @@ module.exports = (sequelize, DataTypes) => {
       quantidade: DataTypes.INTEGER,
       peso: DataTypes.DOUBLE,
       preco: DataTypes.DECIMAL,
+      deletedAt: DataTypes.DATE,
     },
     {
       sequelize,
       modelName: 'TamanhoProduto',
       tableName: 'Tamanho_Produtos',
+      paranoid: true,
     }
   );
   return TamanhoProduto;

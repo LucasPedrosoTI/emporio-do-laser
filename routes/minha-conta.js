@@ -50,7 +50,7 @@ router.get('/editarcupons', authAdmin, cupomController.editarCupom);
 router.get('/meusprodutos', authAdmin, produtoController.listarProdutos);
 router.get('/cadastrarproduto', authAdmin, produtoController.cadastrarProdutoForm);
 router.get('/editarproduto', authAdmin, produtoController.editarProduto);
-router.get('/tamanhos', authAdmin, produtoController.tamanhos);
+router.get('/tamanhos', authAdmin, produtoController.renderTamanhos);
 router.get('/cadastrartamanho', authAdmin, produtoController.cadastrarTamanhoForm);
 router.get('/editartamanho', authAdmin, produtoController.editarTamanho);
 

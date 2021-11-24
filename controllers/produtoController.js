@@ -108,13 +108,9 @@ module.exports = {
     res.redirect('/minha-conta/meusprodutos');
   },
 
-  tamanhos: async (req, res) => {
+  renderTamanhos: async (req, res) => {
     const { produtoId } = req.query;
-
-    const produto = await Produto.findByPk(produtoId);
-    const tamanhos = await TamanhoProduto.findAll({ where: { produtoId } });
-
-    res.render('minha-conta-admin/tamanhos', { tamanhos, produto, menu: 'produtos' });
+    await fRenderTamanhos(produtoId, res);
   },
 
   cadastrarTamanhoForm: async (req, res) => {
@@ -191,4 +187,34 @@ module.exports = {
 
     res.redirect('/minha-conta/meusprodutos');
   },
+
+  habilitarDesabilitarTamanho: async (req, res) => {
+    const { tamanhoId, produtoId, acao } = req.body;
+
+    try {
+      if (acao === 'habilitar') {
+        await TamanhoProduto.restore({
+          where: {
+            id: tamanhoId,
+          },
+        });
+      } else {
+        await TamanhoProduto.destroy({
+          where: {
+            id: tamanhoId,
+          },
+        });
+      }
+    } catch (error) {
+      await fRenderTamanhos(produtoId, res);
+    }
+
+    res.redirect(`/minha-conta/tamanhos?produtoId=${produtoId}`);
+  },
 };
+
+async function fRenderTamanhos(produtoId, res) {
+  const produto = await Produto.findByPk(produtoId, { paranoid: false });
+  const tamanhos = await TamanhoProduto.findAll({ where: { produtoId }, paranoid: false });
+  res.render('minha-conta-admin/tamanhos', { tamanhos, produto, menu: 'produtos' });
+}

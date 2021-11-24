@@ -6,7 +6,7 @@
       <%- include('../components/lateral-menu') %>
 
       <div class="col-sm px-3">
-        <h4><%= produto.nomeProduto %> </h4>
+        <h4><%= produto.nomeProduto %></h4>
         <hr class="mb-4" />
 
         <!-- CODIGO AQUI -->
@@ -22,7 +22,7 @@
                 </div>
               </div>
               <% tamanhos.forEach(tamanho => { %>
-              <div class="list-group-item list-group-item-action mb-3" aria-current="true">
+              <div class="list-group-item list-group-item-action mb-3" style="<%= tamanho.deletedAt && "opacity: 0.7;" %>" aria-current="true">
                 <div class="row g-1 mb-2">
                   <div class="col-sm d-flex justify-content-between mx-1">
                     <div>
@@ -48,9 +48,13 @@
                     <input type="hidden" name="tamanhoId" value="<%= tamanho.id %>" />
                     <input type="submit" value="Editar" class="btn btn-outline-secondary btn-tabela" />
                   </form>
-                  <form class="col-sm" action="/minha-conta/meusprodutos" method="get">
+                  <% const acaoTxt = tamanho.deletedAt ? "Habilitar" : "Desabilitar" %> <% const acao = acaoTxt.toLowerCase() %>
+                  <form class="col-sm" action="/produtos/habilitar-desabilitar-tamanho?_method=PUT" method="post">
                     <input type="hidden" name="tamanhoId" value="<%= tamanho.id %>" />
-                    <input type="submit" value="Excluir" class="btn btn-outline-danger btn-tabela" onClick="if(!(confirm('Deseja mesmo excluir este produto?'))) return false"/>
+                    <input type="hidden" name="produtoId" value="<%= produto.id %>" />
+                    <input type="hidden" name="acao" value="<%= acao %>" />
+                    <input type="submit" value="<%= acaoTxt %>" class="btn btn-outline-<%= tamanho.deletedAt ? "success" : "danger" %> btn-tabela"
+                    onClick="if(!(confirm('Deseja mesmo <%= acao %> este produto?'))) return false" />
                   </form>
                 </div>
               </div>
