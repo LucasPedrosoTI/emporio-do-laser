@@ -40,7 +40,7 @@
         </div>
         <div class="col-md-9 my-2 align-items-center justify-content-center">
           <div class="row">
-            <% if (produtos && produtos.length > 0) { %> <% produtos.forEach(produto => { %>
+            <% if (produtos && produtos.length > 0) { %> <% produtos.forEach(produto => { %> <% if (produto.TamanhoProdutos && produto.TamanhoProdutos.length > 0) { %>
             <div class="col-md-3">
               <div class="produto-lista">
                 <a href="produtos/<%= produto.id %>" class="produto-sobrepor"></a>
@@ -56,7 +56,7 @@
                 </div>
               </div>
             </div>
-            <% }) %> <% } else { %>
+            <% } %> <% }) %> <% } else { %>
             <div class="col-12 bg-light bg-gradient text-center rounded-pill p-3">
               <h3>Nenhum produto encontrado para o filtro informado</h3>
             </div>

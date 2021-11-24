@@ -20,7 +20,16 @@ module.exports = {
     try {
       validarPedido(subtotal, tipoEnvioId, tipoPagamentoId, enderecoId, carrinho, cardData);
 
-      await validarTamanhos(carrinho);
+      const tamanhos = carrinho.map(item => ({
+        tamanhoId: item.tamanhoProduto.id,
+        quantidade: parseInt(item.qtd),
+      }));
+      const tamanhoIds = tamanhos.map(t => t.tamanhoId);
+      const produtoIds = carrinho.map(item => item.produto.id);
+
+      await validarTamanhos(carrinho, tamanhoIds);
+      await validarQuantidades(tamanhoIds, tamanhos);
+      await validarProdutos(produtoIds);
 
       const pedido = await Pedido.create({
         clienteId,
@@ -123,9 +132,43 @@ module.exports = {
   },
 };
 
-async function validarTamanhos(carrinho) {
-  const tamanhos = carrinho.map(item => item.tamanhoProduto.id);
+async function validarProdutos(produtoIds) {
+  const produtosDesabilitados = await Produto.findAll({
+    paranoid: false,
+    where: {
+      id: produtoIds,
+      deletedAt: {
+        [Op.not]: null,
+      },
+    },
+  });
 
+  if (produtosDesabilitados && produtosDesabilitados.length > 0) {
+    const produtosTxt = produtosDesabilitados.map(produto => `\n${produto.nomeProduto}`);
+    throw new Error(`Os produtos abaixo não estão mais disponíveis: ${produtosTxt}`);
+  }
+}
+
+async function validarQuantidades(tamanhoIds, tamanhos) {
+  const tamanhosBanco = await TamanhoProduto.findAll({
+    where: {
+      id: tamanhoIds,
+    },
+    include: [Produto],
+  });
+
+  tamanhos.forEach(tamanho => {
+    const tBanco = tamanhosBanco.find(tam => tam.id == tamanho.tamanhoId);
+
+    if (tBanco.quantidade - tamanho.quantidade < 0) {
+      throw new Error(
+        `Quantidade insuficiente em estoque para o produto ${tBanco.Produto.nomeProduto} - ${tBanco.tamanho}. Disponível: \n${tBanco.quantidade} unidade(s) \nPedido: ${tamanho.quantidade} unidade(s)`
+      );
+    }
+  });
+}
+
+async function validarTamanhos(tamanhos) {
   const tamanhosDesabilitados = await TamanhoProduto.findAll({
     where: {
       id: tamanhos,

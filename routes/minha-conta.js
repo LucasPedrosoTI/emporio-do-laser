@@ -49,10 +49,10 @@ router.get('/editarcupons', authAdmin, cupomController.editarCupom);
 // --> Produtos
 router.get('/meusprodutos', authAdmin, produtoController.listarProdutos);
 router.get('/cadastrarproduto', authAdmin, produtoController.cadastrarProdutoForm);
-router.get('/editarproduto', authAdmin, produtoController.editarProduto);
+router.get('/editarproduto', authAdmin, produtoController.renderEditarProduto);
 router.get('/tamanhos', authAdmin, produtoController.renderTamanhos);
 router.get('/cadastrartamanho', authAdmin, produtoController.cadastrarTamanhoForm);
-router.get('/editartamanho', authAdmin, produtoController.editarTamanho);
+router.get('/editartamanho', authAdmin, produtoController.renderEditarTamanho);
 
 // -- Categorias
 router.get('/categorias', authAdmin, categoriaController.listarCategorias);

@@ -73,11 +73,11 @@ module.exports = {
     res.redirect('/minha-conta/meusprodutos');
   },
 
-  editarProduto: async (req, res) => {
+  renderEditarProduto: async (req, res) => {
     const { produtoId } = req.query;
     const categorias = await Categoria.findAll();
 
-    let produto = await Produto.findByPk(produtoId);
+    const produto = await obterProdutoPorId(produtoId);
 
     res.render('minha-conta-admin/editarproduto', { produto, categorias, menu: 'produtos' });
   },
@@ -129,10 +129,10 @@ module.exports = {
     res.render('minha-conta-admin/tamanhos', { produto, tamanhos, menu: 'produtos' });
   },
 
-  editarTamanho: async (req, res) => {
+  renderEditarTamanho: async (req, res) => {
     const { tamanhoId } = req.query;
 
-    let tamanho = await TamanhoProduto.findByPk(tamanhoId);
+    const tamanho = await TamanhoProduto.findByPk(tamanhoId, { paranoid: false });
 
     res.render('minha-conta-admin/editartamanho', { tamanho, menu: 'produtos' });
   },
@@ -214,7 +214,10 @@ module.exports = {
 };
 
 async function fRenderTamanhos(produtoId, res) {
-  const produto = await Produto.findByPk(produtoId, { paranoid: false });
+  const produto = await obterProdutoPorId(produtoId);
   const tamanhos = await TamanhoProduto.findAll({ where: { produtoId }, paranoid: false });
   res.render('minha-conta-admin/tamanhos', { tamanhos, produto, menu: 'produtos' });
+}
+async function obterProdutoPorId(produtoId) {
+  return await Produto.findByPk(produtoId, { paranoid: false });
 }

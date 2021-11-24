@@ -76,9 +76,13 @@ function listarItens(data) {
                         <div class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
                           <div class="input-group">
 
-                            <input type="number" class="form-control text-center border-dark qtd" value="${value.qtd}" onchange="mudaQuantia(${value.tamanhoProduto.id}, this.value)">
+                            <input type="number" class="form-control text-center border-dark qtd" max="${value.tamanhoProduto.quantidade - 1}" value="${value.qtd}" onchange="mudaQuantia(${
+        value.tamanhoProduto.id
+      }, this.value)">
 
-                            <button type="button" class="btn btn-outline-danger border-dark btn-sm" onClick="if((confirm('Deseja mesmo remover este item do carrrinho?'))) return deletarItem(${value.tamanhoProduto.id})">
+                            <button type="button" class="btn btn-outline-danger border-dark btn-sm" onClick="if((confirm('Deseja mesmo remover este item do carrrinho?'))) return deletarItem(${
+                              value.tamanhoProduto.id
+                            })">
                               <i class="bi-trash" style="font-size: 24px; line-height: 24px;"></i>
                             </button>
                           </div>
@@ -103,7 +107,9 @@ function listarItens(data) {
                   <div class="text-end">
                     <h4 class="text-dark mb-3"><b>Total: ${currencyformatter.format(total)}</b></h4>
                       <a href="/produtos" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
-                      <a href="/carrinho/pagamento" class="btn btn-primary btn-lg">Fechar Compra</a>
+                      <form action="/carrinho/pagamento" method="get" class="d-inline">
+                       <button type="submit" class="btn btn-primary btn-lg">Fechar Compra</button>
+                      </form>
                   </div>
                 </li>
               </div>
