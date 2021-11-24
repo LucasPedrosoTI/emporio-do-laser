@@ -6,6 +6,7 @@
       <%- include('../components/lateral-menu') %>
 
       <div class="col-sm px-3">
+        <%- include('../components/error-alert', {error}) %>
         <h4>Produtos</h4>
         <hr class="mb-4" />
 
@@ -19,10 +20,10 @@
                 </div>
               </div>
               <% produtos.forEach(produto => { %>
-              <div class="list-group-item list-group-item-action mb-3" aria-current="true">
+              <div class="list-group-item list-group-item-action mb-3" aria-current="true" style="<%= produto.deletedAt && "opacity: 0.7;" %>">
                 <div class="row g-1 mb-2">
                   <div class="col-sm mx-1 mb-1">
-                    <img src="<%= produto.ImagemProdutos[0].nomeImagem %>" style="border: 1px solid gray;"/>
+                    <img src="<%= produto.ImagemProdutos[0].nomeImagem %>" style="border: 1px solid gray" />
                   </div>
                   <div class="col-sm-8 mx-1">
                     <div class="mb-2" align="center">
@@ -44,7 +45,7 @@
                 </div>
                 <div class="row g-1">
                   <div class="col-sm nav-item dropdown">
-                    <div class="btn btn-outline-secondary btn-tabela dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Editar </div>
+                    <div class="btn btn-outline-secondary btn-tabela dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Editar</div>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <li>
                         <form class="col-sm" action="/minha-conta/editarproduto" method="get">
@@ -63,14 +64,14 @@
 
                   <div class="col-sm">
                     <!-- Button trigger modal Editar -->
-                    <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#id_<%= produto.id %>">
-                      Estoque
-                    </button>
+                    <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#id_<%= produto.id %>">Estoque</button>
                   </div>
-
-                  <form class="col-sm" action="/minha-conta/meusprodutos" method="get">
+                  <% const acao = produto.deletedAt ? "habilitar" : "desabilitar" %>
+                  <form class="col-sm" action="/produtos/habilitar-desabilitar?_method=PUT" method="post">
                     <input type="hidden" name="produtoId" value="<%= produto.id %>" />
-                    <input type="submit" value="Excluir" class="btn btn-outline-danger btn-tabela" onClick="if(!(confirm('Deseja mesmo excluir este produto?'))) return false"/>
+                    <input type="hidden" name="acao" value="<%= acao %>" />
+                    <input type="submit" value="<%= acao.toUpperCase() %>" class="btn btn-outline-<%= produto.deletedAt ? "success" : "danger" %> btn-tabela" onClick="if(!(confirm('Deseja mesmo <%=
+                    acao %> este produto?'))) return false" />
                   </form>
                 </div>
               </div>
@@ -78,31 +79,31 @@
               <!-- Modal estoque -->
               <div class="modal fade" id="id_<%= produto.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                  <div class="modal-content text-black"> 
+                  <div class="modal-content text-black">
                     <div class="modal-header">
                       <h5 class="modal-title" id="staticBackdropLabel"><%= produto.nomeProduto %></h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                       <% produto.TamanhoProdutos.forEach(tamanho => { %>
-                        
-                        <form action="/produtos/alterar-estoque?_method=PUT" method="post">
-                          <div class="row g-1 mb-3"> 
-                            <div class="col-sm">
-                              <label class="copy-h6-format">Tamanho: <%= tamanho.tamanho %></label>
-                              <div class="form-control">Estoque Atual: <%= tamanho.quantidade %></div>
-                            </div>
-                            <div class="col-sm">
-                              <label class="copy-h6-format">Entrada</label>
-                              <input type="number" name="entrada" class="form-control" placeholder="Ex: 1"/>
-                            </div>
-                            <div class="col-sm-3 d-flex" style="align-items: flex-end;">
-                              <input type="hidden" name="id" value="<%= tamanho.id %>"/>
-                              <input type="hidden" name="estoque" value="<%= tamanho.quantidade %>"/>
-                              <button type="submit" class="btn btn-outline-success btn-tabela">Salvar</button>
-                            </div>
+
+                      <form action="/produtos/alterar-estoque?_method=PUT" method="post">
+                        <div class="row g-1 mb-3">
+                          <div class="col-sm">
+                            <label class="copy-h6-format">Tamanho: <%= tamanho.tamanho %></label>
+                            <div class="form-control">Estoque Atual: <%= tamanho.quantidade %></div>
                           </div>
-                        </form>
+                          <div class="col-sm">
+                            <label class="copy-h6-format">Entrada</label>
+                            <input type="number" name="entrada" class="form-control" placeholder="Ex: 1" />
+                          </div>
+                          <div class="col-sm-3 d-flex" style="align-items: flex-end">
+                            <input type="hidden" name="id" value="<%= tamanho.id %>" />
+                            <input type="hidden" name="estoque" value="<%= tamanho.quantidade %>" />
+                            <button type="submit" class="btn btn-outline-success btn-tabela">Salvar</button>
+                          </div>
+                        </div>
+                      </form>
 
                       <% }); %>
                     </div>
@@ -113,7 +114,7 @@
                 </div>
               </div>
               <!-- fim Modal estoque -->
-              
+
               <% }); %>
             </div>
           </div>

@@ -52,7 +52,7 @@ module.exports = {
   },
 
   listarProdutos: async (req, res, next) => {
-    const produtos = await Produto.findAll({ include: [Categoria, ImagemProduto, TamanhoProduto] });
+    const produtos = await Produto.findAll({ include: [Categoria, ImagemProduto, TamanhoProduto], paranoid: false });
 
     res.render('minha-conta-admin/meusprodutos', { produtos, menu: 'produtos' });
   },
@@ -153,16 +153,41 @@ module.exports = {
   },
 
   alterarEstoque: async (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     let { id, estoque, entrada } = req.body;
 
     if (entrada == null || entrada.trim() == '') {
       entrada = 0;
     }
 
-    let quantidade = (parseInt(estoque) + parseInt(entrada));
+    let quantidade = parseInt(estoque) + parseInt(entrada);
 
     await TamanhoProduto.update({ quantidade }, { where: { id } });
+
+    res.redirect('/minha-conta/meusprodutos');
+  },
+
+  habilitarDesabilitarProduto: async (req, res) => {
+    const { produtoId, acao } = req.body;
+
+    try {
+      if (acao === 'habilitar') {
+        await Produto.restore({
+          where: {
+            id: produtoId,
+          },
+        });
+      } else {
+        await Produto.destroy({
+          where: {
+            id: produtoId,
+          },
+        });
+      }
+    } catch (error) {
+      const produtos = await Produto.findAll({ include: [Categoria, ImagemProduto, TamanhoProduto], paranoid: false });
+      res.render('minha-conta-admin/meusprodutos', { produtos, menu: 'produtos', error: error.message });
+    }
 
     res.redirect('/minha-conta/meusprodutos');
   },

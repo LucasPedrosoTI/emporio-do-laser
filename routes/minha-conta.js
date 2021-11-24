@@ -41,12 +41,12 @@ router.put('/cancelar-pedido', pedidoController.cancelarPedido);
 
 // --- ADMINISTRADOR --- //
 
-  // --> Cupons
+// --> Cupons
 router.get('/cupons', authAdmin, cupomController.listarCupoms);
 router.get('/cadastrarcupons', authAdmin, cupomController.renderCadastrarCupom);
 router.get('/editarcupons', authAdmin, cupomController.editarCupom);
 
-  // --> Produtos
+// --> Produtos
 router.get('/meusprodutos', authAdmin, produtoController.listarProdutos);
 router.get('/cadastrarproduto', authAdmin, produtoController.cadastrarProdutoForm);
 router.get('/editarproduto', authAdmin, produtoController.editarProduto);
@@ -54,12 +54,12 @@ router.get('/tamanhos', authAdmin, produtoController.tamanhos);
 router.get('/cadastrartamanho', authAdmin, produtoController.cadastrarTamanhoForm);
 router.get('/editartamanho', authAdmin, produtoController.editarTamanho);
 
-  // -- Categorias
+// -- Categorias
 router.get('/categorias', authAdmin, categoriaController.listarCategorias);
 
-  // --> Pedidos
-router.get('/gerenciarpedidos', authAdmin, pedidoController.gerenciarPedidos);
-router.get('/historicopedidos', authAdmin, pedidoController.listAllPedidos);
+// --> Pedidos
+router.get('/gerenciarpedidos', authAdmin, pedidoController.renderGerenciarPedidos);
+router.get('/historicopedidos', authAdmin, pedidoController.renderHistoricoPedido);
 router.put('/alterar-status-pedido', pedidoController.alterarStatusPedido);
 
 // ----------------------- //

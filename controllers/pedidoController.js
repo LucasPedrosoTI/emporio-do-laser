@@ -3,21 +3,8 @@ const { Pedido, TipoPagamento, TipoEnvio, StatusPedido, Produto, TamanhoProduto,
 module.exports = {
   listarPedidos: async (req, res) => {
     const clienteId = req.session.usuario.Cliente.id;
-    const pedidos = await Pedido.findAll({
-      where: { clienteId },
-      include: [
-        TipoPagamento,
-        StatusPedido,
-        TipoEnvio,
-        { model: Endereco, paranoid: false },
-        Cupom,
-        {
-          model: TamanhoProduto,
-          include: [Produto],
-        },
-      ],
-      order: [['id', 'DESC']],
-    });
+
+    const pedidos = await Pedido.findAllWithAllInformation({ clienteId }, [['id', 'DESC']]);
 
     res.render('minha-conta/pedidos', { pedidos, menu: 'pedidos' });
   },
@@ -82,71 +69,43 @@ module.exports = {
     const { id: clienteId } = req.session.usuario.Cliente;
     const { pedidoId } = req.body;
     const statusPedidoId = 6;
-    
+
     await Pedido.update({ statusPedidoId }, { where: { id: pedidoId, clienteId: clienteId } });
 
     res.redirect('/minha-conta/pedidos');
   },
 
-  listAllPedidos: async (req, res) => {
+  renderHistoricoPedido: async (req, res) => {
     let { filtro } = req.query;
     let status;
 
-    if(filtro == null || filtro == "Todos"){
-      filtro = "Todos";
+    if (filtro == null || filtro == 'Todos') {
+      filtro = 'Todos';
       status = [5, 6];
     } else {
       status = filtro;
     }
-    
-    let pedidos = await Pedido.findAll({
-      include: [
-        TipoPagamento,
-        StatusPedido,
-        TipoEnvio,
-        { model: Endereco, paranoid: false },
-        Cupom,
-        {
-          model: TamanhoProduto,
-          include: [Produto],
-        },
-      ], 
-      where: { statusPedidoId: status },
-      order: [['id', 'DESC']],
-    });
+
+    const pedidos = await Pedido.findAllWithAllInformation({ statusPedidoId: status }, [['id', 'DESC']]);
 
     const pedidoStatus = await StatusPedido.findAll();
 
     res.render('minha-conta-admin/historicopedidos', { pedidos, filtro, pedidoStatus, menu: 'historico' });
   },
 
-  gerenciarPedidos: async (req, res) => {
+  renderGerenciarPedidos: async (req, res) => {
     let { filtro } = req.query;
     let status;
 
-    if(filtro == null || filtro == "Todos"){
-      filtro = "Todos";
+    if (filtro == null || filtro == 'Todos') {
+      filtro = 'Todos';
       status = [1, 2, 3, 4];
     } else {
       status = filtro;
     }
-    
-    let pedidos = await Pedido.findAll({
-      include: [
-        TipoPagamento,
-        StatusPedido,
-        TipoEnvio,
-        { model: Endereco, paranoid: false },
-        Cupom,
-        {
-          model: TamanhoProduto,
-          include: [Produto],
-        },
-      ], 
-      where: { statusPedidoId: status },
-      order: [['id', 'ASC']],
-    });
-         
+
+    const pedidos = await Pedido.findAllWithAllInformation({ statusPedidoId: status }, [['id', 'ASC']]);
+
     const pedidoStatus = await StatusPedido.findAll();
 
     res.render('minha-conta-admin/pedidos', { pedidos, filtro, pedidoStatus, menu: 'pedidos' });
@@ -158,7 +117,7 @@ module.exports = {
     await Pedido.update({ statusPedidoId }, { where: { id: pedidoId } });
 
     res.redirect('/minha-conta/gerenciarpedidos');
-  }
+  },
 };
 
 function validarPedido(subtotal, tipoEnvioId, tipoPagamentoId, enderecoId, carrinho, cardData) {

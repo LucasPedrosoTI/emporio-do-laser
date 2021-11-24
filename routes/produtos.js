@@ -7,6 +7,8 @@ const uploadProdutoUpdate = require('../lib/uploadProdutoUpdate');
 /* GET nav bar Produtos */
 router.get('/', produtoController.renderProdutos);
 
+router.put('/habilitar-desabilitar', produtoController.habilitarDesabilitarProduto);
+
 router.get('/:id', produtoController.renderProduto);
 
 router.get('/tamanhos/:id', produtoController.getTamanhoById);
