@@ -41,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
       tipoPagamentoId: DataTypes.INTEGER,
       enderecoId: DataTypes.BIGINT,
       boleto: DataTypes.STRING,
+      codigoRastreio: DataTypes.STRING,
     },
     {
       sequelize,

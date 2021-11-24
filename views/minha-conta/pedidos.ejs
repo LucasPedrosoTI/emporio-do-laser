@@ -1,5 +1,5 @@
 <%- include('../components/head') %> <%- include('../components/navbar') %>
-<script src="/js/detalhesPedido.js"></script>
+<script src="/js/detalhesPedido.js" defer></script>
 
 <section>
   <div class="corpo container-fluid text-branco">
@@ -18,7 +18,7 @@
                 <button class="btn btn-outline-success w-100 my-1">Filtrar</button>
               </div>
               <div class="col-sm-8">
-                <select class="form-control my-1" name="filtro">
+                <select class="form-select my-1" name="filtro">
                   <option value="Todos">Todos</option>
                   <% pedidoStatus.forEach(status => { %> <% if (USUARIO.admin ) { %> <% if (parseInt(status.id) <= 4) { %>
                   <option value="<%= status.id %>"><%= status.descricao %></option>
@@ -35,6 +35,8 @@
           <!-- FOREACH -->
           <% pedidos.forEach(pedido => { %> <%- include('../components/listaPedidos.ejs', {pedido}) %> <% }); %>
           <!-- FINAL FOREACH -->
+
+          <%- include('../components/modalEditarPedido.ejs') %>
         </div>
       </div>
     </div>

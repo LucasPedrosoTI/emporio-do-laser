@@ -38,47 +38,26 @@
   </div>
   <% } %> <% if (USUARIO && USUARIO.Cliente) { %> <% if (pedido.statusPedidoId == 1 || pedido.statusPedidoId == 2) { %>
   <div class="row g-1">
-    <form class="col-sm mb-2" action="/minha-conta/cancelar-pedido?_method=PUT" method="post">
+    <form class="col-sm mb-2" method="post">
       <input type="hidden" name="pedidoId" value="<%= pedido.id %>" />
       <input type="submit" value="Cancelar Pedido" class="btn btn-outline-secondary w-100" onClick="if(!(confirm('Deseja mesmo cancelar este pedido?'))) return false" />
     </form>
   </div>
   <% } %> <% } %> <% if (USUARIO && USUARIO.admin) { %>
-  <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#id_<%= pedido.id %>">Alterar Status</button>
+  <button
+    type="button"
+    class="btn btn-outline-secondary w-100"
+    data-bs-toggle="modal"
+    data-bs-target="#alteraPedidoModal"
+    data-id="<%= pedido.id %>"
+    data-statusatual="<%= pedido.StatusPedido.descricao %>"
+    data-pedidostatus="<%= pedidoStatus.map(status => (JSON.stringify({id: status.id, descricao: status.descricao}))) %>"
+  >
+    Alterar Status
+  </button>
   <% } %>
 
   <!-- DETALHES DO PEDIDO -->
   <%- include('../components/detalhePedido.ejs', {pedido}) %>
   <!-- Detalhes do Pedido -->
 </div>
-
-<% if (USUARIO && USUARIO.admin) { %>
-<!-- Modal Editar -->
-<div class="modal fade" id="id_<%= pedido.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content text-black" action="/minha-conta/alterar-status-pedido?_method=PUT" method="post">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Editar Status</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <label class="copy-h6-format">Status Atual</label>
-        <div class="form-control my-1 mb-4"><%= pedido.StatusPedido.descricao %></div>
-
-        <label class="copy-h6-format">Novo Status</label>
-        <select class="form-control my-1" name="statusPedidoId">
-          <% pedidoStatus.forEach(status => { %>
-          <option value="<%= status.id %>"><%= status.descricao %></option>
-          <% }); %>
-        </select>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
-        <input type="hidden" name="pedidoId" value="<%= pedido.id %>" />
-        <button type="submit" class="btn btn-outline-success">Salvar</button>
-      </div>
-    </form>
-  </div>
-</div>
-<!-- fim Modal Editar -->
-<% } %>
