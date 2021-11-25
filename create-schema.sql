@@ -1,2 +1,2 @@
-CREATE SCHEMA `emporio-do-laser-2`;
+CREATE SCHEMA `emporio-do-laser`;
 USE `emporio-do-laser`;
