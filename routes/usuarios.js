@@ -9,6 +9,7 @@ router.put('/alterar-email', usuarioController.alterarEmail);
 router.put('/alterar-senha', usuarioController.alterarSenha);
 router.put('/alterar-dados', usuarioController.alterarDados);
 router.put('/alterar-logo', uploadLogo, usuarioController.alterarLogo);
+router.delete('/desativar-conta', usuarioController.desativarConta);
 
 router.put('/alterar-endereco', enderecoController.alterarEndereco);
 router.delete('/excluir-endereco', enderecoController.excluirEndereco);

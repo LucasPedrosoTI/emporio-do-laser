@@ -159,6 +159,34 @@ module.exports = {
     return res.redirect('/minha-conta/logo');
   },
 
+  desativarConta: async (req, res) => {
+    try {
+      const { senha, email } = req.body;
+      const { id } = req.session.usuario;
+
+      const usuario = await Usuario.findOne({ where: { id } });
+
+      if (!bcrypt.compareSync(senha, usuario.senha) || email != usuario.email) {
+        return res.render('minha-conta/desativarconta', { error: 'Usuário/Senha inválido', menu: 'desativar' });
+      }
+
+      await Usuario.destroy(
+        {
+          where: {
+            id,
+          },
+        }
+      );
+
+    } catch (error) {
+      return res.render('minha-conta/desativarconta', { error: error.message, menu: 'desativar' });
+    }
+
+    req.session.destroy();
+    res.clearCookie('manterLogado');
+    return res.redirect('/identifique-se');
+  },
+
   enviarEmail: async (req, res) => {
     const { nome, email, subject, text } = req.body;
 

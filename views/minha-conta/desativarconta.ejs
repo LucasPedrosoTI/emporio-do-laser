@@ -1,0 +1,36 @@
+<%- include('../components/head') %> <%- include('../components/navbar') %>
+
+<section>
+  <div class="corpo container-fluid text-branco">
+    <div class="row g-1">
+      <%- include('../components/lateral-menu') %>
+
+      <div class="col-sm px-3">
+        <h4>Desativar Conta</h4>
+        <hr class="mb-3" />
+
+        <form method="post" action="/usuarios/desativar-conta?_method=DELETE" class="m-w-800" data-toggle="validator">
+          
+          <div class="row g-3 mb-2">
+            <div class="col-sm">
+              <label for="email" class="copy-h6-format text-white">E-mail</label>
+              <input type="email" name="email" class="form-control" placeholder="Digite seu e-mail" required/>
+            </div>
+          </div>
+          
+          <div class="row g-3 mb-4">
+            <div class="col-sm">
+              <label class="copy-h6-format text-white">Senha</label>
+              <input type="password" name="senha" class="form-control" placeholder="Digite sua senha" required />
+            </div>
+          </div>
+
+          <%- include('../components/error-alert', {error}) %>
+          <div class="my-3"><button type="submit" class="btn btn-primary" onClick="if(!(confirm('Deseja mesmo desativar sua conta?'))) return false">Desativar</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../components/foot') %>
