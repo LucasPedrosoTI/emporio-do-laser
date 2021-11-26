@@ -20,10 +20,10 @@
 
           <div class="row g-3 mb-2">
             <div class="col-sm">
-              <label class="copy-h6-format text-white">É porcentagem?</label>
+              <label class="copy-h6-format text-white">Tipo de Desconto</label>
               <select class="form-control" name="ehPorcentagem">
-                <option value="1">Sim</option>
-                <option value="0">Não</option>
+                <option value="1">Porcentagem</option>
+                <option value="0">Reais</option>
               </select>
             </div>
             <div class="col-sm">
@@ -34,9 +34,13 @@
 
           <div class="row g-3 mb-2">
             <div class="col-sm">
-              <label class="copy-h6-format text-white">Habilitado?</label>
-              <input type="hidden" name="habilitado" value="1" />
-              <small class="form-control">Sim</small>
+              <label class="copy-h6-format text-white">Status</label>
+              <select class="form-select" name="habilitado">
+                <option value="1">Habilitado</option>
+                <option value="0">Desabilitado</option>
+              </select>
+              <!-- <input type="hidden" name="habilitado" value="1" />
+              <small class="form-control">Sim</small> -->
             </div>
             <div class="col-sm">
               <label class="copy-h6-format text-white">Expiração</label>
