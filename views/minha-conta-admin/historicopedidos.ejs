@@ -38,13 +38,6 @@
                 <p class="col-sm mb-1"><%= pedido.id %></p>
               </div>
 
-              <% if (USUARIO && USUARIO.admin) { %>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Cliente</strong>
-                  <p class="col-sm mb-1"><%= pedido.Cliente.ehPessoaFisica ? pedido.Cliente.PessoaFisica.nome : pedido.Cliente.PessoaJuridica.razao_social %></p>
-                </div>
-              <% } %>
-
               <div class="row g-1">
                 <strong class="col-sm m-w-130">Pagamento</strong>
                 <p class="col-sm mb-1"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
@@ -52,22 +45,10 @@
               <div class="row g-1">
                 <strong class="col-sm m-w-130">Status</strong>
                 <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
-              </div>
-
-              <% if (pedido.Cupom) { %>
-                <div class="row g-1">
-                  <strong class="col-sm m-w-130">Cupom</strong>
-                  <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
-                </div>
-              <% } %>
-              
+              </div>              
               <div class="row g-1">
                 <strong class="col-sm m-w-130">Valor Total</strong>
                 <p class="col-sm mb-1"><%= currencyFormatter.format(pedido.subtotal) %></p>
-              </div>
-              <div class="row g-1">
-                <strong class="col-sm m-w-130">Tipo de Envio</strong>
-                <p class="col-sm mb-1"><%= pedido.TipoEnvio.nomeTipoEnvio %></p>
               </div>
               <div class="row g-1">
                 <strong class="col-sm m-w-130">Data do Pedido</strong>
@@ -78,7 +59,26 @@
                 <p class="col-sm mb-1"><%= dateFormatter.format(pedido.updatedAt) %></p>
               </div>
               <!-- DETALHES DO PEDIDO -->
-              <!--  -->
+              <div class="accordion accordion-flush my-2" id="accordionFlushExample_<%= pedido.id %>">
+                <div class="accordion-item">
+                  <span class="accordion-header" id="flush-headingOne_<%= pedido.id %>" title="Clique para ver detalhes do pedido.">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      style="padding: 7px 12px; border: 1px solid rgb(194, 194, 194); border-radius: 4px"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseOne_<%= pedido.id %>"
+                      aria-expanded="false"
+                      aria-controls="flush-collapseOne_<%= pedido.id %>"
+                    >
+                      Detalhes do Pedido
+                    </button>
+                  </span>
+                  <div id="flush-collapseOne_<%= pedido.id %>" class="accordion-collapse collapse" aria-labelledby="flush-headingOne_<%= pedido.id %>" data-bs-parent="#accordionFlushExample_<%= pedido.id %>">
+                    <div class="accordion-body"><%- include('../components/detalhePedido.ejs', {pedido}) %></div>
+                  </div>
+                </div>
+              </div>
               <!-- Detalhes do Pedido -->
             </div>   
           <% }); %>

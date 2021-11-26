@@ -1,5 +1,51 @@
 <div id="<%= pedido.id %>" class="showDetalhesPedido">
   <div class="list-group-item list-group-item-action" aria-current="true">
+    
+    <% if (USUARIO && USUARIO.admin) { %>
+      <div class="row g-1 mb-3">
+        <div class="col-sm w-100 mb-2">
+          <i class="bi bi-person me-2"></i>
+          <u>
+            <strong>Cliente</strong>
+          </u>
+        </div>
+        <div>
+          <p class="mb-1"><strong><%= pedido.Cliente.ehPessoaFisica ? 'Nome:' : 'Razão Social:' %></strong> <%= pedido.Cliente.ehPessoaFisica ? pedido.Cliente.PessoaFisica.nome : pedido.Cliente.PessoaJuridica.razao_social %></p>
+          <p class="mb-1"><strong><%= pedido.Cliente.ehPessoaFisica ? 'CPF:' : 'CNPJ:' %></strong> <%= pedido.Cliente.ehPessoaFisica ? pedido.Cliente.PessoaFisica.cpf : pedido.Cliente.PessoaJuridica.cnpj %></p>
+          <p class="mb-1"><strong>Telefone:</strong> <%= pedido.Cliente.telefone %></p>
+        </div>
+      </div>
+      <hr />
+    <% } %>
+
+    <% if (pedido.Cupom) { %>
+      <div class="row g-1 mb-3">
+        <div class="col-sm w-100 mb-2">
+          <i class="bi bi-card-text me-2"></i>
+          <u>
+            <strong>Cupom de Desconto</strong>
+          </u>
+        </div>
+        <div>
+          <p class="mb-1"><strong>Código:</strong> <%= pedido.Cupom.codigo %></p>
+        </div>
+      </div>
+      <hr />
+    <% } %>
+
+    <div class="row g-1 mb-3">
+      <div class="col-sm w-100 mb-2">
+        <i class="bi bi-truck me-2"></i>
+        <u>
+          <strong>Forma de Envio</strong>
+        </u>
+      </div>
+      <div>
+        <p class="mb-1"><strong>Transportadora:</strong> <%= pedido.TipoEnvio.nomeTipoEnvio %></p>
+      </div>
+    </div>
+    <hr />
+    
     <div class="row g-1 mb-3">
       <div class="col-sm w-100 mb-2">
         <i class="bi bi-geo-alt me-2"></i>
