@@ -7,26 +7,34 @@
   </div>
 
   <% if (USUARIO && USUARIO.admin) { %>
-    <div class="row g-1">
-      <strong class="col-sm m-w-130">Cliente</strong>
-      <p class="col-sm mb-1"><%= pedido.Cliente.ehPessoaFisica ? pedido.Cliente.PessoaFisica.nome : pedido.Cliente.PessoaJuridica.razao_social %></p>
-    </div>
+  <div class="row g-1">
+    <strong class="col-sm m-w-130">Cliente</strong>
+    <p class="col-sm mb-1"><%= pedido.Cliente.ehPessoaFisica ? pedido.Cliente.PessoaFisica.nome : pedido.Cliente.PessoaJuridica.razao_social %></p>
+  </div>
   <% } %>
 
   <div class="row g-1">
     <strong class="col-sm m-w-130">Pagamento</strong>
     <p class="col-sm mb-1"><%= pedido.TipoPagamento.nomeTipoPagamento %></p>
   </div>
+
+  <% if (pedido.TipoPagamento.id == 2) { %>
+  <div class="row g-1">
+    <strong class="col-sm m-w-130">Boleto</strong>
+    <a class="col-sm mb-1" href="/boleto?pedidoId=<%=pedido.id%>" target="_blank" rel="noopener noreferrer">Ver Boleto</a>
+  </div>
+  <% } %>
+
   <div class="row g-1">
     <strong class="col-sm m-w-130">Status</strong>
     <p class="col-sm mb-1"><%= pedido.StatusPedido.descricao %></p>
   </div>
 
   <% if (pedido.Cupom) { %>
-    <div class="row g-1">
-      <strong class="col-sm m-w-130">Cupom</strong>
-      <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
-    </div>
+  <div class="row g-1">
+    <strong class="col-sm m-w-130">Cupom</strong>
+    <p class="col-sm mb-1"><%= pedido.Cupom.codigo %></p>
+  </div>
   <% } %>
 
   <div class="row g-1">
@@ -58,61 +66,53 @@
   <div class="accordion accordion-flush my-2" id="accordionFlushExample_<%= pedido.id %>">
     <div class="accordion-item">
       <span class="accordion-header" id="flush-headingOne_<%= pedido.id %>" title="Clique para ver detalhes do pedido.">
-        <button class="accordion-button collapsed" type="button" style="padding: 7px 12px; border: 1px solid rgb(194, 194, 194); border-radius: 4px;" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne_<%= pedido.id %>" aria-expanded="false" aria-controls="flush-collapseOne_<%= pedido.id %>">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          style="padding: 7px 12px; border: 1px solid rgb(194, 194, 194); border-radius: 4px"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseOne_<%= pedido.id %>"
+          aria-expanded="false"
+          aria-controls="flush-collapseOne_<%= pedido.id %>"
+        >
           Detalhes do Pedido
         </button>
       </span>
       <div id="flush-collapseOne_<%= pedido.id %>" class="accordion-collapse collapse" aria-labelledby="flush-headingOne_<%= pedido.id %>" data-bs-parent="#accordionFlushExample_<%= pedido.id %>">
-        <div class="accordion-body">
-          <%- include('../components/detalhePedido.ejs', {pedido}) %>
-        </div>
+        <div class="accordion-body"><%- include('../components/detalhePedido.ejs', {pedido}) %></div>
       </div>
     </div>
-  </div> 
+  </div>
   <!-- Detalhes do Pedido -->
 
-  <% if (USUARIO && USUARIO.Cliente) { %> 
-    <% if (pedido.statusPedidoId == 1 || pedido.statusPedidoId == 2) { %>
-      <div class="row g-1">
-        <form class="col-sm mb-2" action="/minha-conta/cancelar-pedido?_method=PUT" method="post">
-          <input type="hidden" name="pedidoId" value="<%= pedido.id %>" />
-          <input type="submit" value="Cancelar Pedido" class="btn btn-outline-secondary w-100" onClick="if(!(confirm('Deseja mesmo cancelar este pedido?'))) return false" />
-        </form>
-      </div>
-    <% } %>
-  <% } %>
-
-  <% if (USUARIO && USUARIO.admin) { %>
-    <div class="row g-1">
-      <div class="col-sm mb-2">
-        <button
-          type="button"
-          class="btn btn-outline-secondary w-100"
-          data-bs-toggle="modal"
-          data-bs-target="#alteraPedidoModal"
-          data-id="<%= pedido.id %>"
-          data-statusatual="<%= pedido.StatusPedido.descricao %>"
-          data-pedidostatus="<%= pedidoStatus.map(status => (JSON.stringify({id: status.id, descricao: status.descricao}))) %>"
-        >
-          Alterar Status
-        </button>
-      </div>
-
-      <% if (pedido.StatusPedido.id == 3 || pedido.StatusPedido.id == 4) { %>
-        <div class="col-sm mb-2">
-          <button
-            type="button"
-            class="btn btn-outline-secondary w-100"
-            data-bs-toggle="modal"
-            data-bs-target="#addCodigoRastreio"
-            data-id="<%= pedido.id %>"
-          >
-            Codigo Rastreio
-          </button>
-        </div>
-      <% } %>
-
+  <% if (USUARIO && USUARIO.Cliente) { %> <% if (pedido.statusPedidoId == 1 || pedido.statusPedidoId == 2) { %>
+  <div class="row g-1">
+    <form class="col-sm mb-2" action="/minha-conta/cancelar-pedido?_method=PUT" method="post">
+      <input type="hidden" name="pedidoId" value="<%= pedido.id %>" />
+      <input type="submit" value="Cancelar Pedido" class="btn btn-outline-secondary w-100" onClick="if(!(confirm('Deseja mesmo cancelar este pedido?'))) return false" />
+    </form>
+  </div>
+  <% } %> <% } %> <% if (USUARIO && USUARIO.admin) { %>
+  <div class="row g-1">
+    <div class="col-sm mb-2">
+      <button
+        type="button"
+        class="btn btn-outline-secondary w-100"
+        data-bs-toggle="modal"
+        data-bs-target="#alteraPedidoModal"
+        data-id="<%= pedido.id %>"
+        data-statusatual="<%= pedido.StatusPedido.descricao %>"
+        data-pedidostatus="<%= pedidoStatus.map(status => (JSON.stringify({id: status.id, descricao: status.descricao}))) %>"
+      >
+        Alterar Status
+      </button>
     </div>
-  <% } %>
 
+    <% if (pedido.StatusPedido.id == 3 || pedido.StatusPedido.id == 4) { %>
+    <div class="col-sm mb-2">
+      <button type="button" class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#addCodigoRastreio" data-id="<%= pedido.id %>">Codigo Rastreio</button>
+    </div>
+    <% } %>
+  </div>
+  <% } %>
 </div>
