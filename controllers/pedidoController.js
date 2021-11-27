@@ -6,6 +6,9 @@ const { round } = require('../utils/mathUtils');
 module.exports = {
     listarPedidos: async(req, res) => {
         const clienteId = req.session.usuario.Cliente && req.session.usuario.Cliente.id;
+        const page = req.query.page || 1;
+        const limit = parseInt(req.query.limit) || 5;
+        const offset = (page - 1) * limit;
         let { filtro } = req.query;
         let status;
 
@@ -20,17 +23,24 @@ module.exports = {
             status = filtro;
         }
 
-        const pedidos = clienteId ?
-            await Pedido.findAllWithAllInformation({ clienteId, statusPedidoId: status }, [
-                ['id', 'DESC']
-            ]) :
-            await Pedido.findAllWithAllInformation({ statusPedidoId: status }, [
-                ['id', 'ASC']
-            ]);
+        const whereClause = { statusPedidoId: status};
+        if(clienteId) whereClause['clienteId'] = clienteId;
 
+        const { rows: pedidos } = clienteId ?
+            await Pedido.findAllWithAllInformation(whereClause, [
+                ['id', 'DESC']
+            ], offset, limit) :
+            await Pedido.findAllWithAllInformation(whereClause, [
+                ['id', 'ASC']
+            ], offset, limit);
+
+        
+        const count = await Pedido.count({where: whereClause})
         const pedidoStatus = await StatusPedido.findAll();
 
-        res.render('minha-conta/pedidos', { pedidos, filtro, pedidoStatus, menu: 'pedidos' });
+        const totalPagina = Math.ceil(count / limit); // calcula quantas paginas serão necessárias de acordo com o total de itens encontrados
+
+        res.render('minha-conta/pedidos', { pedidos, filtro, pedidoStatus, menu: 'pedidos', totalPagina, paginaAtual: page, limit });
     },
 
     fecharPedido: async function(req, res) {
@@ -126,13 +136,13 @@ module.exports = {
             status = filtro;
         }
 
-        const pedidos = await Pedido.findAllWithAllInformation({ statusPedidoId: status }, [
+        const { rows: pedidos, count } = await Pedido.findAllWithAllInformation({ statusPedidoId: status }, [
             ['id', 'DESC']
         ]);
 
         const pedidoStatus = await StatusPedido.findAll();
 
-        res.render('minha-conta-admin/historicopedidos', { pedidos, filtro, pedidoStatus, menu: 'historico' });
+        res.render('minha-conta-admin/historicopedidos', { pedidos, filtro, pedidoStatus, menu: 'historico', count });
     },
 
     alterarStatusPedido: async(req, res) => {

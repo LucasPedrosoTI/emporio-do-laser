@@ -34,3 +34,19 @@ $('#addCodigoRastreio').on('show.bs.modal', function (event) {
   form.attr('action', '/minha-conta/adicionar-codigo-rastreio?_method=PUT');
   modal.find('#pedidoId').val(pedidoId);
 });
+
+$('#pageSize').on('change', function (e) {
+  const pageSize = e.target.value;
+  const limit = `&limit=${pageSize}`
+  let {search, pathname} = location
+
+  if (search.includes("limit")) {
+    const indexSize = search.indexOf("limit");
+    const sizeSubstr = search.slice(indexSize - 1);
+    search = search.replace(sizeSubstr, "");
+  }
+
+    search = search.includes("?") ? search + limit : "?" + limit;
+
+  window.open(`${pathname}${search}`, "_self");
+})

@@ -1,57 +1,61 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Pedido extends Model {
-    static associate(models) {
-      Pedido.belongsTo(models.Cliente);
-      Pedido.belongsTo(models.StatusPedido);
-      Pedido.belongsTo(models.TipoEnvio);
-      Pedido.belongsTo(models.Cupom);
-      Pedido.belongsTo(models.TipoPagamento);
-      Pedido.belongsTo(models.Endereco);
-      Pedido.belongsToMany(models.TamanhoProduto, { through: models.PedidoProduto, foreignKey: 'pedidoId' });
+    class Pedido extends Model {
+        static associate(models) {
+            Pedido.belongsTo(models.Cliente, { foreignKey: 'clienteId' });
+            Pedido.belongsTo(models.StatusPedido, { foreignKey: 'statusPedidoId' });
+            Pedido.belongsTo(models.TipoEnvio, { foreignKey: 'tipoEnvioId' });
+            Pedido.belongsTo(models.Cupom, { foreignKey: 'cupomId' });
+            Pedido.belongsTo(models.TipoPagamento, { foreignKey: 'tipoPagamentoId' });
+            Pedido.belongsTo(models.Endereco, { foreignKey: 'enderecoId' });
+            Pedido.belongsToMany(models.TamanhoProduto, { through: models.PedidoProduto, foreignKey: 'pedidoId' });
 
-      Pedido.findAllWithAllInformation = async (where, order) => {
-        return await Pedido.findAll({
-          [where && 'where']: where,
-          include: [
-            models.TipoPagamento,
-            models.StatusPedido,
-            models.TipoEnvio,
-            { model: models.Endereco, paranoid: false },
-            models.Cupom,
-            {
-              model: models.TamanhoProduto,
-              include: [{ model: models.Produto, paranoid: false }],
-              paranoid: false,
-            },
-            {
-              model: models.Cliente,
-              include: [ models.PessoaFisica, models.PessoaJuridica ],
-              // paranoid: false,
-            },
-          ],
-          [order && 'order']: order,
-        });
-      };
+            Pedido.findAllWithAllInformation = async(where, order, offset = 0, limit = null) => {
+                return await Pedido.findAndCountAll({
+                    [where && 'where']: where,
+                    include: [
+                        models.TipoPagamento,
+                        models.StatusPedido,
+                        models.TipoEnvio,
+                        { model: models.Endereco, paranoid: false },
+                        models.Cupom,
+                        {
+                            model: models.TamanhoProduto,
+                            include: [{ model: models.Produto, paranoid: false }],
+                            paranoid: false,
+                        },
+                        {
+                            model: models.Cliente,
+                            include: [{
+                                model: models.PessoaFisica,
+                                attributes: ['nome', 'cpf']
+                            }, {
+                                model: models.PessoaJuridica,
+                                attributes: ['razao_social', 'cnpj']
+                            }],
+                        }
+                    ],
+                    [order && 'order']: order,
+                    [offset && 'offset']: offset,
+                    [limit && 'limit']: limit
+                });
+            };
+        }
     }
-  }
-  Pedido.init(
-    {
-      clienteId: DataTypes.BIGINT,
-      statusPedidoId: DataTypes.INTEGER,
-      subtotal: DataTypes.DECIMAL,
-      tipoEnvioId: DataTypes.INTEGER,
-      cupomId: DataTypes.BIGINT,
-      tipoPagamentoId: DataTypes.INTEGER,
-      enderecoId: DataTypes.BIGINT,
-      boleto: DataTypes.STRING,
-      codigoRastreio: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: 'Pedido',
-    }
-  );
-  return Pedido;
+    Pedido.init({
+        // clienteId: DataTypes.BIGINT,
+        // statusPedidoId: DataTypes.INTEGER,
+        subtotal: DataTypes.DECIMAL,
+        // tipoEnvioId: DataTypes.INTEGER,
+        // cupomId: DataTypes.BIGINT,
+        // tipoPagamentoId: DataTypes.INTEGER,
+        // enderecoId: DataTypes.BIGINT,
+        boleto: DataTypes.STRING,
+        codigoRastreio: DataTypes.STRING,
+    }, {
+        sequelize,
+        modelName: 'Pedido',
+    });
+    return Pedido;
 };
