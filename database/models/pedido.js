@@ -44,15 +44,15 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Pedido.init({
+        subtotal: DataTypes.DECIMAL,
+        boleto: DataTypes.STRING,
+        codigoRastreio: DataTypes.STRING,
         // clienteId: DataTypes.BIGINT,
         // statusPedidoId: DataTypes.INTEGER,
-        subtotal: DataTypes.DECIMAL,
         // tipoEnvioId: DataTypes.INTEGER,
         // cupomId: DataTypes.BIGINT,
         // tipoPagamentoId: DataTypes.INTEGER,
         // enderecoId: DataTypes.BIGINT,
-        boleto: DataTypes.STRING,
-        codigoRastreio: DataTypes.STRING,
     }, {
         sequelize,
         modelName: 'Pedido',
